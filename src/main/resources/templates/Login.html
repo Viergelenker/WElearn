@@ -22,13 +22,43 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="pull-right" style="padding-top: 8px">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword3">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword3"
+                               placeholder="Password"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Sign in</button>
+                </form>
+            </div>
         </div>
     </div>
 </nav>
 <div class="container">
-    <div class="starter-template">
-        <h1>Welcome to the DESJ project</h1>
-        <p class="lead">Login:</p>
+    <div class="jumbotron">
+        <h2>Welcome to the DESJ project</h2>
+        <p>Please fill in the form to register:</p>
+        <form>
+            <div class="form-group">
+                <label>Username</label>
+                <input th:type="text" class="form-control" th:id="inputUsername" th:placeholder="Email"/>
+            </div>
+            <div class="form-group">
+                <label>Email address</label>
+                <input th:type="email" class="form-control" th:id="inputEmail" th:placeholder="Email"/>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input th:type="password" class="form-control" th:id="exampleInputPassword1"
+                       th:placeholder="Password"/>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
     </div>
 </div>
 </body>
