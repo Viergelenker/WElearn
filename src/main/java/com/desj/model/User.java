@@ -20,9 +20,9 @@ public class User {
     private String username;
     private String password;
 
-    public String getEmail() {
-        return email;
-    }
+    public Integer getId() { return id; }
+
+    public String getEmail() { return email; }
 
     public void setEmail(String email) {
         this.email = email;

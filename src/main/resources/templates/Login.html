@@ -3,7 +3,7 @@
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body>
+<body style="background-color: #ccffef">
 <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -40,24 +40,25 @@
     </div>
 </nav>
 <div class="container">
-    <div class="jumbotron">
+    <div class="container">
         <h2>Welcome to the DESJ project</h2>
         <p>Please fill in the form to register:</p>
-        <form>
+        <br/>
+        <form th:object="${user}" th:action="@{newUser}" th:method="post" class="col-md-5">
             <div class="form-group">
                 <label>Username</label>
-                <input th:type="text" class="form-control" th:id="inputUsername" th:placeholder="Email"/>
+                <input type="text" class="form-control" th:field="*{username}" th:placeholder="Username"/>
             </div>
             <div class="form-group">
                 <label>Email address</label>
-                <input th:type="email" class="form-control" th:id="inputEmail" th:placeholder="Email"/>
+                <input type="email" class="form-control" th:field="*{email}" th:placeholder="Email"/>
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input th:type="password" class="form-control" th:id="exampleInputPassword1"
+                <input type="password" class="form-control" th:field="*{password}"
                        th:placeholder="Password"/>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default pull-right">Submit</button>
         </form>
     </div>
 </div>
