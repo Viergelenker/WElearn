@@ -5,8 +5,11 @@ import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 /**
  * Created by Julien on 13.04.16.
@@ -28,9 +31,22 @@ public class LoginController {
     }
 
     @RequestMapping(value = "newUser", method = RequestMethod.POST)
-    public String saveUser(User user){
+    public String saveUser(@Valid User user, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            return "login";
+        }
         userService.saveUser(user);
-        return "redirect:/welcome/" + user.getId();
+        return "redirect/welcome/" + user.getId();
+    }
+
+    @RequestMapping(value = "loginUser", method = RequestMethod.POST)
+    public String validateUser(@Valid User user, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            return "login";
+        }
+        return "redirect/welcome/" + user.getId();
     }
 
 }

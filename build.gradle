@@ -31,6 +31,8 @@ repositories {
 
 
 dependencies {
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile("org.hibernate:hibernate-validator")
 	compile("org.springframework.boot:spring-boot-starter-security")
 	compile('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
@@ -40,7 +42,6 @@ dependencies {
 	compile('com.h2database:h2')
 	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	compile('org.springframework.boot:spring-boot-starter-actuator')
 }
 
 task wrapper(type: Wrapper) {
