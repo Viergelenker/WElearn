@@ -1,10 +1,8 @@
 package com.desj.controller;
 
-import com.desj.model.User;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,16 +19,15 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @RequestMapping("/")
-    public String login(Model model) {
-        model.addAttribute("user", new User());
-        return "login";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "Login";
     }
 
-    @RequestMapping(value = "newUser", method = RequestMethod.POST)
+    /*@RequestMapping(value = "newUser", method = RequestMethod.POST)
     public String saveUser(User user){
         userService.saveUser(user);
         return "redirect:/welcome/" + user.getId();
-    }
+    }*/
 
 }
