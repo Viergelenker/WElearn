@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
+    <title>The DESJ Projekt</title>
 </head>
 <body style="background-color: #ccffef">
 <nav class="navbar navbar-inverse navbar-static-top">
@@ -18,18 +19,15 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="About">About us</a></li>
             </ul>
             <div class="pull-right" style="padding-top: 8px">
                 <form class="form-inline" th:action="@{/login}" th:method="post">
                     <div class="form-group">
-                        <label>Email address</label>
                         <input type="text" class="form-control" id="username" placeholder="Username" name="username"/>
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
                         <input type="password" class="form-control" id="password" name="password"
                                placeholder="Password"/>
                     </div>
@@ -39,28 +37,33 @@
         </div>
     </div>
 </nav>
-<!--<div class="container">-->
-    <!--<div class="container">-->
-        <!--<h2>Welcome to the DESJ project</h2>-->
-        <!--<p>Please fill in the form to register:</p>-->
-        <!--<br/>-->
-        <!--<form th:object="${user}" th:action="@{newUser}" th:method="post" class="col-md-5">-->
-            <!--<div class="form-group">-->
-                <!--<label>Username</label>-->
-                <!--<input type="text" class="form-control" th:field="*{username}" th:placeholder="Username"/>-->
-            <!--</div>-->
-            <!--<div class="form-group">-->
-                <!--<label>Email address</label>-->
-                <!--<input type="email" class="form-control" th:field="*{email}" th:placeholder="Email"/>-->
-            <!--</div>-->
-            <!--<div class="form-group">-->
-                <!--<label>Password</label>-->
-                <!--<input type="password" class="form-control" th:field="*{password}"-->
-                       <!--th:placeholder="Password"/>-->
-            <!--</div>-->
-            <!--<button type="submit" class="btn btn-default pull-right">Submit</button>-->
-        <!--</form>-->
-    <!--</div>-->
-<!--</div>-->
+
+<!-- Won't work because of the missing variables. We need to create user in a different way.
+DatabaseLoader.java needs some configuration to work with spring security -->
+
+<!--<div class="container">
+    <div class="container">
+        <h2>Welcome to the DESJ project</h2>
+        <p>Please fill in the form to register:</p>
+        <br/>
+        <form th:object="${user}" th:action="@{newUser}" th:method="post" class="col-md-5">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" th:field="*{username}" th:placeholder="Username"/>
+            </div>
+            <div class="form-group">
+                <label>Email address</label>
+                <input type="email" class="form-control" th:field="*{email}" th:placeholder="Email"/>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" th:field="*{password}"
+                       th:placeholder="Password"/>
+            </div>
+            <button type="submit" class="btn btn-default pull-right">Submit</button>
+        </form>
+    </div>
+</div>-->
+
 </body>
 </html>
