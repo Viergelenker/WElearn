@@ -15,10 +15,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
     private String email;
     private String username;
     private String password;
+    //Studiengang
+    private String major;
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
     public Integer getId() { return id; }
 

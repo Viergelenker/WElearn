@@ -29,6 +29,15 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         julien.setEmail("julien@vollweiter.com");
         julien.setUsername("Julien");
         julien.setPassword("1234");
+        //needed a major and jura is the coolest;
+        julien.setMajor("Jura");
         userRepository.save(julien);
+        //added a new user, kept forgetting the other ones details;
+        User desi = new User();
+        desi.setUsername("Desi");
+        desi.setMajor("Wirtschaftsinformatik");
+        desi.setEmail("desi@mail.com");
+        desi.setPassword("1234");
+        userRepository.save(desi);
     }
 }
