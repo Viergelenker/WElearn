@@ -38,7 +38,6 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.springframework:spring-jdbc")
 	compile('com.h2database:h2')
-	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 }
