@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <div th:replace="fragments/header :: header"/>
     <title>About us</title>
 </head>
 <body style="background-color: #89e4f9">
@@ -11,7 +11,7 @@
             <b>About us</b>
 
         </h1>
-        <img src="hlogo.jpg" style="alignment:right"/>
+        <img src="/images/hlogo.jpg" style="alignment:right"/>
         <div>
             <h2>
                 <strong>Our goals:</strong>
