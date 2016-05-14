@@ -27,43 +27,52 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     @Autowired
     BCryptPasswordEncoder encoder;
 
-    private UserRepository userRepository;
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    private UserRepository userRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        com.desj.model.User user1 = new com.desj.model.User();
-        user1.setUsername("Julien");
-        user1.setEmail("julien@vollweiter.com");
-        user1.setMajor("Winfo");
-        userRepository.save(user1);
-
+        // Set authorities.
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
-        User adminJulien = new User("Julien", encoder.encode("1234"), authorities);
-        userDetailsManager.createUser(adminJulien);
+        // Creates new Desj user.
+        com.desj.model.User julien = new com.desj.model.User();
+        julien.setUsername("Julien");
+        julien.setEmail("julien@vollweiter.com");
+        julien.setMajor("Winfo");
+        userRepository.save(julien);
 
-        User desi = new User("desi@mail.com", encoder.encode("1234"), authorities);
-        userDetailsManager.createUser(desi);
-
-        // We can still add user manually to the database,
-        // but we need to do it in another way because of spring security.
-        // As soon as i figured out, i will mention it here
-
-        //added a new user, kept forgetting the other ones details;
-        /*
-        com.desj.model.User desi = new User();
+        com.desj.model.User desi = new com.desj.model.User();
         desi.setUsername("Desi");
         desi.setMajor("Wirtschaftsinformatik");
         desi.setEmail("desi@mail.com");
         desi.setPassword("1234");
         userRepository.save(desi);
-        */
+
+        com.desj.model.User robert = new com.desj.model.User();
+        robert.setUsername("Robert Rundhals");
+        userRepository.save(robert);
+
+        com.desj.model.User friedrich = new com.desj.model.User();
+        friedrich.setUsername("Friedrich Fröhlich");
+        userRepository.save(friedrich);
+
+        com.desj.model.User leon = new com.desj.model.User();
+        leon.setUsername("Leon Lässig");
+        userRepository.save(leon);
+
+        // Creates new spring security user. These infos are merged with the Desj user data
+        // within the UserServiceImp.java
+        User adminJulien = new User("Julien", encoder.encode("1234"), authorities);
+        userDetailsManager.createUser(adminJulien);
+
+        User adminDesi = new User("desi@mail.com", encoder.encode("1234"), authorities);
+        userDetailsManager.createUser(adminDesi);
     }
 }

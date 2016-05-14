@@ -22,6 +22,7 @@ public class WelcomeController {
     @RequestMapping("/")
     public String welcomeUser(Model model) {
         model.addAttribute("username", userServiceImp.getCurrentDesjUser().getUsername());
+        model.addAttribute("allUser", userServiceImp.getAllDesjUser());
         return "welcome";
     }
 

@@ -35,12 +35,11 @@
 <div class="container-fluid">
     <div class="row">
         <h1 class="col-sm-12">Welcome <span th:text="${username}">User</span></h1>
-        <div class="col-sm-2" style="margin-top: 20px; background-color: lightgray;">
+        <div class="col-sm-2" style="margin-top: 20px;">
             <h2>Ranking Overview</h2>
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Robert Rundhals</a></li>
-                <li>Friedrich Fröhlich</li>
-                <li>Leon Lässig</li>
+            <ul class="nav nav-sidebar" th:each="user : ${allUser}">
+                <li><a href="#" th:text="${user.username}">User</a></li>
+
             </ul>
         </div>
     </div>
