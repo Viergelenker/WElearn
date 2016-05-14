@@ -10,37 +10,21 @@ import org.springframework.stereotype.Service;
  * Created by Julien on 25.04.16.
  */
 @Service
-public class UserServiceImp implements UserService{
-
-    private UserRepository userRepository;
+public class UserServiceImp implements UserService {
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    private UserRepository userRepository;
+
+    public User getCurrentDesjUser() {
+        return getUserByUsername(((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal()).getUsername());
     }
 
-    @Override
-    public Iterable<User> listAllUser() {
-        return userRepository.findAll();
+    public org.springframework.security.core.userdetails.User getCurrentUser() {
+        return (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
-    @Override
-    public User getUserById(Integer id) {
-        return userRepository.findOne(id);
-    }
-
-    @Override
-    public User saveUser(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public void deleteUser(Integer id) {
-        userRepository.delete(id);
-    }
-
-    public User getCurrentUser() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user;
+    public User getUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
     }
 }

@@ -7,9 +7,5 @@ import com.desj.model.User;
  */
 public interface UserService {
 
-        Iterable<User> listAllUser();
-        User getUserById(Integer id);
-        User saveUser(User user);
-        void deleteUser(Integer id);
-
+        User getCurrentDesjUser();
 }

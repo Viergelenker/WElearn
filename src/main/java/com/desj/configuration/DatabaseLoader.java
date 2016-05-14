@@ -27,7 +27,6 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     @Autowired
     BCryptPasswordEncoder encoder;
 
-    // Unused at the moment because of spring security
     private UserRepository userRepository;
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -38,36 +37,33 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
+        com.desj.model.User user1 = new com.desj.model.User();
+        user1.setUsername("Julien");
+        user1.setEmail("julien@vollweiter.com");
+        user1.setMajor("Winfo");
+        userRepository.save(user1);
 
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-
         authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
-        User julien = new User("julien@vollweiter.com", encoder.encode("1234"), authorities);
-
-        userDetailsManager.createUser(julien);
+        User adminJulien = new User("Julien", encoder.encode("1234"), authorities);
+        userDetailsManager.createUser(adminJulien);
 
         User desi = new User("desi@mail.com", encoder.encode("1234"), authorities);
-
         userDetailsManager.createUser(desi);
 
         // We can still add user manually to the database,
         // but we need to do it in another way because of spring security.
         // As soon as i figured out, i will mention it here
 
-        /*com.desj.model.User julien = new User();
-        julien.setEmail("julien@vollweiter.com");
-        julien.setUsername("Julien");
-        julien.setPassword("1234");
-        //needed a major and jura is the coolest;
-        julien.setMajor("Jura");
-        userRepository.save(julien);
         //added a new user, kept forgetting the other ones details;
+        /*
         com.desj.model.User desi = new User();
         desi.setUsername("Desi");
         desi.setMajor("Wirtschaftsinformatik");
         desi.setEmail("desi@mail.com");
         desi.setPassword("1234");
-        userRepository.save(desi);*/
+        userRepository.save(desi);
+        */
     }
 }
