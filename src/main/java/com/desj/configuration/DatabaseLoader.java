@@ -38,8 +38,8 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
         // Set authorities.
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        Collection<GrantedAuthority> AdminAuthorities = new ArrayList<>();
+        AdminAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
         // Creates new Desj user.
         com.desj.model.User julien = new com.desj.model.User();
@@ -69,10 +69,10 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
         // Creates new spring security user. These infos are merged with the Desj user data
         // within the UserServiceImp.java
-        User adminJulien = new User("Julien", encoder.encode("1234"), authorities);
+        User adminJulien = new User("Julien", encoder.encode("1234"), AdminAuthorities);
         userDetailsManager.createUser(adminJulien);
 
-        User adminDesi = new User("desi@mail.com", encoder.encode("1234"), authorities);
+        User adminDesi = new User("desi@mail.com", encoder.encode("1234"), AdminAuthorities);
         userDetailsManager.createUser(adminDesi);
     }
 }
