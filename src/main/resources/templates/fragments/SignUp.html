@@ -1,10 +1,10 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
-    <title>The DESJ Projekt</title>
+
 </head>
-<body style="background-color: #58D3F7">
+<body style="background-color: #21ff97">
 <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -19,9 +19,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
+                <li ><a href="/">Home</a></li>
                 <li><a href="About">About us</a></li>
-                <li><a href="Sign up">Sign up</a> </li>
+                <li class="active"><a href="Sign up">Sign up</a> </li>
             </ul>
             <div class="pull-right" style="padding-top: 8px">
                 <form class="form-inline" th:action="@{/login}" th:method="post">
@@ -38,12 +38,8 @@
         </div>
     </div>
 </nav>
-
-<!-- Won't work because of the missing variables. We need to create user in a different way.
-DatabaseLoader.java needs some configuration to work with spring security -->
-
-<!--<div class="container">
-    <div class="container">
+<nav>
+    <div>
         <h2>Welcome to the DESJ project</h2>
         <p>Please fill in the form to register:</p>
         <br/>
@@ -64,8 +60,9 @@ DatabaseLoader.java needs some configuration to work with spring security -->
             <button type="submit" class="btn btn-default pull-right">Submit</button>
         </form>
     </div>
-</div>-->
-
+    </div>
+    </div>
+</nav>
 
 </body>
 </html>

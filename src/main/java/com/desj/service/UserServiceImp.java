@@ -26,7 +26,7 @@ public class UserServiceImp {
                 .getPrincipal()).getUsername());
     }
 
-    public User getUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
+    public User getUserByUsername(String email) {
+        return userRepository.findUserByEmail(email);
     }
 }
