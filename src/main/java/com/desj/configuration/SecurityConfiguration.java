@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     * */
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().antMatchers("/console/**", "/About").permitAll().anyRequest().fullyAuthenticated()
+        httpSecurity.authorizeRequests().antMatchers("/console/**", "/About", "/signUp").permitAll().anyRequest().fullyAuthenticated()
                 // This line of code sets the /login as a default page, if the user isn't authenticated
                 .and().formLogin().loginPage("/login").permitAll()
                 // logout needs permit too
