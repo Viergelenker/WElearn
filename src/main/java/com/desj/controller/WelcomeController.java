@@ -1,10 +1,10 @@
 package com.desj.controller;
 
-import com.desj.service.UserService;
+import com.desj.service.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class WelcomeController {
-    private UserService userService;
 
     @Autowired
-    public void setUserService(UserService userService) {
-     this.userService = userService;
-    }
+    UserServiceImp userServiceImp;
 
-    @RequestMapping("/welcome/{id}")
-    public String welcomeUser(@PathVariable Integer id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+    @Autowired
+    UserDetailsService userDetailsService;
+
+    @RequestMapping("/")
+    public String welcomeUser(Model model) {
+        model.addAttribute("username", userServiceImp.getCurrentDesjUser().getUsername());
+        model.addAttribute("allUser", userServiceImp.getAllDesjUser());
         return "welcome";
     }
 
