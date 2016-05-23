@@ -49,10 +49,10 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         userRepository.save(julien);
 
         com.desj.model.User desi = new com.desj.model.User();
-        desi.setUsername("Desi");
+        desi.setUsername("desi");
         desi.setMajor("Wirtschaftsinformatik");
         desi.setEmail("desi@mail.com");
-        desi.setPassword("1234");
+       // desi.setPassword("1234");
         userRepository.save(desi);
 
         com.desj.model.User robert = new com.desj.model.User();
