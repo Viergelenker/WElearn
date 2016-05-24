@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,8 +25,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 @Configuration
+@ComponentScan(basePackages = "com.desj")
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    DataSource dataSource;
 
     /*
     *  TODO: Delete authorization on /console
@@ -43,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JdbcUserDetailsManager userDetailsManager(DataSource dataSource) {
+    public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager detailsManager = new JdbcUserDetailsManager();
         detailsManager.setDataSource(dataSource);
         return detailsManager;

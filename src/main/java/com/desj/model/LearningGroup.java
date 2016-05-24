@@ -1,5 +1,7 @@
 package com.desj.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
  * Created by Julien on 23.05.16.
  */
 @Entity
+@Component
 public class LearningGroup {
 
     @Id

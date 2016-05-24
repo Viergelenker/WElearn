@@ -5,13 +5,14 @@ import com.desj.model.LearningGroupRepository;
 import com.desj.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
-import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,7 +22,8 @@ import java.util.List;
  * Created by Julien on 23.04.16.
  * This class creates demo content for the test database.
  */
-@Component
+@ComponentScan(basePackages = "com.desj")
+@Transactional
 public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
