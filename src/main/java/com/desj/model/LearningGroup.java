@@ -15,7 +15,7 @@ public class LearningGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer groupId;
+    private Integer id;
 
     private String name;
     private String subject;
@@ -28,7 +28,7 @@ public class LearningGroup {
     List<User> members = new ArrayList<>();
 
     public Integer getId() {
-        return groupId;
+        return id;
     }
 
     public String getName() {

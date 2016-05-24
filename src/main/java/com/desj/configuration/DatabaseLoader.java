@@ -6,6 +6,7 @@ import com.desj.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,6 +23,7 @@ import java.util.List;
  * Created by Julien on 23.04.16.
  * This class creates demo content for the test database.
  */
+@Configuration
 @ComponentScan(basePackages = "com.desj")
 @Transactional
 public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent> {

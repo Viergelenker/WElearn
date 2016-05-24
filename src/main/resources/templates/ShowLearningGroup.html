@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+<body style="background-color: #58D3F7">
+<div th:replace="fragments/navbar :: loggedIn"></div>
+<div class="container-fluid">
+    <div class="row">
+        <h1 class="col-sm-12" style="margin-bottom: 50px">
+            Welcome to the Group <span th:text="${learningGroup.name}"></span>!
+        </h1>
+
+    </div>
+</div>
+</body>
+</html>
