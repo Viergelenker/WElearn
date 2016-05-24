@@ -44,5 +44,10 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div th:each="learningGroup : ${learningGroups}">
+        <span th:text="${learningGroup.name}"></span>
+    </div>
+</div>
 </body>
 </html>

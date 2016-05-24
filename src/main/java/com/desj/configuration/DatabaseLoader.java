@@ -1,5 +1,7 @@
 package com.desj.configuration;
 
+import com.desj.model.LearningGroup;
+import com.desj.model.LearningGroupRepository;
 import com.desj.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Julien on 23.04.16.
@@ -28,11 +31,10 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     BCryptPasswordEncoder encoder;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     private UserRepository userRepository;
+
+    @Autowired
+    private LearningGroupRepository learningGroupRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -68,11 +70,29 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         userRepository.save(leon);
 
         // Creates new spring security user. These infos are merged with the Desj user data
-        // within the UserServiceImp.java
-        User adminJulien = new User("Julien", encoder.encode("1234"), AdminAuthorities);
+        // within the UserService.java
+        User adminJulien = new User("julien@vollweiter.com", encoder.encode("1234"), AdminAuthorities);
         userDetailsManager.createUser(adminJulien);
 
         User adminDesi = new User("desi@mail.com", encoder.encode("1234"), AdminAuthorities);
         userDetailsManager.createUser(adminDesi);
+
+        // New learning groups
+        List<com.desj.model.User> userList = new ArrayList<>();
+        LearningGroup group1 = new LearningGroup();
+        group1.setName("Mathe Meister");
+        group1.setSubject("Mathe");
+        userList.add(julien);
+        userList.add(desi);
+        group1.setMembers(userList);
+        learningGroupRepository.save(group1);
+
+        LearningGroup group2 = new LearningGroup();
+        group2.setName("Statistik Streber");
+        group2.setSubject("Statistik");
+        userList.add(robert);
+        userList.add(friedrich);
+        group2.setMembers(userList);
+        learningGroupRepository.save(group2);
     }
 }
