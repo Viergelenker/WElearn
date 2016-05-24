@@ -4,27 +4,7 @@
     <div th:replace="fragments/header :: header"/>
 </head>
 <body style="background-color: #58D3F7">
-<nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">DESJ project</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="About">About us</a></li>
-                <li class="active"><a href="Sign up">Sign up</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div th:replace="fragments/navbar :: signUp"></div>
 <div>
     <h2>Welcome to the DESJ project</h2>
     <p>Please fill in the form to register:</p>

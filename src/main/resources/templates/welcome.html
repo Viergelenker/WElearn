@@ -4,49 +4,31 @@
     <div th:replace="fragments/header :: header"/>
 </head>
 <body style="background-color: #58D3F7">
-<nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">DESJ project</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="About">About us</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="glyphicon glyphicon-user" style="color: #e6fff7" href="#"></a></li>
-                <li>
-                    <form id="logout" th:action="@{/logout}" th:method="post" class="logoutForm col-sm-1">
-                        <button type="submit" class="btn-link glyphicon glyphicon-off" style="color: red"></button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div th:replace="fragments/navbar :: loggedIn"></div>
 <div class="container-fluid">
     <div class="row">
-        <h1 class="col-sm-12">Welcome <span th:text="${username}">User</span></h1>
-        <div class="col-sm-2" style="margin-top: 20px;">
-            <h2>Ranking Overview</h2>
-            <ul class="nav nav-sidebar" th:each="user : ${allUser}">
-                <li><a href="#" th:text="${user.username}">User</a></li>
+        <h1 class="col-sm-12" style="margin-bottom: 50px">
+            Welcome <span th:text="${username}">User</span>!
+        </h1>
 
-            </ul>
+        <div class="col-sm-2">
+            <div class="rankingBox">
+                <h2 class="rankingTitle">Overall ranking</h2>
+                <div class="rankingEntry" th:each="user : ${allUser}">
+                    <div th:text="${user.username}">User</div>
+                    <div>Score: 80 Punkte</div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div th:each="learningGroup : ${learningGroups}">
-        <span th:text="${learningGroup.name}"></span>
+
+        <div>
+            <div class="col-sm-3 image" th:each="learningGroup : ${learningGroups}">
+                <a href="#">
+                    <img class="img-circle" src="/images/gray.jpg" width="140" height="140"/>
+                    <h5 th:text="${learningGroup.name}">Group name</h5>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 </body>

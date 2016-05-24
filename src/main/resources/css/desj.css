@@ -11,3 +11,22 @@
 #logout {
     margin-top: 17px;
 }
+
+.rankingBox {
+    background-color: white;
+    padding-top: 2px;
+}
+
+.rankingTitle {
+    padding-left: 18px;
+}
+
+.rankingEntry {
+    padding-left: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.rankingEntry:hover {
+    background-color: gray;
+}

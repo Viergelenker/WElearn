@@ -39,10 +39,6 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        // Set authorities.
-        Collection<GrantedAuthority> AdminAuthorities = new ArrayList<>();
-        AdminAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-
         // Creates new Desj user.
         com.desj.model.User julien = new com.desj.model.User();
         julien.setUsername("Julien");
@@ -54,7 +50,6 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         desi.setUsername("desi");
         desi.setMajor("Wirtschaftsinformatik");
         desi.setEmail("desi@mail.com");
-       // desi.setPassword("1234");
         userRepository.save(desi);
 
         com.desj.model.User robert = new com.desj.model.User();
@@ -69,6 +64,13 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         leon.setUsername("Leon Lässig");
         userRepository.save(leon);
 
+        // Set authorities.
+        Collection<GrantedAuthority> AdminAuthorities = new ArrayList<>();
+        AdminAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+        Collection<GrantedAuthority> UserAuthorities = new ArrayList<>();
+        UserAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
         // Creates new spring security user. These infos are merged with the Desj user data
         // within the UserService.java
         User adminJulien = new User("julien@vollweiter.com", encoder.encode("1234"), AdminAuthorities);
@@ -76,6 +78,9 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
         User adminDesi = new User("desi@mail.com", encoder.encode("1234"), AdminAuthorities);
         userDetailsManager.createUser(adminDesi);
+
+        User userRobert = new User("robert@rundhals.com", encoder.encode("1234"), UserAuthorities);
+        userDetailsManager.createUser(userRobert);
 
         // New learning groups
         List<com.desj.model.User> userList = new ArrayList<>();
