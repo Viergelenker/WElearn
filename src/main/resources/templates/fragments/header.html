@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="header">
+
     <meta charset="utf-8"/>
-    <!-- Force IE to use the newest rendering engine (no compatibility mode) -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <!-- Allow devices to scale the content and define width -->
-    <meta name="viewport" content="initial-scale=1"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <!-- Set tab title and favicon -->
-    <link rel="icon" href="/images/group.png"/>
+    <link rel="icon" href="images/group.png"/>
     <title>DESJ project</title>
+
+    <!-- Foundation CSS -->
+    <link rel="stylesheet" href="css/foundation.css"/>
+
     <!-- set desj.css style information-->
-    <link rel="stylesheet" href="/css/desj.css"/>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/desj.css"/>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+
 </th:block>
 </html>

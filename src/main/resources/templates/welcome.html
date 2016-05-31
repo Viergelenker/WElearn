@@ -25,7 +25,7 @@
             <div class="col-sm-3 image" th:each="learningGroup : ${learningGroupsOfUser}">
 
                 <a class="btn-default" th:href="@{/showLearningGroup(id=${learningGroup.id})}">
-                    <img class="img-circle" src="/images/gray.jpg" width="140" height="140"/>
+                    <img class="img-circle" src="/static/images/gray.jpg" width="140" height="140"/>
                     <h5 th:text="${learningGroup.name}">Group name</h5>
                 </a>
             </div>

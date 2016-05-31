@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="fragments/header :: header"/>
-    <title>The DESJ Projekt</title>
+    <div th:replace="fragments/header :: header"></div>
 </head>
 <body style="background-color: #58D3F7">
 <div th:replace="fragments/navbar :: notLoggedIn"></div>
@@ -34,6 +33,8 @@ DatabaseLoader.java needs some configuration to work with spring security -->
     </div>
 </div>-->
 
-
+<script>
+    $(document).foundation();
+</script>
 </body>
 </html>
