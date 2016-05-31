@@ -3,11 +3,11 @@
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body style="background-color: #58D3F7">
+<body>
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <div class="container-fluid">
     <div class="row">
-        <h1 class="col-sm-12" style="margin-bottom: 50px">
+        <h1 class="small-12 columns">
             Welcome <span th:text="${username}">User</span>!
         </h1>
 

@@ -33,7 +33,7 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     private UserDetailsManager userDetailsManager;
 
     @Autowired
-    BCryptPasswordEncoder encoder;
+    private BCryptPasswordEncoder encoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -69,6 +69,8 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         learningGroupRepository.save(group2);
 
         // Creates new Desj user.
+
+        // Julien
         com.desj.model.User julien = new com.desj.model.User();
         julien.setUsername("Julien");
         julien.setEmail("julien@vollweiter.com");
@@ -81,6 +83,8 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         learningGroupService.addMemberToLearningGroup(group1.getId(), julien);
         learningGroupService.addMemberToLearningGroup(group2.getId(), julien);
 
+
+        // Desi
         com.desj.model.User desi = new com.desj.model.User();
         desi.setUsername("Desi");
         desi.setMajor("Wirtschaftsinformatik");
@@ -93,15 +97,18 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         learningGroupService.addMemberToLearningGroup(group1.getId(), desi);
         learningGroupService.addMemberToLearningGroup(group2.getId(), desi);
 
+        // Robert
         com.desj.model.User robert = new com.desj.model.User();
         robert.setUsername("Robert Rundhals");
         userRepository.save(robert);
         learningGroupService.addMemberToLearningGroup(group1.getId(), robert);
 
+        // Friedrich
         com.desj.model.User friedrich = new com.desj.model.User();
         friedrich.setUsername("Friedrich Fröhlich");
         userRepository.save(friedrich);
 
+        // Leon
         com.desj.model.User leon = new com.desj.model.User();
         leon.setUsername("Leon Lässig");
         userRepository.save(leon);

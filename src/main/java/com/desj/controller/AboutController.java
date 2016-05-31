@@ -11,10 +11,6 @@ public class AboutController {
 
     @RequestMapping("/About")
     public String about(){
-
         return "About";
-
     }
-
-
 }

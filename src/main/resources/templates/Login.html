@@ -3,35 +3,13 @@
 <head>
     <div th:replace="fragments/header :: header"></div>
 </head>
-<body style="background-color: #58D3F7">
+<body>
 <div th:replace="fragments/navbar :: notLoggedIn"></div>
 
-<!-- Won't work because of the missing variables. We need to create user in a different way.
-DatabaseLoader.java needs some configuration to work with spring security -->
-
-<!--<div class="container">
-    <div class="container">
-        <h2>Welcome to the DESJ project</h2>
-        <p>Please fill in the form to register:</p>
-        <br/>
-        <form th:object="${user}" th:action="@{newUser}" th:method="post" class="col-md-5">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" th:field="*{username}" th:placeholder="Username"/>
-            </div>
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control" th:field="*{email}" th:placeholder="Email"/>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" th:field="*{password}"
-                       th:placeholder="Password"/>
-            </div>
-            <button type="submit" class="btn btn-default pull-right">Submit</button>
-        </form>
-    </div>
-</div>-->
+<div class="row">
+    <h2>Welcome to the DESJ project</h2>
+</div>
+<br/>
 
 <script>
     $(document).foundation();
