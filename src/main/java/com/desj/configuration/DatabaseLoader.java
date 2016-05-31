@@ -3,6 +3,7 @@ package com.desj.configuration;
 import com.desj.model.LearningGroup;
 import com.desj.model.LearningGroupRepository;
 import com.desj.model.UserRepository;
+import com.desj.service.LearningGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Julien on 23.04.16.
@@ -40,8 +40,29 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     @Autowired
     private LearningGroupRepository learningGroupRepository;
 
+    @Autowired
+    private LearningGroupService learningGroupService;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
+        // New learning groups
+        // List<com.desj.model.User> userList = new ArrayList<>();
+        LearningGroup group1 = new LearningGroup();
+        group1.setName("Mathe Meister");
+        group1.setSubject("Mathe");
+        // userList.add(julien);
+        // userList.add(desi);
+        // group1.setMembers(userList);
+        learningGroupRepository.save(group1);
+
+        LearningGroup group2 = new LearningGroup();
+        group2.setName("Statistik Streber");
+        group2.setSubject("Statistik");
+        // userList.add(robert);
+        // userList.add(friedrich);
+        // group2.setMembers(userList);
+        learningGroupRepository.save(group2);
 
         // Creates new Desj user.
         com.desj.model.User julien = new com.desj.model.User();
@@ -49,16 +70,21 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         julien.setEmail("julien@vollweiter.com");
         julien.setMajor("Winfo");
         userRepository.save(julien);
+        learningGroupService.addMemberToLearningGroup(group1.getId(), julien);
+        learningGroupService.addMemberToLearningGroup(group2.getId(), julien);
 
         com.desj.model.User desi = new com.desj.model.User();
-        desi.setUsername("desi");
+        desi.setUsername("Desi");
         desi.setMajor("Wirtschaftsinformatik");
         desi.setEmail("desi@mail.com");
         userRepository.save(desi);
+        learningGroupService.addMemberToLearningGroup(group1.getId(), desi);
+        learningGroupService.addMemberToLearningGroup(group2.getId(), desi);
 
         com.desj.model.User robert = new com.desj.model.User();
         robert.setUsername("Robert Rundhals");
         userRepository.save(robert);
+        learningGroupService.addMemberToLearningGroup(group1.getId(), robert);
 
         com.desj.model.User friedrich = new com.desj.model.User();
         friedrich.setUsername("Friedrich Fröhlich");
@@ -85,23 +111,5 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
         User userRobert = new User("robert@rundhals.com", encoder.encode("1234"), UserAuthorities);
         userDetailsManager.createUser(userRobert);
-
-        // New learning groups
-        List<com.desj.model.User> userList = new ArrayList<>();
-        LearningGroup group1 = new LearningGroup();
-        group1.setName("Mathe Meister");
-        group1.setSubject("Mathe");
-        userList.add(julien);
-        userList.add(desi);
-        group1.setMembers(userList);
-        learningGroupRepository.save(group1);
-
-        LearningGroup group2 = new LearningGroup();
-        group2.setName("Statistik Streber");
-        group2.setSubject("Statistik");
-        userList.add(robert);
-        userList.add(friedrich);
-        group2.setMembers(userList);
-        learningGroupRepository.save(group2);
     }
 }

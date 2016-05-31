@@ -11,6 +11,9 @@
             Welcome to the Group <span th:text="${learningGroup.name}"></span>!
         </h1>
 
+        <div class="col-sm-3" th:each="member : ${learningGroupMembers}">
+            <div th:text="${member.username}"></div>
+        </div>
     </div>
 </div>
 </body>
