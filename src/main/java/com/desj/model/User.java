@@ -2,10 +2,9 @@ package com.desj.model;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Julien on 14.04.16.
@@ -24,13 +23,13 @@ public class User {
     //Studiengang
     private String major;
 
-    public String getMajor() {
-        return major;
-    }
+    @ManyToMany
+    @JoinTable(
+            name="LEARNINGGROUPSOFUSER",
+            joinColumns=@JoinColumn(name="USER_ID"),
+            inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
+    List<LearningGroup> learningGroupsOfUser = new ArrayList<>();
 
-    public void setMajor(String major) {
-        this.major = major;
-    }
 
     public Integer getId() { return id; }
 
@@ -54,5 +53,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public List<LearningGroup> getLearningGroupsOfUser() {
+        return learningGroupsOfUser;
+    }
+
+    public void setLearningGroupsOfUser(List<LearningGroup> learningGroupsOfUser) {
+        this.learningGroupsOfUser = learningGroupsOfUser;
     }
 }

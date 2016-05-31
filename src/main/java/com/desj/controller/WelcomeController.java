@@ -1,6 +1,5 @@
 package com.desj.controller;
 
-import com.desj.model.LearningGroupRepository;
 import com.desj.model.UserRepository;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WelcomeController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    LearningGroupRepository learningGroupRepository;
+    private UserRepository userRepository;
 
     @RequestMapping("/")
     public String welcomeUser(Model model) {
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
         model.addAttribute("allUser", userRepository.findAll());
-        model.addAttribute("learningGroups", learningGroupRepository.findAll());
+        model.addAttribute("learningGroupsOfUser",
+                userService.getAllLearningGroupsOfUser(userService.getCurrentDesjUser().getId()));
         return "welcome";
     }
 

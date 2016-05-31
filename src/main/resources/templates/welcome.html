@@ -22,7 +22,7 @@
         </div>
 
         <div>
-            <div class="col-sm-3 image" th:each="learningGroup : ${learningGroups}">
+            <div class="col-sm-3 image" th:each="learningGroup : ${learningGroupsOfUser}">
 
                 <a class="btn-default" th:href="@{/showLearningGroup(id=${learningGroup.id})}">
                     <img class="img-circle" src="/images/gray.jpg" width="140" height="140"/>

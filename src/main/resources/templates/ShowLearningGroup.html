@@ -10,9 +10,11 @@
         <h1 class="col-sm-12" style="margin-bottom: 50px">
             Welcome to the Group <span th:text="${learningGroup.name}"></span>!
         </h1>
-
-        <div class="col-sm-3" th:each="member : ${learningGroupMembers}">
-            <div th:text="${member.username}"></div>
+        <div class="col-sm-3">
+            <h1>Group members:</h1>
+            <div th:each="member : ${learningGroupMembers}">
+                <div th:text="${member.username}"></div>
+            </div>
         </div>
     </div>
 </div>

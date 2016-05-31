@@ -4,6 +4,7 @@ import com.desj.model.LearningGroup;
 import com.desj.model.LearningGroupRepository;
 import com.desj.model.UserRepository;
 import com.desj.service.LearningGroupService;
+import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
@@ -38,6 +39,9 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     private UserRepository userRepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private LearningGroupRepository learningGroupRepository;
 
     @Autowired
@@ -70,6 +74,10 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         julien.setEmail("julien@vollweiter.com");
         julien.setMajor("Winfo");
         userRepository.save(julien);
+        // Add learning groups to the user class...
+        userService.addLearningGroupToUser(group1, julien.getId());
+        userService.addLearningGroupToUser(group2, julien.getId());
+        // ... and add the user to the learning group class
         learningGroupService.addMemberToLearningGroup(group1.getId(), julien);
         learningGroupService.addMemberToLearningGroup(group2.getId(), julien);
 
@@ -78,6 +86,10 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         desi.setMajor("Wirtschaftsinformatik");
         desi.setEmail("desi@mail.com");
         userRepository.save(desi);
+        // Add learning groups to the user class...
+        userService.addLearningGroupToUser(group1, desi.getId());
+        userService.addLearningGroupToUser(group2, desi.getId());
+        // ... and add the user to the learning group class
         learningGroupService.addMemberToLearningGroup(group1.getId(), desi);
         learningGroupService.addMemberToLearningGroup(group2.getId(), desi);
 
