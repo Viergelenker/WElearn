@@ -18,9 +18,26 @@
 }
 
 body {
-    background-color: #58D3F7;
+    /*background-color: #58D3F7;*/
 }
 
-.button {
-    background-color: #58D3F7;
+/* Just to keep in mind */
+/*.top-bar {
+    background: red;
 }
+
+.top-bar-section li a:not(.button) {
+    background: blue !important;
+}
+
+.top-bar-section li a:not(.button):hover {
+    background: green !important;
+}
+
+.top-bar-section ul li.active > a {
+    background: gray !important;
+}
+
+.top-bar-section ul li.active > a:hover {
+    background: yellow !important;
+}*/
