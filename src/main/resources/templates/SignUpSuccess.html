@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+    <title>About us</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: signup"></div>
+
+<h2>Success! You are now part of TrainU!</h2>
+<h3>Please log in with your email address and password:</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="small-6 columns">
+            <form th:action="@{/login}" th:method="post">
+                <input type="text" placeholder="Email" name="username"/>
+                <input type="password" placeholder="Password" name="password"/>
+                <button type="submit" class="button">Go</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
