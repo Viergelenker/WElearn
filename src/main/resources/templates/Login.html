@@ -8,8 +8,33 @@
 
 <div class="row">
     <h2>Welcome to the DESJ project</h2>
+    <h3>Please fill in the form to register:</h3>
 </div>
 <br/>
+
+<div class="row">
+    <div class="small-4 columns">
+        <div class="row">
+            <form th:object="${user}" th:action="@{/newUser}" th:method="post">
+                <div class="small-12 columns">
+                    <label>Username</label>
+                    <input type="text" th:field="*{username}" th:placeholder="Username"/>
+                </div>
+                <div class="small-12 columns">
+                    <label>Email address</label>
+                    <input type="email" th:field="*{email}" th:placeholder="Email"/>
+                </div>
+                <div class="small-12 columns">
+                    <label>Password</label>
+                    <input type="password" th:field="*{password}" th:placeholder="Password"/>
+                </div>
+                <div class="small-12 columns">
+                    <button type="submit" class="secondary button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
     $(document).foundation();
