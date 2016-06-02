@@ -2,6 +2,7 @@ package com.desj.controller;
 
 import com.desj.model.LearningGroupRepository;
 import com.desj.service.LearningGroupService;
+import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ShowLearningGroupController {
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     private LearningGroupRepository learningGroupRepository;
 
     @Autowired
@@ -22,6 +26,7 @@ public class ShowLearningGroupController {
 
     @RequestMapping("/showLearningGroup{id}")
     public String showLearningGroup(@RequestParam("id") Integer learningGroupId, Model model) {
+        model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
         model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
         model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
         return "ShowLearningGroup";

@@ -40,4 +40,8 @@ public class UserService {
         learningGroupList.add(learningGroup);
         userRepository.findOne(userId).setLearningGroupsOfUser(learningGroupList);
     }
+
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }
