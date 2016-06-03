@@ -5,19 +5,34 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: loggedIn"></div>
+<div class="row">
+    <div class="small-6 large-centered columns">
+        <h2 >
+        Welcome <span th:text="${username}">User</span>!
+        </h2>
+    </div>
+
+
+</div>
+<table >
+
+    <thead >
 <div class="container-fluid">
-    <div class="row">
-        <h1 class="small-12 columns">
-            Welcome <span th:text="${username}">User</span>!
-        </h1>
+
 
         <div class="row">
             <div class="small-2 columns">
-                <h2 class="rankingTitle">Overall ranking</h2>
+                <tr>
+                <h3 class="rankingTitle">Overall ranking</h3>
+                    </tr>
+                <tbody>
                 <div class="rankingEntry" th:each="user : ${allUser}">
+                    <tr>
                     <div th:text="${user.username}">User</div>
                     <div>Score: 80 Punkte</div>
+                    </tr>
                 </div>
+</tbody>
             </div>
         </div>
     </div>
@@ -30,7 +45,9 @@
             </a>
         </div>
     </div>
-</div>
+    </thead>
+</table>
+
 
 </body>
 </html>
