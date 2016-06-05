@@ -5,32 +5,38 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: loggedIn"></div>
-<div class="container-fluid">
-    <div class="row">
-        <h1 class="small-12 columns">
-            Welcome <span th:text="${username}">User</span>!
-        </h1>
 
-        <div class="row">
-            <div class="small-2 columns">
-                <h2 class="rankingTitle">Overall ranking</h2>
-                <div class="rankingEntry" th:each="user : ${allUser}">
-                    <div th:text="${user.username}">User</div>
-                    <div>Score: 80 Punkte</div>
-                </div>
-            </div>
+<div class="row" style="padding-top: 14px">
+
+    <div class="small-2 columns" style="border: 2px solid deepskyblue">
+        <h4>Overall ranking:</h4>
+        <button class="secondary button" th:each="user : ${allUser}">
+            <div th:text="${user.username}">User</div>
+            <div>Score: 80 Punkte</div>
+        </button>
+    </div>
+
+    <div class="small-10 columns">
+        <h2>Welcome <span th:text="${username}">Username</span>!</h2>
+        <div th:if="${numberOfGroups &gt; 0}">
+            <h5>These are all the learing groups you are a member off:</h5>
         </div>
     </div>
-    <div>
-        <div class="small-3 columns" th:each="learningGroup : ${learningGroupsOfUser}">
 
-            <a class="button" th:href="@{/showLearningGroup(id=${learningGroup.id})}">
-                <img class="img-circle" src="/static/images/gray.jpg" width="140" height="140"/>
-                <h5 th:text="${learningGroup.name}">Group name</h5>
-            </a>
+    <div class="small-2 columns end" th:each="learningGroup : ${learningGroupsOfUser}">
+        <a class="button large" th:href="@{/showLearningGroup(id=${learningGroup.id})}">
+            <span th:text="${learningGroup.name}">Group name</span>
+        </a>
+    </div>
+
+    <div th:unless="${numberOfGroups &gt; 0}">
+        <div class="small-6 small-offset-2 columns" style="padding-top: 40px">
+            <h4><p>Looks like you aren't a member of any group!</p>
+                <p>You can find new learning groups here:</p></h4>
+                <a href="/findGroup" class="button large">Find learning groups</a>
         </div>
     </div>
+
 </div>
-
 </body>
 </html>

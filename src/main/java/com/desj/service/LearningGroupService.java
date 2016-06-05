@@ -1,5 +1,6 @@
 package com.desj.service;
 
+import com.desj.model.LearningGroup;
 import com.desj.model.LearningGroupRepository;
 import com.desj.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,22 @@ public class LearningGroupService {
         memberList.addAll(getAllMemberOfLearningGroup(learningGroupId));
         memberList.add(user);
         learningGroupRepository.findOne(learningGroupId).setMembers(memberList);
+    }
+
+    /**
+     * Helps to find all learning groups, which the user isn't a member of yet
+     * @return
+     */
+    public List<LearningGroup> getNewLearningGroups(User user) {
+
+        List<LearningGroup> newLearningGroups = new ArrayList<>();
+
+        for(LearningGroup learningGroup : learningGroupRepository.findAll()) {
+            if(!learningGroup.getMembers().contains(user)) {
+                newLearningGroups.add(learningGroup);
+            }
+        }
+        return newLearningGroups;
     }
 
 }

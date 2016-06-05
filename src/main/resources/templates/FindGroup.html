@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: loggedIn"></div>
+
+<div class="row">
+    <div class="small-12 columns">
+        <h3>Just click on the member button to become part of the group</h3>
+    </div>
+    <div class="small-2 columns end" th:each="learningGroup : ${newLearningGroups}">
+        <a class="button large">
+            <span th:text="${learningGroup.name}">Group name</span>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
