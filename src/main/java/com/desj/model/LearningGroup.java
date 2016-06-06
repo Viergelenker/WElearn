@@ -20,6 +20,8 @@ public class LearningGroup {
     private String name;
     private String subject;
 
+    //private Integer size = this.getMembers().size();
+
     @ManyToMany
     @JoinTable(
             name="GROUPMEMBER",
@@ -54,4 +56,5 @@ public class LearningGroup {
     public void setMembers(List<User> members) {
         this.members = members;
     }
+
 }
