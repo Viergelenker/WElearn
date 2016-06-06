@@ -7,47 +7,36 @@
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <div class="row">
     <div class="small-6 large-centered columns">
-        <h2 >
-        Welcome <span th:text="${username}">User</span>!
+        <h2>
+            Welcome <span th:text="${username}">User</span>!
         </h2>
     </div>
 
 
 </div>
-<table >
-
-    <thead >
-<div class="container-fluid">
-
-
-        <div class="row">
-            <div class="small-2 columns">
+<div class="row">
+    <div class="small-2 columns">
+        <table
+                style="border: solid">
+            <tread>
                 <tr>
-                <h3 class="rankingTitle">Overall ranking</h3>
-                    </tr>
-                <tbody>
-                <div class="rankingEntry" th:each="user : ${allUser}">
-                    <tr>
-                    <div th:text="${user.username}">User</div>
-                    <div>Score: 80 Punkte</div>
-                    </tr>
-                </div>
-</tbody>
-            </div>
-        </div>
+
+                    <h3>Heading</h3>
+                </tr>
+            </tread>
+            <tbody>
+            <tr>
+                <th><a href="/">alabala</a></th>
+                <td>000</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <div>
-        <div class="small-3 columns" th:each="learningGroup : ${learningGroupsOfUser}">
-
-            <a class="button" th:href="@{/showLearningGroup(id=${learningGroup.id})}">
-                <img class="img-circle" src="/static/images/gray.jpg" width="140" height="140"/>
-                <h5 th:text="${learningGroup.name}">Group name</h5>
-            </a>
-        </div>
-    </div>
-    </thead>
-</table>
+</div>
 
 
+<script>
+    $(document).foundation();
+</script>
 </body>
 </html>
