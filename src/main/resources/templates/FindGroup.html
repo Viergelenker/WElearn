@@ -24,7 +24,7 @@
         <tr>
             <td th:text="${learningGroup.name}">Group name</td>
             <td th:text="${learningGroup.subject}">Subject</td>
-            <td><button class="button">Become a member</button></td>
+            <td><a th:href="@{/becomeMember(learningGroupId=${learningGroup.id})}" class="button">Become a member</a></td>
         </tr>
         </tbody>
     </table>

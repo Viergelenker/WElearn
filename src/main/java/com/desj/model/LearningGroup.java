@@ -20,12 +20,15 @@ public class LearningGroup {
     private String name;
     private String subject;
 
+    //private Integer size = this.getMembers().size();
+
     @ManyToMany
     @JoinTable(
             name="GROUPMEMBER",
             joinColumns=@JoinColumn(name="GROUP_ID"),
             inverseJoinColumns=@JoinColumn(name="USER_ID"))
     List<User> members = new ArrayList<>();
+
 
     public Integer getId() {
         return id;
@@ -54,4 +57,5 @@ public class LearningGroup {
     public void setMembers(List<User> members) {
         this.members = members;
     }
+
 }
