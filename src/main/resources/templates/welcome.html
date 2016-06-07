@@ -28,51 +28,32 @@
 
     <div class="large-8 columns end">
         <div th:if="${numberOfGroups &gt; 0}">
+
             <table>
 
+                <thead>
+                <tr>
+                    <h4>You are a member of the following learning groups:</h4>
+                    <th>Group name</th>
+                    <th>Group size</th>
+                </tr>
+                </thead>
 
-                    <thead>
-                    <tr>
-                        <h4>You are a member of the following learning groups:</h4>
-                        <th>Group name</th>
-                        <th>Group size</th>
-                    </tr>
-
-
-                    </thead>
-
-
-
-                    <tbody id="tableBody" th:each="learningGroup: ${learningGroupsOfUser}">
-                    <tr>
-
-
-                        <td>
-
-
-                            <a th:href="@{/showLearningGroup(id=${learningGroup.id})}">
-                                <span th:text="${learningGroup.name}">Group name</span>
-
-                            </a>
-
-                        </td>
-
-                        <td>
-
-                            <span th:text="${learningGroup.members.size()}"></span>
-
-
-                        </td>
-
-
-                    </tr>
-                    </tbody>
-
-
+                <tbody id="tableBody" th:each="learningGroup: ${learningGroupsOfUser}">
+                <tr>
+                    <td>
+                        <a th:href="@{/showLearningGroup(id=${learningGroup.id})}">
+                            <span th:text="${learningGroup.name}">Group name</span>
+                        </a>
+                    </td>
+                    <td>
+                        <span th:text="${learningGroup.members.size()}"></span>
+                    </td>
+                </tr>
+                </tbody>
 
             </table>
         </div>
-
     </div>
 
     <div th:unless="${numberOfGroups &gt; 0}">
