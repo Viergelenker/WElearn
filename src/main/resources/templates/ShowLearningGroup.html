@@ -5,17 +5,31 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: loggedIn"></div>
-<div class="container-fluid">
-    <div class="row">
-        <h1 class="col-sm-12" style="margin-bottom: 50px">
+<div class="row">
+    <div class="small-12 small-offset-3 column">
+        <h2>
             Welcome to the Group <span th:text="${learningGroup.name}"></span>!
-        </h1>
-        <div class="col-sm-3">
-            <h1>Group members:</h1>
-            <div th:each="member : ${learningGroupMembers}">
-                <div th:text="${member.username}"></div>
-            </div>
-        </div>
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-3 column">
+        <table>
+            <thead>
+            <tr><th><h4>Members:</h4></th></tr>
+
+            </thead>
+            <tbody th:each="member: ${learningGroupMembers}">
+            <td >
+
+                    <div th:text="${member.username}"></div>
+
+            </td>
+            </tbody>
+
+
+        </table>
     </div>
 </div>
 </body>

@@ -29,6 +29,7 @@ public class LearningGroup {
             inverseJoinColumns=@JoinColumn(name="USER_ID"))
     List<User> members = new ArrayList<>();
 
+
     public Integer getId() {
         return id;
     }
