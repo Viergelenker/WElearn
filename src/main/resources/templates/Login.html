@@ -3,17 +3,21 @@
 <head>
     <div th:replace="fragments/header :: header"></div>
 </head>
-<body>
+<body >
+
 <div th:replace="fragments/navbar :: notLoggedIn"></div>
 
-<div class="row">
+<div class="row small-offset-2" >
     <h2>Welcome to the DESJ project</h2>
+</div>
+<div class="row small-offset-2">
     <h3>Please fill in the form to register:</h3>
 </div>
 <br/>
 
-<div class="row">
-    <div class="small-4 columns">
+
+<div class="row" >
+    <div class="small-4 columns small-offset-1">
         <div class="row">
             <form th:object="${user}" th:action="@{/newUser}" th:method="post">
                 <div class="small-12 columns">
