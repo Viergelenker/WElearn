@@ -1,12 +1,16 @@
 package com.desj.controller;
 
+import com.desj.model.GroupPost;
+import com.desj.model.GroupPostRepository;
 import com.desj.model.LearningGroupRepository;
 import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -24,11 +28,23 @@ public class ShowLearningGroupController {
     @Autowired
     private LearningGroupService learningGroupService;
 
+    @Autowired
+    private GroupPostRepository groupPostRepository;
+
     @RequestMapping("/showLearningGroup{id}")
     public String showLearningGroup(@RequestParam("id") Integer learningGroupId, Model model) {
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
         model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
         model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
+        model.addAttribute("newGroupPost", new GroupPost());
+        model.addAttribute("groupPosts", groupPostRepository.findAll());
         return "ShowLearningGroup";
+    }
+
+    @RequestMapping(value = "/newGroupPost", method = RequestMethod.POST)
+    public String writeNewGroupPost(@ModelAttribute("groupPost")GroupPost groupPost) {
+
+        groupPostRepository.save(groupPost);
+        return "redirect:/";
     }
 }

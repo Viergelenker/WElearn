@@ -21,13 +21,15 @@
 
         <table>
             <thead>
-            <tr><th><h4>Members:</h4></th></tr>
+            <tr>
+                <th><h4>Members:</h4></th>
+            </tr>
 
             </thead>
             <tbody th:each="member: ${learningGroupMembers}">
-            <td >
+            <td>
 
-                    <div th:text="${member.username}"></div>
+                <div th:text="${member.username}"></div>
 
             </td>
             </tbody>
@@ -43,32 +45,29 @@
 
         <div class="reveal" id="exampleModal1" data-reveal="true">
 
-            <form method="post">
-                <textarea id="mytextarea">Hello, World!</textarea>
+            <form th:object="${newGroupPost}" th:action="@{/newGroupPost}" method="post">
+                <textarea id="mytextarea" th:field="*{text}">Hello</textarea>
+                <script>
+                    tinymce.init({
+                        selector: '#mytextarea'
+                    });
+
+                    $(document).foundation();
+                </script>
+                <p align="right">
+                    <button type="submit" class="success button">Save comment</button>
+                </p>
             </form>
 
-            <script>
-                tinymce.init({
-                    selector: '#mytextarea'
-                });
-
-                $(document).foundation();
-            </script>
-
-            <p align="right">
-            <button type="button" class="success button">Save comment</button>
-            </p>
-
-
-
-        <button class="close-button" data-close="true" aria-label="Close modal" type="button">
+            <button class="close-button" data-close="true" aria-label="Close modal" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
 
+    </div>
 
-
-
+    <div th:each="groupPost : ${groupPosts}">
+        <div th:text="${groupPost.text}"></div>
     </div>
 </div>
 </body>
