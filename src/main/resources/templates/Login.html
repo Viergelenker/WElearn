@@ -3,22 +3,25 @@
 <head>
     <div th:replace="fragments/header :: header"></div>
 </head>
-<body >
+<body id="login" >
 
 <div th:replace="fragments/navbar :: notLoggedIn"></div>
+<div class="row">
+    <div style="padding-top: 70px" class="small-6 small-centered columns">
+        <h2 style="text-align: center">DESJ project</h2>
+        <p>
 
-<div class="row small-offset-2" >
-    <h2>Welcome to the DESJ project</h2>
+        <h3 style="text-align: center">Please Sign Up:</h3></p>
+    </div>
 </div>
-<div class="row small-offset-2">
-    <h3>Please fill in the form to register:</h3>
-</div>
+
+
 <br/>
 
 
 <div class="row" >
-    <div class="small-4 columns small-offset-1">
-        <div class="row">
+    <div class="small-4 small-centered columns">
+
             <form th:object="${user}" th:action="@{/newUser}" th:method="post">
                 <div class="small-12 columns">
                     <label>Username</label>
@@ -32,11 +35,11 @@
                     <label>Password</label>
                     <input type="password" th:field="*{password}" th:placeholder="Password"/>
                 </div>
-                <div class="small-12 columns">
-                    <button type="submit" class="secondary button">Submit</button>
+                <div style="padding-top: 5px" class="small-12 columns">
+                    <button type="submit" class="button">Submit</button>
                 </div>
             </form>
-        </div>
+
     </div>
 </div>
 

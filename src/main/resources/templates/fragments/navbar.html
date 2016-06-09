@@ -6,7 +6,7 @@
 <!-- The standard navigation bar for users that are not logged in -->
 <th:block th:fragment="notLoggedIn">
 
-    <div class="top-bar">
+    <div id="loginNavBar" class="top-bar">
 
         <div class="top-bar-left">
             <ul class="dropdown menu" data-dropdown-menu="true">
@@ -16,7 +16,7 @@
             </ul>
         </div>
 
-        <div class="top-bar-right">
+        <div  class="top-bar-right">
             <ul class="menu">
 
                 <form th:action="@{/login}" th:method="post">
@@ -28,7 +28,7 @@
                             <input type="password" placeholder="Password" name="password"/>
                         </div>
                         <div class="small-2 columns">
-                            <button type="submit" class="button">Go</button>
+                            <button type="submit" class="button">Submit</button>
                         </div>
                     </div>
                 </form>
