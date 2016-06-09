@@ -104,6 +104,13 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         sabrina.setEmail("sabrina@mail.com");
         userRepository.save(sabrina);
 
+        // Erhan
+        com.desj.model.User erhan = new com.desj.model.User();
+        sabrina.setUsername("Erhan");
+        sabrina.setMajor("Winfo");
+        sabrina.setEmail("erhan@mail.com");
+        userRepository.save(erhan);
+
         // Robert
         com.desj.model.User robert = new com.desj.model.User();
         robert.setUsername("Robert Rundhals");
