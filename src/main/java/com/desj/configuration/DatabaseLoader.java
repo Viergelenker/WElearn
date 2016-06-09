@@ -97,6 +97,13 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         learningGroupService.addMemberToLearningGroup(group1.getId(), desi);
         learningGroupService.addMemberToLearningGroup(group2.getId(), desi);
 
+        // Sabrina
+        com.desj.model.User sabrina = new com.desj.model.User();
+        sabrina.setUsername("Sabrina");
+        sabrina.setMajor("Winfo");
+        sabrina.setEmail("sabrina@mail.com");
+        userRepository.save(sabrina);
+
         // Robert
         com.desj.model.User robert = new com.desj.model.User();
         robert.setUsername("Robert Rundhals");
@@ -127,6 +134,9 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
         User adminDesi = new User("desi@mail.com", encoder.encode("1234"), AdminAuthorities);
         userDetailsManager.createUser(adminDesi);
+
+        User adminSabrina = new User("sabrina@mail.com", encoder.encode("1234"), AdminAuthorities);
+        userDetailsManager.createUser(adminSabrina);
 
         User userRobert = new User("robert@rundhals.com", encoder.encode("1234"), UserAuthorities);
         userDetailsManager.createUser(userRobert);
