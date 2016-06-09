@@ -145,6 +145,9 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         User adminSabrina = new User("sabrina@mail.com", encoder.encode("1234"), AdminAuthorities);
         userDetailsManager.createUser(adminSabrina);
 
+        User adminErhan = new User("erhan@mail.com", encoder.encode("1234"), AdminAuthorities);
+        userDetailsManager.createUser(adminErhan);
+
         User userRobert = new User("robert@rundhals.com", encoder.encode("1234"), UserAuthorities);
         userDetailsManager.createUser(userRobert);
     }
