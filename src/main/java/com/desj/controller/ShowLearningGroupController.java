@@ -3,6 +3,7 @@ package com.desj.controller;
 import com.desj.model.GroupPost;
 import com.desj.model.GroupPostRepository;
 import com.desj.model.LearningGroupRepository;
+import com.desj.service.GroupPostService;
 import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +32,26 @@ public class ShowLearningGroupController {
     @Autowired
     private GroupPostRepository groupPostRepository;
 
+    @Autowired
+    private GroupPostService groupPostService;
+
     @RequestMapping("/showLearningGroup{id}")
     public String showLearningGroup(@RequestParam("id") Integer learningGroupId, Model model) {
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
         model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
         model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
         model.addAttribute("newGroupPost", new GroupPost());
-        model.addAttribute("groupPosts", groupPostRepository.findAll());
+        model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
+                .findOne(learningGroupId)));
         return "ShowLearningGroup";
     }
 
-    @RequestMapping(value = "/newGroupPost", method = RequestMethod.POST)
-    public String writeNewGroupPost(@ModelAttribute("groupPost")GroupPost groupPost) {
-
+    @RequestMapping(value = "/newGroupPost{id}", method = RequestMethod.POST)
+    public String writeNewGroupPost(@RequestParam("id") Integer learningGroupId, @ModelAttribute("groupPost") GroupPost groupPost) {
+        groupPost.setAssociatedLearningGroup(learningGroupRepository.findOne(learningGroupId));
+        groupPost.setAssociatedUser(userService.getCurrentDesjUser());
         groupPostRepository.save(groupPost);
-        return "redirect:/";
+        String redirectString = "redirect:/showLearningGroup?id=" + learningGroupId;
+        return redirectString;
     }
 }

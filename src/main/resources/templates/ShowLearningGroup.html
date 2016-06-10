@@ -17,58 +17,82 @@
 </div>
 
 <div class="row">
-    <div class="small-3 column">
 
+    <div class="small-3 column">
         <table>
+
             <thead>
             <tr>
                 <th><h4>Members:</h4></th>
             </tr>
-
             </thead>
+
             <tbody th:each="member: ${learningGroupMembers}">
             <td>
-
                 <div th:text="${member.username}"></div>
-
             </td>
             </tbody>
-
 
         </table>
     </div>
 
-    <div class=" small-6 columns end">
-
-        <p><a class="button" data-open="exampleModal1">Create comment</a></p>
-
-
-        <div class="reveal" id="exampleModal1" data-reveal="true">
-
-            <form th:object="${newGroupPost}" th:action="@{/newGroupPost}" method="post">
-                <textarea id="mytextarea" th:field="*{text}">Hello</textarea>
-                <script>
-                    tinymce.init({
-                        selector: '#mytextarea'
-                    });
-
-                    $(document).foundation();
-                </script>
-                <p align="right">
-                    <button type="submit" class="success button">Save comment</button>
-                </p>
-            </form>
-
-            <button class="close-button" data-close="true" aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="small-7 columns">
+        <div class="small-8 columns end" th:each="groupPost : ${groupPosts}">
+            <div class="callout-card">
+                <div class="card-label">
+                    <div class="label-text" th:text="${groupPost.associatedUser.username.substring(0, 3)}">
+                    </div>
+                </div>
+                <div class="callout-card-content">
+                    <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
+                    <p th:utext="${groupPost.text}">Message Text</p>
+                </div>
+            </div>
         </div>
-
     </div>
 
-    <div th:each="groupPost : ${groupPosts}">
-        <div th:text="${groupPost.text}"></div>
+    <!-- Button for the Modal (id=writeNewPostModal) -->
+    <div class="small-2 columns">
+        <a class="button" data-open="writeNewPostModal">Create comment</a>
     </div>
+
+    <!-- Modal -->
+    <div class="reveal" id="writeNewPostModal" data-reveal="true">
+
+        <div class="row">
+            <div class="small-12 columns">
+                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(id=${learningGroup.id})}" method="post">
+
+                    <p>Write a new group post!</p>
+
+                    <div style="padding-bottom: 20px">
+                        <input th:field="*{title}" placeholder="Title"/>
+                    </div>
+
+                    <textarea id="mytextarea" th:field="*{text}">Hello</textarea>
+
+                    <div style="padding-top: 20px">
+                        <button align="right" type="submit" class="button">Save comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button class="close-button" data-close="writeNewPostModal" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
 </div>
+
+<!-- js for the Modal -->
+<script>
+    tinymce.init({
+        selector: '#mytextarea',
+        statusbar: false,
+        toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
+    });
+
+    $(document).foundation();
+</script>
 </body>
 </html>

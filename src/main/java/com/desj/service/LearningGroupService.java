@@ -20,7 +20,7 @@ public class LearningGroupService {
     @Autowired
     LearningGroupRepository learningGroupRepository;
 
-    public List<User> getAllMemberOfLearningGroup(int learningGroupId) {
+    public List<User> getAllMemberOfLearningGroup(Integer learningGroupId) {
         return learningGroupRepository.findOne(learningGroupId).getMembers();
     }
 
@@ -33,7 +33,7 @@ public class LearningGroupService {
 
     /**
      * Helps to find all learning groups, which the user isn't a member of yet
-     * @return
+     * @return all learning groups, the current user isn't a member of
      */
     public List<LearningGroup> getNewLearningGroups(User user) {
 
@@ -46,5 +46,4 @@ public class LearningGroupService {
         }
         return newLearningGroups;
     }
-
 }
