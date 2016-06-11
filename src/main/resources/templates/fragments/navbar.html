@@ -16,7 +16,7 @@
             </ul>
         </div>
 
-        <div  class="top-bar-right">
+        <div class="top-bar-right">
             <ul class="menu">
 
                 <form th:action="@{/login}" th:method="post">
@@ -55,19 +55,16 @@
         </div>
 
         <div class="top-bar-right">
-            <ul class="menu">
-                <div class="row">
-                    <div class="small-6 columns">
-                        <button class="button fa fa-user"><span style="padding-left: 7px" th:text="${username}"></span></button>
-                    </div>
-                    <div class="small-6 columns" >
-                        <form th:action="@{/logout}" th:method="post">
-                            <button type="submit" class="alert button fa fa-sign-out"></button>
-                        </form>
-                    </div>
+            <div class="row">
+                <div class="small-6 columns">
+                    <button class="button fa fa-user"></button>
                 </div>
-            </ul>
-
+                <div class="small-6 columns">
+                    <form th:action="@{/logout}" th:method="post">
+                        <button type="submit" class="alert button fa fa-sign-out"></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
