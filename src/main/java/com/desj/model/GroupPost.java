@@ -15,6 +15,8 @@ public class GroupPost {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
+
+    @Lob
     private String text;
 
     @OneToOne(cascade = CascadeType.PERSIST)
