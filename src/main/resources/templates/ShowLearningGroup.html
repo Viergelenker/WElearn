@@ -40,6 +40,7 @@
         <div class="small-8 columns end" th:each="groupPost : ${groupPosts}">
             <div class="callout-card">
                 <div class="card-label">
+                    <!-- First three chars of the username are displayed -->
                     <div class="label-text" th:text="${groupPost.associatedUser.username.substring(0, 3)}">
                     </div>
                 </div>

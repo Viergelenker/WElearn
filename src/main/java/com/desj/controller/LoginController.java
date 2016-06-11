@@ -57,6 +57,6 @@ public class LoginController {
         user.setPassword(newUser.getPassword());
         userRepository.save(user);
 
-        return "redirect:/signUpSuccess";
+        return "redirect:/signUpSuccess?userId=" + user.getId().toString();
     }
 }

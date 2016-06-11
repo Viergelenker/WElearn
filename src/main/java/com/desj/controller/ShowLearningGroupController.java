@@ -9,10 +9,7 @@ import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Julien on 24.05.16.
@@ -36,22 +33,25 @@ public class ShowLearningGroupController {
     private GroupPostService groupPostService;
 
     @RequestMapping("/showLearningGroup{id}")
-    public String showLearningGroup(@RequestParam("id") Integer learningGroupId, Model model) {
+    public String showLearningGroup(@RequestParam(value = "id") Integer learningGroupId, Model model) {
+
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
         model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
         model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
         model.addAttribute("newGroupPost", new GroupPost());
         model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
                 .findOne(learningGroupId)));
+
         return "ShowLearningGroup";
     }
 
     @RequestMapping(value = "/newGroupPost{id}", method = RequestMethod.POST)
-    public String writeNewGroupPost(@RequestParam("id") Integer learningGroupId, @ModelAttribute("groupPost") GroupPost groupPost) {
-        groupPost.setAssociatedLearningGroup(learningGroupRepository.findOne(learningGroupId));
-        groupPost.setAssociatedUser(userService.getCurrentDesjUser());
-        groupPostRepository.save(groupPost);
-        String redirectString = "redirect:/showLearningGroup?id=" + learningGroupId;
-        return redirectString;
+    public String writeNewGroupPost(@RequestParam(value = "id") Integer learningGroupId,
+                                    @ModelAttribute("groupPost") GroupPost groupPost) {
+
+        groupPostService.save(groupPost, userService.getCurrentDesjUser(), learningGroupRepository
+                .findOne(learningGroupId));
+
+        return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
 }

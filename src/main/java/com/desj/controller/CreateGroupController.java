@@ -4,6 +4,7 @@ import com.desj.model.LearningGroup;
 import com.desj.model.LearningGroupRepository;
 import com.desj.model.User;
 import com.desj.model.UserRepository;
+import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Julien on 07.06.16.
  */
@@ -24,6 +22,9 @@ public class CreateGroupController {
 
     @Autowired
     private LearningGroupRepository learningGroupRepository;
+
+    @Autowired
+    private LearningGroupService learningGroupService;
 
     @Autowired
     private UserRepository userRepository;
@@ -44,7 +45,7 @@ public class CreateGroupController {
      * @return
      */
     @RequestMapping(value = "/createGroup{id}", method = RequestMethod.GET)
-    public String showCreateGroup(@RequestParam("id") Integer id, Model model) {
+    public String showCreateGroup(@RequestParam(value = "id", required = false) Integer id, Model model) {
 
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
 
@@ -63,17 +64,9 @@ public class CreateGroupController {
 
         User currentUser = userService.getCurrentDesjUser();
 
-        List<LearningGroup> learningGroupList = new ArrayList<>();
-        learningGroupList.addAll(currentUser.getLearningGroupsOfUser());
-        learningGroupList.add(learningGroup);
-        currentUser.setLearningGroupsOfUser(learningGroupList);
-        List<User> userList = new ArrayList<>();
-        userList.add(currentUser);
-        learningGroup.setMembers(userList);
-        learningGroupRepository.save(learningGroup);
-        String learningGroupId = learningGroup.getId().toString();
-        String redirectString = "redirect:/createGroup?id=" + learningGroupId;
+        learningGroupService.save(learningGroup, currentUser);
+        userService.addLearningGroupToUser(learningGroup, currentUser.getId());
 
-        return redirectString;
+        return "redirect:/createGroup?id=" + learningGroup.getId().toString();
     }
 }

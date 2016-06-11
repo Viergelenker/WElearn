@@ -46,4 +46,12 @@ public class LearningGroupService {
         }
         return newLearningGroups;
     }
+
+    public void save(LearningGroup learningGroup, User user) {
+
+        List<User> userList = new ArrayList<>();
+        userList.add(user);
+        learningGroup.setMembers(userList);
+        learningGroupRepository.save(learningGroup);
+    }
 }
