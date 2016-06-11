@@ -20,7 +20,7 @@
             <form th:action="@{/login}" th:method="post">
                 <input type="text" th:value="${user.email}" placeholder="Email" name="username"/>
                 <input type="password" th:value="${user.password}" placeholder="Password" name="password"/>
-                <button type="submit" class="secondary button">Go</button>
+                <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign in</button>
             </form>
         </div>
     </div>

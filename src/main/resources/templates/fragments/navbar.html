@@ -21,14 +21,14 @@
 
                 <form th:action="@{/login}" th:method="post">
                     <div class="row">
-                        <div class="small-5 columns">
+                        <div class="small-4 small-offset-1 columns">
                             <input type="text" placeholder="Email" name="username"/>
                         </div>
-                        <div class="small-5 columns">
+                        <div class="small-4 columns">
                             <input type="password" placeholder="Password" name="password"/>
                         </div>
-                        <div class="small-2 columns">
-                            <button type="submit" class="button">Submit</button>
+                        <div class="small-3 columns">
+                            <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign in</button>
                         </div>
                     </div>
                 </form>
@@ -58,11 +58,11 @@
             <ul class="menu">
                 <div class="row">
                     <div class="small-6 columns">
-                        <button class="button" th:text="${username}"></button>
+                        <button class="button fa fa-user"><span style="padding-left: 7px" th:text="${username}"></span></button>
                     </div>
                     <div class="small-6 columns" >
                         <form th:action="@{/logout}" th:method="post">
-                            <button type="submit" class="alert button">Logout</button>
+                            <button type="submit" class="alert button fa fa-sign-out"></button>
                         </form>
                     </div>
                 </div>
