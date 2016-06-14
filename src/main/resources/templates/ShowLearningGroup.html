@@ -49,32 +49,6 @@
                 <div class="callout-card-content">
                     <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
                     <p th:utext="${groupPost.text}">Message Text</p>
-                    <div class="small-2 columns">
-                        <a class="button" href="#"> Comment</a>
-
-                        <a class="button fa fa-pencil" data-open="writeNewComment"> Create comment</a>
-
-                        <div class="reveal" id="writeNewComment" data-reveal="true">
-
-                            <div class="row">
-                                <div class="small-12 columns">
-                                    <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}" method="post">
-
-                                        <p>Write a new comment!</p>
-
-                                        <textarea id="mytextareaforcomment" th:field="*{text}">Hello</textarea>
-
-                                        <div style="padding-top: 20px">
-                                            <button align="right" type="submit" class="button">Save comment</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <button class="close-button" data-close="writeNewComment" aria-label="Close modal" type="button">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -82,9 +56,9 @@
             <div class="small-10 columns end" th:each="comment : ${comments}">
                 <div th:if="${comment.associatedGroupPost.id == groupPost.id}">
 
-                    <div class="callout-card">
+                    <div class="callout-card secondary">
                         <div class="card-label">
-                            <div class="label-text">!</div>
+                            <div class="label-text" th:text="${comment.creator.username.substring(0, 3)}"></div>
                         </div>
                         <div class="callout-card-content">
                             <p th:utext="${comment.text}">Message Text</p>
@@ -92,6 +66,20 @@
                     </div>
 
                 </div>
+            </div>
+
+            <div class="small-10 columns end">
+                <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
+                      method="post">
+
+                    <p>Write a new comment!</p>
+
+                    <textarea th:field="*{text}">Hello</textarea>
+
+                    <div style="padding-top: 20px">
+                        <button align="right" type="submit" class="button">Save comment</button>
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -107,7 +95,8 @@
 
         <div class="row">
             <div class="small-12 columns">
-                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(learningGroupId=${learningGroup.id})}" method="post">
+                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(learningGroupId=${learningGroup.id})}"
+                      method="post">
 
                     <p>Write a new group post!</p>
 
@@ -128,22 +117,20 @@
         </button>
     </div>
 
+    <!-- js for the Modal -->
+    <script>
+        tinymce.init({
+            selector: '#mytextareaforpost',
+            statusbar: false,
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
+        });
+
+        tinymce.init({
+            statusbar: false,
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
+        });
+        $(document).foundation();
+    </script>
 </div>
-
-<!-- js for the Modal -->
-<script>
-    tinymce.init({
-        selector: '#mytextareaforpost',
-        statusbar: false,
-        toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
-    });
-
-    tinymce.init({
-        selector: '#mytextareaforcomment',
-        statusbar: false,
-        toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
-    });
-    $(document).foundation();
-</script>
 </body>
 </html>
