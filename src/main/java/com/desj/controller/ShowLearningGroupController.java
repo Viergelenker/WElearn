@@ -1,15 +1,17 @@
 package com.desj.controller;
 
-import com.desj.model.GroupPost;
-import com.desj.model.GroupPostRepository;
-import com.desj.model.LearningGroupRepository;
+import com.desj.model.*;
+import com.desj.service.CommentService;
 import com.desj.service.GroupPostService;
 import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by Julien on 24.05.16.
@@ -31,6 +33,12 @@ public class ShowLearningGroupController {
 
     @Autowired
     private GroupPostService groupPostService;
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
+    private CommentService commentService;
+
+
 
     @RequestMapping("/showLearningGroup{id}")
     public String showLearningGroup(@RequestParam(value = "id") Integer learningGroupId, Model model) {
@@ -39,9 +47,10 @@ public class ShowLearningGroupController {
         model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
         model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
         model.addAttribute("newGroupPost", new GroupPost());
+        model.addAttribute("comment", new Comment());
         model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
                 .findOne(learningGroupId)));
-
+        model.addAttribute("comments", commentRepository.findAll());
         return "ShowLearningGroup";
     }
 
@@ -54,4 +63,17 @@ public class ShowLearningGroupController {
 
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
+
+    @RequestMapping(value = "/newComment{id}", method = RequestMethod.POST)
+    public String writeNewComment(@RequestParam(value = "id") Integer groupPostId,
+                                    @ModelAttribute("comment") Comment comment) {
+
+        commentService.save(comment, userService.getCurrentDesjUser(), groupPostRepository.findOne(groupPostId));
+        groupPostService.addGroupPostComment(groupPostRepository.findOne(groupPostId), comment);
+        String redirectString = groupPostRepository.findOne(groupPostId).getAssociatedLearningGroup().getId().toString();
+        return "redirect:/showLearningGroup?id=" + redirectString;
+    }
+
+
+
 }

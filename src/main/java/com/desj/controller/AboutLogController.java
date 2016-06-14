@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Sabrina on 14.06.2016.
  */
 @Controller
-public class AboutLogControler {
+public class AboutLogController {
     @Autowired
     private UserService userService;
     @Autowired
