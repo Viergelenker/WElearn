@@ -20,10 +20,6 @@ public class AboutLogControler {
     @RequestMapping(value = "/aboutLog",method = RequestMethod.POST)
     public String about(Model model){
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
-        model.addAttribute("allUser", userRepository.findAll());
-        model.addAttribute("learningGroupsOfUser",
-                userService.getAllLearningGroupsOfUser(userService.getCurrentDesjUser().getId()));
-        model.addAttribute("numberOfGroups", userService.getAllLearningGroupsOfUser(userService.getCurrentDesjUser().getId()).size());
         return "AboutLog";
     }
 }

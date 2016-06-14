@@ -76,13 +76,6 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         julien.setEmail("julien@vollweiter.com");
         julien.setMajor("Winfo");
         userRepository.save(julien);
-        // Add learning groups to the user class...
-        userService.addLearningGroupToUser(group1, julien.getId());
-        userService.addLearningGroupToUser(group2, julien.getId());
-        // ... and add the user to the learning group class
-        learningGroupService.addMemberToLearningGroup(group1.getId(), julien);
-        learningGroupService.addMemberToLearningGroup(group2.getId(), julien);
-
 
         // Desi
         com.desj.model.User desi = new com.desj.model.User();
@@ -90,12 +83,11 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         desi.setMajor("Wirtschaftsinformatik");
         desi.setEmail("desi@mail.com");
         userRepository.save(desi);
-        // Add learning groups to the user class...
-        userService.addLearningGroupToUser(group1, desi.getId());
-        userService.addLearningGroupToUser(group2, desi.getId());
-        // ... and add the user to the learning group class
+        // Add the user to the learning group class
         learningGroupService.addMemberToLearningGroup(group1.getId(), desi);
+        group1.setCreatorOfGroup(desi);
         learningGroupService.addMemberToLearningGroup(group2.getId(), desi);
+        group2.setCreatorOfGroup(desi);
 
         // Sabrina
         com.desj.model.User sabrina = new com.desj.model.User();
