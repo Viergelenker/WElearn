@@ -1,6 +1,7 @@
 package com.desj.controller;
 
 import com.desj.model.LearningGroupRepository;
+import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,10 @@ public class ShowUserSiteController {
 
     @Autowired
     private LearningGroupRepository learningGroupRepository;
+
+    @Autowired
+    private LearningGroupService learningGroupService;
+
     @Autowired
     private UserService userService;
 
@@ -26,8 +31,8 @@ public class ShowUserSiteController {
 
         model.addAttribute("user", userService.getCurrentDesjUser());
 
-        model.addAttribute("learningGroupsUserHasCreated", userService.getAllGroupsUserHasCreated(userService.getCurrentDesjUser()));
-
+        model.addAttribute("learningGroupsUserHasCreated", learningGroupService
+                .getAllLearningGroupsUserHasCreated(userService.getCurrentDesjUser()));
 
         return "ShowUserSite";
     }
@@ -36,8 +41,8 @@ public class ShowUserSiteController {
     @Transactional
     public String deleteLearningGroup(@RequestParam(value = "learningGroupId") Integer learningGroupId) {
 
-        learningGroupRepository.delete(learningGroupId);
-        return "";
+        learningGroupRepository.removeById(learningGroupId);
+        return "redirect:/showUserSite";
     }
 
 }

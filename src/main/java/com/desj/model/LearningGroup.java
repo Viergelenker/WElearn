@@ -20,11 +20,11 @@ public class LearningGroup {
     private String name;
     private String subject;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "USER_ID")
     private User creatorOfGroup;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name="GROUPMEMBER",
             joinColumns=@JoinColumn(name="GROUP_ID"),

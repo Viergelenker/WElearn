@@ -19,11 +19,11 @@ public class GroupPost {
     @Lob
     private String text;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "userId")
     private User associatedUser;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "learningGroupId")
     private LearningGroup associatedLearningGroup;
 

@@ -47,6 +47,26 @@ public class LearningGroupService {
         return newLearningGroups;
     }
 
+    public List<LearningGroup> getAllLearningGroupsOfUser(User user) {
+        List<LearningGroup> learningGroupList = new ArrayList<>();
+        for (LearningGroup learningGroup: learningGroupRepository.findAll()) {
+            if (learningGroup.getMembers().contains(user)) {
+                learningGroupList.add(learningGroup);
+            }
+        }
+        return learningGroupList;
+    }
+
+    public List<LearningGroup> getAllLearningGroupsUserHasCreated(User user) {
+        List<LearningGroup> learningGroupList = new ArrayList<>();
+        for (LearningGroup learningGroup: learningGroupRepository.findAll()) {
+            if (learningGroup.getCreatorOfGroup().equals(user)) {
+                learningGroupList.add(learningGroup);
+            }
+        }
+        return learningGroupList;
+    }
+
     public void save(LearningGroup learningGroup, User user) {
 
         List<User> userList = new ArrayList<>();

@@ -2,10 +2,11 @@ package com.desj.model;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Julien on 14.04.16.
@@ -24,14 +25,6 @@ public class User {
     private String password;
     //Studiengang
     private String major;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="LEARNINGGROUPSOFUSER",
-            joinColumns=@JoinColumn(name="USER_ID"),
-            inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
-    List<LearningGroup> learningGroupsOfUser = new ArrayList<>();
-
 
     public Integer getId() { return id; }
 
@@ -63,13 +56,5 @@ public class User {
 
     public void setMajor(String major) {
         this.major = major;
-    }
-
-    public List<LearningGroup> getLearningGroupsOfUser() {
-        return learningGroupsOfUser;
-    }
-
-    public void setLearningGroupsOfUser(List<LearningGroup> learningGroupsOfUser) {
-        this.learningGroupsOfUser = learningGroupsOfUser;
     }
 }

@@ -37,7 +37,6 @@ public class FindGroupController {
     public String becomeMember(@RequestParam("learningGroupId")Integer learningGroupId) {
         User user = userService.getCurrentDesjUser();
         learningGroupService.addMemberToLearningGroup(learningGroupId, user);
-        userService.addLearningGroupToUser(learningGroupRepository.findOne(learningGroupId), user.getId());
         return "redirect:/findGroup";
     }
 }
