@@ -51,6 +51,7 @@ public class LearningGroupService {
 
         List<User> userList = new ArrayList<>();
         userList.add(user);
+        learningGroup.setCreatorOfGroup(user);
         learningGroup.setMembers(userList);
         learningGroupRepository.save(learningGroup);
     }

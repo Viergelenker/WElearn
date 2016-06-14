@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: loggedIn"></div>
+
+<div>Hello <span th:text="${user.username}"></span></div>
+
+<div class="row">
+    <div class="small-12 columns">
+        <input type="text" id="search" placeholder="Type to search"/>
+        <table>
+            <thead>
+            <tr>
+                <th>Group name</th>
+                <th>Group Subject</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody" th:each="learningGroup : ${learningGroupsUserHasCreated}">
+            <tr>
+                <td th:text="${learningGroup.name}">Group name</td>
+                <td th:text="${learningGroup.subject}">Subject</td>
+                <td><a th:href="@{/deleteLearningGroup(learningGroupId=${learningGroup.id})}"
+                       class="alert button">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var $rows = $('#tableBody tr');
+        $('#search').keyup(function () {
+
+            var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                    reg = RegExp(val, 'i'),
+                    text;
+
+            $rows.show().filter(function () {
+                text = $(this).text().replace(/\s+/g, ' ');
+                return !reg.test(text);
+            }).hide();
+        });
+    </script>
+</div>
+
+</body>
+</html>

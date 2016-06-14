@@ -32,6 +32,17 @@ public class UserService {
     @Autowired
     private UserDetailsManager userDetailsManager;
 
+    public List<LearningGroup> getAllGroupsUserHasCreated(User user) {
+        List<LearningGroup> learningGroupList = new ArrayList<>();
+
+        for(LearningGroup learningGroup : user.getLearningGroupsOfUser()) {
+            if(learningGroup.getCreatorOfGroup() == user) {
+                learningGroupList.add(learningGroup);
+            }
+        }
+        return learningGroupList;
+    }
+
     public void save(User user) {
 
         Collection<GrantedAuthority> userAuthorities = new ArrayList<>();

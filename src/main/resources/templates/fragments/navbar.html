@@ -57,7 +57,7 @@
         <div class="top-bar-right">
             <div class="row">
                 <div class="small-6 columns">
-                    <button class="button fa fa-user"></button>
+                    <a th:href="@{/showUserSite}" class="button fa fa-user"></a>
                 </div>
                 <div class="small-6 columns">
                     <form th:action="@{/logout}" th:method="post">

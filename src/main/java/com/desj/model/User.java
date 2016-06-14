@@ -25,7 +25,7 @@ public class User {
     //Studiengang
     private String major;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="LEARNINGGROUPSOFUSER",
             joinColumns=@JoinColumn(name="USER_ID"),

@@ -20,7 +20,11 @@ public class LearningGroup {
     private String name;
     private String subject;
 
-    @ManyToMany
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId")
+    private User creatorOfGroup;
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="GROUPMEMBER",
             joinColumns=@JoinColumn(name="GROUP_ID"),
@@ -46,6 +50,14 @@ public class LearningGroup {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public User getCreatorOfGroup() {
+        return creatorOfGroup;
+    }
+
+    public void setCreatorOfGroup(User creatorOfGroup) {
+        this.creatorOfGroup = creatorOfGroup;
     }
 
     public List<User> getMembers() {
