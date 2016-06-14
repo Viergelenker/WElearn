@@ -36,8 +36,10 @@
         </table>
     </div>
 
+    <!-- Displays for each group post in all group posts the title and text... -->
     <div class="small-6 columns">
         <div class="small-12 columns end" th:each="groupPost : ${groupPosts}">
+
             <div class="callout-card">
                 <div class="card-label">
                     <!-- First three chars of the username are displayed -->
@@ -51,35 +53,49 @@
                         <a class="button" href="#"> Comment</a>
 
                         <a class="button fa fa-pencil" data-open="writeNewComment"> Create comment</a>
+
+                        <div class="reveal" id="writeNewComment" data-reveal="true">
+
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <form th:object="${comment}" th:action="@{/newComment(id=${groupPost.id})}" method="post">
+
+                                        <p>Write a new comment!</p>
+
+                                        <textarea id="mytextareaforcomment" th:field="*{text}">Hello</textarea>
+
+                                        <div style="padding-top: 20px">
+                                            <button align="right" type="submit" class="button">Save comment</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <button class="close-button" data-close="writeNewComment" aria-label="Close modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-
             </div>
+
+            <!-- ... and after that, each comment that has the same associatedGroupId, as the current group post  -->
+            <div class="small-10 columns end" th:each="comment : ${comments}">
+                <div th:if="${comment.associatedGroupPost.id == groupPost.id}">
+
+                    <div class="callout-card">
+                        <div class="card-label">
+                            <div class="label-text">!</div>
+                        </div>
+                        <div class="callout-card-content">
+                            <p th:utext="${comment.text}">Message Text</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </div>
-
-    <div class="small-6 columns">
-        <div class="small-12 columns end" th:each="comment : ${comments}">
-            <div class="callout-card">
-                <div class="card-label">
-                    <!-- First three chars of the username are displayed -->
-                    <div class="label-text" th:text="${groupPost.associatedUser.username.substring(0, 3)}">
-                    </div>
-                </div>
-                <div class="callout-card-content">
-                    <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
-                    <p th:utext="${groupPost.text}">Message Text</p>
-                    <div class="small-2 columns">
-                        <div th:if="$"><a class="button" href="#"> Comment</a></div>
-
-                        <a class="button fa fa-pencil" data-open="writeNewPostModal"> Create comment</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
 
     <!-- Button for the Modal (id=writeNewPostModal) -->
     <div class="small-3 columns">
@@ -111,30 +127,6 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-
-    <!-- Modal for comments -->
-
-    <div class="reveal" id="writeNewComment" data-reveal="true">
-
-        <div class="row">
-            <div class="small-12 columns">
-                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(id=${learningGroup.id})}" method="post">
-
-                    <p>Write a new comment!</p>
-
-                    <textarea id="mytextareaforcomment" th:field="*{text}">Hello</textarea>
-
-                    <div style="padding-top: 20px">
-                        <button align="right" type="submit" class="button">Save comment</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <button class="close-button" data-close="writeNewComment" aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-
 
 </div>
 

@@ -3,7 +3,6 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertFalse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,13 @@ public class GroupPost {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "learningGroupId")
     private LearningGroup associatedLearningGroup;
-    private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany
+    @JoinTable(
+            name="GROUPCOMMENTS",
+            joinColumns=@JoinColumn(name="GROUPPOST_ID"),
+            inverseJoinColumns=@JoinColumn(name="COMMENT_ID"))
+    private List<Comment> comments = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -68,15 +73,11 @@ public class GroupPost {
 
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

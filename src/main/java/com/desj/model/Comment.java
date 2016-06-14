@@ -1,24 +1,27 @@
 package com.desj.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 /**
  * Created by Sabrina on 14.06.2016.
  */
 @Entity
+@Component
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @OneToOne
-    @JoinColumn(name="userID")
+    @JoinColumn(name="USER_ID")
     private User creator;
 
     @Lob
     private String text;
 
     @ManyToOne (cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "groupPostId")
+    @JoinColumn(name = "GROUPPOST_ID")
     private GroupPost associatedGroupPost;
 
     public Integer getId() {
