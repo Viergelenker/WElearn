@@ -58,7 +58,7 @@
 
                             <div class="row">
                                 <div class="small-12 columns">
-                                    <form th:object="${comment}" th:action="@{/newComment(id=${groupPost.id})}" method="post">
+                                    <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}" method="post">
 
                                         <p>Write a new comment!</p>
 
@@ -107,7 +107,7 @@
 
         <div class="row">
             <div class="small-12 columns">
-                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(id=${learningGroup.id})}" method="post">
+                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(learningGroupId=${learningGroup.id})}" method="post">
 
                     <p>Write a new group post!</p>
 

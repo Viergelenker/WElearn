@@ -10,9 +10,11 @@ import javax.persistence.*;
 @Entity
 @Component
 public class Comment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     @OneToOne
     @JoinColumn(name="USER_ID")
     private User creator;

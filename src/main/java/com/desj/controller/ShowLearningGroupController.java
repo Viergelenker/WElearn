@@ -54,8 +54,8 @@ public class ShowLearningGroupController {
         return "ShowLearningGroup";
     }
 
-    @RequestMapping(value = "/newGroupPost{id}", method = RequestMethod.POST)
-    public String writeNewGroupPost(@RequestParam(value = "id") Integer learningGroupId,
+    @RequestMapping(value = "/newGroupPost{learningGroupId}", method = RequestMethod.POST)
+    public String writeNewGroupPost(@RequestParam(value = "learningGroupId") Integer learningGroupId,
                                     @ModelAttribute("groupPost") GroupPost groupPost) {
 
         groupPostService.save(groupPost, userService.getCurrentDesjUser(), learningGroupRepository
@@ -64,8 +64,8 @@ public class ShowLearningGroupController {
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
 
-    @RequestMapping(value = "/newComment{id}", method = RequestMethod.POST)
-    public String writeNewComment(@RequestParam(value = "id") Integer groupPostId,
+    @RequestMapping(value = "/newComment{groupPostId}", method = RequestMethod.POST)
+    public String writeNewComment(@RequestParam(value = "groupPostId") Integer groupPostId,
                                     @ModelAttribute("comment") Comment comment) {
 
         commentService.save(comment, userService.getCurrentDesjUser(), groupPostRepository.findOne(groupPostId));
