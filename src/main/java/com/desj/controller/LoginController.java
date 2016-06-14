@@ -3,6 +3,9 @@ package com.desj.controller;
 import com.desj.model.User;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +25,9 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    UserDetailsManager userDetailsManager;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
         model.addAttribute("user", new User());
@@ -35,7 +41,11 @@ public class LoginController {
             return "Login";
         } else {
             userService.save(user);
-            return "redirect:/signUpSuccess?userId=" + user.getId().toString();
+
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetailsManager
+                    .loadUserByUsername(user.getEmail()), null, userDetailsManager.loadUserByUsername(user.getEmail()).getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return "redirect:/";
         }
     }
 }
