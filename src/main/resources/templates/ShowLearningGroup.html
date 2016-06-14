@@ -48,9 +48,9 @@
                     <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
                     <p th:utext="${groupPost.text}">Message Text</p>
                     <div class="small-2 columns">
-                        <div th:if="$"><a class="button" href="#"> Comment</a></div>
+                        <a class="button" href="#"> Comment</a>
 
-                        <a class="button fa fa-pencil" data-open="writeNewPostModal"> Create comment</a>
+                        <a class="button fa fa-pencil" data-open="writeNewComment"> Create comment</a>
                     </div>
                 </div>
 
@@ -83,10 +83,10 @@
 
     <!-- Button for the Modal (id=writeNewPostModal) -->
     <div class="small-3 columns">
-        <a class="button fa fa-pencil" data-open="writeNewPostModal"> Create comment</a>
+        <a class="button fa fa-pencil" data-open="writeNewPostModal"> Create post</a>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal  -->
     <div class="reveal" id="writeNewPostModal" data-reveal="true">
 
         <div class="row">
@@ -99,7 +99,7 @@
                         <input th:field="*{title}" placeholder="Title"/>
                     </div>
 
-                    <textarea id="mytextarea" th:field="*{text}">Hello</textarea>
+                    <textarea id="mytextareaforpost" th:field="*{text}">Hello</textarea>
 
                     <div style="padding-top: 20px">
                         <button align="right" type="submit" class="button">Save comment</button>
@@ -112,16 +112,45 @@
         </button>
     </div>
 
+    <!-- Modal for comments -->
+
+    <div class="reveal" id="writeNewComment" data-reveal="true">
+
+        <div class="row">
+            <div class="small-12 columns">
+                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(id=${learningGroup.id})}" method="post">
+
+                    <p>Write a new comment!</p>
+
+                    <textarea id="mytextareaforcomment" th:field="*{text}">Hello</textarea>
+
+                    <div style="padding-top: 20px">
+                        <button align="right" type="submit" class="button">Save comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button class="close-button" data-close="writeNewComment" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
 </div>
 
 <!-- js for the Modal -->
 <script>
     tinymce.init({
-        selector: '#mytextarea',
+        selector: '#mytextareaforpost',
         statusbar: false,
         toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
     });
 
+    tinymce.init({
+        selector: '#mytextareaforcomment',
+        statusbar: false,
+        toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
+    });
     $(document).foundation();
 </script>
 </body>
