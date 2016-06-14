@@ -11,7 +11,10 @@ import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by Julien on 24.05.16.
@@ -49,9 +52,8 @@ public class ShowLearningGroupController {
         model.addAttribute("newGroupPost", new GroupPost());
         model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
                 .findOne(learningGroupId)));
-        model.addAttribute("comments", commentService.getAllCommentsOfGroupPost(groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
-                .findOne(learningGroupId))));
 
+        model.addAttribute("comments", commentService.getAllCommentsOfGroupPost(groupPostRepository.findAll()));
         return "ShowLearningGroup";
     }
 
@@ -64,8 +66,5 @@ public class ShowLearningGroupController {
 
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
-    @RequestMapping(value="")
-    public String writeNewComment(){
 
-    }
 }

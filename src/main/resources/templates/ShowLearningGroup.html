@@ -58,6 +58,29 @@
         </div>
     </div>
 
+    <div class="small-6 columns">
+        <div class="small-12 columns end" th:each="comment : ${comments}">
+            <div class="callout-card">
+                <div class="card-label">
+                    <!-- First three chars of the username are displayed -->
+                    <div class="label-text" th:text="${groupPost.associatedUser.username.substring(0, 3)}">
+                    </div>
+                </div>
+                <div class="callout-card-content">
+                    <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
+                    <p th:utext="${groupPost.text}">Message Text</p>
+                    <div class="small-2 columns">
+                        <div th:if="$"><a class="button" href="#"> Comment</a></div>
+
+                        <a class="button fa fa-pencil" data-open="writeNewPostModal"> Create comment</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
     <!-- Button for the Modal (id=writeNewPostModal) -->
     <div class="small-3 columns">
         <a class="button fa fa-pencil" data-open="writeNewPostModal"> Create comment</a>
