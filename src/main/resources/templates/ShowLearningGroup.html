@@ -47,7 +47,13 @@
                 <div class="callout-card-content">
                     <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
                     <p th:utext="${groupPost.text}">Message Text</p>
+                    <div class="small-2 columns">
+                        <div th:if="$"><a class="button" href="#"> Comment</a></div>
+
+                        <a class="button fa fa-pencil" data-open="writeNewPostModal"> Create comment</a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
