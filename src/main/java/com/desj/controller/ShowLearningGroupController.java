@@ -1,8 +1,10 @@
 package com.desj.controller;
 
+import com.desj.model.CommentRepository;
 import com.desj.model.GroupPost;
 import com.desj.model.GroupPostRepository;
 import com.desj.model.LearningGroupRepository;
+import com.desj.service.CommentService;
 import com.desj.service.GroupPostService;
 import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
@@ -31,6 +33,12 @@ public class ShowLearningGroupController {
 
     @Autowired
     private GroupPostService groupPostService;
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
+    private CommentService commentService;
+
+
 
     @RequestMapping("/showLearningGroup{id}")
     public String showLearningGroup(@RequestParam(value = "id") Integer learningGroupId, Model model) {
@@ -41,6 +49,8 @@ public class ShowLearningGroupController {
         model.addAttribute("newGroupPost", new GroupPost());
         model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
                 .findOne(learningGroupId)));
+        model.addAttribute("comments", commentService.getAllCommentsOfGroupPost(groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
+                .findOne(learningGroupId))));
 
         return "ShowLearningGroup";
     }
@@ -53,5 +63,9 @@ public class ShowLearningGroupController {
                 .findOne(learningGroupId));
 
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
+    }
+    @RequestMapping(value="")
+    public String writeNewComment(){
+
     }
 }
