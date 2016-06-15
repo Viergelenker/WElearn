@@ -32,6 +32,11 @@
                 <input type="text" th:field="*{subject}" th:placeholder="Subject"/>
             </div>
             <div class="small-12 columns">
+                <label>Optional: Password</label>
+                <input type="password" th:field="*{password}" th:placeholder="Password"/>
+            </div>
+
+            <div class="small-12 columns">
                 <button type="submit" class="button">Create!</button>
             </div>
         </form>

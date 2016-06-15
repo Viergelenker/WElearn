@@ -2,7 +2,6 @@ package com.desj.controller;
 
 import com.desj.model.LearningGroup;
 import com.desj.model.LearningGroupRepository;
-import com.desj.model.UserRepository;
 import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +23,6 @@ public class CreateGroupController {
 
     @Autowired
     private LearningGroupService learningGroupService;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private UserService userService;

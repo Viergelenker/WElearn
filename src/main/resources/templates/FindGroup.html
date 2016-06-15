@@ -9,6 +9,13 @@
 <div class="row">
     <div class="small-12 columns">
         <h3><p>Just click on the member button to become part of the group:</p></h3>
+
+        <div th:if="${wrongPassword}">
+            <div class="callout alert">
+                <h5>That is not a correct password for the group!</h5>
+            </div>
+        </div>
+
     </div>
 
     <input type="text" id="search" placeholder="Type to search"/>
@@ -24,13 +31,42 @@
         <tr>
             <td th:text="${learningGroup.name}">Group name</td>
             <td th:text="${learningGroup.subject}">Subject</td>
-            <td><a th:href="@{/becomeMember(learningGroupId=${learningGroup.id})}" class="button">Become a member</a></td>
+            <td>
+                <a th:if="${learningGroup.isPrivate()} == false" th:href="@{/becomeMember(learningGroupId=${learningGroup.id})}" class="button">Become a member</a>
+                <a th:if="${learningGroup.isPrivate()} == true" data-open="passwordModal" class="button">Become a member</a>
+
+                <!-- Modal  -->
+                <div class="reveal" id="passwordModal" data-reveal="true">
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <form th:action="@{/becomeMemberOfPrivateGroup(learningGroupId=${learningGroup.id})}" th:object="${learningGroup}" th:method="post">
+                                <div class="row">
+                                    <!--<input type="hidden" name="id" th:value="${learningGroup.id}"/>-->
+                                    <div class="small-4 columns">
+                                        <input type="password" placeholder="Password" name="password"/>
+                                    </div>
+                                    <div class="small-3 columns">
+                                        <button type="submit" class="button">Become a member</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="close-button" data-close="passwordModal" aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
 
 <script>
+
+    $(document).foundation();
+
     var $rows = $('#tableBody tr');
     $('#search').keyup(function() {
 

@@ -4,6 +4,7 @@ import com.desj.model.LearningGroup;
 import com.desj.model.LearningGroupRepository;
 import com.desj.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,9 @@ public class LearningGroupService {
 
     @Autowired
     LearningGroupRepository learningGroupRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     public List<User> getAllMemberOfLearningGroup(Integer learningGroupId) {
         return learningGroupRepository.findOne(learningGroupId).getMembers();
@@ -68,6 +72,13 @@ public class LearningGroupService {
     }
 
     public void save(LearningGroup learningGroup, User user) {
+
+        if (learningGroup.getPassword() != null) {
+            String passwordHash = encoder.encode(learningGroup.getPassword());
+            learningGroup.setPassword(passwordHash);
+            learningGroup.setPrivate(true);
+        }
+        else { learningGroup.setPrivate(false); }
 
         List<User> userList = new ArrayList<>();
         userList.add(user);

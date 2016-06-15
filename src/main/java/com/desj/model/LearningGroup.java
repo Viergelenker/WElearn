@@ -3,6 +3,7 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,12 @@ public class LearningGroup {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Size(min = 1, max = 20)
     private String name;
+
     private String subject;
+    private boolean isPrivate;
+    private String password;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "USER_ID")
@@ -50,6 +55,22 @@ public class LearningGroup {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public User getCreatorOfGroup() {
