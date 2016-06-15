@@ -2,6 +2,10 @@
     background-color: gray;
 }
 
+.blackFontColor {
+    color: black;
+}
+
 /* Styling of the login page */
 #login {
     background: #343838;

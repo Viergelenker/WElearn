@@ -10,7 +10,8 @@
     <div class="small-12 columns">
         <div th:if="${newlyCreatedLearningGroupId != null}">
             <div class="callout success">
-                <h5>You have just created the new learning group <span th:text="${createdLearningGroup.name}"></span>!</h5>
+                <h5>You have just created the new learning group <span th:text="${createdLearningGroup.name}"></span>!
+                </h5>
                 <p>You also became the first member of it. Yaay!</p>
                 <a class="button" th:href="@{/showLearningGroup(id=${newlyCreatedLearningGroupId})}">
                     Checkout group
@@ -24,15 +25,15 @@
     <div class="small-12">
         <form th:action="@{/createNewGroup}" th:object="${learningGroup}" th:method="post">
             <div class="small-12 columns">
-                <label>Group name</label>
+                <label class="blackFontColor">Group name</label>
                 <input type="text" th:field="*{name}" th:placeholder="Name"/>
             </div>
             <div class="small-12 columns">
-                <label>Subject</label>
+                <label class="blackFontColor">Subject</label>
                 <input type="text" th:field="*{subject}" th:placeholder="Subject"/>
             </div>
             <div class="small-12 columns">
-                <label>Optional: Password</label>
+                <label class="blackFontColor">Set password for private group, leave empty for public one:</label>
                 <input type="password" th:field="*{password}" th:placeholder="Password"/>
             </div>
 

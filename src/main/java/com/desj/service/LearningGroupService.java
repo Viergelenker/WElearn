@@ -73,7 +73,7 @@ public class LearningGroupService {
 
     public void save(LearningGroup learningGroup, User user) {
 
-        if (learningGroup.getPassword() != null) {
+        if (learningGroup.getPassword() != "") {
             String passwordHash = encoder.encode(learningGroup.getPassword());
             learningGroup.setPassword(passwordHash);
             learningGroup.setPrivate(true);
