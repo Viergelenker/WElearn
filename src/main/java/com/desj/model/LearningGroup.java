@@ -35,6 +35,12 @@ public class LearningGroup {
             joinColumns=@JoinColumn(name="GROUP_ID"),
             inverseJoinColumns=@JoinColumn(name="USER_ID"))
     private List<User> members = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="MCTests",
+            joinColumns=@JoinColumn(name="GROUP_ID"),
+           inverseJoinColumns  = @JoinColumn(name = "MCTEST_ID"))
+    private List<MCTest> mcTests = new ArrayList<>();
 
 
     public Integer getId() {

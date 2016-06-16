@@ -3,6 +3,7 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class GroupPost {
             name="GROUPCOMMENTS",
             joinColumns=@JoinColumn(name="GROUPPOST_ID"),
             inverseJoinColumns=@JoinColumn(name="COMMENT_ID"))
-    private List<Comment> comments = new ArrayList<>();
+    private List<Component> comments = new ArrayList<>();
 
     public Integer getId() {
         return id;
