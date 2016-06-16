@@ -27,6 +27,7 @@
             <div class="small-12 columns">
                 <label class="blackFontColor">Group name</label>
                 <input type="text" th:field="*{name}" th:placeholder="Name"/>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
             </div>
             <div class="small-12 columns">
                 <label class="blackFontColor">Subject</label>

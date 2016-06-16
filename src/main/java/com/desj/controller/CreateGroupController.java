@@ -7,10 +7,12 @@ import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
 
 /**
  * Created by Julien on 07.06.16.
@@ -43,10 +45,14 @@ public class CreateGroupController {
     }
 
     @RequestMapping(value = "/createNewGroup", method = RequestMethod.POST)
-    public String createNewGroup(@ModelAttribute("learningGroup") LearningGroup learningGroup) {
+    public String createNewGroup(@Valid LearningGroup learningGroup, BindingResult bindingResult) {
 
-        learningGroupService.save(learningGroup, userService.getCurrentDesjUser());
+        if (bindingResult.hasErrors()) {
+            return "CreateGroup";
+        } else {
+            learningGroupService.save(learningGroup, userService.getCurrentDesjUser());
 
-        return "redirect:/createGroup?id=" + learningGroup.getId().toString();
+            return "redirect:/createGroup?id=" + learningGroup.getId().toString();
+        }
     }
 }
