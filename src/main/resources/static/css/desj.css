@@ -99,7 +99,7 @@ label {
     transform: rotate(30deg);
 }
 
-/* Styling of material cards on user site */
+/* Styling of material cards */
 html, body {
     background: #FAFAFA; }
 
@@ -142,4 +142,5 @@ html, body {
 .card .cardLink {
     color: #343838;
 }
+
 

@@ -25,6 +25,9 @@ public class LearningGroup {
     private boolean isPrivate;
     private String password;
 
+    @Size(max = 200)
+    private String description;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "USER_ID")
     private User creatorOfGroup;
@@ -71,6 +74,14 @@ public class LearningGroup {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public User getCreatorOfGroup() {
