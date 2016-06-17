@@ -16,6 +16,30 @@
     </div>
 </div>
 
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/fileUpload">
+        <table>
+            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+            <tr><td>Name:</td><td><input type="text" name="name" /></td></tr>
+            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+            <input type="hidden" th:value="${learningGroup.id}" name="learningGroupId"/>
+        </table>
+    </form>
+</div>
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <div th:text="${file}"/>
+            <img th:src="@{'images/'+ ${file}}"/>
+        </li>
+    </ul>
+</div>
+
 <div class="row">
 
     <div class="small-3 column">
