@@ -35,7 +35,7 @@
     <ul>
         <li th:each="file : ${files}">
             <div th:text="${file}"/>
-            <img th:src="@{'images/'+ ${file}}"/>
+            <img th:src="@{'public/'+ ${file}}"/>
         </li>
     </ul>
 </div>

@@ -10,7 +10,7 @@ import java.io.File;
 @SpringBootApplication
 public class SopraApplication {
 
-	public static String ROOT = "src/main/resources/static/user-uploads";
+	public static String ROOT = "src/main/resources/static/public";
 
 	public static void main(String[] args) {
 		SpringApplication.run(SopraApplication.class, args);
