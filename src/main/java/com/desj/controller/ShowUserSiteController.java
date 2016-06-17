@@ -1,9 +1,12 @@
 package com.desj.controller;
 
 import com.desj.model.LearningGroupRepository;
+import com.desj.model.UserRepository;
 import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,16 @@ public class ShowUserSiteController {
     private LearningGroupService learningGroupService;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserDetailsManager userDetailsManager;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @RequestMapping("/showUserSite")
     public String showUserSite(Model model) {
@@ -43,6 +55,15 @@ public class ShowUserSiteController {
 
         learningGroupRepository.removeById(learningGroupId);
         return "redirect:/showUserSite";
+    }
+
+    @RequestMapping(value = "/deleteUserProfile")
+    @Transactional
+    public String deleteUserProfile() {
+
+        userDetailsManager.deleteUser(userService.getCurrentDesjUser().getEmail());
+
+        return "redirect:/login?logout";
     }
 
 }

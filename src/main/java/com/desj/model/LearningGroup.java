@@ -29,7 +29,7 @@ public class LearningGroup {
     @JoinColumn(name = "USER_ID")
     private User creatorOfGroup;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="GROUPMEMBER",
             joinColumns=@JoinColumn(name="GROUP_ID"),
