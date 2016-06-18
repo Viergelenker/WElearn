@@ -22,15 +22,14 @@ label {
 /* Top bar styling */
 .top-bar {
     background: #343838;
-    height: 90px;
-    line-height: 90px;
-    padding-top: 15px;
+    height: 86px;
+    padding-top: 18px;
 }
 .top-bar-left ul {
     background: #343838;
     color: white;
     line-height: 90px;
-    padding-top: 15px;
+    padding-top: 7px;
 }
 .top-bar-right ul {
     background: #343838;

@@ -7,6 +7,11 @@
 <div th:replace="fragments/navbar :: loggedIn"></div>
 
 <br/>
+<div class="row">
+    <div class="small-12 columns">
+        <h3 th:if="${numberOfGroups &gt; 0}"><span th:text="${username}"></span>, these are your learning groups:</h3>
+    </div>
+</div>
 
 <div class="row">
     <div class="small-3 columns end"  th:each="learningGroup : ${learningGroupsOfUser}">
@@ -16,7 +21,9 @@
                    style="color: #343838;">
                     <span th:text="${learningGroup.name}"></span>
                 </a>
-                <p>Subject: <span th:text="${learningGroup.subject}"></span></p>
+                <p>Owned by <span th:unless="${learningGroup.creatorOfGroup.username.equals(username)}" th:text="${learningGroup.creatorOfGroup.username}"></span>
+                    <span th:if="${learningGroup.creatorOfGroup.username.equals(username)}">yourself</span></p>
+                <br/>
                 <p th:text="${learningGroup.description}"></p>
             </div>
             <div class="action">
