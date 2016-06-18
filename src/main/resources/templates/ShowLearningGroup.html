@@ -70,8 +70,8 @@
 
             <ul class="vertical menu" data-accordion-menu="true">
                 <li>
-                    <a href="#">Show comments</a>
-                    <ul class="menu vertical nested">
+                    <a href="#" style="border-color: transparent">Show comments</a>
+                    <ul class="vertical nested">
                         <li  th:each="comment : ${comments}" th:if="${comment.associatedGroupPost.id == groupPost.id}">
                             <div class="callout-card secondary">
                                 <div class="card-label">
