@@ -70,7 +70,7 @@
 
             <ul class="vertical menu" data-accordion-menu="true">
                 <li>
-                    <a href="#" style="border-color: transparent">Show comments</a>
+                    <a href="#" style="border-color: transparent">Show comments (<span th:text="${comments.size()}"></span>)</a>
                     <ul class="vertical nested">
                         <li  th:each="comment : ${comments}" th:if="${comment.associatedGroupPost.id == groupPost.id}">
                             <div class="callout-card secondary">
@@ -89,6 +89,7 @@
                               method="post">
 
                             <textarea th:field="*{text}">Hello</textarea>
+                            <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error</div>
 
                             <div style="padding-top: 10px">
                                 <button align="right" type="submit" class="button">Save comment</button>
@@ -116,6 +117,7 @@
                     </div>
 
                     <textarea id="mytextareaforpost" th:field="*{text}">Hello</textarea>
+                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error</div>
 
                     <div style="padding-top: 20px">
                         <button align="right" type="submit" class="button">Save comment</button>
