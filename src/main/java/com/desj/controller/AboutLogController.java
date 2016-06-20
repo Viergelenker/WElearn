@@ -1,6 +1,5 @@
 package com.desj.controller;
 
-import com.desj.model.UserRepository;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class AboutLogController {
+
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
-    @RequestMapping(value = "/aboutLog",method = RequestMethod.POST)
+
+    @RequestMapping(value = "/aboutLog",method = RequestMethod.GET)
     public String about(Model model){
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
         return "AboutLog";

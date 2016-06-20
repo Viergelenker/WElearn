@@ -3,6 +3,7 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class GroupPost {
     private String title;
 
     @Lob
+    @Size(min = 4)
     private String text;
 
     @OneToOne(cascade = CascadeType.PERSIST)
