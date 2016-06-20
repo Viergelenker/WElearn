@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+
 /**
  * Created by Julien on 24.05.16.
  */
@@ -57,10 +59,10 @@ public class ShowLearningGroupController {
 
     @RequestMapping(value = "/newGroupPost{learningGroupId}", method = RequestMethod.POST)
     public String writeNewGroupPost(@RequestParam(value = "learningGroupId") Integer learningGroupId,
-                                    @ModelAttribute("groupPost") GroupPost groupPost, BindingResult bindingResult) {
+                                    @Valid @ModelAttribute("groupPost") GroupPost groupPost, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "ShowLearningGroup";
+            return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
         } else {
             groupPostService.save(groupPost, userService.getCurrentDesjUser(), learningGroupRepository
                     .findOne(learningGroupId));
@@ -71,15 +73,17 @@ public class ShowLearningGroupController {
 
     @RequestMapping(value = "/newComment{groupPostId}", method = RequestMethod.POST)
     public String writeNewComment(@RequestParam(value = "groupPostId") Integer groupPostId,
-                                  @ModelAttribute("comment") Comment comment, BindingResult bindingResult) {
+                                  @Valid @ModelAttribute("comment") Comment comment, BindingResult bindingResult) {
+
+        String redirectString = groupPostRepository.findOne(groupPostId).getAssociatedLearningGroup().getId().toString();
 
         if (bindingResult.hasErrors()) {
-            return "ShowLearningGroup";
+            return "redirect:/showLearningGroup?id=" +redirectString;
         } else {
 
             commentService.save(comment, userService.getCurrentDesjUser(), groupPostRepository.findOne(groupPostId));
             groupPostService.addGroupPostComment(groupPostRepository.findOne(groupPostId), comment);
-            String redirectString = groupPostRepository.findOne(groupPostId).getAssociatedLearningGroup().getId().toString();
+
             return "redirect:/showLearningGroup?id=" + redirectString;
         }
     }
