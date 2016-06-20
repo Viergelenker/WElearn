@@ -12,9 +12,9 @@ label {
 #wrapper {
     width: 40%;
     margin: 0 auto;
-    background-color: rgba(120,120,120,0.4);
-    border-radius: 24px;
+    background-color: rgba(30,30,30,0.4);
     border: solid thin;
+    border-radius: 3px;
     border-color: rgba(255, 255, 255, 0.1);
 }
 

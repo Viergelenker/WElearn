@@ -10,51 +10,48 @@
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <br/>
 
-<div class="row">
-    <div class="medium-3 columns">
-        <div class="card">
-            <div class="image">
-                <img src="http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg"/>
-                <span class="title" th:text="${learningGroup.name}"></span>
-            </div>
-            <div class="content">
-                <p><a class="cardLink" data-open="memberModal">
-                    <span th:text="${learningGroup.members.size()}"></span> Member
-                </a>
-                </p>
-                <div class="reveal" id="memberModal" data-reveal="true">
-                    <p class="lead">Member of the learning group <span th:text="${learningGroup.name}"></span>:</p>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tableBody" th:each="member : ${learningGroup.members}">
-                        <tr>
-                            <td th:text="${member.username}">Group name</td>
-                            <td><a href="#" class="button">See profile (no function)</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <button class="close-button" data-close="memberModal" aria-label="Close modal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="row" id="topAnchor">
+        <div class="small-3 columns" data-sticky-container="">
+            <div class="card" data-sticky="" data-anchor="topAnchor">
+                <div class="image">
+                    <img src="http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg"/>
+                    <span class="title" th:text="${learningGroup.name}"></span>
+                </div>
+                <div class="content">
+                    <p><a class="cardLink" data-open="memberModal">
+                        <span th:text="${learningGroup.members.size()}"></span> Member
+                    </a>
+                    </p>
+                    <div class="reveal" id="memberModal" data-reveal="true">
+                        <p class="lead">Member of the learning group <span th:text="${learningGroup.name}"></span>:</p>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tableBody" th:each="member : ${learningGroup.members}">
+                            <tr>
+                                <td th:text="${member.username}">Group name</td>
+                                <td><a href="#" class="button">See profile (no function)</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button class="close-button" data-close="memberModal" aria-label="Close modal" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="action">
+                    <a class="cardLink fa fa-pencil" data-open="writeNewPostModal"> Create new post</a>
                 </div>
             </div>
-            <div class="action">
-                <a class="cardLink fa fa-pencil" data-open="writeNewPostModal"> Create new post</a>
-            </div>
         </div>
-    </div>
-
-    <br/>
-
 
     <!-- Displays for each group post in all group posts the title and text... -->
     <div class="small-9 columns">
-        <div class="small-10 small-offset-1 columns end" th:each="groupPost : ${groupPosts}">
+        <div class="small-10 small-offset-1 columns end" th:each="groupPost,iterStat : ${groupPosts}">
 
             <div class="callout-card">
                 <div class="card-label">
@@ -70,9 +67,10 @@
 
             <ul class="vertical menu" data-accordion-menu="true">
                 <li>
-                    <a href="#" style="border-color: transparent">Show comments (<span th:text="${comments.size()}"></span>)</a>
-                    <ul class="vertical nested">
-                        <li  th:each="comment : ${comments}" th:if="${comment.associatedGroupPost.id == groupPost.id}">
+                    <a href="#" style="outline: none">Show comments</a>
+                    <ul th:class="${iterStat.first}? 'is-active'">
+                        <li th:each="comment : ${comments}"
+                            th:if="${comment.associatedGroupPost.id == groupPost.id}">
                             <div class="callout-card secondary">
                                 <div class="card-label">
                                     <div class="label-text"
@@ -83,13 +81,14 @@
                                 </div>
                             </div>
                         </li>
-                    </ul>
-                    <ul>
+
                         <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
                               method="post">
 
                             <textarea th:field="*{text}">Hello</textarea>
-                            <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error</div>
+                            <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text
+                                Error
+                            </div>
 
                             <div style="padding-top: 10px">
                                 <button align="right" type="submit" class="button">Save comment</button>
@@ -117,7 +116,8 @@
                     </div>
 
                     <textarea id="mytextareaforpost" th:field="*{text}">Hello</textarea>
-                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error</div>
+                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error
+                    </div>
 
                     <div style="padding-top: 20px">
                         <button align="right" type="submit" class="button">Save comment</button>
