@@ -1,22 +1,21 @@
 @import url(//fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900);
 
-.rankingEntry:hover {
-    background-color: gray;
-}
-
 .blackFontColor {
     color: black;
-}
-
-/* Styling of the login page */
-#login {
-    background: #343838;
-    color: white;
 }
 
 /* White font color for labels because of the grey background */
 label {
     color: white
+}
+
+#wrapper {
+    width: 40%;
+    margin: 0 auto;
+    background-color: rgba(120,120,120,0.4);
+    border-radius: 24px;
+    border: solid thin;
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Top bar styling */
@@ -28,12 +27,12 @@ label {
 .top-bar-left ul {
     background: #343838;
     color: white;
-    line-height: 90px;
+    line-height: 86px;
     padding-top: 7px;
 }
 .top-bar-right ul {
     background: #343838;
-    padding-top: 15px
+    padding-top: 7px
 }
 
 /* Group post styling */

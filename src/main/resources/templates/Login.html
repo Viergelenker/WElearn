@@ -3,46 +3,54 @@
 <head>
     <div th:replace="fragments/header :: header"></div>
 </head>
-<body id="login">
+<body style="background-image: url('images/schloss_hohenheim.jpg'); background-repeat: no-repeat; background-size: 100%;">
 
 <div th:replace="fragments/navbar :: notLoggedIn"></div>
-<div class="row">
-    <div style="padding-top: 70px" class="small-6 small-centered columns">
-        <h2 style="text-align: center">DESJ project</h2>
-        <p>
-
-        <h3 style="text-align: center">Please Sign Up:</h3></p>
-    </div>
-</div>
-
 
 <br/>
+<br/>
+<br/>
 
+<div class="row" id="wrapper">
 
-<div class="row">
-    <div class="small-4 small-centered columns">
+    <div class="row">
+        <br/>
+        <div class="small-12 small-centered columns">
+            <h2 style="text-align: center; color: white">DESJ project</h2>
+            <p>
 
-        <form th:object="${user}" th:action="@{/newUser}" th:method="post">
-            <div class="small-12 columns">
-                <label>Username</label>
-                <input type="text" th:field="*{username}" th:placeholder="Username"/>
-                <div class="callout alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</div>
-            </div>
-            <div class="small-12 columns">
-                <label>Email address</label>
-                <input type="email" th:field="*{email}" th:placeholder="Email"/>
-            </div>
-            <div class="small-12 columns">
-                <label>Password</label>
-                <input type="password" th:field="*{password}" th:placeholder="Password"/>
-            </div>
-            <div style="padding-top: 5px" class="small-12 columns">
-                <button type="submit" class="button"><i class="fa fa-check"></i> Submit</button>
-
-            </div>
-        </form>
-
+            <h3 style="text-align: center; color: white">Please Sign Up:</h3></p>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="small-8 small-centered columns">
+
+            <form th:object="${user}" th:action="@{/newUser}" th:method="post">
+                <div class="small-12 columns">
+                    <label>Username</label>
+                    <input type="text" th:field="*{username}" th:placeholder="Username"/>
+                    <div class="callout alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name
+                        Error
+                    </div>
+                </div>
+                <div class="small-12 columns">
+                    <label>Email address</label>
+                    <input type="email" th:field="*{email}" th:placeholder="Email"/>
+                </div>
+                <div class="small-12 columns">
+                    <label>Password</label>
+                    <input type="password" th:field="*{password}" th:placeholder="Password"/>
+                </div>
+                <div style="padding-top: 5px" class="small-12 columns">
+                    <button type="submit" class="button"><i class="fa fa-check"></i> Submit</button>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <br/>
 </div>
 
 <script src="js/app.js"></script>
