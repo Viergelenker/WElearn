@@ -27,23 +27,22 @@
         <div class="small-9 small-centered columns">
 
             <form th:object="${user}" th:action="@{/newUser}" th:method="post">
-                <div class="small-12 columns">
-                    <label>Username</label>
-                    <input type="text" th:field="*{username}" th:placeholder="Username"/>
+                <div style="padding-top: 15px" class="small-12 columns">
+                    <br/>
+                    <input style="border-radius: 2px" type="text" th:field="*{username}" th:placeholder=" Username"/>
                     <div class="callout alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name
                         Error
                     </div>
                 </div>
-                <div class="small-12 columns">
-                    <label>Email address</label>
-                    <input type="email" th:field="*{email}" th:placeholder="Email"/>
+                <div style="padding-top: 15px" class="small-12 columns">
+                    <input style="border-radius: 2px" type="email" th:field="*{email}" th:placeholder=" Email"/>
                 </div>
-                <div class="small-12 columns">
-                    <label>Password</label>
-                    <input type="password" th:field="*{password}" th:placeholder="Password"/>
+                <div style="padding-top: 15px" class="small-12 columns">
+                    <input style="border-radius: 2px" type="password" th:field="*{password}" th:placeholder=" Password"/>
                 </div>
-                <div style="padding-top: 5px" class="small-12 columns">
-                    <button type="submit" class="button"><i class="fa fa-check"></i> Submit</button>
+
+                <div style="padding-top: 15px" class="small-12 columns">
+                    <button style="border-radius: 2px" type="submit" class="button"><i class="fa fa-check"></i> Submit</button>
 
                 </div>
             </form>
