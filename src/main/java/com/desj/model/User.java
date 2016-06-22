@@ -2,11 +2,10 @@ package com.desj.model;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Julien on 14.04.16.
@@ -25,6 +24,40 @@ public class User {
     private String password;
     //Studiengang
     private String major;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "CREATEDMCQUESTION",
+           joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "MCQUESTION_ID")
+    )
+    List <MCQuestion> createdMCQuestions = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "ANSWEREDMCQUESTIONS",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "MCQUESTION_ID")
+    )
+    List<MCQuestion> answeredMCQuestions = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "CREATEDQUESTION",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "QUESTION_ID")
+    )
+    List <Question> createdQuestions = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "ANSWEREDQUESTIONS",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "QUESTION_ID")
+    )
+    List<Question> answeredQuestions = new ArrayList<>();
+
+
 
     public Integer getId() { return id; }
 
@@ -56,5 +89,49 @@ public class User {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public List<MCQuestion> getCreatedMCQuestions() {
+        return createdMCQuestions;
+    }
+
+    public void setCreatedMCQuestions(List<MCQuestion> createdMCQuestions) {
+        this.createdMCQuestions = createdMCQuestions;
+    }
+
+    public List<MCQuestion> getAnsweredMCQuestions() {
+        return answeredMCQuestions;
+    }
+
+    public void setAnsweredMCQuestions(List<MCQuestion> answeredMCQuestions) {
+        this.answeredMCQuestions = answeredMCQuestions;
+    }
+
+    public List<Question> getCreatedQuestions() {
+        return createdQuestions;
+    }
+
+
+
+    public List<Question> getAnsweredQuestions() {
+        return answeredQuestions;
+    }
+
+
+
+    public void createMCQuestion(MCQuestion mcQuestion){
+        this.createdMCQuestions.add(mcQuestion);
+    }
+
+    public void createQuestion(Question question){
+        this.createdQuestions.add(question);
+    }
+
+    public void answerMCQuestion(MCQuestion mcQuestion){
+        this.answeredMCQuestions.add(mcQuestion);
+    }
+
+    public void answerQuestion(Question question){
+        this.answeredQuestions.add(question);
     }
 }

@@ -1,8 +1,9 @@
 package com.desj.service;
 
+import com.desj.model.LearningGroup;
 import com.desj.model.Question;
 import com.desj.model.QuestionReposiory;
-import com.desj.model.Test;
+import com.desj.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,10 @@ public class QuestionService {
     @Autowired
     private QuestionReposiory questionReposiory;
 
-    public void save(Question question, Test test){
-        question.setCorrespondingTest(test);
+
+    public void save(Question question, LearningGroup learningGroup, User user){
+        question.setCorrespondingLearningGroup(learningGroup);
+        question.setCreator(user);
         questionReposiory.save(question);
 
     }

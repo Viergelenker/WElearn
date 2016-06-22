@@ -13,13 +13,20 @@ public class Question {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     @Lob
     private String question;
+
     @Lob
     private String answer;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "TEST_ID")
-    private Test correspondingTest;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "GROUP_ID")
+    private LearningGroup correspondingLearningGroup;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "CREATOR_ID")
+    private User creator;
 
     public Integer getId() {
         return id;
@@ -45,11 +52,19 @@ public class Question {
         this.answer = answer;
     }
 
-    public Test getCorrespondingTest() {
-        return correspondingTest;
+    public LearningGroup getCorrespondingLearningGroup() {
+        return correspondingLearningGroup;
     }
 
-    public void setCorrespondingTest(Test correspondingTest) {
-        this.correspondingTest = correspondingTest;
+    public void setCorrespondingLearningGroup(LearningGroup correspondingLearningGroup) {
+        this.correspondingLearningGroup = correspondingLearningGroup;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 }

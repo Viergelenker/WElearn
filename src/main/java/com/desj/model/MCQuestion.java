@@ -22,9 +22,15 @@ public class MCQuestion {
     private List<String> possibleAnswers = new ArrayList<>();
     @Lob
     private String correctAnswer;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MCTEST_ID")
-    private MCTest CorrespondingMCTest;
+
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name ="GROUP_ID")
+    private LearningGroup correspondingLearningGroup;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "CREATOR_ID")
+    private User creator;
 
 
 
@@ -39,8 +45,6 @@ public class MCQuestion {
     public List<String> getPossibleAnswers() {
         return possibleAnswers;
     }
-
-
 
     public String getCorrectAnswer() {
         return correctAnswer;
@@ -62,14 +66,24 @@ public class MCQuestion {
         this.possibleAnswers = possibleAnswers;
     }
 
-    public MCTest getCorrespondingMCTest() {
-        return CorrespondingMCTest;
-    }
 
-    public void setCorrespondingMCTest(MCTest correspondingMCTest) {
-        CorrespondingMCTest = correspondingMCTest;
-    }
     public void addPossibleAnswer(String s){
         possibleAnswers.add(s);
+    }
+
+    public LearningGroup getCorrespondingLearningGroup() {
+        return correspondingLearningGroup;
+    }
+
+    public void setCorrespondingLearningGroup(LearningGroup correspondingLearningGroup) {
+        this.correspondingLearningGroup = correspondingLearningGroup;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 }

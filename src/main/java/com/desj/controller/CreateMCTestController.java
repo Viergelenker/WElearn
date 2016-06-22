@@ -1,8 +1,8 @@
 package com.desj.controller;
 
-import com.desj.model.MCTest;
-import com.desj.model.MCTestRepository;
-import com.desj.service.MCTestService;
+import com.desj.model.Quiz;
+import com.desj.model.QuizRepository;
+import com.desj.service.QuizService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +20,9 @@ public class CreateMCTestController {
     @Autowired
     private UserService userService;
     @Autowired
-    private MCTestRepository mcTestRepository;
+    private QuizRepository quizRepository;
     @Autowired
-    private MCTestService mcTestService;
+    private QuizService quizService;
 
 
     @RequestMapping(value = "/createMCTest{id}", method = RequestMethod.GET)
@@ -30,15 +30,15 @@ public class CreateMCTestController {
         model.addAttribute("ussername", userService.getCurrentDesjUser().getId());
         model.addAttribute("newlyCreatedMCTestId", id);
         if (id != null) {
-            model.addAttribute("createdMCTest", mcTestRepository.findOne(id));
+            model.addAttribute("createdMCTest", quizRepository.findOne(id));
         }
-        model.addAttribute("mcTest", new MCTest());
+        model.addAttribute("mcTest", new Quiz());
         return "CreateMCTest";
     }
 //warning !!!! null value!!
     @RequestMapping(value = "/createNewMCTest", method = RequestMethod.POST)
-    public String createNewMCTest(@ModelAttribute("createdMCTest") MCTest mcTest) {
-        mcTestService.save(mcTest, userService.getCurrentDesjUser(), null);
-        return "redirect://createMCTest?id=" + mcTest.getId().toString();
+    public String createNewMCTest(@ModelAttribute("createdMCTest") Quiz quiz) {
+        quizService.save(quiz, userService.getCurrentDesjUser(), null);
+        return "redirect://createMCTest?id=" + quiz.getId().toString();
     }
 }

@@ -2,8 +2,8 @@ package com.desj.controller;
 
 import com.desj.model.LearningGroupRepository;
 import com.desj.model.MCQuestionRepository;
-import com.desj.model.MCTestRepository;
-import com.desj.service.MCTestService;
+import com.desj.model.QuizRepository;
+import com.desj.service.QuizService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ShowMCTestController {
     @Autowired
-    private MCTestRepository mcTestRepository;
+    private QuizRepository quizRepository;
     @Autowired
-    private MCTestService mcTestService;
+    private QuizService quizService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -30,9 +30,9 @@ public class ShowMCTestController {
     @RequestMapping("/showMCTest{id}")
     public String showLMCTest(@RequestParam(value = "id" )Integer mcTestID, Model model){
         model.addAttribute("username",userService.getCurrentDesjUser().getUsername());
-        model.addAttribute("learningGroup", learningGroupRepository.findOne(mcTestRepository.findOne(mcTestID).getLearningGroup().getId()));
-        model.addAttribute("creator",mcTestRepository.findOne(mcTestID).getCreator().getId());
-        model.addAttribute("mcTest", mcTestRepository.findOne(mcTestID));
+        model.addAttribute("learningGroup", learningGroupRepository.findOne(quizRepository.findOne(mcTestID).getLearningGroup().getId()));
+        model.addAttribute("creator", quizRepository.findOne(mcTestID).getCreator().getId());
+        model.addAttribute("mcTest", quizRepository.findOne(mcTestID));
 
 
         return "showMCTest";

@@ -11,14 +11,14 @@ import java.util.List;
  */
 @Entity
 @Component
-public class MCTest {
+public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId")
-    private User creator;
+
+
+    private Integer questionQuantity;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "learningGroupId")
@@ -41,13 +41,6 @@ public class MCTest {
         this.id = id;
     }
 
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
 
 
     public LearningGroup getLearningGroup() {
@@ -66,5 +59,19 @@ public class MCTest {
         this.MCQuestions = MCQuestions;
     }
 
+    public Integer getQuestionQuantity() {
+        return questionQuantity;
+    }
 
+    public void setQuestionQuantity(Integer questionQuantity) {
+        this.questionQuantity = questionQuantity;
+    }
+
+    public List<MCQuestion> getMCQuestions() {
+        return MCQuestions;
+    }
+
+    public void setMCQuestions(List<MCQuestion> MCQuestions) {
+        this.MCQuestions = MCQuestions;
+    }
 }
