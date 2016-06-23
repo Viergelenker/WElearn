@@ -4,8 +4,13 @@
     color: black;
 }
 
+.button {
+    border-radius: 2px;
+}
+
 /* Styling for the comment button on the showLearningGroup page */
 .buttonComment {
+    border-radius: 2px;
     display: inline-block;
     text-align: center;
     line-height: 1;
@@ -14,7 +19,6 @@
     transition: background-color 0.25s ease-out, color 0.25s ease-out;
     vertical-align: middle;
     border: 1px solid transparent;
-    border-radius: 0;
     padding: 0.85em 1em;
     margin: 0 0 1rem 0;
     font-size: 0.9rem;
@@ -34,6 +38,7 @@
 
 /* Styling for the groupPost button on the showLearningGroup page */
 .buttonPost {
+    border-radius: 2px;
     display: inline-block;
     text-align: center;
     line-height: 1;
@@ -42,7 +47,6 @@
     transition: background-color 0.25s ease-out, color 0.25s ease-out;
     vertical-align: middle;
     border: 1px solid transparent;
-    border-radius: 0;
     padding: 0.85em 1em;
     margin: 0 0 1rem 0;
     font-size: 0.9rem;

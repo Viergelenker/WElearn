@@ -28,7 +28,7 @@
                             <input style="border-radius: 2px" type="password" placeholder="Password" name="password"/>
                         </div>
                         <div class="small-3 columns">
-                            <button style="border-radius: 2px" type="submit" class="button"><i class="fa fa-sign-in"></i> Sign in</button>
+                            <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign in</button>
                         </div>
                     </div>
                 </form>
@@ -57,11 +57,11 @@
         <div class="top-bar-right">
             <div class="row">
                 <div class="small-6 columns">
-                    <a style="border-radius: 2px" th:href="@{/showUserSite}" class="button fa fa-user"></a>
+                    <a th:href="@{/showUserSite}" class="button fa fa-user"></a>
                 </div>
                 <div class="small-6 columns">
                     <form th:action="@{/logout}" th:method="post">
-                        <button style="border-radius: 2px" type="submit" class="alert button fa fa-sign-out"></button>
+                        <button type="submit" class="alert button fa fa-sign-out"></button>
                     </form>
                 </div>
             </div>
