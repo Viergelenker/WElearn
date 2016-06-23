@@ -4,6 +4,63 @@
     color: black;
 }
 
+/* Styling for the comment button on the showLearningGroup page */
+.buttonComment {
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 0;
+    padding: 0.85em 1em;
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    background-color: #2199e8;
+    color: #fefefe; }
+[data-whatinput='mouse'] .buttonComment {
+    outline: 0; }
+.buttonComment:hover, .buttonComment:focus {
+    background-color: #1583cc;
+    color: #fefefe; }
+.buttonComment.disabled, .buttonComment[disabled] {
+    opacity: 0.25;
+    cursor: not-allowed; }
+.buttonComment.disabled:hover, .buttonComment.disabled:focus, .buttonComment[disabled]:hover, .buttonComment[disabled]:focus {
+    background-color: #2199e8;
+    color: #fefefe; }
+
+/* Styling for the groupPost button on the showLearningGroup page */
+.buttonPost {
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 0;
+    padding: 0.85em 1em;
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    background-color: #2199e8;
+    color: #fefefe; }
+[data-whatinput='mouse'] .buttonPost {
+    outline: 0; }
+.buttonPost:hover, .buttonPost:focus {
+    background-color: #1583cc;
+    color: #fefefe; }
+.buttonPost.disabled, .buttonPost[disabled] {
+    opacity: 0.25;
+    cursor: not-allowed; }
+.buttonPost.disabled:hover, .buttonPost.disabled:focus, .buttonPost[disabled]:hover, .buttonPost[disabled]:focus {
+    background-color: #2199e8;
+    color: #fefefe; }
+
+
 /* White font color for labels because of the grey background */
 label {
     color: white
