@@ -27,11 +27,15 @@
             <div class="small-12 columns">
                 <label class="blackFontColor">Group name</label>
                 <input type="text" th:field="*{name}" th:placeholder="Name"/>
-                <div class="small-6 columns callout alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                <div class="small-12 columns callout alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
             </div>
             <div class="small-12 columns">
                 <label class="blackFontColor">Subject</label>
                 <input type="text" th:field="*{subject}" th:placeholder="Subject"/>
+            </div>
+            <div class="small-12 columns">
+                <label class="blackFontColor">Description</label>
+                <input type="text" th:field="*{description}" th:placeholder="Description"/>
             </div>
             <div class="small-12 columns">
                 <label class="blackFontColor">Set password for private group, leave empty for public one:</label>
@@ -44,6 +48,8 @@
         </form>
     </div>
 </div>
+
+<script src="js/app.js"></script>
 
 </body>
 </html>

@@ -5,65 +5,48 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: loggedIn"></div>
+
+<br/>
 <div class="row">
-    <div class="small-12 small-offset-2  columns">
-        <h2>Welcome <span th:text="${username}">Username</span>!</h2>
+    <div class="small-12 columns">
+        <h3 th:if="${numberOfGroups &gt; 0}"><span th:text="${username}"></span>, these are your learning groups:</h3>
     </div>
-
 </div>
 
-<div class="row" style="padding-top: 14px">
-
-    <div class="large-2 columns" style="border: 2px solid deepskyblue">
-        <h4>Overall ranking:</h4>
-        <button class="secondary button" th:each="user : ${allUser}">
-            <div>
-                <span th:text="${user.username}"></span>
-
+<div class="row">
+    <div class="small-3 columns end"  th:each="learningGroup : ${learningGroupsOfUser}">
+        <div class="card">
+            <div class="content">
+                <a th:href="@{/showLearningGroup(id=${learningGroup.id})}" class="title"
+                   style="color: #343838;">
+                    <span th:text="${learningGroup.name}"></span>
+                </a>
+                <p>Owned by <span th:unless="${learningGroup.creatorOfGroup.username.equals(username)}" th:text="${learningGroup.creatorOfGroup.username}"></span>
+                    <span th:if="${learningGroup.creatorOfGroup.username.equals(username)}">yourself</span></p>
+                <br/>
+                <p th:text="${learningGroup.description}"></p>
             </div>
-            <div>Score: 80 Punkte</div>
-        </button>
-    </div>
-
-
-    <div class="large-8 columns end">
-        <div th:if="${numberOfGroups &gt; 0}">
-
-            <table>
-
-                <thead>
-                <tr>
-                    <h4>You are a member of the following learning groups:</h4>
-                    <th>Group name</th>
-                    <th>Group size</th>
-                </tr>
-                </thead>
-
-                <tbody id="tableBody" th:each="learningGroup: ${learningGroupsOfUser}">
-                <tr>
-                    <td>
-                        <a th:href="@{/showLearningGroup(id=${learningGroup.id})}">
-                            <span th:text="${learningGroup.name}">Group name</span>
-                        </a>
-                    </td>
-                    <td>
-                        <span th:text="${learningGroup.members.size()}"></span>
-                    </td>
-                </tr>
-                </tbody>
-
-            </table>
+            <div class="action">
+                <a class="cardLink" th:href="@{/showLearningGroup(id=${learningGroup.id})}">Go to group <span class="fa fa-chevron-right"></span></a>
+            </div>
         </div>
+        <br/>
     </div>
-
-    <div th:unless="${numberOfGroups &gt; 0}">
-        <div class="small-6 small-offset-2 columns" style="padding-top: 40px">
-            <h4><p>Looks like you aren't a member of any group!</p>
-                <p>You can find new learning groups here:</p></h4>
-            <a href="/findGroup" class="button large">Find learning groups</a>
-        </div>
-    </div>
-
 </div>
+
+
+
+
+<div th:unless="${numberOfGroups &gt; 0}">
+    <div class="small-6 small-offset-2 columns" style="padding-top: 40px">
+        <h4><p>Looks like you aren't a member of any group!</p>
+            <p>You can find new learning groups here:</p></h4>
+        <a href="/findGroup" class="button large">Find learning groups</a>
+    </div>
+</div>
+
+
+<script src="js/app.js"></script>
+
 </body>
 </html>

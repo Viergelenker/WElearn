@@ -22,10 +22,10 @@
                 <form th:action="@{/login}" th:method="post">
                     <div class="row">
                         <div class="small-4 small-offset-1 columns">
-                            <input type="text" placeholder="Email" name="username"/>
+                            <input style="border-radius: 2px" type="text" placeholder="Email" name="username"/>
                         </div>
                         <div class="small-4 columns">
-                            <input type="password" placeholder="Password" name="password"/>
+                            <input style="border-radius: 2px" type="password" placeholder="Password" name="password"/>
                         </div>
                         <div class="small-3 columns">
                             <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign in</button>
@@ -68,36 +68,6 @@
         </div>
     </div>
 
-</th:block>
-
-<!-- Navigation bar for the about page -->
-<!--<th:block th:fragment="about">
-    <div class="top-bar">
-
-        <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu="true">
-                <li class="menu-text">DESJ Project</li>
-                <li><a href="/">Home</a></li>
-                <li><a class="active" href="/about">About us</a></li>
-            </ul>
-        </div>
-
-    </div>
-</th:block> -->
-
-<!-- Navigation bar for the signUp page -->
-<th:block th:fragment="signUp">
-    <div class="top-bar">
-
-        <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu="true">
-                <li class="menu-text">DESJ Project</li>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About us</a></li>
-            </ul>
-        </div>
-
-    </div>
 </th:block>
 
 </body>

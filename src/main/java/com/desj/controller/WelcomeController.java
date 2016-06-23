@@ -25,7 +25,13 @@ public class WelcomeController {
 
     @RequestMapping("/")
     public String welcomeUser(Model model) {
-        model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
+        try {
+            model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
+        }
+        catch (Exception e){
+
+        }
+
         model.addAttribute("allUser", userRepository.findAll());
         model.addAttribute("learningGroupsOfUser",
                 learningGroupService.getAllLearningGroupsOfUser(userService.getCurrentDesjUser()));

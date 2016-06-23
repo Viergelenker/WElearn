@@ -3,6 +3,7 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Sabrina on 14.06.2016.
@@ -20,6 +21,7 @@ public class Comment {
     private User creator;
 
     @Lob
+    @Size(min = 1)
     private String text;
 
     @ManyToOne (cascade = CascadeType.PERSIST)

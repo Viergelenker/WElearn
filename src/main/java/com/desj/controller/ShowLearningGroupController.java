@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 /**
  * Created by Julien on 24.05.16.
@@ -84,22 +87,33 @@ public class ShowLearningGroupController {
 
     @RequestMapping(value = "/newGroupPost{learningGroupId}", method = RequestMethod.POST)
     public String writeNewGroupPost(@RequestParam(value = "learningGroupId") Integer learningGroupId,
-                                    @ModelAttribute("groupPost") GroupPost groupPost) {
+                                    @Valid @ModelAttribute("groupPost") GroupPost groupPost, BindingResult bindingResult) {
 
-        groupPostService.save(groupPost, userService.getCurrentDesjUser(), learningGroupRepository
-                .findOne(learningGroupId));
+        if (bindingResult.hasErrors()) {
+            return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
+        } else {
+            groupPostService.save(groupPost, userService.getCurrentDesjUser(), learningGroupRepository
+                    .findOne(learningGroupId));
 
-        return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
+            return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
+        }
     }
 
     @RequestMapping(value = "/newComment{groupPostId}", method = RequestMethod.POST)
     public String writeNewComment(@RequestParam(value = "groupPostId") Integer groupPostId,
-                                    @ModelAttribute("comment") Comment comment) {
+                                  @Valid @ModelAttribute("comment") Comment comment, BindingResult bindingResult) {
 
-        commentService.save(comment, userService.getCurrentDesjUser(), groupPostRepository.findOne(groupPostId));
-        groupPostService.addGroupPostComment(groupPostRepository.findOne(groupPostId), comment);
         String redirectString = groupPostRepository.findOne(groupPostId).getAssociatedLearningGroup().getId().toString();
-        return "redirect:/showLearningGroup?id=" + redirectString;
+
+        if (bindingResult.hasErrors()) {
+            return "redirect:/showLearningGroup?id=" +redirectString;
+        } else {
+
+            commentService.save(comment, userService.getCurrentDesjUser(), groupPostRepository.findOne(groupPostId));
+            groupPostService.addGroupPostComment(groupPostRepository.findOne(groupPostId), comment);
+
+            return "redirect:/showLearningGroup?id=" + redirectString;
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/fileUpload")

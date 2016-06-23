@@ -51,21 +51,16 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
         // New learning groups
-        // List<com.desj.model.User> userList = new ArrayList<>();
         LearningGroup group1 = new LearningGroup();
         group1.setName("Mathe Meister");
         group1.setSubject("Mathe");
-        // userList.add(julien);
-        // userList.add(desi);
-        // group1.setMembers(userList);
+        group1.setDescription("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv");
         learningGroupRepository.save(group1);
 
         LearningGroup group2 = new LearningGroup();
         group2.setName("Statistik Streber");
         group2.setSubject("Statistik");
-        // userList.add(robert);
-        // userList.add(friedrich);
-        // group2.setMembers(userList);
+        group2.setDescription("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam e");
         learningGroupRepository.save(group2);
 
         // Creates new Desj user.

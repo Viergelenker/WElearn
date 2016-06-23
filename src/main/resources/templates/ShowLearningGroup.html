@@ -8,61 +8,50 @@
 <body>
 
 <div th:replace="fragments/navbar :: loggedIn"></div>
-<div class="row">
-    <div class="small-12 small-offset-3 column">
-        <h2>
-            Welcome to the Group <span th:text="${learningGroup.name}"></span>!
-        </h2>
-    </div>
-</div>
+<br/>
 
-<div th:if="${message}">
-    <h2 th:text="${message}"/>
-</div>
-
-<div>
-    <form method="POST" enctype="multipart/form-data" action="/fileUpload">
-        <table>
-            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-            <tr><td>Name:</td><td><input type="text" name="name" /></td></tr>
-            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-            <input type="hidden" th:value="${learningGroup.id}" name="learningGroupId"/>
-        </table>
-    </form>
-</div>
-
-<div>
-    <ul>
-        <li th:each="file : ${files}">
-            <div th:text="${file}"/>
-            <img th:src="@{'public/'+ ${file}}"/>
-        </li>
-    </ul>
-</div>
-
-<div class="row">
-
-    <div class="small-3 column">
-        <table>
-
-            <thead>
-            <tr>
-                <th><h4>Members:</h4></th>
-            </tr>
-            </thead>
-
-            <tbody th:each="member: ${learningGroupMembers}">
-            <td>
-                <div th:text="${member.username}"></div>
-            </td>
-            </tbody>
-
-        </table>
+<div class="row" id="topAnchor">
+    <div class="small-3 columns" data-sticky-container="">
+        <div class="card" data-sticky="" data-anchor="topAnchor">
+            <div class="image">
+                <img src="http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg"/>
+                <span class="title" th:text="${learningGroup.name}"></span>
+            </div>
+            <div class="content">
+                <p><a class="cardLink" data-open="memberModal">
+                    <span th:text="${learningGroup.members.size()}"></span> Member
+                </a>
+                </p>
+                <div class="reveal" id="memberModal" data-reveal="true">
+                    <p class="lead">Member of the learning group <span th:text="${learningGroup.name}"></span>:</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableBody" th:each="member : ${learningGroup.members}">
+                        <tr>
+                            <td th:text="${member.username}">Group name</td>
+                            <td><a href="#" class="button">See profile (no function)</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button class="close-button" data-close="memberModal" aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="action">
+                <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Create new post</a>
+            </div>
+        </div>
     </div>
 
     <!-- Displays for each group post in all group posts the title and text... -->
-    <div class="small-6 columns">
-        <div class="small-12 columns end" th:each="groupPost : ${groupPosts}">
+    <div class="small-9 columns">
+        <div class="small-10 small-offset-1 columns end" th:each="groupPost,iterStat : ${groupPosts}">
 
             <div class="callout-card">
                 <div class="card-label">
@@ -76,42 +65,40 @@
                 </div>
             </div>
 
-            <!-- ... and after that, each comment that has the same associatedGroupId, as the current group post  -->
-            <div class="small-10 columns end" th:each="comment : ${comments}">
-                <div th:if="${comment.associatedGroupPost.id == groupPost.id}">
+            <ul class="vertical menu small-10 columns end" data-accordion-menu="true">
+                <li>
+                    <a href="#" style="outline: none">Comments</a>
+                    <ul th:class="${iterStat.first}? 'is-active'">
+                        <li th:each="comment : ${comments}"
+                            th:if="${comment.associatedGroupPost.id == groupPost.id}">
+                            <div class="callout-card secondary">
+                                <div class="card-label">
+                                    <div class="label-text"
+                                         th:text="${comment.creator.username.substring(0, 3)}"></div>
+                                </div>
+                                <div class="callout-card-content">
+                                    <p th:utext="${comment.text}">Message Text</p>
+                                </div>
+                            </div>
+                        </li>
 
-                    <div class="callout-card secondary">
-                        <div class="card-label">
-                            <div class="label-text" th:text="${comment.creator.username.substring(0, 3)}"></div>
-                        </div>
-                        <div class="callout-card-content">
-                            <p th:utext="${comment.text}">Message Text</p>
-                        </div>
-                    </div>
+                        <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
+                              method="post">
 
-                </div>
-            </div>
+                            <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
+                            <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text
+                                Error
+                            </div>
 
-            <div class="small-10 columns end">
-                <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
-                      method="post">
-
-                    <p>Write a new comment!</p>
-
-                    <textarea th:field="*{text}">Hello</textarea>
-
-                    <div style="padding-top: 20px">
-                        <button align="right" type="submit" class="button">Save comment</button>
-                    </div>
-                </form>
-            </div>
+                            <div style="padding-top: 10px">
+                                <button align="right" type="submit" class="buttonComment">Save comment</button>
+                            </div>
+                        </form>
+                    </ul>
+                </li>
+            </ul>
 
         </div>
-    </div>
-
-    <!-- Button for the Modal (id=writeNewPostModal) -->
-    <div class="small-3 columns">
-        <a class="button fa fa-pencil" data-open="writeNewPostModal"> Create post</a>
     </div>
 
     <!-- Modal  -->
@@ -129,9 +116,11 @@
                     </div>
 
                     <textarea id="mytextareaforpost" th:field="*{text}">Hello</textarea>
+                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error
+                    </div>
 
                     <div style="padding-top: 20px">
-                        <button align="right" type="submit" class="button">Save comment</button>
+                        <button align="right" type="submit" class="buttonPost">Save comment</button>
                     </div>
                 </form>
             </div>
@@ -141,20 +130,45 @@
         </button>
     </div>
 
-    <!-- js for the Modal -->
-    <script>
+</div>
+
+<!-- js for the Modal -->
+<script>
+    $(document).ready(function () {
+
+        $(".buttonPost").attr("disabled", "true");
+        $(".buttonComment").attr("disabled", "true");
+
         tinymce.init({
+            setup: function (editor) {
+                editor.on('keyup', function (e) {
+                    if (editor.getContent().length > 0) {
+                        $('.buttonPost').removeAttr("disabled");
+                    } else {
+                        $('.buttonPost').attr("disabled", "true");
+                    }
+                });
+            },
             selector: '#mytextareaforpost',
             statusbar: false,
             toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
         });
 
-        tinymce.init({
-            statusbar: false,
-            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
-        });
-        $(document).foundation();
-    </script>
-</div>
+
+        $('.area').on("keyup", action);
+        function action() {
+            if ($('.area').val().length > 0) {
+                $('.buttonComment').removeAttr("disabled");
+            } else {
+                $('.buttonComment').attr("disabled", "true");
+            }
+        }
+    });
+
+</script>
+
+
+<script src="js/app.js"></script>
+
 </body>
 </html>
