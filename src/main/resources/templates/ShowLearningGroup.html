@@ -65,9 +65,9 @@
                 </div>
             </div>
 
-            <ul class="vertical menu small-10 columns end" data-accordion-menu="true">
+            <ul style="padding-bottom: 20px" class="vertical menu small-11 columns end" data-accordion-menu="true">
                 <li>
-                    <a href="#" style="outline: none">Comments</a>
+                    <a href="#" style="outline: none">Comments &nbsp;<span class="fa fa-comments"></span></a>
                     <ul th:class="${iterStat.first}? 'is-active'">
                         <li th:each="comment : ${comments}"
                             th:if="${comment.associatedGroupPost.id == groupPost.id}">
@@ -81,6 +81,21 @@
                                 </div>
                             </div>
                         </li>
+                        <div class="small-5 small-offset-7 columns">
+                            <a class="hollow button" data-open="writeNewCommentModal">New Comment &nbsp;<span class="fa fa-commenting"></span></a>
+
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Comment modal  -->
+            <div class="reveal" id="writeNewCommentModal" data-reveal="true">
+
+                <div class="row">
+                    <div class="small-12 columns">
+
+                        <h4>Write a new comment:</h4>
 
                         <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
                               method="post">
@@ -94,14 +109,17 @@
                                 <button align="right" type="submit" class="buttonComment">Save comment</button>
                             </div>
                         </form>
-                    </ul>
-                </li>
-            </ul>
+                    </div>
+                </div>
+                <button class="close-button" data-close="writeNewPostModal" aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
         </div>
     </div>
 
-    <!-- Modal  -->
+    <!-- Group post modal  -->
     <div class="reveal" id="writeNewPostModal" data-reveal="true">
 
         <div class="row">
