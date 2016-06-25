@@ -18,7 +18,7 @@ public class LearningGroup {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 30)
     private String name;
 
     private String subject;
