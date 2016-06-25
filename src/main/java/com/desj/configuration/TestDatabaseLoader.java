@@ -27,7 +27,7 @@ import java.util.Collection;
 @Configuration
 @ComponentScan(basePackages = "com.desj")
 @Transactional
-public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent> {
+public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
     private UserDetailsManager userDetailsManager;

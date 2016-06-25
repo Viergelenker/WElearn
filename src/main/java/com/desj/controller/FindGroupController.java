@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -46,8 +48,8 @@ public class FindGroupController {
         return "redirect:/findGroup";
     }
 
-    @RequestMapping(value = "/becomeMemberOfPrivateGroup{learningGroupId}")
-    public String becomeMemberOfPrivateGroup(@RequestParam("learningGroupId")Integer learningGroupId,
+    @RequestMapping(value = "/becomeMemberOfPrivateGroup/{learningGroupId}", method = RequestMethod.POST)
+    public String becomeMemberOfPrivateGroup(@PathVariable("learningGroupId")Integer learningGroupId,
                                              LearningGroup learningGroup) {
 
         if (encoder.matches(learningGroup.getPassword(), learningGroupRepository.findOne(learningGroupId).getPassword())) {

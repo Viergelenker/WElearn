@@ -32,31 +32,21 @@
             <td th:text="${learningGroup.name}">Group name</td>
             <td th:text="${learningGroup.subject}">Subject</td>
             <td>
-                <a th:if="${learningGroup.isPrivate()} == false" th:href="@{/becomeMember(learningGroupId=${learningGroup.id})}" class="button">Become a member</a>
-                <a th:if="${learningGroup.isPrivate()} == true" data-open="passwordModal" class="button">Become a member</a>
-
-                <!-- Modal  -->
-                <div class="reveal" id="passwordModal" data-reveal="true">
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <form th:action="@{/becomeMemberOfPrivateGroup(learningGroupId=${learningGroup.id})}" th:object="${learningGroup}" th:method="post">
-                                <div class="row">
-                                    <!--<input type="hidden" name="id" th:value="${learningGroup.id}"/>-->
-                                    <div class="small-4 columns">
-                                        <input type="password" placeholder="Password" name="password"/>
-                                    </div>
-                                    <div class="small-3 columns">
-                                        <button type="submit" class="button">Become a member</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <button class="close-button" data-close="passwordModal" aria-label="Close modal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div th:if="${learningGroup.isPrivate()} == false">
+                   <a th:href="@{/becomeMember(learningGroupId=${learningGroup.id})}" class="button">Become a member</a>
                 </div>
 
+                <div th:if="${learningGroup.isPrivate()} == true">
+                    <form th:action="@{'/becomeMemberOfPrivateGroup/' + ${learningGroup.id}}"
+                          th:object="${learningGroup}" th:method="post">
+                        <div class="small-4 columns">
+                            <input type="password" placeholder="Password" name="password"/>
+                        </div>
+                        <div class="small-4 columns">
+                            <button type="submit" class="button">Become a member</button>
+                        </div>
+                    </form>
+                </div>
             </td>
         </tr>
         </tbody>
@@ -68,13 +58,13 @@
 <script>
 
     var $rows = $('#tableBody tr');
-    $('#search').keyup(function() {
+    $('#search').keyup(function () {
 
         var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
                 reg = RegExp(val, 'i'),
                 text;
 
-        $rows.show().filter(function() {
+        $rows.show().filter(function () {
             text = $(this).text().replace(/\s+/g, ' ');
             return !reg.test(text);
         }).hide();
