@@ -100,7 +100,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Julien
         com.desj.model.User julien = new com.desj.model.User();
         julien.setUsername("Julien Vollweiter");
-        julien.setEmail("julien@vollweiter.com");
+        julien.setEmail("julien@mail.com");
         julien.setMajor("Winfo");
         userRepository.save(julien);
         learningGroupService.addMemberToLearningGroup(group6.getId(), julien);
@@ -327,7 +327,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         // Creates new spring security user. These infos are merged with the Desj user data
         // within the UserService.java
-        User adminJulien = new User("julien@vollweiter.com", encoder.encode("1234"), AdminAuthorities);
+        User adminJulien = new User("julien@mail.com", encoder.encode("1234"), AdminAuthorities);
         userDetailsManager.createUser(adminJulien);
 
         User adminDesi = new User("desi@mail.com", encoder.encode("1234"), AdminAuthorities);
