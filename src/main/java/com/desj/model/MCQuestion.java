@@ -3,8 +3,6 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Desi on 6/15/2016.
@@ -19,7 +17,7 @@ public class MCQuestion {
     private String question;
 
 
-    private List<String> possibleAnswers = new ArrayList<>();
+
     @Lob
     private String correctAnswer;
 
@@ -32,7 +30,14 @@ public class MCQuestion {
     @JoinColumn(name = "CREATOR_ID")
     private User creator;
 
-
+    @Lob
+    private String answerA;
+    @Lob
+    private String answerB;
+    @Lob
+    private String answerC;
+    @Lob
+    private String answerD;
 
     public String getQuestion() {
         return question;
@@ -40,10 +45,6 @@ public class MCQuestion {
 
     public void setQuestion(String question) {
         this.question = question;
-    }
-
-    public List<String> getPossibleAnswers() {
-        return possibleAnswers;
     }
 
     public String getCorrectAnswer() {
@@ -62,14 +63,6 @@ public class MCQuestion {
         this.id = id;
     }
 
-    public void setPossibleAnswers(List<String> possibleAnswers) {
-        this.possibleAnswers = possibleAnswers;
-    }
-
-
-    public void addPossibleAnswer(String s){
-        possibleAnswers.add(s);
-    }
 
     public LearningGroup getCorrespondingLearningGroup() {
         return correspondingLearningGroup;
@@ -85,5 +78,37 @@ public class MCQuestion {
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public String getAnswerA() {
+        return answerA;
+    }
+
+    public void setAnswerA(String answerA) {
+        this.answerA = answerA;
+    }
+
+    public String getAnswerB() {
+        return answerB;
+    }
+
+    public void setAnswerB(String answerB) {
+        this.answerB = answerB;
+    }
+
+    public String getAnswerC() {
+        return answerC;
+    }
+
+    public void setAnswerC(String answerC) {
+        this.answerC = answerC;
+    }
+
+    public String getAnswerD() {
+        return answerD;
+    }
+
+    public void setAnswerD(String answerD) {
+        this.answerD = answerD;
     }
 }

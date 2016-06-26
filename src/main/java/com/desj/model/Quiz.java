@@ -20,11 +20,11 @@ public class Quiz {
 
     private Integer questionQuantity;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "learningGroupId")
     private LearningGroup learningGroup;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "TESTQUESTIONS",
             joinColumns = @JoinColumn(name = "MCTEST_ID"),
             inverseJoinColumns = @JoinColumn(name = "QUESTION_ID"))
