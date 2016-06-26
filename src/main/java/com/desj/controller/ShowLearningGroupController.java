@@ -1,10 +1,7 @@
 package com.desj.controller;
 
 import com.desj.model.*;
-import com.desj.service.CommentService;
-import com.desj.service.GroupPostService;
-import com.desj.service.LearningGroupService;
-import com.desj.service.UserService;
+import com.desj.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +37,18 @@ public class ShowLearningGroupController {
     private CommentRepository commentRepository;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private MCQuestionRepository mcQuestionRepository;
+    @Autowired
+    private MCQuestionService mcQuestionService;
+    @Autowired
+    private QuestionReposiory questionReposiory;
+    @Autowired
+    private QuestionService questionService;
+    @Autowired
+    private QuizService quizService;
+    @Autowired
+    private QuizRepository quizRepository;
 
 
 
@@ -86,6 +95,32 @@ public class ShowLearningGroupController {
 
             return "redirect:/showLearningGroup?id=" + redirectString;
         }
+    }
+
+    @RequestMapping(value = "/newMCQuestion{learningGroupId}", method = RequestMethod.POST)
+    public String whriteNewMCQuestion(@RequestParam(value = "learningGroupId") Integer learningGroupId, @ModelAttribute("mcQuestion") MCQuestion mcQuestion){
+        User user = userService.getCurrentDesjUser();
+        mcQuestionService.save(mcQuestion,learningGroupRepository.findOne(learningGroupId),user);
+        user.createMCQuestion(mcQuestion);
+
+        return "redirect:/showLearningGroup?id=" +learningGroupId.toString();
+    }
+
+    @RequestMapping(value = "/newQuestion{learningGroupId}", method = RequestMethod.POST)
+    public String whriteNewQuestion(@RequestParam(value = "learninGroupId") Integer learningGroupId, @ModelAttribute("Question") Question question){
+        User user= userService.getCurrentDesjUser();
+        questionService.save(question,learningGroupRepository.findOne(learningGroupId),user);
+        user.createQuestion(question);
+
+        return "redirect:/showLearningGroup?id=" +learningGroupId.toString();
+    }
+
+    @RequestMapping(value = "/startQuiz{learningGroupId}", method = RequestMethod.POST)
+    public String startQuiz(@RequestParam(value = "learningGroupId") Integer learningGroupId, @ModelAttribute("Quiz") Quiz quiz){
+        quizService.save(quiz,learningGroupRepository.findOne(learningGroupId));
+
+
+        return "redirect:/showLearningGroup?id=" +learningGroupId.toString();
     }
 
 
