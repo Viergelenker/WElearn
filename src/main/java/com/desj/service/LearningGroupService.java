@@ -71,6 +71,8 @@ public class LearningGroupService {
         return learningGroupList;
     }
 
+
+
     public void save(LearningGroup learningGroup, User user) {
 
         if (learningGroup.getPassword() != "") {
@@ -86,4 +88,5 @@ public class LearningGroupService {
         learningGroup.setMembers(userList);
         learningGroupRepository.save(learningGroup);
     }
+
 }

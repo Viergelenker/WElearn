@@ -21,13 +21,13 @@
                    style="color: #343838;">
                     <span th:text="${learningGroup.name}"></span>
                 </a>
-                <p>Owned by <span th:unless="${learningGroup.creatorOfGroup.username.equals(username)}" th:text="${learningGroup.creatorOfGroup.username}"></span>
-                    <span th:if="${learningGroup.creatorOfGroup.username.equals(username)}">yourself</span></p>
+                <p>Created by <span th:unless="${learningGroup.creatorOfGroup.username.equals(username)}" th:text="${learningGroup.creatorOfGroup.username}"></span>
+                    <span th:if="${learningGroup.creatorOfGroup.username.equals(username)}">you</span></p>
                 <br/>
                 <p th:text="${learningGroup.description}"></p>
             </div>
             <div class="action">
-                <a class="cardLink" th:href="@{/showLearningGroup(id=${learningGroup.id})}">Go to group <span class="fa fa-chevron-right"></span></a>
+                <a class="cardLink" th:href="@{/showLearningGroup(id=${learningGroup.id})}">Show group <span class="fa fa-chevron-right"></span></a>
             </div>
         </div>
         <br/>

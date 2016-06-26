@@ -44,7 +44,16 @@
                 </div>
             </div>
             <div class="action">
+                <a class="cardLink"><span class="fa fa-check">Start quiz</span></a>
+            </div>
+            <div class="action">
                 <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Create new post</a>
+            </div>
+            <div class="action">
+                <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-pencil"></span>Create new question</a>
+            </div>
+            <div class="action">
+                <a class="cardLink"><span class="fa fa-pencil"></span>Create new MC-question </a>
             </div>
         </div>
     </div>
@@ -82,7 +91,8 @@
                             </div>
                         </li>
                         <div class="small-5 small-offset-7 columns">
-                            <a class="hollow button" data-open="writeNewCommentModal">New Comment &nbsp;<span class="fa fa-commenting"></span></a>
+                            <a class="hollow button" data-open="writeNewCommentModal">New Comment &nbsp;<span
+                                    class="fa fa-commenting"></span></a>
 
                         </div>
                     </ul>
@@ -118,6 +128,32 @@
 
         </div>
     </div>
+
+    <!-- Question modal -->
+    <div class="reveal" id="writeNewQuestionModal" data-reveal="true">
+        <div class="row">
+            <div class="small-12 columns">
+                <form th:object="${newQuestion}" th:action="@{/newQuestion(learningGroupId=${learningGroup.id})}" method="post">
+                    <p>Write new question!</p>
+                    <div style="padding-bottom: 20px">
+                        <textarea id="mytextareaforquestion" th:field="*{question}">Question</textarea>
+                        <div class="callout alert" th:if="${#fields.hasErrors('question')}" th:errors="*{question}">Question Error
+                        </div>
+                        <textarea id="mytextareaforanswer" th:field="*{answer}">Answer</textarea>
+                        <div class="callout alert" th:if="${#fields.hasErrors('answer')}" th:errors="*{answer}">Answer Error
+                        </div>
+                        <div style="padding-top: 20px">
+                            <button align="right" type="submit" class="buttonPost">Save question</button>
+                        </div>
+                        <button class="close-button" data-close="writeNewQuestionModal" aria-label="Close modal" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Group post modal  -->
     <div class="reveal" id="writeNewPostModal" data-reveal="true">
