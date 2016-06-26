@@ -38,7 +38,7 @@ public class FindGroupController {
         model.addAttribute("user", userService.getCurrentDesjUser());
         model.addAttribute("newLearningGroups", learningGroupService.getNewLearningGroups(userService.getCurrentDesjUser()));
         model.addAttribute("wrongPassword", wrongPassword);
-        return "/findGroup";
+        return "FindGroup";
     }
 
     @RequestMapping(value = "/becomeMember{learningGroupId}")
