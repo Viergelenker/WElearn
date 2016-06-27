@@ -213,7 +213,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         // Franzi
         com.desj.model.User franzi = new com.desj.model.User();
-        anna.setUsername("Franzi Winter");
+        franzi.setUsername("Franzi Winter");
         userRepository.save(franzi);
         learningGroupService.addMemberToLearningGroup(group5.getId(), franzi);
         learningGroupService.addMemberToLearningGroup(group1.getId(), franzi);
@@ -221,7 +221,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         // Tim
         com.desj.model.User tim = new com.desj.model.User();
-        anna.setUsername("Tim Fritz");
+        tim.setUsername("Tim Fritz");
         userRepository.save(tim);
         learningGroupService.addMemberToLearningGroup(group5.getId(), tim);
         learningGroupService.addMemberToLearningGroup(group1.getId(), tim);
@@ -231,7 +231,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         // Karl
         com.desj.model.User karl = new com.desj.model.User();
-        anna.setUsername("Karl Friedrich");
+        karl.setUsername("Karl Friedrich");
         userRepository.save(karl);
         learningGroupService.addMemberToLearningGroup(group5.getId(), karl);
         learningGroupService.addMemberToLearningGroup(group1.getId(), karl);
