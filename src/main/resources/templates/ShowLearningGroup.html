@@ -44,16 +44,16 @@
                 </div>
             </div>
             <div class="action">
-                <a class="cardLink"><span class="fa fa-check">Start quiz</span></a>
+                <a class="cardLink"><span class="fa fa-check"> Start quiz</span></a>
             </div>
             <div class="action">
-                <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Create new post</a>
+                <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
             </div>
             <div class="action">
-                <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-pencil"></span>Create new question</a>
+                <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-question"></span> Create new question</a>
             </div>
             <div class="action">
-                <a class="cardLink"><span class="fa fa-pencil"></span>Create new MC-question </a>
+                <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span> Create new MC-question </a>
             </div>
         </div>
     </div>
@@ -100,128 +100,23 @@
             </ul>
 
             <!-- Comment modal  -->
-            <div class="reveal" id="writeNewCommentModal" data-reveal="true">
-
-                <div class="row">
-                    <div class="small-12 columns">
-
-                        <h4>Write a new comment:</h4>
-
-                        <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
-                              method="post">
-
-                            <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
-                            <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text
-                                Error
-                            </div>
-
-                            <div style="padding-top: 10px">
-                                <button align="right" type="submit" class="buttonComment">Save comment</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <button class="close-button" data-close="writeNewCommentModal" aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <div th:replace="fragments/commentModal"></div>
 
         </div>
     </div>
 
     <!-- Question modal -->
-    <div class="reveal" id="writeNewQuestionModal" data-reveal="true">
-        <div class="row">
-            <div class="small-12 columns">
-                <form th:object="${newQuestion}" th:action="@{/newQuestion(learningGroupId=${learningGroup.id})}" method="post">
-                    <p>Write new question!</p>
-                    <div style="padding-bottom: 20px">
-                        <textarea id="mytextareaforquestion" th:field="*{question}">Question</textarea>
-                        <div class="callout alert" th:if="${#fields.hasErrors('question')}" th:errors="*{question}">Question Error
-                        </div>
-                        <textarea id="mytextareaforanswer" th:field="*{answer}">Answer</textarea>
-                        <div class="callout alert" th:if="${#fields.hasErrors('answer')}" th:errors="*{answer}">Answer Error
-                        </div>
-                        <div style="padding-top: 20px">
-                            <button align="right" type="submit" class="buttonPost">Save question</button>
-                        </div>
-                        <button class="close-button" data-close="writeNewQuestionModal" aria-label="Close modal" type="button">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <div th:replace="fragments/questionModal"></div>
 
+    <!-- MC Question modal -->
+    <div th:replace="fragments/mcQuestionModal"></div>
 
     <!-- Group post modal  -->
-    <div class="reveal" id="writeNewPostModal" data-reveal="true">
-
-        <div class="row">
-            <div class="small-12 columns">
-                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(learningGroupId=${learningGroup.id})}"
-                      method="post">
-
-                    <p>Write a new group post!</p>
-
-                    <div style="padding-bottom: 20px">
-                        <input th:field="*{title}" placeholder="Title"/>
-                    </div>
-
-                    <textarea id="mytextareaforpost" th:field="*{text}">Hello</textarea>
-                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error
-                    </div>
-
-                    <div style="padding-top: 20px">
-                        <button align="right" type="submit" class="buttonPost">Save comment</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <button class="close-button" data-close="writeNewPostModal" aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    <div th:replace="fragments/groupPostModal"></div>
 
 </div>
 
-<!-- js for the Modal -->
-<script>
-    $(document).ready(function () {
-
-        $(".buttonPost").attr("disabled", "true");
-        $(".buttonComment").attr("disabled", "true");
-
-        tinymce.init({
-            setup: function (editor) {
-                editor.on('keyup', function (e) {
-                    if (editor.getContent().length > 0) {
-                        $('.buttonPost').removeAttr("disabled");
-                    } else {
-                        $('.buttonPost').attr("disabled", "true");
-                    }
-                });
-            },
-            selector: '#mytextareaforpost',
-            statusbar: false,
-            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
-        });
-
-
-        $('.area').on("keyup", action);
-        function action() {
-            if ($('.area').val().length > 0) {
-                $('.buttonComment').removeAttr("disabled");
-            } else {
-                $('.buttonComment').attr("disabled", "true");
-            }
-        }
-    });
-
-</script>
-
-
+<!-- js for the modal, textarea and buttons -->
 <script src="js/app.js"></script>
 
 </body>

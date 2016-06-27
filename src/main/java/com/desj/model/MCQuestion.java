@@ -16,11 +16,7 @@ public class MCQuestion {
     @Lob
     private String question;
 
-
-
-    @Lob
-    private String correctAnswer;
-
+    private String correctAnswers;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name ="GROUP_ID")
@@ -47,12 +43,12 @@ public class MCQuestion {
         this.question = question;
     }
 
-    public String getCorrectAnswer() {
-        return correctAnswer;
+    public String getCorrectAnswers() {
+        return correctAnswers;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setCorrectAnswers(String correctAnswers) {
+        this.correctAnswers = correctAnswers;
     }
 
     public Integer getId() {

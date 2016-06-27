@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="commentModal">
+
+    <div class="reveal" id="writeNewCommentModal" data-reveal="true">
+        <div class="row">
+            <div class="small-12 columns">
+                <h4>Write a new comment:</h4>
+                <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}" method="post">
+                    <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
+                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error</div>
+                    <div style="padding-top: 10px">
+                        <button align="right" type="submit" class="buttonComment">Save comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button class="close-button" data-close="writeNewCommentModal" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+</th:block>
+
+</body>
+</html>
