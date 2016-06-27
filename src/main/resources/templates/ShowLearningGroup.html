@@ -22,6 +22,8 @@
                     <span th:text="${learningGroup.members.size()}"></span> Member
                 </a>
                 </p>
+
+                <!-- Member modal -->
                 <div class="reveal" id="memberModal" data-reveal="true">
                     <p class="lead">Member of the learning group <span th:text="${learningGroup.name}"></span>:</p>
                     <table>
@@ -34,7 +36,8 @@
                         <tbody id="tableBody" th:each="member : ${learningGroup.members}">
                         <tr>
                             <td th:text="${member.username}">Group name</td>
-                            <td><a href="#" class="button">See profile (no function)</a></td>
+                            <td><a th:href="@{/showUserProfile(userId=${member.id})}"
+                                   class="button">See profile</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -42,6 +45,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
             </div>
             <div class="action">
                 <a class="cardLink"><span class="fa fa-check"> Start quiz</span></a>
@@ -50,10 +54,12 @@
                 <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
             </div>
             <div class="action">
-                <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-question"></span> Create new question</a>
+                <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-question"></span> Create new
+                    question</a>
             </div>
             <div class="action">
-                <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span> Create new MC-question </a>
+                <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span>
+                    Create new MC-question </a>
             </div>
         </div>
     </div>
@@ -90,18 +96,27 @@
                                 </div>
                             </div>
                         </li>
-                        <div class="small-5 small-offset-7 columns">
-                            <a class="hollow button" data-open="writeNewCommentModal">New Comment &nbsp;<span
-                                    class="fa fa-commenting"></span></a>
 
+                        <div class="row" style="padding-top: 6px">
+                            <div class="small-12 columns">
+                                <div>Write a new comment:</div>
+                                <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
+                                      method="post">
+                                    <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
+                                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
+                                        Text Error
+                                    </div>
+                                    <div style="padding-top: 10px">
+                                        <button align="right" type="submit" class="button">Save Comment
+                                            &nbsp;<span class="fa fa-commenting"></span></button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+
                     </ul>
                 </li>
             </ul>
-
-            <!-- Comment modal  -->
-            <div th:replace="fragments/commentModal"></div>
-
         </div>
     </div>
 
@@ -118,6 +133,43 @@
 
 <!-- js for the modal, textarea and buttons -->
 <script src="js/app.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $(".buttonPost").attr("disabled", "true");
+        $(".buttonComment").attr("disabled", "true");
+
+        tinymce.init({
+            setup: function (editor) {
+                editor.on('keyup', function (e) {
+                    if (editor.getContent().length > 0) {
+                        $('.buttonPost').removeAttr("disabled");
+                    } else {
+                        $('.buttonPost').attr("disabled", "true");
+                    }
+                });
+            },
+            selector: '#mytextareaforpost',
+            statusbar: false,
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
+        });
+
+        tinymce.init({
+            selector: '.mytextarea',
+            statusbar: false,
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
+        });
+
+        $('.area').on("keyup", action);
+        function action() {
+            if ($('.area').val().length > 0) {
+                $('.buttonComment').removeAttr("disabled");
+            } else {
+                $('.buttonComment').attr("disabled", "true");
+            }
+        }
+    });
+</script>
 
 </body>
 </html>

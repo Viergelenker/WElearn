@@ -79,6 +79,14 @@ label {
     border-color: rgba(255, 255, 255, 0.1);
 }
 
+#divBackground {
+    margin: 0 auto;
+    background-color: rgba(30,30,30,0.1);
+    border: solid thin;
+    border-radius: 3px;
+    border-color: black;
+}
+
 /* Top bar styling */
 .top-bar {
     background: #343838;
@@ -100,22 +108,25 @@ label {
 .callout-card {
     background: white;
     border: 1px solid #333;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     margin: 1rem 0;
     overflow: hidden; }
 .callout-card .card-label {
     border-color: transparent #343838 transparent transparent;
-    border-color: rgba(255, 255, 255, 0) #343838 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+    border-color: rgba(255, 255, 255, 0) #343838 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)}
 .callout-card.primary {
     border-color: #446cb3; }
 .callout-card.primary .card-label {
     border-color: transparent #446cb3 transparent transparent;
-    border-color: rgba(255, 255, 255, 0) #446cb3 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+    border-color: rgba(255, 255, 255, 0) #446cb3 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)}
 .callout-card.secondary {
     border-color: #adb2bd; }
 .callout-card.secondary .card-label {
     border-color: transparent #adb2bd transparent transparent;
-    border-color: rgba(255, 255, 255, 0) #adb2bd rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+    border-color: rgba(255, 255, 255, 0) #adb2bd rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)}
 .callout-card.info {
     border-color: #89c4f4; }
 .callout-card.info .card-label {
@@ -200,6 +211,10 @@ html, body {
 
 .card .cardLink {
     color: #343838;
+}
+
+.card .groupLink {
+    color: #2199e8;
 }
 
 
