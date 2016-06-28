@@ -96,27 +96,26 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row" style="padding-top: 6px">
-                            <div class="small-12 columns">
-                                <div>Write a new comment:</div>
-                                <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
-                                      method="post">
-                                    <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
-                                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
-                                        Text Error
-                                    </div>
-                                    <div style="padding-top: 10px">
-                                        <button align="right" type="submit" class="button">Save Comment
-                                            &nbsp;<span class="fa fa-commenting"></span></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
                     </ul>
                 </li>
             </ul>
+            <div class="row" style="padding-top: 6px">
+                <div class="small-12 columns">
+                    <div>Write a new comment:</div>
+                    <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
+                          method="post">
+                        <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
+                        <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
+                            Text Error
+                        </div>
+                        <div style="padding-top: 10px">
+                            <button align="right" type="submit" class="button">Save Comment
+                                &nbsp;<span class="fa fa-commenting"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 
