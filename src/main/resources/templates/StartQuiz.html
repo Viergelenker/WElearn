@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+    <title>About us</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: loggedIn"></div>
+
+<div class="row">
+    <div class="small-8 columns">
+        <div th:each="question : ${questions}">
+            <div th:text="${question.Question}"></div>
+            <input type="checkbox" th:field="*{givenAnswers}" th:value="${question.id, A}"/>
+            <div th:text="${question.answerA}"></div>
+            <input type="checkbox" th:value="B"/>
+            <div th:text="${question.answerB}"></div>
+            <input type="checkbox" th:value="C"/>
+            <div th:text="${question.answerC}"></div>
+            <input type="checkbox" th:value="D"/>
+            <div th:text="${question.answerD}"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

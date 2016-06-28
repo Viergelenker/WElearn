@@ -48,7 +48,7 @@
 
             </div>
             <div class="action">
-                <a class="cardLink"><span class="fa fa-check"> Start quiz</span></a>
+                <a class="cardLink" data-open="createQuizModal"><span class="fa fa-check"> Start quiz</span></a>
             </div>
             <div class="action">
                 <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
@@ -122,6 +122,9 @@
 
     <!-- Question modal -->
     <div th:replace="fragments/questionModal"></div>
+
+    <!-- Quiz modal -->
+    <div th:replace="fragments/createQuizModal"></div>
 
     <!-- MC Question modal -->
     <div th:replace="fragments/mcQuestionModal"></div>

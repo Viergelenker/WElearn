@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
@@ -19,9 +20,11 @@ public class QuizService {
     private QuizRepository quizRepository;
     @Autowired
     private MCQuestionRepository mcQuestionRepository;
+    @Autowired
+    private LearningGroupRepository learningGroupRepository;
 
 
-    public void save(Quiz quiz, LearningGroup learningGroup) {
+    public void save(User user, Quiz quiz, LearningGroup learningGroup) {
 
         quiz.setLearningGroup(learningGroup);
         quizRepository.save(quiz);
@@ -37,14 +40,15 @@ public class QuizService {
         return learningGroupStack;
     }
 
-    public Quiz getQuestions(User user, Quiz quiz, Integer learningGroupId) {
+    public List<MCQuestion> getQuestions(User user, Integer learningGroupId, Integer questionQuantity) {
 
-        List<MCQuestion> questions = quiz.getMCQuestions();
-        Random rand = new Random();
+        List<MCQuestion> questions = new ArrayList<>();
+
+        Random random = new Random();
         List<MCQuestion> allQuestions = mcQuestionRepository.findAll();
         int q = 0;
-        while (q < quiz.getQuestionQuantity() ) {
-            Integer randomNumber = rand.nextInt(questions.size());
+        while (q < questionQuantity ) {
+            Integer randomNumber = random.nextInt(allQuestions.size());
             MCQuestion question = allQuestions.get(randomNumber);
             if (question.getCorrespondingLearningGroup().getId().equals(learningGroupId)) {
                 if (!user.getAnsweredMCQuestions().contains(question)) {
@@ -54,7 +58,7 @@ public class QuizService {
                 }
             }
         }
-        quiz.setMCQuestions(questions);
-        return quiz;
+
+        return questions;
     }
 }
