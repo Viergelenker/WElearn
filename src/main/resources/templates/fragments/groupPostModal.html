@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="groupPostModal">
+
+    <div class="reveal" id="writeNewPostModal" data-reveal="true">
+
+        <div class="row">
+            <div class="small-12 columns">
+                <form th:object="${newGroupPost}" th:action="@{/newGroupPost(learningGroupId=${learningGroup.id})}"
+                      method="post">
+
+                    <p>Write a new group post!</p>
+
+                    <div style="padding-bottom: 20px">
+                        <input th:field="*{title}" placeholder="Title"/>
+                    </div>
+
+                    <textarea id="mytextareaforpost" th:field="*{text}">Hello</textarea>
+                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error
+                    </div>
+
+                    <div style="padding-top: 20px">
+                        <button align="right" type="submit" class="buttonPost">Save comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button class="close-button" data-close="writeNewPostModal" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+</th:block>
+
+</body>
+</html>

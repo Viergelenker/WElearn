@@ -3,7 +3,7 @@
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body>
+<body style="background-image: url('images/schloss_hohenheim.jpg'); background-repeat: no-repeat; background-size: 100%;">
 <div th:replace="fragments/navbar :: loggedIn"></div>
 
 <br/>
@@ -14,28 +14,24 @@
 </div>
 
 <div class="row">
-    <div class="small-3 columns end"  th:each="learningGroup : ${learningGroupsOfUser}">
-        <div class="card">
+
+    <div class="small-4 columns end" th:each="learningGroup : ${learningGroupsOfUser}">
+        <div class="card" style="background-color: white">
             <div class="content">
                 <a th:href="@{/showLearningGroup(id=${learningGroup.id})}" class="title"
                    style="color: #343838;">
                     <span th:text="${learningGroup.name}"></span>
                 </a>
-                <p>Owned by <span th:unless="${learningGroup.creatorOfGroup.username.equals(username)}" th:text="${learningGroup.creatorOfGroup.username}"></span>
-                    <span th:if="${learningGroup.creatorOfGroup.username.equals(username)}">yourself</span></p>
-                <br/>
-                <p th:text="${learningGroup.description}"></p>
+                <p>Created by <span th:unless="${learningGroup.creatorOfGroup.username.equals(username)}" th:text="${learningGroup.creatorOfGroup.username}"></span>
+                    <span th:if="${learningGroup.creatorOfGroup.username.equals(username)}">you</span></p>
             </div>
             <div class="action">
-                <a class="cardLink" th:href="@{/showLearningGroup(id=${learningGroup.id})}">Go to group <span class="fa fa-chevron-right"></span></a>
+                <a class="cardLink" th:href="@{/showLearningGroup(id=${learningGroup.id})}">Show group <span class="fa fa-chevron-right"></span></a>
             </div>
         </div>
         <br/>
     </div>
 </div>
-
-
-
 
 <div th:unless="${numberOfGroups &gt; 0}">
     <div class="small-6 small-offset-2 columns" style="padding-top: 40px">
@@ -45,8 +41,22 @@
     </div>
 </div>
 
-
 <script src="js/app.js"></script>
+
+<script>
+    var $rows = $('#tableBody tr');
+    $('#search').keyup(function () {
+
+        var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                reg = RegExp(val, 'i'),
+                text;
+
+        $rows.show().filter(function () {
+            text = $(this).text().replace(/\s+/g, ' ');
+            return !reg.test(text);
+        }).hide();
+    });
+</script>
 
 </body>
 </html>

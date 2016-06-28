@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +31,7 @@ public class FindGroupController {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    @RequestMapping("/findGroup{wrongPassword}")
+    @RequestMapping("/findGroup")
     public String findGroup(@RequestParam(value = "wrongPassword", required = false) Boolean wrongPassword, Model model) {
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
         model.addAttribute("user", userService.getCurrentDesjUser());
@@ -41,15 +40,15 @@ public class FindGroupController {
         return "FindGroup";
     }
 
-    @RequestMapping(value = "/becomeMember{learningGroupId}")
+    @RequestMapping(value = "/becomeMember")
     public String becomeMember(@RequestParam("learningGroupId")Integer learningGroupId) {
         User user = userService.getCurrentDesjUser();
         learningGroupService.addMemberToLearningGroup(learningGroupId, user);
         return "redirect:/findGroup";
     }
 
-    @RequestMapping(value = "/becomeMemberOfPrivateGroup/{learningGroupId}", method = RequestMethod.POST)
-    public String becomeMemberOfPrivateGroup(@PathVariable("learningGroupId")Integer learningGroupId,
+    @RequestMapping(value = "/becomeMemberOfPrivateGroup", method = RequestMethod.POST)
+    public String becomeMemberOfPrivateGroup(@RequestParam("learningGroupId")Integer learningGroupId,
                                              LearningGroup learningGroup) {
 
         if (encoder.matches(learningGroup.getPassword(), learningGroupRepository.findOne(learningGroupId).getPassword())) {

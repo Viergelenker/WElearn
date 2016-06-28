@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -48,27 +45,40 @@ public class ShowLearningGroupController {
     @Autowired
     private QuizService quizService;
     @Autowired
-    private QuizRepository quizRepository;
+    private QuestionCommentService questionCommentService;
+    @Autowired
+    private QuestionCommentRepository questionCommentRepository;
 
 
-
-    @RequestMapping("/showLearningGroup{id}")
+    @RequestMapping("/showLearningGroup")
     public String showLearningGroup(@RequestParam(value = "id") Integer learningGroupId, Model model) {
 
-        model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
-        model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
-        model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
-        model.addAttribute("newGroupPost", new GroupPost());
-        model.addAttribute("comment", new Comment());
-        model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
-                .findOne(learningGroupId)));
-        model.addAttribute("comments", commentRepository.findAll());
-        return "ShowLearningGroup";
+        // Make sure the current user is a member of the actual group
+        if (learningGroupRepository.findOne(learningGroupId).getMembers().contains(userService.getCurrentDesjUser())) {
+            model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
+            model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
+            model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
+            model.addAttribute("newGroupPost", new GroupPost());
+            model.addAttribute("comment", new Comment());
+            model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
+                    .findOne(learningGroupId)));
+            model.addAttribute("comments", commentRepository.findAll());
+            model.addAttribute("question", new Question());
+            model.addAttribute("mcQuestion", new MCQuestion());
+            model.addAttribute("quiz", new Quiz());
+            model.addAttribute("questionComment", new QuestionComment());
+            model.addAttribute("questions", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository.findOne(learningGroupId)));
+            model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(learningGroupRepository.findOne(learningGroupId)));
+
+            return "ShowLearningGroup";
+        }
+        return "NotAMember";
     }
 
-    @RequestMapping(value = "/newGroupPost{learningGroupId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/newGroupPost", method = RequestMethod.POST)
     public String writeNewGroupPost(@RequestParam(value = "learningGroupId") Integer learningGroupId,
-                                    @Valid @ModelAttribute("groupPost") GroupPost groupPost, BindingResult bindingResult) {
+                                    @Valid
+                                    @ModelAttribute("groupPost") GroupPost groupPost, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
@@ -80,14 +90,14 @@ public class ShowLearningGroupController {
         }
     }
 
-    @RequestMapping(value = "/newComment{groupPostId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/newComment", method = RequestMethod.POST)
     public String writeNewComment(@RequestParam(value = "groupPostId") Integer groupPostId,
                                   @Valid @ModelAttribute("comment") Comment comment, BindingResult bindingResult) {
 
         String redirectString = groupPostRepository.findOne(groupPostId).getAssociatedLearningGroup().getId().toString();
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/showLearningGroup?id=" +redirectString;
+            return "redirect:/showLearningGroup?id=" + redirectString;
         } else {
 
             commentService.save(comment, userService.getCurrentDesjUser(), groupPostRepository.findOne(groupPostId));
@@ -97,32 +107,47 @@ public class ShowLearningGroupController {
         }
     }
 
-    @RequestMapping(value = "/newMCQuestion{learningGroupId}", method = RequestMethod.POST)
-    public String whriteNewMCQuestion(@RequestParam(value = "learningGroupId") Integer learningGroupId, @ModelAttribute("mcQuestion") MCQuestion mcQuestion){
+    @RequestMapping(value = "/newMCQuestion", method = RequestMethod.POST)
+    public String whriteNewMCQuestion(@RequestParam(value = "learningGroupId") Integer learningGroupId,
+                                      @ModelAttribute("mcQuestion") MCQuestion mcQuestion) {
         User user = userService.getCurrentDesjUser();
-        mcQuestionService.save(mcQuestion,learningGroupRepository.findOne(learningGroupId),user);
+        mcQuestionService.save(mcQuestion, learningGroupRepository.findOne(learningGroupId), user);
         user.createMCQuestion(mcQuestion);
 
-        return "redirect:/showLearningGroup?id=" +learningGroupId.toString();
+        return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
 
-    @RequestMapping(value = "/newQuestion{learningGroupId}", method = RequestMethod.POST)
-    public String whriteNewQuestion(@RequestParam(value = "learninGroupId") Integer learningGroupId, @ModelAttribute("Question") Question question){
-        User user= userService.getCurrentDesjUser();
-        questionService.save(question,learningGroupRepository.findOne(learningGroupId),user);
+    @RequestMapping(value = "/newQuestion", method = RequestMethod.POST)
+    public String whriteNewQuestion(@RequestParam(value = "learningGroupId") Integer learningGroupId,
+                                    @ModelAttribute("question") Question question) {
+        User user = userService.getCurrentDesjUser();
+        questionService.save(question, learningGroupRepository.findOne(learningGroupId), user);
         user.createQuestion(question);
 
-        return "redirect:/showLearningGroup?id=" +learningGroupId.toString();
-    }
-
-    @RequestMapping(value = "/startQuiz{learningGroupId}", method = RequestMethod.POST)
-    public String startQuiz(@RequestParam(value = "learningGroupId") Integer learningGroupId, @ModelAttribute("Quiz") Quiz quiz){
-        quizService.save(quiz,learningGroupRepository.findOne(learningGroupId));
-
-
-        return "redirect:/showLearningGroup?id=" +learningGroupId.toString();
+        return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
 
 
+    @RequestMapping(value = "/startQuiz", method = RequestMethod.POST)
+    public String startQuiz(@RequestParam(value = "learningGroupId") Integer learningGroupId,
+                            @ModelAttribute("quiz") Quiz quiz) {
+
+        quizService.save(quizService.getQuestions(userService.getCurrentDesjUser(), quiz, learningGroupId),
+                learningGroupRepository.findOne(learningGroupId));
+        return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
+    }
+
+    //WTF is a binding result??!!!??????
+    @RequestMapping(value = "/newQuestionComment", method = RequestMethod.POST)
+    public String writeNewQuestionComment(@RequestParam(value = "questionId") Integer questionId,
+                                          @ModelAttribute("questionComment") QuestionComment questionComment) {
+        String redirectString = questionReposiory.getOne(questionId).getCorrespondingLearningGroup().getId().toString();
+
+        questionCommentService.save(questionComment, userService.getCurrentDesjUser(),
+                questionReposiory.findOne(questionId));
+        questionService.addQuestionComment(questionReposiory.findOne(questionId), questionComment);
+        return "redirect:/showLearningGroup?id=" + redirectString;
+
+    }
 
 }

@@ -3,6 +3,8 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Desi on 6/16/2016.
@@ -27,6 +29,14 @@ public class Question {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CREATOR_ID")
     private User creator;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "COMMENTS",
+    joinColumns = @JoinColumn(name = "QUESTION_ID"),
+    inverseJoinColumns = @JoinColumn(name = "COMMENT_ID")
+    )
+    private List<QuestionComment> comments = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -60,11 +70,20 @@ public class Question {
         this.correspondingLearningGroup = correspondingLearningGroup;
     }
 
+
     public User getCreator() {
         return creator;
     }
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public List<QuestionComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<QuestionComment> comments) {
+        this.comments = comments;
     }
 }

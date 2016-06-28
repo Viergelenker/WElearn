@@ -29,7 +29,7 @@ public class CreateGroupController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/createGroup{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/createGroup", method = RequestMethod.GET)
     public String showCreateGroup(@RequestParam(value = "id", required = false) Integer id, Model model) {
 
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
