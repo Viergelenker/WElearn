@@ -3,7 +3,7 @@
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body>
+<body style="background-image: url('images/schloss_hohenheim.jpg'); background-repeat: no-repeat; background-size: 100%;">
 <div th:replace="fragments/navbar :: loggedIn"></div>
 
 <br/>
@@ -14,30 +14,9 @@
 </div>
 
 <div class="row">
-    <div class="small-5 columns">
-        <div class="card">
-            <div class="content">
-                <span class="title">Your learning groups:</span>
-                <input style="border-radius: 19px" type="text" id="search" placeholder=" Type to search"/>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Group name</th>
-                        <th>Group Subject</th>
-                    </tr>
-                    </thead>
-                    <tbody id="tableBody" th:each="learningGroup : ${learningGroupsOfUser}">
-                    <tr>
-                        <td><a class="groupLink" th:href="@{/showLearningGroup(id=${learningGroup.id})}" th:text="${learningGroup.name}"></a></td>
-                        <td th:text="${learningGroup.subject}">Subject</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="small-4 columns" th:each="learningGroup : ${learningGroupsOfUser}">
-        <div class="card">
+
+    <div class="small-4 columns end" th:each="learningGroup : ${learningGroupsOfUser}">
+        <div class="card" style="background-color: white">
             <div class="content">
                 <a th:href="@{/showLearningGroup(id=${learningGroup.id})}" class="title"
                    style="color: #343838;">
@@ -45,8 +24,6 @@
                 </a>
                 <p>Created by <span th:unless="${learningGroup.creatorOfGroup.username.equals(username)}" th:text="${learningGroup.creatorOfGroup.username}"></span>
                     <span th:if="${learningGroup.creatorOfGroup.username.equals(username)}">you</span></p>
-                <br/>
-                <p th:text="${learningGroup.description}"></p>
             </div>
             <div class="action">
                 <a class="cardLink" th:href="@{/showLearningGroup(id=${learningGroup.id})}">Show group <span class="fa fa-chevron-right"></span></a>

@@ -3,7 +3,7 @@
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body>
+<body style="background-image: url('images/schloss_hohenheim.jpg'); background-repeat: no-repeat; background-size: 100%;">
 <div th:replace="fragments/navbar :: loggedIn"></div>
 
 <div class="row">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="small-4 columns" th:each="learningGroup : ${newLearningGroups}">
-        <div class="card">
+        <div class="card" style="background-color: white">
             <div class="content">
                 <div class="title" style="color: #343838;">
                     <span th:text="${learningGroup.name}"></span>
