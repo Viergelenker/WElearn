@@ -23,22 +23,31 @@
 <div>
     <form method="POST" enctype="multipart/form-data" action="/fileUpload">
         <table>
-            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-            <tr><td>Name:</td><td><input type="text" name="name" /></td></tr>
-            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+            <tr>
+                <td>File to upload:</td>
+                <td><input type="file" name="file"/></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Upload"/></td>
+            </tr>
             <input type="hidden" th:value="${learningGroup.id}" name="learningGroupId"/>
         </table>
     </form>
 </div>
 
 <div>
-    <ul>
-        <li th:each="file : ${files}">
-            <div th:text="${file}"/>
-            <img th:src="@{'public/'+ ${file}}"/>
-        </li>
-    </ul>
+
+    <div th:each="file : ${files}">
+        <a th:href="@{'public/'+ ${file}}" th:attr="download=${file}"><span th:text="${file}"></span> </a>
+    </div>
+    
 </div>
+
 
 <div class="row">
 
