@@ -12,7 +12,7 @@
     <a class="button" th:href="@{/showLearningGroup(id=${learningGroupId})}">Go back</a>
 </div>
 
-<div th:if="${questions.size() == 4}" class="row">
+<div th:if="${questions.size() &gt; 3}" class="row">
     <div class="small-8 columns">
         <form th:object="${newQuiz}" th:action="@{/submitQuiz(learningGroupId=${learningGroupId})}"
               method="post">

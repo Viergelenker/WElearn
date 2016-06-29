@@ -290,7 +290,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         // MC Questions
         MCQuestion mcQuestion1 = new MCQuestion();
-        mcQuestion1.setQuestion("Frage");
+        mcQuestion1.setQuestion("Frage 1");
         mcQuestion1.setAnswerA("Antwort A");
         mcQuestion1.setAnswerB("Antwort B");
         mcQuestion1.setAnswerC("Antwort C");
@@ -301,7 +301,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestionRepository.save(mcQuestion1);
 
         MCQuestion mcQuestion2 = new MCQuestion();
-        mcQuestion2.setQuestion("Frage");
+        mcQuestion2.setQuestion("Frage 2");
         mcQuestion2.setAnswerA("Antwort A");
         mcQuestion2.setAnswerB("Antwort B");
         mcQuestion2.setAnswerC("Antwort C");
@@ -312,7 +312,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestionRepository.save(mcQuestion2);
 
         MCQuestion mcQuestion3 = new MCQuestion();
-        mcQuestion3.setQuestion("Frage");
+        mcQuestion3.setQuestion("Frage 3");
         mcQuestion3.setAnswerA("Antwort A");
         mcQuestion3.setAnswerB("Antwort B");
         mcQuestion3.setAnswerC("Antwort C");
@@ -323,7 +323,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestionRepository.save(mcQuestion3);
 
         MCQuestion mcQuestion4 = new MCQuestion();
-        mcQuestion4.setQuestion("Frage");
+        mcQuestion4.setQuestion("Frage 4");
         mcQuestion4.setAnswerA("Antwort A");
         mcQuestion4.setAnswerB("Antwort B");
         mcQuestion4.setAnswerC("Antwort C");
@@ -332,6 +332,72 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion4.setCreator(pedro);
         mcQuestion4.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion4);
+
+        MCQuestion mcQuestion5 = new MCQuestion();
+        mcQuestion5.setQuestion("Frage 5");
+        mcQuestion5.setAnswerA("Antwort A");
+        mcQuestion5.setAnswerB("Antwort B");
+        mcQuestion5.setAnswerC("Antwort C");
+        mcQuestion5.setAnswerD("Antwort D");
+        mcQuestion5.setCorrespondingLearningGroup(group1);
+        mcQuestion5.setCreator(pedro);
+        mcQuestion5.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion5);
+
+        MCQuestion mcQuestion6 = new MCQuestion();
+        mcQuestion6.setQuestion("Frage 6");
+        mcQuestion6.setAnswerA("Antwort A");
+        mcQuestion6.setAnswerB("Antwort B");
+        mcQuestion6.setAnswerC("Antwort C");
+        mcQuestion6.setAnswerD("Antwort D");
+        mcQuestion6.setCorrespondingLearningGroup(group1);
+        mcQuestion6.setCreator(pedro);
+        mcQuestion6.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion6);
+
+        MCQuestion mcQuestion7 = new MCQuestion();
+        mcQuestion7.setQuestion("Frage 7");
+        mcQuestion7.setAnswerA("Antwort A");
+        mcQuestion7.setAnswerB("Antwort B");
+        mcQuestion7.setAnswerC("Antwort C");
+        mcQuestion7.setAnswerD("Antwort D");
+        mcQuestion7.setCorrespondingLearningGroup(group1);
+        mcQuestion7.setCreator(pedro);
+        mcQuestion7.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion7);
+
+        MCQuestion mcQuestion8 = new MCQuestion();
+        mcQuestion8.setQuestion("Frage 8");
+        mcQuestion8.setAnswerA("Antwort A");
+        mcQuestion8.setAnswerB("Antwort B");
+        mcQuestion8.setAnswerC("Antwort C");
+        mcQuestion8.setAnswerD("Antwort D");
+        mcQuestion8.setCorrespondingLearningGroup(group1);
+        mcQuestion8.setCreator(pedro);
+        mcQuestion8.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion8);
+
+        MCQuestion mcQuestion9 = new MCQuestion();
+        mcQuestion9.setQuestion("Frage 9");
+        mcQuestion9.setAnswerA("Antwort A");
+        mcQuestion9.setAnswerB("Antwort B");
+        mcQuestion9.setAnswerC("Antwort C");
+        mcQuestion9.setAnswerD("Antwort D");
+        mcQuestion9.setCorrespondingLearningGroup(group1);
+        mcQuestion9.setCreator(pedro);
+        mcQuestion9.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion9);
+
+        MCQuestion mcQuestion10 = new MCQuestion();
+        mcQuestion10.setQuestion("Frage 10");
+        mcQuestion10.setAnswerA("Antwort A");
+        mcQuestion10.setAnswerB("Antwort B");
+        mcQuestion10.setAnswerC("Antwort C");
+        mcQuestion10.setAnswerD("Antwort D");
+        mcQuestion10.setCorrespondingLearningGroup(group1);
+        mcQuestion10.setCreator(pedro);
+        mcQuestion10.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion10);
 
 
         // Set authorities.

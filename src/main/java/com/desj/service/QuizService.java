@@ -52,7 +52,10 @@ public class QuizService {
             }
             // else points--; if we decide to give penalty points for wrong answers
         }
-        user.setAnsweredMCQuestions(mcQuestions);
+        List<MCQuestion> answeredQuestions = new ArrayList<>();
+        answeredQuestions.addAll(user.getAnsweredMCQuestions());
+        answeredQuestions.addAll(mcQuestions);
+        user.setAnsweredMCQuestions(answeredQuestions);
         quiz.setQuizParticipant(user);
         quiz.setPointsForCorrectAnswers(points);
         quiz.setMcQuestions(mcQuestions);
@@ -76,7 +79,7 @@ public class QuizService {
         Integer iterator = 1;
         MCQuestion mcQuestion;
 
-        while (iterator < mcQuestionRepository.findAll().size() +1 && mcQuestions.size() < 5) {
+        while (iterator < mcQuestionRepository.findAll().size() +1 && mcQuestions.size() < 4) {
 
             mcQuestion = mcQuestionRepository.findOne(iterator);
 
