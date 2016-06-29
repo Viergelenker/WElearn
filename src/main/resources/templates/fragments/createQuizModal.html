@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="createQuizModal">
+
+    <div class="reveal" id="createQuizModal" data-reveal="true">
+
+        <div class="row">
+            <div class="small-12 columns">
+
+                <a th:href="@{startQuiz(learningGroupId=${learningGroup.id}, questionQuantity=3)}" class="button"></a>
+                <a th:href="@{startQuiz(learningGroupId=${learningGroup.id}, questionQuantity=4)}" class="button"></a>
+                <a th:href="@{startQuiz(learningGroupId=${learningGroup.id}, questionQuantity=5)}" class="button"></a>
+
+            </div>
+        </div>
+        <button class="close-button" data-close="createQuizModal" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+</th:block>
+
+</body>
+</html>

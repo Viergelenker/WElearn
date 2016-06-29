@@ -33,8 +33,8 @@ public class Question {
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "COMMENTS",
-    joinColumns = @JoinColumn(name = "QUESTION_ID"),
-    inverseJoinColumns = @JoinColumn(name = "COMMENT_ID")
+            joinColumns = @JoinColumn(name = "QUESTION_ID"),
+            inverseJoinColumns = @JoinColumn(name = "COMMENT_ID")
     )
     private List<QuestionComment> comments = new ArrayList<>();
 

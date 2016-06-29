@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by Desi on 6/15/2016.
@@ -15,46 +13,83 @@ import java.util.Stack;
 @Service
 @Transactional
 public class QuizService {
+
     @Autowired
     private QuizRepository quizRepository;
+
     @Autowired
     private MCQuestionRepository mcQuestionRepository;
 
+    @Autowired
+    private LearningGroupRepository learningGroupRepository;
 
-    public void save(Quiz quiz, LearningGroup learningGroup) {
+    public void save(Quiz quiz, LearningGroup learningGroup, User user) {
 
+        List<String> givenAnswersList = new ArrayList<>();
+        givenAnswersList.add(quiz.getGivenAnswers_0());
+        givenAnswersList.add(quiz.getGivenAnswers_1());
+        givenAnswersList.add(quiz.getGivenAnswers_2());
+        givenAnswersList.add(quiz.getGivenAnswers_3());
+
+        List<MCQuestion> mcQuestions = new ArrayList<>();
+        MCQuestion mcQuestion;
+        int points = 0;
+
+        List<Integer> questionIds = new ArrayList<>();
+
+        for (int j = 0; j < quiz.getQuestionIds().length(); j++) {
+            if (quiz.getQuestionIds().charAt(j) != ',') {
+                questionIds.add(Character.getNumericValue(quiz.getQuestionIds().charAt(j)));
+            }
+        }
+
+        for (int i = 0; i < 4; i++) {
+
+            mcQuestion = mcQuestionRepository.findOne(questionIds.get(i));
+            mcQuestions.add(mcQuestion);
+            if (mcQuestion.getCorrectAnswers().equals(givenAnswersList.get(i))) {
+                points++;
+            }
+            // else points--; if we decide to give penalty points for wrong answers
+        }
+        List<MCQuestion> answeredQuestions = new ArrayList<>();
+        answeredQuestions.addAll(user.getAnsweredMCQuestions());
+        answeredQuestions.addAll(mcQuestions);
+        user.setAnsweredMCQuestions(answeredQuestions);
+        quiz.setQuizParticipant(user);
+        quiz.setPointsForCorrectAnswers(points);
+        quiz.setMcQuestions(mcQuestions);
         quiz.setLearningGroup(learningGroup);
         quizRepository.save(quiz);
     }
 
     public Stack<Quiz> getAllQuizesOfLearningGroup(LearningGroup learningGroup) {
-        Stack<Quiz> learningGroupStack = new Stack<>();
+        Stack<Quiz> quizStack = new Stack<>();
         for (Quiz quiz : quizRepository.findAll()) {
             if (quiz.getLearningGroup().equals(learningGroup)) {
-                learningGroupStack.push(quiz);
+                quizStack.push(quiz);
             }
         }
-        return learningGroupStack;
+        return quizStack;
     }
 
-    public Quiz getQuestions(User user, Quiz quiz, Integer learningGroupId) {
+    public List<MCQuestion> getQuestions(User user, Integer learningGroupId) {
 
-        List<MCQuestion> questions = quiz.getMCQuestions();
-        Random rand = new Random();
-        List<MCQuestion> allQuestions = mcQuestionRepository.findAll();
-        int q = 0;
-        while (q < quiz.getQuestionQuantity() ) {
-            Integer randomNumber = rand.nextInt(questions.size());
-            MCQuestion question = allQuestions.get(randomNumber);
-            if (question.getCorrespondingLearningGroup().getId().equals(learningGroupId)) {
-                if (!user.getAnsweredMCQuestions().contains(question)) {
-                    questions.add(question);
-                    q++;
+        List<MCQuestion> mcQuestions = new ArrayList<>();
+        Integer iterator = 1;
+        MCQuestion mcQuestion;
 
-                }
+        while (iterator < mcQuestionRepository.findAll().size() +1 && mcQuestions.size() < 4) {
+
+            mcQuestion = mcQuestionRepository.findOne(iterator);
+
+            if (mcQuestion.getCorrespondingLearningGroup().getId().equals(learningGroupId)
+                    && !user.getAnsweredMCQuestions().contains(mcQuestion)) {
+                mcQuestions.add(mcQuestion);
             }
+            iterator++;
         }
-        quiz.setMCQuestions(questions);
-        return quiz;
+
+        return mcQuestions;
     }
 }
