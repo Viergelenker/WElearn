@@ -1,8 +1,6 @@
 package com.desj.configuration;
 
-import com.desj.model.LearningGroup;
-import com.desj.model.LearningGroupRepository;
-import com.desj.model.UserRepository;
+import com.desj.model.*;
 import com.desj.service.LearningGroupService;
 import com.desj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +44,9 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
     @Autowired
     private LearningGroupService learningGroupService;
+
+    @Autowired
+    private MCQuestionRepository mcQuestionRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -96,7 +97,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
 
         // Creates new Desj user.
-
         // Julien
         com.desj.model.User julien = new com.desj.model.User();
         julien.setUsername("Julien Vollweiter");
@@ -107,10 +107,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         group6.setCreatorOfGroup(julien);
         learningGroupService.addMemberToLearningGroup(group7.getId(), julien);
         learningGroupService.addMemberToLearningGroup(group1.getId(), julien);
-
-
-
-
 
         // Desi
         com.desj.model.User desi = new com.desj.model.User();
@@ -126,8 +122,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group4.getId(), desi);
         learningGroupService.addMemberToLearningGroup(group7.getId(), desi);
 
-
-
         // Sabrina
         com.desj.model.User sabrina = new com.desj.model.User();
         sabrina.setUsername("Sabrina Semmelmann");
@@ -138,9 +132,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group1.getId(), sabrina);
         learningGroupService.addMemberToLearningGroup(group2.getId(), sabrina);
         group4.setCreatorOfGroup(sabrina);
-
-
-
 
         // Erhan
         com.desj.model.User erhan = new com.desj.model.User();
@@ -155,9 +146,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group6.getId(), erhan);
         learningGroupService.addMemberToLearningGroup(group7.getId(), erhan);
 
-
-
-
         // Robert
         com.desj.model.User robert = new com.desj.model.User();
         robert.setUsername("Robert Rundhals");
@@ -165,8 +153,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group1.getId(), robert);
         learningGroupService.addMemberToLearningGroup(group2.getId(), robert);
         learningGroupService.addMemberToLearningGroup(group6.getId(), robert);
-
-
 
         // Friedrich
         com.desj.model.User friedrich = new com.desj.model.User();
@@ -178,8 +164,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group3.getId(), friedrich);
         learningGroupService.addMemberToLearningGroup(group6.getId(), friedrich);
 
-
-
         // Leon
         com.desj.model.User leon = new com.desj.model.User();
         leon.setUsername("Leon Lässig");
@@ -189,10 +173,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group5.getId(), leon);
         learningGroupService.addMemberToLearningGroup(group1.getId(), leon);
 
-
-
-
-
         // Sarah
         com.desj.model.User sarah = new com.desj.model.User();
         sarah.setUsername("Sarah Müller");
@@ -200,8 +180,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group5.getId(), sarah);
         group5.setCreatorOfGroup(sarah);
         learningGroupService.addMemberToLearningGroup(group2.getId(), sarah);
-
-
 
         // Anna
         com.desj.model.User anna = new com.desj.model.User();
@@ -227,7 +205,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group1.getId(), tim);
         learningGroupService.addMemberToLearningGroup(group3.getId(), tim);
         learningGroupService.addMemberToLearningGroup(group7.getId(), tim);
-
 
         // Karl
         com.desj.model.User karl = new com.desj.model.User();
@@ -311,11 +288,50 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group2.getId(), pedro);
 
 
+        // MC Questions
+        MCQuestion mcQuestion1 = new MCQuestion();
+        mcQuestion1.setQuestion("Frage");
+        mcQuestion1.setAnswerA("Antwort A");
+        mcQuestion1.setAnswerB("Antwort B");
+        mcQuestion1.setAnswerC("Antwort C");
+        mcQuestion1.setAnswerD("Antwort D");
+        mcQuestion1.setCorrespondingLearningGroup(group1);
+        mcQuestion1.setCreator(pedro);
+        mcQuestion1.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion1);
 
+        MCQuestion mcQuestion2 = new MCQuestion();
+        mcQuestion2.setQuestion("Frage");
+        mcQuestion2.setAnswerA("Antwort A");
+        mcQuestion2.setAnswerB("Antwort B");
+        mcQuestion2.setAnswerC("Antwort C");
+        mcQuestion2.setAnswerD("Antwort D");
+        mcQuestion2.setCorrespondingLearningGroup(group1);
+        mcQuestion2.setCreator(pedro);
+        mcQuestion2.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion2);
 
+        MCQuestion mcQuestion3 = new MCQuestion();
+        mcQuestion3.setQuestion("Frage");
+        mcQuestion3.setAnswerA("Antwort A");
+        mcQuestion3.setAnswerB("Antwort B");
+        mcQuestion3.setAnswerC("Antwort C");
+        mcQuestion3.setAnswerD("Antwort D");
+        mcQuestion3.setCorrespondingLearningGroup(group1);
+        mcQuestion3.setCreator(pedro);
+        mcQuestion3.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion3);
 
-
-
+        MCQuestion mcQuestion4 = new MCQuestion();
+        mcQuestion4.setQuestion("Frage");
+        mcQuestion4.setAnswerA("Antwort A");
+        mcQuestion4.setAnswerB("Antwort B");
+        mcQuestion4.setAnswerC("Antwort C");
+        mcQuestion4.setAnswerD("Antwort D");
+        mcQuestion4.setCorrespondingLearningGroup(group1);
+        mcQuestion4.setCreator(pedro);
+        mcQuestion4.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion4);
 
 
         // Set authorities.

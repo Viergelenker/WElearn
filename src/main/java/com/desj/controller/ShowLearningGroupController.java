@@ -67,10 +67,13 @@ public class ShowLearningGroupController {
             model.addAttribute("comments", commentRepository.findAll());
             model.addAttribute("question", new Question());
             model.addAttribute("mcQuestion", new MCQuestion());
-            model.addAttribute("quiz", new Quiz());
             model.addAttribute("questionComment", new QuestionComment());
             model.addAttribute("questions", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository.findOne(learningGroupId)));
             model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(learningGroupRepository.findOne(learningGroupId)));
+
+            if (!userService.getAllQuizOfUser(userService.getCurrentDesjUser()).isEmpty()) {
+                model.addAttribute("quizPoints", userService.getTotalOfQuizPointsForUser(userService.getCurrentDesjUser()));
+            }
 
             return "ShowLearningGroup";
         }

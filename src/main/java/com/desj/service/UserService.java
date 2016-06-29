@@ -1,5 +1,7 @@
 package com.desj.service;
 
+import com.desj.model.Quiz;
+import com.desj.model.QuizRepository;
 import com.desj.model.User;
 import com.desj.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Julien on 25.04.16.
@@ -29,6 +32,9 @@ public class UserService {
 
     @Autowired
     private UserDetailsManager userDetailsManager;
+
+    @Autowired
+    private QuizRepository quizRepository;
 
     public void save(User user) {
 
@@ -51,5 +57,27 @@ public class UserService {
 
     public User getUserByUsername(String email) {
         return userRepository.findUserByEmail(email);
+    }
+
+    public List<Quiz> getAllQuizOfUser(User user) {
+
+        List<Quiz> quizList = new ArrayList<>();
+
+        for (Quiz quiz : quizRepository.findAll()) {
+            if (quiz.getQuizParticipant().equals(user)) {
+                quizList.add(quiz);
+            }
+        }
+        return quizList;
+    }
+
+    public Integer getTotalOfQuizPointsForUser(User user) {
+
+        int sumOfPoints = 0;
+
+        for (Quiz quiz : getAllQuizOfUser(user)) {
+            sumOfPoints = sumOfPoints + quiz.getPointsForCorrectAnswers();
+        }
+        return sumOfPoints;
     }
 }

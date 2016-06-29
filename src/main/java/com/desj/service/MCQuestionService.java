@@ -7,21 +7,33 @@ import com.desj.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 /**
  * Created by Desi on 6/16/2016.
  */
 @Service
 public class MCQuestionService {
+
     @Autowired
-    private MCQuestionRepository MCQuestionRepository;
+    private MCQuestionRepository mcQuestionRepository;
 
-
+    Random random = new Random();
 
     public void save(MCQuestion MCQuestion, LearningGroup learningGroup, User user){
         MCQuestion.setCorrespondingLearningGroup(learningGroup);
         MCQuestion.setCreator(user);
 
-        MCQuestionRepository.save(MCQuestion);
+        mcQuestionRepository.save(MCQuestion);
 
+    }
+
+    public MCQuestion getOneRandomMCQuestion(User user, Integer learningGroupId) {
+
+        Integer numberOfMCQuestions = mcQuestionRepository.findAll().size();
+
+        MCQuestion mcQuestion = mcQuestionRepository.findAll().get(random.nextInt(numberOfMCQuestions));
+
+        return mcQuestion;
     }
 }

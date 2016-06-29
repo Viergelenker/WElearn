@@ -7,21 +7,45 @@
 <body>
 <div th:replace="fragments/navbar :: loggedIn"></div>
 
-<div class="row">
+<div th:if="${questions.size() &lt; 4}">
+    <h3>Sorry you've answered all available questions in this group!</h3>
+    <a class="button" th:href="@{/showLearningGroup(id=${learningGroupId})}">Go back</a>
+</div>
+
+<div th:if="${questions.size() == 4}" class="row">
     <div class="small-8 columns">
-        <div th:each="question : ${questions}">
-            <div th:text="${question.Question}"></div>
-            <input type="checkbox" th:field="*{givenAnswers}" th:value="${question.id, A}"/>
-            <div th:text="${question.answerA}"></div>
-            <input type="checkbox" th:value="B"/>
-            <div th:text="${question.answerB}"></div>
-            <input type="checkbox" th:value="C"/>
-            <div th:text="${question.answerC}"></div>
-            <input type="checkbox" th:value="D"/>
-            <div th:text="${question.answerD}"></div>
-        </div>
+        <form th:object="${newQuiz}" th:action="@{/submitQuiz(learningGroupId=${learningGroupId})}"
+              method="post">
+
+            <div th:each="question,iterStat : ${questions}">
+
+                <input type="hidden" name="questionIds" th:value="${question.id}"/>
+
+                <div th:text="${question.question}"></div>
+
+                <div th:with="answers=${'givenAnswers_' + iterStat.index}">
+
+                    <input type="checkbox" th:field="*{__${answers}__}" th:value="A"/>
+                    <div th:text="${question.answerA}"></div>
+
+                    <input type="checkbox" th:field="*{__${answers}__}" th:value="B"/>
+                    <div th:text="${question.answerB}"></div>
+
+                    <input type="checkbox" th:field="*{__${answers}__}" th:value="C"/>
+                    <div th:text="${question.answerC}"></div>
+
+                    <input type="checkbox" th:field="*{__${answers}__}" th:value="D"/>
+                    <div th:text="${question.answerD}"></div>
+
+                </div>
+            </div>
+
+            <button class="button" type="submit">Submit</button>
+
+        </form>
     </div>
 </div>
+
 
 </body>
 </html>

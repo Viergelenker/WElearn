@@ -48,7 +48,7 @@
 
             </div>
             <div class="action">
-                <a class="cardLink" data-open="createQuizModal"><span class="fa fa-check"> Start quiz</span></a>
+                <a class="cardLink" th:href="@{/startQuiz(learningGroupId=${learningGroup.id})}"><span class="fa fa-check"> Start quiz</span></a>
             </div>
             <div class="action">
                 <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
@@ -63,6 +63,8 @@
             </div>
         </div>
     </div>
+
+    <h3>Quiz points: <span th:text="${quizPoints}"></span></h3>
 
     <!-- Displays for each group post in all group posts the title and text... -->
     <div class="small-9 columns">

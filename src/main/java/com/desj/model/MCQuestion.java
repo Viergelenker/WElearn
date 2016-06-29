@@ -23,7 +23,7 @@ public class MCQuestion {
     private LearningGroup correspondingLearningGroup;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "CREATOR_ID")
+    @JoinColumn(name = "USER_ID")
     private User creator;
 
     @Lob
