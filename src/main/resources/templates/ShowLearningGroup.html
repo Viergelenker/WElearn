@@ -86,7 +86,7 @@
                 <li>
                     <a href="#" style="outline: none">Comments &nbsp;<span class="fa fa-comments"></span></a>
                     <ul th:class="${iterStat.first}? 'is-active'">
-                        <li th:each="comment : ${comments}"
+                        <div th:each="comment : ${comments}"
                             th:if="${comment.associatedGroupPost.id == groupPost.id}">
                             <div class="callout-card secondary">
                                 <div class="card-label">
@@ -97,28 +97,27 @@
                                     <p th:utext="${comment.text}">Message Text</p>
                                 </div>
                             </div>
-                        </li>
-
-                        <div class="row" style="padding-top: 6px">
-                            <div class="small-12 columns">
-                                <div>Write a new comment:</div>
-                                <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
-                                      method="post">
-                                    <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
-                                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
-                                        Text Error
-                                    </div>
-                                    <div style="padding-top: 10px">
-                                        <button align="right" type="submit" class="button">Save Comment
-                                            &nbsp;<span class="fa fa-commenting"></span></button>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
-
                     </ul>
                 </li>
             </ul>
+            <div class="row" style="padding-top: 6px">
+                <div class="small-12 columns">
+                    <div>Write a new comment:</div>
+                    <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
+                          method="post">
+                        <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
+                        <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
+                            Text Error
+                        </div>
+                        <div style="padding-top: 10px">
+                            <button align="right" type="submit" class="button">Save Comment
+                                &nbsp;<span class="fa fa-commenting"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 

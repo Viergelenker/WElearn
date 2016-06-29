@@ -48,6 +48,12 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
     @Autowired
     private MCQuestionRepository mcQuestionRepository;
 
+    @Autowired
+    private GroupPostRepository groupPostRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
@@ -228,6 +234,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         com.desj.model.User nina = new com.desj.model.User();
         nina.setUsername("Nina Schwarz");
         userRepository.save(nina);
+        learningGroupService.addMemberToLearningGroup(group1.getId(), nina);
         learningGroupService.addMemberToLearningGroup(group2.getId(), nina);
         learningGroupService.addMemberToLearningGroup(group4.getId(), nina);
         learningGroupService.addMemberToLearningGroup(group6.getId(), nina);
@@ -311,6 +318,12 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion2.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion2);
 
+        com.desj.model.GroupPost groupPost1 = new com.desj.model.GroupPost();
+        groupPost1.setAssociatedUser(desi);
+        groupPost1.setText("Herzlich Willkommen in der Mathe-Lerngruppe. Nutzt das Forum für Fragen und Antworten.");
+        groupPost1.setAssociatedLearningGroup(group1);
+        groupPostRepository.save(groupPost1);
+
         MCQuestion mcQuestion3 = new MCQuestion();
         mcQuestion3.setQuestion("Frage 3");
         mcQuestion3.setAnswerA("Antwort A");
@@ -321,6 +334,12 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion3.setCreator(pedro);
         mcQuestion3.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion3);
+
+        com.desj.model.GroupPost groupPost2 = new com.desj.model.GroupPost();
+        groupPost2.setAssociatedUser(desi);
+        groupPost2.setText("Hallo an alle Nutzer aus der Statistik-Lerngruppe, hier könnt Ihr eure Fragen schreiben und bekommt Antworten.");
+        groupPost2.setAssociatedLearningGroup(group2);
+        groupPostRepository.save(groupPost2);
 
         MCQuestion mcQuestion4 = new MCQuestion();
         mcQuestion4.setQuestion("Frage 4");
@@ -333,6 +352,12 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion4.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion4);
 
+        com.desj.model.GroupPost groupPost3 = new com.desj.model.GroupPost();
+        groupPost3.setAssociatedUser(erhan);
+        groupPost3.setText("Habt Ihr Fragen zu PE - Dann stellt Sie hier!");
+        groupPost3.setAssociatedLearningGroup(group3);
+        groupPostRepository.save(groupPost3);
+
         MCQuestion mcQuestion5 = new MCQuestion();
         mcQuestion5.setQuestion("Frage 5");
         mcQuestion5.setAnswerA("Antwort A");
@@ -343,6 +368,12 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion5.setCreator(pedro);
         mcQuestion5.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion5);
+
+        com.desj.model.GroupPost groupPost4 = new com.desj.model.GroupPost();
+        groupPost4.setAssociatedUser(paula);
+        groupPost4.setText("Könnte mir jemand die ER-Diagramme erklären?");
+        groupPost4.setAssociatedLearningGroup(group4);
+        groupPostRepository.save(groupPost4);
 
         MCQuestion mcQuestion6 = new MCQuestion();
         mcQuestion6.setQuestion("Frage 6");
@@ -398,7 +429,86 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion10.setCreator(pedro);
         mcQuestion10.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion10);
+        com.desj.model.GroupPost groupPost5 = new com.desj.model.GroupPost();
+        groupPost5.setAssociatedUser(sarah);
+        groupPost5.setText("Wer Hilfe benötigt bei BWL, kann hier gerne Fragen.");
+        groupPost5.setAssociatedLearningGroup(group5);
+        groupPostRepository.save(groupPost5);
 
+        com.desj.model.GroupPost groupPost6 = new com.desj.model.GroupPost();
+        groupPost6.setAssociatedUser(ali);
+        groupPost6.setText("Hilfe Leute, hat einer ein Gesetzbuch für mich?!?!?!?");
+        groupPost6.setAssociatedLearningGroup(group6);
+        groupPostRepository.save(groupPost6);
+
+        com.desj.model.GroupPost groupPost7 = new com.desj.model.GroupPost();
+        groupPost7.setAssociatedUser(friedrich);
+        groupPost7.setText("Kann mir einer bei der zweiten Abgabe helfen?");
+        groupPost7.setAssociatedLearningGroup(group7);
+        groupPostRepository.save(groupPost7);
+
+        com.desj.model.GroupPost groupPost8 = new com.desj.model.GroupPost();
+        groupPost8.setAssociatedUser(friedrich);
+        groupPost8.setText("Kann mir jemand bei Buchungssätzen helfen? Ich versteh da leider gar nichts... ");
+        groupPost8.setAssociatedLearningGroup(group5);
+        groupPostRepository.save(groupPost8);
+
+        com.desj.model.GroupPost groupPost9 = new com.desj.model.GroupPost();
+        groupPost9.setAssociatedUser(anna);
+        groupPost9.setText("Weiß einer wie Refactoring funktioniert?");
+        groupPost9.setAssociatedLearningGroup(group3);
+        groupPostRepository.save(groupPost9);
+
+        com.desj.model.GroupPost groupPost10 = new com.desj.model.GroupPost();
+        groupPost10.setAssociatedUser(nina);
+        groupPost10.setText("Gibt es eine leichte, unkomplizierte Erklärung zu partieller Ableitung?");
+        groupPost10.setAssociatedLearningGroup(group1);
+        groupPostRepository.save(groupPost10);
+
+
+        // Create and add Comments
+
+        com.desj.model.Comment comment1 = new com.desj.model.Comment();
+        comment1.setAssociatedGroupPost(groupPost7);
+        comment1.setCreator(pedro);
+        comment1.setText("Klar, wo hakt's denn? ");
+        commentRepository.save(comment1);
+
+        com.desj.model.Comment comment2 = new com.desj.model.Comment();
+        comment2.setAssociatedGroupPost(groupPost7);
+        comment2.setCreator(friedrich);
+        comment2.setText("Aufgabe 2, das mit der Resolution.");
+        commentRepository.save(comment2);
+
+        com.desj.model.Comment comment3 = new com.desj.model.Comment();
+        comment3.setAssociatedGroupPost(groupPost6);
+        comment3.setCreator(max);
+        comment3.setText("Ja klar [url]www.amazon.de[/url] ");
+        commentRepository.save(comment3);
+
+        com.desj.model.Comment comment5 = new com.desj.model.Comment();
+        comment5.setAssociatedGroupPost(groupPost8);
+        comment5.setCreator(omar);
+        comment5.setText("Ja klar, schick einfach mal die Beispiele dann schau ich's mir an.");
+        commentRepository.save(comment5);
+
+        com.desj.model.Comment comment6 = new com.desj.model.Comment();
+        comment6.setAssociatedGroupPost(groupPost9);
+        comment6.setCreator(karl);
+        comment6.setText("Ne leider nicht, wäre super wenn's jemand erklären könnte.");
+        commentRepository.save(comment6);
+
+        com.desj.model.Comment comment7 = new com.desj.model.Comment();
+        comment7.setAssociatedGroupPost(groupPost9);
+        comment7.setCreator(ali);
+        comment7.setText("Wir können uns nach der Vorlesung mal treffen, dann erkläre ich es euch :)");
+        commentRepository.save(comment7);
+
+        com.desj.model.Comment comment8 = new com.desj.model.Comment();
+        comment8.setAssociatedGroupPost(groupPost10);
+        comment8.setCreator(hans);
+        comment8.setText("Ich kann es dir gerne bei einem Kaffee erklären ;)");
+        commentRepository.save(comment8);
 
         // Set authorities.
         Collection<GrantedAuthority> AdminAuthorities = new ArrayList<>();
