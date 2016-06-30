@@ -485,7 +485,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         com.desj.model.Comment comment3 = new com.desj.model.Comment();
         comment3.setAssociatedGroupPost(groupPost6);
         comment3.setCreator(max);
-        comment3.setText("Ja klar [url]www.amazon.de[/url] ");
+        comment3.setText("Ja klar <a title=\"klick\" href=\"https://www.amazon.de/Bürgerliches-Gesetzbuch-Gleichbehandlungsgesetz-BGB-Informationspflichten-Verordnung-Einführungsgesetz/dp/3423050012/ref=sr_1_1?ie=UTF8&qid=1467292152&sr=8-1&keywords=bgb\">hier</a>!");
         commentRepository.save(comment3);
 
         com.desj.model.Comment comment5 = new com.desj.model.Comment();
@@ -519,7 +519,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         Collection<GrantedAuthority> UserAuthorities = new ArrayList<>();
         UserAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        
+
 
         // Creates new spring security user. These infos are merged with the Desj user data
         // within the UserService.java
