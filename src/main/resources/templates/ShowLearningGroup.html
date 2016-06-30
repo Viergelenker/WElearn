@@ -48,7 +48,8 @@
 
             </div>
             <div class="action">
-                <a class="cardLink" th:href="@{/startQuiz(learningGroupId=${learningGroup.id})}"><span class="fa fa-check"> Start quiz</span></a>
+                <a class="cardLink" th:href="@{/startQuiz(learningGroupId=${learningGroup.id})}"><span
+                        class="fa fa-check"> Start quiz</span></a>
             </div>
             <div class="action">
                 <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
@@ -61,12 +62,19 @@
                 <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span>
                     Create new MC-question </a>
             </div>
+            <div class="action">
+                <a class="cardLink" data-open="fileUploadModal"><span class="fa fa-upload"></span> Upload file</a>
+            </div>
+            <div class="action">
+                <a class="cardLink" data-open="fileDownloadModal"><span class="fa fa-download"></span> See uploaded
+                    files</a>
+            </div>
         </div>
     </div>
 
     <h3>Quiz points: <span th:text="${quizPoints}"></span></h3>
 
-    <div>
+    <div class="reveal" id="fileUploadModal" data-reveal="true">
         <form method="POST" enctype="multipart/form-data" action="/fileUpload">
             <table>
                 <tr>
@@ -84,14 +92,20 @@
                 <input type="hidden" th:value="${learningGroup.id}" name="learningGroupId"/>
             </table>
         </form>
+        <button class="close-button" data-close="memberModal" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 
-    <div>
-
-        <div th:each="file : ${files}">
-            <a th:href="@{'public/'+ ${file}}" th:attr="download=${file}"><span th:text="${file}"></span> </a>
+    <div class="reveal" id="fileDownloadModal" data-reveal="true">
+        <div th:if="${files.isEmpty()}">
+            <h3>No file uploads</h3>
         </div>
-
+        <div>
+            <div th:each="file : ${files}">
+                <a th:href="@{'public/'+ ${file}}" th:attr="download=${file}"><span th:text="${file}"></span> </a>
+            </div>
+        </div>
     </div>
 
     <!-- Displays for each group post in all group posts the title and text... -->
@@ -115,7 +129,7 @@
                     <a href="#" style="outline: none">Comments &nbsp;<span class="fa fa-comments"></span></a>
                     <ul th:class="${iterStat.first}? 'is-active'">
                         <div th:each="comment : ${comments}"
-                            th:if="${comment.associatedGroupPost.id == groupPost.id}">
+                             th:if="${comment.associatedGroupPost.id == groupPost.id}">
                             <div class="callout-card secondary">
                                 <div class="card-label">
                                     <div class="label-text"
@@ -202,6 +216,5 @@
         }
     });
 </script>
-
 </body>
 </html>
