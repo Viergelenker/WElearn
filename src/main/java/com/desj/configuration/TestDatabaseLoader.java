@@ -297,36 +297,36 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         // MC Questions
         MCQuestion mcQuestion1 = new MCQuestion();
-        mcQuestion1.setQuestion("Frage 1");
-        mcQuestion1.setAnswerA("Antwort A");
-        mcQuestion1.setAnswerB("Antwort B");
-        mcQuestion1.setAnswerC("Antwort C");
-        mcQuestion1.setAnswerD("Antwort D");
+        mcQuestion1.setQuestion("Wie findest du diese Anwendung?");
+        mcQuestion1.setAnswerA("Doof");
+        mcQuestion1.setAnswerB("Ganz okay");
+        mcQuestion1.setAnswerC("Toll");
+        mcQuestion1.setAnswerD("Einfach der Hammer!");
         mcQuestion1.setCorrespondingLearningGroup(group1);
         mcQuestion1.setCreator(pedro);
-        mcQuestion1.setCorrectAnswers("A,D");
+        mcQuestion1.setCorrectAnswers("D");
         mcQuestionRepository.save(mcQuestion1);
 
         MCQuestion mcQuestion2 = new MCQuestion();
-        mcQuestion2.setQuestion("Frage 2");
-        mcQuestion2.setAnswerA("Antwort A");
-        mcQuestion2.setAnswerB("Antwort B");
-        mcQuestion2.setAnswerC("Antwort C");
-        mcQuestion2.setAnswerD("Antwort D");
+        mcQuestion2.setQuestion("Wie viele Antworten hat diese Frage?");
+        mcQuestion2.setAnswerA("3");
+        mcQuestion2.setAnswerB("10");
+        mcQuestion2.setAnswerC("4");
+        mcQuestion2.setAnswerD("1");
         mcQuestion2.setCorrespondingLearningGroup(group1);
         mcQuestion2.setCreator(pedro);
-        mcQuestion2.setCorrectAnswers("A,D");
+        mcQuestion2.setCorrectAnswers("C");
         mcQuestionRepository.save(mcQuestion2);
 
         MCQuestion mcQuestion3 = new MCQuestion();
-        mcQuestion3.setQuestion("Frage 3");
-        mcQuestion3.setAnswerA("Antwort A");
-        mcQuestion3.setAnswerB("Antwort B");
-        mcQuestion3.setAnswerC("Antwort C");
-        mcQuestion3.setAnswerD("Antwort D");
+        mcQuestion3.setQuestion("Wer hat diese Anwendung Entwickelt?");
+        mcQuestion3.setAnswerA("Sabrina");
+        mcQuestion3.setAnswerB("Desi");
+        mcQuestion3.setAnswerC("Erhan");
+        mcQuestion3.setAnswerD("Julien");
         mcQuestion3.setCorrespondingLearningGroup(group1);
         mcQuestion3.setCreator(pedro);
-        mcQuestion3.setCorrectAnswers("A,D");
+        mcQuestion3.setCorrectAnswers("A,B,C,D");
         mcQuestionRepository.save(mcQuestion3);
 
         MCQuestion mcQuestion4 = new MCQuestion();

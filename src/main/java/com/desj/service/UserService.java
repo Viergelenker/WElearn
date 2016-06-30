@@ -1,9 +1,6 @@
 package com.desj.service;
 
-import com.desj.model.Quiz;
-import com.desj.model.QuizRepository;
-import com.desj.model.User;
-import com.desj.model.UserRepository;
+import com.desj.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -71,13 +68,32 @@ public class UserService {
         return quizList;
     }
 
-    public Integer getTotalOfQuizPointsForUser(User user) {
+    public List<Quiz> getAllQuizzesOfUserInLearningGroup(User user, LearningGroup learningGroup) {
+
+        List<Quiz> quizList = new ArrayList<>();
+
+        for (Quiz quiz : getAllQuizOfUser(user)) {
+            if (quiz.getLearningGroup().equals(learningGroup)) {
+                quizList.add(quiz);
+            }
+        }
+        return quizList;
+    }
+
+    public Integer getTotalOfQuizPointsForUserForLearningGroup(User user, LearningGroup learningGroup) {
 
         int sumOfPoints = 0;
 
         for (Quiz quiz : getAllQuizOfUser(user)) {
-            sumOfPoints = sumOfPoints + quiz.getPointsForCorrectAnswers();
+            if (quiz.getLearningGroup().equals(learningGroup)) {
+                sumOfPoints = sumOfPoints + quiz.getPointsForCorrectAnswers();
+            }
         }
         return sumOfPoints;
     }
+
+    /*public Double calculateAveragePoints(User user, LearningGroup learningGroup) {
+
+        return Double.valueOf(getAllQuizzesOfUserInLearningGroup(user, learningGroup).size() * 4 / getTotalOfQuizPointsForUserForLearningGroup(user, learningGroup));
+    }*/
 }

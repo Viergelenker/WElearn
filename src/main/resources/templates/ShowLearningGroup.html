@@ -11,6 +11,8 @@
 <br/>
 
 <div class="row" id="topAnchor">
+
+    <!-- Learning group overview -->
     <div class="small-3 columns" data-sticky-container="">
         <div class="card" data-sticky="" data-anchor="topAnchor">
             <div class="image">
@@ -52,12 +54,16 @@
                         class="fa fa-check"> Start quiz</span></a>
             </div>
             <div class="action">
-                <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
+                <a class="cardLink" th:href="@{/showStatistics(learningGroupId=${learningGroup.id})}"><span class="fa fa-bar-chart"></span> Statistics</a>
             </div>
             <div class="action">
+                <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
+            </div>
+            <!-- Not working atm -->
+           <!-- <div class="action">
                 <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-question"></span> Create new
                     question</a>
-            </div>
+            </div>-->
             <div class="action">
                 <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span>
                     Create new MC-question </a>
@@ -77,56 +83,64 @@
     <!-- File upload modal -->
     <div class="reveal" id="fileUploadModal" data-reveal="true">
         <form method="POST" enctype="multipart/form-data" th:action="@{/fileUpload(fileExtension)}">
-            <table>
-                <tr>
-                    <td>File to upload:</td>
-                    <td><input type="file" name="file"/></td>
-                </tr>
-                <tr>
-                    <td>Name:</td>
-                    <td><input type="text" name="name"/>
-                        <select name="fileExtension">
-                            <option th:value=".pdf">.pdf</option>
-                            <option th:value=".jpg">.jpg</option>
-                            <option th:value=".png">.png</option>
-                            <option th:value=".mp3">.mp3</option>
-                            <option th:value=".docx">.docx</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Upload"/></td>
-                </tr>
-                <input type="hidden" th:value="${learningGroup.id}" name="learningGroupId"/>
-            </table>
+
+            <h3>Please choose a file from your computer: </h3>
+            <label for="fileUpload" class="expanded button"><span class="fa fa-search"></span> Browse files</label>
+            <input id="fileUpload" type="file" name="file" class="show-for-sr"/>
+
+            <h3>Give it a name:</h3>
+            <input type="text" name="name"/>
+
+            <h3>And select the file type:</h3>
+            <select name="fileExtension">
+                <option th:value=".pdf">.pdf</option>
+                <option th:value=".jpg">.jpg</option>
+                <option th:value=".png">.png</option>
+                <option th:value=".mp3">.mp3</option>
+                <option th:value=".docx">.docx</option>
+            </select>
+
+            <input type="submit" class="button" value="Upload"/>
+
+            <input type="hidden" th:value="${learningGroup.id}" name="learningGroupId"/>
+
         </form>
-        <button class="close-button" data-close="memberModal" aria-label="Close modal" type="button">
+        <button class="close-button" data-close="fileUploadModal" aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <!-- File download modal -->
     <div class="reveal" id="fileDownloadModal" data-reveal="true">
-        <div th:if="${files.isEmpty()}">
-            <h3>No file uploads</h3>
+        <div th:if="${fileNames.isEmpty()}">
+            <h4>No file uploads</h4>
         </div>
-        <div>
-            <div th:each="file : ${fileNames}">
-                <a th:href="@{'public/'+ ${file}}" th:attr="download=${file}"><span th:text="${file}"></span> </a>
-            </div>
+
+        <div th:each="file : ${fileNames}">
+            <a th:href="@{'public/'+ ${file}}" th:attr="download=${file}"><span th:text="${file}"></span> </a>
         </div>
+
+        <button class="close-button" data-close="fileDownloadModal" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 
+
     <!-- Displays for each group post in all group posts the title and text... -->
-    <div class="small-9 columns">
-        <div class="small-10 small-offset-1 columns end" th:each="groupPost,iterStat : ${groupPosts}">
+    <div class="small-8 columns">
+
+        <div th:each="groupPost,iterStat : ${groupPosts}">
 
             <div class="callout-card">
                 <div class="card-label">
                     <!-- First three chars of the username are displayed -->
-                    <div class="label-text" th:text="${groupPost.associatedUser.username.substring(0, 3)}">
-                    </div>
+                    <span data-tooltip="" aria-haspopup="true" class="top"
+                          data-disable-hover="false" tabindex="2"
+                          th:title="${groupPost.associatedUser.username}">
+                        <div class="label-text">
+                            <span th:text="${groupPost.associatedUser.username.substring(0, 3)}"></span>
+                        </div>
+                    </span>
                 </div>
                 <div class="callout-card-content">
                     <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
@@ -134,7 +148,7 @@
                 </div>
             </div>
 
-            <ul style="padding-bottom: 20px" class="vertical menu small-11 columns end" data-accordion-menu="true">
+            <ul class="vertical menu small-12 columns end" data-accordion-menu="true">
                 <li>
                     <a href="#" style="outline: none">Comments &nbsp;<span class="fa fa-comments"></span></a>
                     <ul th:class="${iterStat.first}? 'is-active'">
@@ -142,8 +156,13 @@
                              th:if="${comment.associatedGroupPost.id == groupPost.id}">
                             <div class="callout-card secondary">
                                 <div class="card-label">
-                                    <div class="label-text"
-                                         th:text="${comment.creator.username.substring(0, 3)}"></div>
+                                    <span data-tooltip="" aria-haspopup="true" class="top"
+                                          data-disable-hover="false" tabindex="2"
+                                          th:title="${comment.creator.username}">
+                                        <div class="label-text">
+                                             <span th:text="${comment.creator.username.substring(0, 3)}"></span>
+                                        </div>
+                                    </span>
                                 </div>
                                 <div class="callout-card-content">
                                     <p th:utext="${comment.text}">Message Text</p>
@@ -153,21 +172,23 @@
                     </ul>
                 </li>
             </ul>
-            <div class="row" style="padding-top: 6px">
-                <div class="small-12 columns">
-                    <div>Write a new comment:</div>
-                    <form th:object="${comment}" th:action="@{/newComment(groupPostId=${groupPost.id})}"
-                          method="post">
-                        <textarea maxlength="300" class="area" th:field="*{text}">Hello</textarea>
-                        <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
-                            Text Error
-                        </div>
-                        <div style="padding-top: 10px">
-                            <button align="right" type="submit" class="button">Save Comment
-                                &nbsp;<span class="fa fa-commenting"></span></button>
-                        </div>
-                    </form>
-                </div>
+
+            <div class="small-12 columns" style="padding-bottom: 40px">
+                <form class="small-11 small-offset-1 columns end" th:object="${comment}"
+                      th:action="@{/newComment(groupPostId=${groupPost.id})}"
+                      method="post">
+                    <textarea placeholder="Write a new comment" maxlength="300"
+                              class="area small-8 small-offset-1 columns"
+                              th:field="*{text}">New Comment</textarea>
+                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
+                        Text Error
+                    </div>
+                    <div class="small-3 columns">
+                        <button type="submit" class="button">Save Comment
+                            &nbsp;<span class="fa fa-commenting"></span>
+                        </button>
+                    </div>
+                </form>
             </div>
 
         </div>

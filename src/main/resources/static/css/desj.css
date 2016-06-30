@@ -23,18 +23,27 @@
     margin: 0 0 1rem 0;
     font-size: 0.9rem;
     background-color: #2199e8;
-    color: #fefefe; }
+    color: #fefefe;
+}
+
 [data-whatinput='mouse'] .buttonComment {
-    outline: 0; }
+    outline: 0;
+}
+
 .buttonComment:hover, .buttonComment:focus {
     background-color: #1583cc;
-    color: #fefefe; }
+    color: #fefefe;
+}
+
 .buttonComment.disabled, .buttonComment[disabled] {
     opacity: 0.25;
-    cursor: not-allowed; }
+    cursor: not-allowed;
+}
+
 .buttonComment.disabled:hover, .buttonComment.disabled:focus, .buttonComment[disabled]:hover, .buttonComment[disabled]:focus {
     background-color: #2199e8;
-    color: #fefefe; }
+    color: #fefefe;
+}
 
 /* Styling for the groupPost button on the showLearningGroup page */
 .buttonPost {
@@ -51,19 +60,27 @@
     margin: 0 0 1rem 0;
     font-size: 0.9rem;
     background-color: #2199e8;
-    color: #fefefe; }
+    color: #fefefe;
+}
+
 [data-whatinput='mouse'] .buttonPost {
-    outline: 0; }
+    outline: 0;
+}
+
 .buttonPost:hover, .buttonPost:focus {
     background-color: #1583cc;
-    color: #fefefe; }
+    color: #fefefe;
+}
+
 .buttonPost.disabled, .buttonPost[disabled] {
     opacity: 0.25;
-    cursor: not-allowed; }
+    cursor: not-allowed;
+}
+
 .buttonPost.disabled:hover, .buttonPost.disabled:focus, .buttonPost[disabled]:hover, .buttonPost[disabled]:focus {
     background-color: #2199e8;
-    color: #fefefe; }
-
+    color: #fefefe;
+}
 
 /* White font color for labels because of the grey background */
 label {
@@ -73,7 +90,7 @@ label {
 #wrapper {
     width: 40%;
     margin: 0 auto;
-    background-color: rgba(30,30,30,0.4);
+    background-color: rgba(30, 30, 30, 0.4);
     border: solid thin;
     border-radius: 3px;
     border-color: rgba(255, 255, 255, 0.1);
@@ -81,7 +98,7 @@ label {
 
 #divBackground {
     margin: 0 auto;
-    background-color: rgba(30,30,30,0.1);
+    background-color: rgba(30, 30, 30, 0.1);
     border: solid thin;
     border-radius: 3px;
     border-color: black;
@@ -93,12 +110,14 @@ label {
     height: 86px;
     padding-top: 18px;
 }
+
 .top-bar-left ul {
     background: #343838;
     color: white;
     line-height: 86px;
     padding-top: 7px;
 }
+
 .top-bar-right ul {
     background: #343838;
     padding-top: 7px
@@ -110,54 +129,88 @@ label {
     border: 1px solid #333;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     margin: 1rem 0;
-    overflow: hidden; }
+    overflow: hidden;
+}
+
 .callout-card .card-label {
     border-color: transparent #343838 transparent transparent;
     border-color: rgba(255, 255, 255, 0) #343838 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)}
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)
+}
+
 .callout-card.primary {
-    border-color: #446cb3; }
+    border-color: #446cb3;
+}
+
 .callout-card.primary .card-label {
     border-color: transparent #446cb3 transparent transparent;
     border-color: rgba(255, 255, 255, 0) #446cb3 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)}
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)
+}
+
 .callout-card.secondary {
-    border-color: #adb2bd; }
+    border-color: #adb2bd;
+}
+
 .callout-card.secondary .card-label {
     border-color: transparent #adb2bd transparent transparent;
     border-color: rgba(255, 255, 255, 0) #adb2bd rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)}
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)
+}
+
 .callout-card.info {
-    border-color: #89c4f4; }
+    border-color: #89c4f4;
+}
+
 .callout-card.info .card-label {
     border-color: transparent #89c4f4 transparent transparent;
-    border-color: rgba(255, 255, 255, 0) #89c4f4 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+    border-color: rgba(255, 255, 255, 0) #89c4f4 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+}
+
 .callout-card.alert {
-    border-color: #f22613; }
+    border-color: #f22613;
+}
+
 .callout-card.alert .card-label {
     border-color: transparent #f22613 transparent transparent;
-    border-color: rgba(255, 255, 255, 0) #f22613 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+    border-color: rgba(255, 255, 255, 0) #f22613 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+}
+
 .callout-card.success {
-    border-color: #87d37c; }
+    border-color: #87d37c;
+}
+
 .callout-card.success .card-label {
     border-color: transparent #87d37c transparent transparent;
-    border-color: rgba(255, 255, 255, 0) #87d37c rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+    border-color: rgba(255, 255, 255, 0) #87d37c rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+}
+
 .callout-card.warning {
-    border-color: #f89406; }
+    border-color: #f89406;
+}
+
 .callout-card.warning .card-label {
     border-color: transparent #f89406 transparent transparent;
-    border-color: rgba(255, 255, 255, 0) #f89406 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+    border-color: rgba(255, 255, 255, 0) #f89406 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+}
+
 .callout-card .card-label {
     border-style: solid;
     border-width: 0 70px 40px 0;
     float: right;
     height: 0px;
     width: 0px;
-    transform: rotate(360deg); }
+    transform: rotate(360deg);
+}
+
 .callout-card .callout-card-content {
-    padding: 0.5rem 1.5rem 0.875rem; }
+    padding: 0.5rem 1.5rem 0.875rem;
+}
+
 .callout-card.radius {
-    border-radius: 0.6rem; }
+    border-radius: 0.6rem;
+}
+
 .callout-card .label-text {
     color: #fff;
     font-size: 0.75rem;
@@ -171,43 +224,61 @@ label {
 
 /* Styling of material cards */
 html, body {
-    background: #FAFAFA; }
+    background: #FAFAFA;
+}
 
 .card {
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     color: #272727;
-    border-radius: 2px; }
+    border-radius: 2px;
+}
+
 .card .title {
     line-height: 3rem;
     font-size: 1.5rem;
-    font-weight: 300; }
+    font-weight: 300;
+}
+
 .card .content {
     padding: 1.3rem;
     font-weight: 300;
-    border-radius: 0 0 2px 2px; }
+    border-radius: 0 0 2px 2px;
+}
+
 .card p {
-    margin: 0; }
+    margin: 0;
+}
+
 .card .action {
     border-top: 1px solid rgba(160, 160, 160, 0.2);
-    padding: 1.3rem; }
+    padding: 1.3rem;
+}
+
 .card a {
     color: #ffab40;
     margin-right: 1.3rem;
     transition: color 0.3s ease;
     text-transform: uppercase;
-    text-decoration: none; }
+    text-decoration: none;
+}
+
 .card .image {
-    position: relative; }
+    position: relative;
+}
+
 .card .image .title {
     position: absolute;
     bottom: 0;
     left: 0;
     padding: 1.3rem;
-    color: #fff; }
+    color: #fff;
+}
+
 .card .image img {
-    border-radius: 2px 2px 0 0; }
+    border-radius: 2px 2px 0 0;
+}
 
 .card .cardLink {
     color: #343838;
@@ -217,4 +288,104 @@ html, body {
     color: #2199e8;
 }
 
+/*
+!* SHIFT *!
+div.shiftTransition label span {
+    position:relative;
+    z-index: 1;
+}
+div.shiftTransition label span {
+    color: #91640F;
+}
+div.shiftTransition label span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 1px;
+    content: '.';
+    color: transparent;
+    background: #F1C40F;
+    visibility: none;
+    opacity: 0;
+    z-index: -1;
+}
+div.shiftTransition label span {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+}*/
 
+/* Css for the quiz selectors */
+ul {
+    list-style: none;
+}
+
+ul li {
+    padding: 0.2em
+}
+
+label.styled {
+    background-color: #343838;
+    display: block;
+    width: 300px;
+    text-align: center;
+    padding: 0.6em 2em;
+    color: white;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+label.styled:before {
+    content: '✓';
+    line-height: 40px;
+    font-size: 25px;
+    color: #fff;
+    width: 40px;
+    height: 100%;
+    background-color: limegreen;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transition: all 0.1s ease;
+    opacity: 0;
+    border-right: 2px solid #fff;
+}
+
+label.styled:hover:before {
+    left: 98%;
+    opacity: .9;
+}
+
+input.styled {
+    display: none;
+}
+
+/* :: CHECKED :: */
+input.styled:checked ~ label.styled {
+    background-color: #343838;
+    animation: 0.1s linear;
+}
+
+input.styled:checked ~ label.styled:before {
+    left: 0px;
+    opacity: 1;
+}
+
+@keyframes throw {
+    0%, 63% {
+        margin-left: 0;
+    }
+    64% {
+        margin-left: -5px;
+    }
+    100% {
+        margin-left: 0;
+    }
+}

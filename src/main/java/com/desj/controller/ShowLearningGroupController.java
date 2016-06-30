@@ -49,19 +49,13 @@ public class ShowLearningGroupController {
     @Autowired
     private CommentService commentService;
     @Autowired
-    private MCQuestionRepository mcQuestionRepository;
-    @Autowired
     private MCQuestionService mcQuestionService;
     @Autowired
     private QuestionReposiory questionReposiory;
     @Autowired
     private QuestionService questionService;
     @Autowired
-    private QuizService quizService;
-    @Autowired
     private QuestionCommentService questionCommentService;
-    @Autowired
-    private QuestionCommentRepository questionCommentRepository;
 
 
     @RequestMapping("/showLearningGroup")
@@ -80,12 +74,15 @@ public class ShowLearningGroupController {
             model.addAttribute("question", new Question());
             model.addAttribute("mcQuestion", new MCQuestion());
             model.addAttribute("questionComment", new QuestionComment());
-            model.addAttribute("questions", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository.findOne(learningGroupId)));
-            model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(learningGroupRepository.findOne(learningGroupId)));
+            model.addAttribute("questions", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository
+                    .findOne(learningGroupId)));
+            model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(
+                    learningGroupRepository.findOne(learningGroupId)));
             model.addAttribute("fileNames", learningGroupRepository.findOne(learningGroupId).getUploadedFilesList());
 
             if (!userService.getAllQuizOfUser(userService.getCurrentDesjUser()).isEmpty()) {
-                model.addAttribute("quizPoints", userService.getTotalOfQuizPointsForUser(userService.getCurrentDesjUser()));
+                model.addAttribute("quizPoints", userService.getTotalOfQuizPointsForUserForLearningGroup(userService
+                        .getCurrentDesjUser(), learningGroupRepository.findOne(learningGroupId)));
             }
 
             // File upload stuff
@@ -177,7 +174,7 @@ public class ShowLearningGroupController {
                                    @RequestParam("learningGroupId") Integer learningGroupId,
                                    RedirectAttributes redirectAttributes) {
 
-        fileExtension = fileExtension.replace("," , "");
+        fileExtension = fileExtension.replace(",", "");
         String fileName = name + fileExtension;
 
         // TODO: Add attribute message to html file

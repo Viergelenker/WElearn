@@ -33,7 +33,7 @@ public class User {
     )
     List <MCQuestion> createdMCQuestions = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "ANSWEREDMCQUESTIONS",
             joinColumns = @JoinColumn(name = "USER_ID"),

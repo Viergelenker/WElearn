@@ -6,38 +6,50 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: loggedIn"></div>
-
-<div th:if="${questions.size() &lt; 4}">
+<br/>
+<div class="row">
+<div class="callout warning" th:if="${questions.size() &lt; 4}">
     <h3>Sorry you've answered all available questions in this group!</h3>
-    <a class="button" th:href="@{/showLearningGroup(id=${learningGroupId})}">Go back</a>
+    <a class="button" th:href="@{/showLearningGroup(id=${learningGroupId})}"><span class="fa fa-chevron-left"></span> Go back</a>
+</div>
 </div>
 
 <div th:if="${questions.size() &gt; 3}" class="row">
-    <div class="small-8 columns">
+    <div class="row">
         <form th:object="${newQuiz}" th:action="@{/submitQuiz(learningGroupId=${learningGroupId})}"
               method="post">
 
-            <div th:each="question,iterStat : ${questions}">
+            <div th:each="question,iterStat : ${questions}" class="small-5 columns">
 
                 <input type="hidden" name="questionIds" th:value="${question.id}"/>
 
-                <div th:text="${question.question}"></div>
+                <div class="callout">
+                    <div th:text="${question.question}"></div>
 
-                <div th:with="answers=${'givenAnswers_' + iterStat.index}">
+                    <div th:with="answers=${'givenAnswers_' + iterStat.index}">
 
-                    <input type="checkbox" th:field="*{__${answers}__}" th:value="A"/>
-                    <div th:text="${question.answerA}"></div>
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="styled"  th:field="*{__${answers}__}" th:value="A" th:id="${iterStat + '1'}"/>
+                            <label class="styled" th:for="${iterStat + '1'}"><span th:text="${question.answerA}"></span></label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="styled"  th:field="*{__${answers}__}" th:value="B" th:id="${iterStat + '2'}"/>
+                            <label class="styled" th:for="${iterStat + '2'}"><span th:text="${question.answerB}"></span></label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="styled"  th:field="*{__${answers}__}" th:value="C" th:id="${iterStat + '3'}"/>
+                            <label class="styled" th:for="${iterStat + '3'}"><span th:text="${question.answerC}"></span></label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="styled"  th:field="*{__${answers}__}" th:value="D" th:id="${iterStat + '4'}"/>
+                            <label class="styled" th:for="${iterStat + '4'}"><span th:text="${question.answerD}"></span></label>
+                        </li>
+                    </ul>
 
-                    <input type="checkbox" th:field="*{__${answers}__}" th:value="B"/>
-                    <div th:text="${question.answerB}"></div>
-
-                    <input type="checkbox" th:field="*{__${answers}__}" th:value="C"/>
-                    <div th:text="${question.answerC}"></div>
-
-                    <input type="checkbox" th:field="*{__${answers}__}" th:value="D"/>
-                    <div th:text="${question.answerD}"></div>
-
+                    </div>
                 </div>
+                <br/>
             </div>
 
             <button class="button" type="submit">Submit</button>
@@ -46,6 +58,6 @@
     </div>
 </div>
 
-
+<script src="js/app.js"></script>
 </body>
 </html>

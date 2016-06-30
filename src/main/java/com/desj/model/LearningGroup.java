@@ -41,13 +41,6 @@ public class LearningGroup {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-            name = "QUIZES",
-            joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "MCTEST_ID"))
-    private List<Quiz> quizes = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(
             name = "MCQUESTIONPOOL",
             joinColumns = @JoinColumn(name = "GROUP_ID"),
             inverseJoinColumns = @JoinColumn(name = "MCQUESTION_ID")
@@ -123,15 +116,6 @@ public class LearningGroup {
 
     public void setMembers(List<User> members) {
         this.members = members;
-    }
-
-
-    public List<Quiz> getQuizes() {
-        return quizes;
-    }
-
-    public void setQuizes(List<Quiz> quizes) {
-        this.quizes = quizes;
     }
 
     public List<Question> getQuestions() {

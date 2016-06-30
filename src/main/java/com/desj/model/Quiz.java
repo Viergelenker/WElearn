@@ -24,7 +24,7 @@ public class Quiz {
     @JoinColumn(name = "learningGroupId")
     private LearningGroup learningGroup;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "QUIZQUESTION",
             joinColumns = @JoinColumn(name = "QUIZ_ID"),
