@@ -82,6 +82,7 @@ public class ShowLearningGroupController {
             model.addAttribute("questionComment", new QuestionComment());
             model.addAttribute("questions", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository.findOne(learningGroupId)));
             model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(learningGroupRepository.findOne(learningGroupId)));
+            model.addAttribute("fileNames", learningGroupRepository.findOne(learningGroupId).getUploadedFilesList());
 
             if (!userService.getAllQuizOfUser(userService.getCurrentDesjUser()).isEmpty()) {
                 model.addAttribute("quizPoints", userService.getTotalOfQuizPointsForUser(userService.getCurrentDesjUser()));
@@ -158,17 +159,6 @@ public class ShowLearningGroupController {
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
 
-
-    /*@RequestMapping(value = "/createQuiz", method = RequestMethod.POST)
-    public String startQuiz(@RequestParam(value = "learningGroupId") Integer learningGroupId,
-                            @ModelAttribute("quiz") Quiz quiz) {
-
-        quizService.save(quizService.getQuestions(userService.getCurrentDesjUser(), quiz, learningGroupId),
-                learningGroupRepository.findOne(learningGroupId));
-
-        return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
-    }*/
-
     @RequestMapping(value = "/newQuestionComment", method = RequestMethod.POST)
     public String writeNewQuestionComment(@RequestParam(value = "questionId") Integer questionId,
                                           @ModelAttribute("questionComment") QuestionComment questionComment) {
@@ -182,9 +172,15 @@ public class ShowLearningGroupController {
 
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     public String handleFileUpload(@RequestParam("name") String name,
+                                   @RequestParam("fileExtension") String fileExtension,
                                    @RequestParam("file") MultipartFile file,
                                    @RequestParam("learningGroupId") Integer learningGroupId,
                                    RedirectAttributes redirectAttributes) {
+
+        fileExtension = fileExtension.replace("," , "");
+        String fileName = name + fileExtension;
+
+        // TODO: Add attribute message to html file
         if (name.contains("/")) {
             redirectAttributes.addFlashAttribute("message", "Folder separators not allowed");
             return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
@@ -198,9 +194,10 @@ public class ShowLearningGroupController {
             try {
 
                 BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(new File(SopraApplication.ROOT + "/" + name)));
+                        new FileOutputStream(new File(SopraApplication.ROOT + "/" + fileName)));
                 FileCopyUtils.copy(file.getInputStream(), stream);
                 stream.close();
+                learningGroupService.addFileToLearningGroup(fileName, learningGroupId);
                 redirectAttributes.addFlashAttribute("message",
                         "You successfully uploaded " + name + "!");
             } catch (Exception e) {

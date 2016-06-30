@@ -74,8 +74,9 @@
 
     <h3>Quiz points: <span th:text="${quizPoints}"></span></h3>
 
+    <!-- File upload modal -->
     <div class="reveal" id="fileUploadModal" data-reveal="true">
-        <form method="POST" enctype="multipart/form-data" action="/fileUpload">
+        <form method="POST" enctype="multipart/form-data" th:action="@{/fileUpload(fileExtension)}">
             <table>
                 <tr>
                     <td>File to upload:</td>
@@ -83,7 +84,15 @@
                 </tr>
                 <tr>
                     <td>Name:</td>
-                    <td><input type="text" name="name"/></td>
+                    <td><input type="text" name="name"/>
+                        <select name="fileExtension">
+                            <option th:value=".pdf">.pdf</option>
+                            <option th:value=".jpeg">.jpeg</option>
+                            <option th:value=".png">.png</option>
+                            <option th:value=".mp3">.mp3</option>
+                            <option th:value=".docx">.docx</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
@@ -97,12 +106,13 @@
         </button>
     </div>
 
+    <!-- File download modal -->
     <div class="reveal" id="fileDownloadModal" data-reveal="true">
         <div th:if="${files.isEmpty()}">
             <h3>No file uploads</h3>
         </div>
         <div>
-            <div th:each="file : ${files}">
+            <div th:each="file : ${fileNames}">
                 <a th:href="@{'public/'+ ${file}}" th:attr="download=${file}"><span th:text="${file}"></span> </a>
             </div>
         </div>

@@ -89,4 +89,11 @@ public class LearningGroupService {
         learningGroupRepository.save(learningGroup);
     }
 
+    public void addFileToLearningGroup(String filename, Integer learningGroupId) {
+
+        List<String> allFiles = new ArrayList<>();
+        allFiles.addAll(learningGroupRepository.findOne(learningGroupId).getUploadedFilesList());
+        allFiles.add(filename);
+        learningGroupRepository.findOne(learningGroupId).setUploadedFilesList(allFiles);
+    }
 }

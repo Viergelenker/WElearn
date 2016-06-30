@@ -62,6 +62,8 @@ public class LearningGroup {
     )
     private List<Question> questions = new ArrayList<>();
 
+    @ElementCollection
+    private List<String> uploadedFilesList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -146,5 +148,13 @@ public class LearningGroup {
 
     public void setMcQuestions(List<MCQuestion> mcQuestions) {
         this.mcQuestions = mcQuestions;
+    }
+
+    public List<String> getUploadedFilesList() {
+        return uploadedFilesList;
+    }
+
+    public void setUploadedFilesList(List<String> uploadedFilesList) {
+        this.uploadedFilesList = uploadedFilesList;
     }
 }

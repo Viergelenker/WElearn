@@ -79,7 +79,7 @@ public class QuizService {
         Integer iterator = 1;
         MCQuestion mcQuestion;
 
-        while (iterator < mcQuestionRepository.findAll().size() +1 && mcQuestions.size() < 4) {
+        while (iterator <= mcQuestionRepository.findAll().size() && mcQuestions.size() < 4) {
 
             mcQuestion = mcQuestionRepository.findOne(iterator);
 
