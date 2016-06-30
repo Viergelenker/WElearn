@@ -38,6 +38,8 @@ public class StatisticsController {
     private QuestionCommentService questionCommentService;
     @Autowired
     private QuizService quizService;
+    @Autowired
+    private StatisticsService statisticsService;
 
     @RequestMapping(value = "/showStatistics")
     public String showStatistics(@RequestParam("learningGroupId") Integer learningGroupId, Model model) {
@@ -51,6 +53,9 @@ public class StatisticsController {
                 currentLearningGroup));
         // model.addAttribute("averagePoints", userService.calculateAveragePoints(currentUser, currentLearningGroup));
         model.addAttribute("quizzesOfAllMember", quizService.getAllQuizesOfLearningGroup(currentLearningGroup));
+        model.addAttribute("totalPointsForChart", statisticsService.getTotalPointsOfAllMembersChartReady(currentLearningGroup));
+        model.addAttribute("usernamesForChart", statisticsService.getAllUsernamesOfMembersChartReady(currentLearningGroup));
+        model.addAttribute("averagePointsForChart", statisticsService.getAllAveragePointsOfMembersChartReady(currentLearningGroup));
 
         return "Statistics";
     }

@@ -1,29 +1,53 @@
-/**
- * Created by Julien on 30.06.16.
- */
-
 $(function () {
-    $('#container').highcharts({
-        data: {
-            table: 'datatable'
-        },
+    $('#statChart').highcharts({
         chart: {
-            type: 'column'
+            type: 'bar'
         },
         title: {
-            text: 'Overall quiz statistics'
+            text: 'Historic World Population by Region'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+        },
+        xAxis: {
+            categories: usernames,
+            title: {
+                text: null
+            }
         },
         yAxis: {
-            allowDecimals: true,
+            min: 0,
             title: {
-                text: 'Points'
+                text: 'Points',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
             }
         },
         tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + ' ' + this.point.name.toLowerCase();
+            valueSuffix: ' points'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
             }
-        }
+        },
+        legend: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Total',
+            data: points
+        }, {
+
+            name: 'Average',
+            data: averagePoints
+        }]
     });
 });

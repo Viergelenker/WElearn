@@ -92,8 +92,17 @@ public class UserService {
         return sumOfPoints;
     }
 
-    /*public Double calculateAveragePoints(User user, LearningGroup learningGroup) {
+    public Double calculateAveragePoints(User user, LearningGroup learningGroup) {
 
-        return Double.valueOf(getAllQuizzesOfUserInLearningGroup(user, learningGroup).size() * 4 / getTotalOfQuizPointsForUserForLearningGroup(user, learningGroup));
-    }*/
+        double average;
+
+        if (getTotalOfQuizPointsForUserForLearningGroup(user, learningGroup) == 0) {
+            return 0.0;
+        }
+        else {
+            average = getTotalOfQuizPointsForUserForLearningGroup(user, learningGroup);
+            average = average / Double.valueOf(getAllQuizzesOfUserInLearningGroup(user, learningGroup).size());
+            return  average;
+        }
+    }
 }
