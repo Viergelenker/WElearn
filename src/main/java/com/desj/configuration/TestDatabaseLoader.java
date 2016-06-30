@@ -318,12 +318,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion2.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion2);
 
-        com.desj.model.GroupPost groupPost1 = new com.desj.model.GroupPost();
-        groupPost1.setAssociatedUser(desi);
-        groupPost1.setText("Herzlich Willkommen in der Mathe-Lerngruppe. Nutzt das Forum für Fragen und Antworten.");
-        groupPost1.setAssociatedLearningGroup(group1);
-        groupPostRepository.save(groupPost1);
-
         MCQuestion mcQuestion3 = new MCQuestion();
         mcQuestion3.setQuestion("Frage 3");
         mcQuestion3.setAnswerA("Antwort A");
@@ -334,12 +328,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion3.setCreator(pedro);
         mcQuestion3.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion3);
-
-        com.desj.model.GroupPost groupPost2 = new com.desj.model.GroupPost();
-        groupPost2.setAssociatedUser(desi);
-        groupPost2.setText("Hallo an alle Nutzer aus der Statistik-Lerngruppe, hier könnt Ihr eure Fragen schreiben und bekommt Antworten.");
-        groupPost2.setAssociatedLearningGroup(group2);
-        groupPostRepository.save(groupPost2);
 
         MCQuestion mcQuestion4 = new MCQuestion();
         mcQuestion4.setQuestion("Frage 4");
@@ -352,12 +340,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion4.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion4);
 
-        com.desj.model.GroupPost groupPost3 = new com.desj.model.GroupPost();
-        groupPost3.setAssociatedUser(erhan);
-        groupPost3.setText("Habt Ihr Fragen zu PE - Dann stellt Sie hier!");
-        groupPost3.setAssociatedLearningGroup(group3);
-        groupPostRepository.save(groupPost3);
-
         MCQuestion mcQuestion5 = new MCQuestion();
         mcQuestion5.setQuestion("Frage 5");
         mcQuestion5.setAnswerA("Antwort A");
@@ -368,12 +350,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion5.setCreator(pedro);
         mcQuestion5.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion5);
-
-        com.desj.model.GroupPost groupPost4 = new com.desj.model.GroupPost();
-        groupPost4.setAssociatedUser(paula);
-        groupPost4.setText("Könnte mir jemand die ER-Diagramme erklären?");
-        groupPost4.setAssociatedLearningGroup(group4);
-        groupPostRepository.save(groupPost4);
 
         MCQuestion mcQuestion6 = new MCQuestion();
         mcQuestion6.setQuestion("Frage 6");
@@ -429,6 +405,33 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion10.setCreator(pedro);
         mcQuestion10.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion10);
+
+
+        // Group posts
+        com.desj.model.GroupPost groupPost1 = new com.desj.model.GroupPost();
+        groupPost1.setAssociatedUser(desi);
+        groupPost1.setText("Herzlich Willkommen in der Mathe-Lerngruppe. Nutzt das Forum für Fragen und Antworten.");
+        groupPost1.setAssociatedLearningGroup(group1);
+        groupPostRepository.save(groupPost1);
+
+        com.desj.model.GroupPost groupPost2 = new com.desj.model.GroupPost();
+        groupPost2.setAssociatedUser(desi);
+        groupPost2.setText("Hallo an alle Nutzer aus der Statistik-Lerngruppe, hier könnt Ihr eure Fragen schreiben und bekommt Antworten.");
+        groupPost2.setAssociatedLearningGroup(group2);
+        groupPostRepository.save(groupPost2);
+
+        com.desj.model.GroupPost groupPost3 = new com.desj.model.GroupPost();
+        groupPost3.setAssociatedUser(erhan);
+        groupPost3.setText("Habt Ihr Fragen zu PE - Dann stellt Sie hier!");
+        groupPost3.setAssociatedLearningGroup(group3);
+        groupPostRepository.save(groupPost3);
+
+        com.desj.model.GroupPost groupPost4 = new com.desj.model.GroupPost();
+        groupPost4.setAssociatedUser(paula);
+        groupPost4.setText("Könnte mir jemand die ER-Diagramme erklären?");
+        groupPost4.setAssociatedLearningGroup(group4);
+        groupPostRepository.save(groupPost4);
+
         com.desj.model.GroupPost groupPost5 = new com.desj.model.GroupPost();
         groupPost5.setAssociatedUser(sarah);
         groupPost5.setText("Wer Hilfe benötigt bei BWL, kann hier gerne Fragen.");
@@ -467,7 +470,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
 
         // Create and add Comments
-
         com.desj.model.Comment comment1 = new com.desj.model.Comment();
         comment1.setAssociatedGroupPost(groupPost7);
         comment1.setCreator(pedro);
@@ -510,12 +512,14 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         comment8.setText("Ich kann es dir gerne bei einem Kaffee erklären ;)");
         commentRepository.save(comment8);
 
+
         // Set authorities.
         Collection<GrantedAuthority> AdminAuthorities = new ArrayList<>();
         AdminAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
         Collection<GrantedAuthority> UserAuthorities = new ArrayList<>();
         UserAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        
 
         // Creates new spring security user. These infos are merged with the Desj user data
         // within the UserService.java
