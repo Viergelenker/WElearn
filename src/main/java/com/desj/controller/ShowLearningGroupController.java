@@ -198,6 +198,12 @@ public class ShowLearningGroupController {
                 FileCopyUtils.copy(file.getInputStream(), stream);
                 stream.close();
                 learningGroupService.addFileToLearningGroup(fileName, learningGroupId);
+                GroupPost fileGroupPost = new GroupPost();
+                fileGroupPost.setTitle("New file upload!");
+                fileGroupPost.setText("<p><a href=\"/public/" + fileName + "\">" + fileName + "</a></p>");
+                fileGroupPost.setAssociatedUser(userService.getCurrentDesjUser());
+                fileGroupPost.setAssociatedLearningGroup(learningGroupRepository.findOne(learningGroupId));
+                groupPostRepository.save(fileGroupPost);
                 redirectAttributes.addFlashAttribute("message",
                         "You successfully uploaded " + name + "!");
             } catch (Exception e) {
