@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: loggedIn"></div>
+<br/>
+<div class="row">
+    <div class="small-8 columns end">
+        <div class="card">
+            <div class="content">
+                <span class="title"><span th:text="${user.username}"></span> is a member in:</span>
+                <input style="border-radius: 19px" type="text" id="search" placeholder=" Type to search"/>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Group name</th>
+                        <th>Group Subject</th>
+                        <th>Go to group</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableBody" th:each="learningGroup : ${learningGroupsOfUser}">
+                    <tr>
+                        <td th:text="${learningGroup.name}">Group name</td>
+                        <td th:text="${learningGroup.subject}">Subject</td>
+                        <td><a th:href="@{/showLearningGroup(id=${learningGroup.id})}" class="button"
+                               style="color: white">See Group</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="action">
+                <a class="cardLink" href='/findGroup'>Find new groups</a>
+                <a class="cardLink" href='/createGroup'>Create new groups</a>
+            </div>
+        </div>
+    </div>
+    <div class="small-4 columns">
+        <div class="card">
+            <div class="image">
+                <img src="images/default-profile.jpg" width="370px"/>
+                <span class="title" style="color: #343838" th:text="${user.username}"></span>
+            </div>
+            <div class="content">
+                <p><span th:text="${user.username}"></span>s email address is: <span class="label" th:text="${user.email}"></span></p>
+                <p><span th:text="${user.username}"></span> is currently studying: <span class="label" th:text="${user.major}"></span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br/>
+
+<script src="js/app.js"></script>
+
+<script>
+
+    var $rows = $('#tableBody tr');
+    $('#search').keyup(function () {
+
+        var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                reg = RegExp(val, 'i'),
+                text;
+
+        $rows.show().filter(function () {
+            text = $(this).text().replace(/\s+/g, ' ');
+            return !reg.test(text);
+        }).hide();
+    });
+</script>
+
+
+</body>
+</html>

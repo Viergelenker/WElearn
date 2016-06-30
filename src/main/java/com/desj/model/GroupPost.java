@@ -36,7 +36,7 @@ public class GroupPost {
             name="GROUPCOMMENTS",
             joinColumns=@JoinColumn(name="GROUPPOST_ID"),
             inverseJoinColumns=@JoinColumn(name="COMMENT_ID"))
-    private List<Comment> comments = new ArrayList<>();
+    private List<com.desj.model.Comment> comments = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -75,11 +75,11 @@ public class GroupPost {
 
     }
 
-    public List<Comment> getComments() {
+    public List<com.desj.model.Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(List<com.desj.model.Comment> comments) {
         this.comments = comments;
     }
 }

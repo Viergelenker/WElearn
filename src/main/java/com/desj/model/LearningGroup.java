@@ -18,7 +18,7 @@ public class LearningGroup {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 30)
     private String name;
 
     private String subject;
@@ -34,10 +34,33 @@ public class LearningGroup {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-            name="GROUPMEMBER",
-            joinColumns=@JoinColumn(name="GROUP_ID"),
-            inverseJoinColumns=@JoinColumn(name="USER_ID"))
+            name = "GROUPMEMBER",
+            joinColumns = @JoinColumn(name = "GROUP_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private List<User> members = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "QUIZES",
+            joinColumns = @JoinColumn(name = "GROUP_ID"),
+            inverseJoinColumns = @JoinColumn(name = "MCTEST_ID"))
+    private List<Quiz> quizes = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "MCQUESTIONPOOL",
+            joinColumns = @JoinColumn(name = "GROUP_ID"),
+            inverseJoinColumns = @JoinColumn(name = "MCQUESTION_ID")
+    )
+    private List<MCQuestion> mcQuestions = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "QUESTIONPOOL",
+            joinColumns = @JoinColumn(name = "GROUP_ID"),
+            inverseJoinColumns = @JoinColumn(name = "QUESTION_ID")
+    )
+    private List<Question> questions = new ArrayList<>();
 
 
     public Integer getId() {
@@ -100,4 +123,28 @@ public class LearningGroup {
         this.members = members;
     }
 
+
+    public List<Quiz> getQuizes() {
+        return quizes;
+    }
+
+    public void setQuizes(List<Quiz> quizes) {
+        this.quizes = quizes;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public List<MCQuestion> getMcQuestions() {
+        return mcQuestions;
+    }
+
+    public void setMcQuestions(List<MCQuestion> mcQuestions) {
+        this.mcQuestions = mcQuestions;
+    }
 }

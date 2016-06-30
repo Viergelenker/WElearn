@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+    <title>About us</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: loggedIn"></div>
+
+<div th:if="${questions.size() &lt; 4}">
+    <h3>Sorry you've answered all available questions in this group!</h3>
+    <a class="button" th:href="@{/showLearningGroup(id=${learningGroupId})}">Go back</a>
+</div>
+
+<div th:if="${questions.size() &gt; 3}" class="row">
+    <div class="small-8 columns">
+        <form th:object="${newQuiz}" th:action="@{/submitQuiz(learningGroupId=${learningGroupId})}"
+              method="post">
+
+            <div th:each="question,iterStat : ${questions}">
+
+                <input type="hidden" name="questionIds" th:value="${question.id}"/>
+
+                <div th:text="${question.question}"></div>
+
+                <div th:with="answers=${'givenAnswers_' + iterStat.index}">
+
+                    <input type="checkbox" th:field="*{__${answers}__}" th:value="A"/>
+                    <div th:text="${question.answerA}"></div>
+
+                    <input type="checkbox" th:field="*{__${answers}__}" th:value="B"/>
+                    <div th:text="${question.answerB}"></div>
+
+                    <input type="checkbox" th:field="*{__${answers}__}" th:value="C"/>
+                    <div th:text="${question.answerC}"></div>
+
+                    <input type="checkbox" th:field="*{__${answers}__}" th:value="D"/>
+                    <div th:text="${question.answerD}"></div>
+
+                </div>
+            </div>
+
+            <button class="button" type="submit">Submit</button>
+
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

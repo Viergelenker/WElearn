@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -30,23 +31,23 @@ public class FindGroupController {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    @RequestMapping("/findGroup{wrongPassword}")
+    @RequestMapping("/findGroup")
     public String findGroup(@RequestParam(value = "wrongPassword", required = false) Boolean wrongPassword, Model model) {
         model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
         model.addAttribute("user", userService.getCurrentDesjUser());
         model.addAttribute("newLearningGroups", learningGroupService.getNewLearningGroups(userService.getCurrentDesjUser()));
         model.addAttribute("wrongPassword", wrongPassword);
-        return "/findGroup";
+        return "FindGroup";
     }
 
-    @RequestMapping(value = "/becomeMember{learningGroupId}")
+    @RequestMapping(value = "/becomeMember")
     public String becomeMember(@RequestParam("learningGroupId")Integer learningGroupId) {
         User user = userService.getCurrentDesjUser();
         learningGroupService.addMemberToLearningGroup(learningGroupId, user);
         return "redirect:/findGroup";
     }
 
-    @RequestMapping(value = "/becomeMemberOfPrivateGroup{learningGroupId}")
+    @RequestMapping(value = "/becomeMemberOfPrivateGroup", method = RequestMethod.POST)
     public String becomeMemberOfPrivateGroup(@RequestParam("learningGroupId")Integer learningGroupId,
                                              LearningGroup learningGroup) {
 

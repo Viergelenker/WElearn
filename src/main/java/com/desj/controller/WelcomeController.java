@@ -36,7 +36,7 @@ public class WelcomeController {
         model.addAttribute("learningGroupsOfUser",
                 learningGroupService.getAllLearningGroupsOfUser(userService.getCurrentDesjUser()));
         model.addAttribute("numberOfGroups", learningGroupService.getAllLearningGroupsOfUser(userService.getCurrentDesjUser()).size());
-        return "Welcome";
+        return "welcome";
     }
 
 

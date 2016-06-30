@@ -3,12 +3,12 @@
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body>
+<body style="background-image: url('images/schloss_hohenheim.jpg'); background-repeat: no-repeat; background-size: 100%;">
 <div th:replace="fragments/navbar :: loggedIn"></div>
 
 <div class="row">
     <div class="small-12 columns">
-        <h3><p>Just click on the member button to become part of the group:</p></h3>
+        <h3><p>These are all groups you aren't a member of:</p></h3>
 
         <div th:if="${wrongPassword}">
             <div class="callout alert">
@@ -18,49 +18,38 @@
 
     </div>
 
-    <input type="text" id="search" placeholder="Type to search"/>
-    <table>
-        <thead>
-        <tr>
-            <th>Group name</th>
-            <th>Group Subject</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody id="tableBody" th:each="learningGroup : ${newLearningGroups}">
-        <tr>
-            <td th:text="${learningGroup.name}">Group name</td>
-            <td th:text="${learningGroup.subject}">Subject</td>
-            <td>
-                <a th:if="${learningGroup.isPrivate()} == false" th:href="@{/becomeMember(learningGroupId=${learningGroup.id})}" class="button">Become a member</a>
-                <a th:if="${learningGroup.isPrivate()} == true" data-open="passwordModal" class="button">Become a member</a>
-
-                <!-- Modal  -->
-                <div class="reveal" id="passwordModal" data-reveal="true">
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <form th:action="@{/becomeMemberOfPrivateGroup(learningGroupId=${learningGroup.id})}" th:object="${learningGroup}" th:method="post">
-                                <div class="row">
-                                    <!--<input type="hidden" name="id" th:value="${learningGroup.id}"/>-->
-                                    <div class="small-4 columns">
-                                        <input type="password" placeholder="Password" name="password"/>
-                                    </div>
-                                    <div class="small-3 columns">
-                                        <button type="submit" class="button">Become a member</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <button class="close-button" data-close="passwordModal" aria-label="Close modal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    <div class="small-4 columns" th:each="learningGroup : ${newLearningGroups}">
+        <div class="card" style="background-color: white">
+            <div class="content">
+                <div class="title" style="color: #343838;">
+                    <span th:text="${learningGroup.name}"></span>
                 </div>
+                <p>Created by <span th:unless="${learningGroup.creatorOfGroup.username.equals(username)}"
+                                    th:text="${learningGroup.creatorOfGroup.username}"></span>
+                    <span th:if="${learningGroup.creatorOfGroup.username.equals(username)}">you</span></p>
+                <br/>
+                <p th:text="${learningGroup.description}"></p>
+            </div>
 
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            <div class="action" th:if="${learningGroup.isPrivate()} == false">
+                <a th:href="@{/becomeMember(learningGroupId=${learningGroup.id})}" class="cardLink">
+                    <span class="fa fa-check"></span> Become a member</a>
+            </div>
+
+            <div class="action" th:if="${learningGroup.isPrivate()} == true">
+                <form th:action="@{/becomeMemberOfPrivateGroup(learningGroupId=${learningGroup.id})}"
+                      th:object="${learningGroup}" th:method="post">
+
+                    <label style="padding-bottom: 6px" class="blackFontColor">This is a private group, please insert the password:</label>
+                    <input type="password" placeholder="Password" name="password"/>
+
+                    <button type="submit" class="cardLink"><span class="fa fa-check"></span> Become a member</button>
+
+                </form>
+            </div>
+        </div>
+        <br/>
+    </div>
 </div>
 
 <script src="js/app.js"></script>
@@ -68,13 +57,13 @@
 <script>
 
     var $rows = $('#tableBody tr');
-    $('#search').keyup(function() {
+    $('#search').keyup(function () {
 
         var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
                 reg = RegExp(val, 'i'),
                 text;
 
-        $rows.show().filter(function() {
+        $rows.show().filter(function () {
             text = $(this).text().replace(/\s+/g, ' ');
             return !reg.test(text);
         }).hide();
