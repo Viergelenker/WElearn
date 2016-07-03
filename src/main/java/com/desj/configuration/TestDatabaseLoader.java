@@ -8,15 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Created by Julien on 23.04.16.
@@ -28,16 +20,7 @@ import java.util.Collection;
 public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
-    private UserDetailsManager userDetailsManager;
-
-    @Autowired
-    private BCryptPasswordEncoder encoder;
-
-    @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private LearningGroupRepository learningGroupRepository;
@@ -53,6 +36,9 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -107,8 +93,9 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         com.desj.model.User julien = new com.desj.model.User();
         julien.setUsername("Julien Vollweiter");
         julien.setEmail("julien@mail.com");
+        julien.setPassword("1234");
         julien.setMajor("Winfo");
-        userRepository.save(julien);
+        userService.save(julien);
         learningGroupService.addMemberToLearningGroup(group6.getId(), julien);
         group6.setCreatorOfGroup(julien);
         learningGroupService.addMemberToLearningGroup(group7.getId(), julien);
@@ -119,7 +106,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         desi.setUsername("Desi Ivanova");
         desi.setMajor("Wirtschaftsinformatik");
         desi.setEmail("desi@mail.com");
-        userRepository.save(desi);
+        desi.setPassword("1234");
+        userService.save(desi);
         // Add the user to the learning group class
         learningGroupService.addMemberToLearningGroup(group1.getId(), desi);
         group1.setCreatorOfGroup(desi);
@@ -133,7 +121,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         sabrina.setUsername("Sabrina Semmelmann");
         sabrina.setMajor("Winfo");
         sabrina.setEmail("sabrina@mail.com");
-        userRepository.save(sabrina);
+        sabrina.setPassword("1234");
+        userService.save(sabrina);
         learningGroupService.addMemberToLearningGroup(group4.getId(), sabrina);
         learningGroupService.addMemberToLearningGroup(group1.getId(), sabrina);
         learningGroupService.addMemberToLearningGroup(group2.getId(), sabrina);
@@ -144,7 +133,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         erhan.setUsername("Erhan Geyik");
         erhan.setMajor("Winfo");
         erhan.setEmail("erhan@mail.com");
-        userRepository.save(erhan);
+        erhan.setPassword("1234");
+        userService.save(erhan);
         // Add the user to the learning group class
         learningGroupService.addMemberToLearningGroup(group3.getId(), erhan);
         group3.setCreatorOfGroup(erhan);
@@ -511,31 +501,5 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         comment8.setCreator(hans);
         comment8.setText("Ich kann es dir gerne bei einem Kaffee erklären ;)");
         commentRepository.save(comment8);
-
-
-        // Set authorities.
-        Collection<GrantedAuthority> AdminAuthorities = new ArrayList<>();
-        AdminAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-
-        Collection<GrantedAuthority> UserAuthorities = new ArrayList<>();
-        UserAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-
-        // Creates new spring security user. These infos are merged with the Desj user data
-        // within the UserService.java
-        User adminJulien = new User("julien@mail.com", encoder.encode("1234"), AdminAuthorities);
-        userDetailsManager.createUser(adminJulien);
-
-        User adminDesi = new User("desi@mail.com", encoder.encode("1234"), AdminAuthorities);
-        userDetailsManager.createUser(adminDesi);
-
-        User adminSabrina = new User("sabrina@mail.com", encoder.encode("1234"), AdminAuthorities);
-        userDetailsManager.createUser(adminSabrina);
-
-        User adminErhan = new User("erhan@mail.com", encoder.encode("1234"), AdminAuthorities);
-        userDetailsManager.createUser(adminErhan);
-
-        User userRobert = new User("robert@rundhals.com", encoder.encode("1234"), UserAuthorities);
-        userDetailsManager.createUser(userRobert);
     }
 }

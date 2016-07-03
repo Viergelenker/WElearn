@@ -16,28 +16,16 @@ public class StatisticsController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private LearningGroupRepository learningGroupRepository;
+
     @Autowired
     private LearningGroupService learningGroupService;
-    @Autowired
-    private GroupPostRepository groupPostRepository;
-    @Autowired
-    private GroupPostService groupPostService;
-    @Autowired
-    private CommentRepository commentRepository;
-    @Autowired
-    private CommentService commentService;
-    @Autowired
-    private MCQuestionService mcQuestionService;
-    @Autowired
-    private QuestionReposiory questionReposiory;
-    @Autowired
-    private QuestionService questionService;
-    @Autowired
-    private QuestionCommentService questionCommentService;
+
     @Autowired
     private QuizService quizService;
+
     @Autowired
     private StatisticsService statisticsService;
 
@@ -51,7 +39,6 @@ public class StatisticsController {
         model.addAttribute("pointsOfCurrentUser", userService.getTotalOfQuizPointsForUserForLearningGroup(currentUser, currentLearningGroup));
         model.addAttribute("quizzesOfCurrentUser", userService.getAllQuizzesOfUserInLearningGroup(currentUser,
                 currentLearningGroup));
-        // model.addAttribute("averagePoints", userService.calculateAveragePoints(currentUser, currentLearningGroup));
         model.addAttribute("quizzesOfAllMember", quizService.getAllQuizesOfLearningGroup(currentLearningGroup));
         model.addAttribute("totalPointsForChart", statisticsService.getTotalPointsOfAllMembersChartReady(currentLearningGroup));
         model.addAttribute("usernamesForChart", statisticsService.getAllUsernamesOfMembersChartReady(currentLearningGroup));
