@@ -9,11 +9,8 @@ package com.desj.configuration;
  *
  */
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -24,13 +21,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
+import javax.sql.DataSource;
+
 @Configuration
 @ComponentScan(basePackages = "com.desj")
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private DataSource dataSource;
 
     /*
     *  TODO: Delete authorization on /console
@@ -39,7 +36,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .csrf().disable()
                 .authorizeRequests().antMatchers("/console/**", "/newUser", "/aboutNotLog", "/signUpSuccess").permitAll().anyRequest().fullyAuthenticated()
                 // This line of code sets the /login as a default page, if the user isn't authenticated
                 .and().formLogin().loginPage("/login").permitAll()
@@ -47,13 +43,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().logout().permitAll();
 
         httpSecurity.headers().frameOptions().disable();
-    }
-
-    @Bean
-    public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
-        JdbcUserDetailsManager detailsManager = new JdbcUserDetailsManager();
-        detailsManager.setDataSource(dataSource);
-        return detailsManager;
     }
 
     @Autowired
@@ -64,10 +53,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         JdbcUserDetailsManagerConfigurer<AuthenticationManagerBuilder> configurer = new JdbcUserDetailsManagerConfigurer<>(detailsManager);
         authenticationManagerBuilder.apply(configurer);
         configurer.dataSource(dataSource).withDefaultSchema().passwordEncoder(encoder);
-    }
-
-    @Bean
-    public BCryptPasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
     }
 }
