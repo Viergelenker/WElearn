@@ -28,18 +28,18 @@ public class LearningGroup {
     @Size(max = 200)
     private String description;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     private User creatorOfGroup;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "GROUPMEMBER",
             joinColumns = @JoinColumn(name = "GROUP_ID"),
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private List<User> members = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "MCQUESTIONPOOL",
             joinColumns = @JoinColumn(name = "GROUP_ID"),
@@ -47,7 +47,7 @@ public class LearningGroup {
     )
     private List<MCQuestion> mcQuestions = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "QUESTIONPOOL",
             joinColumns = @JoinColumn(name = "GROUP_ID"),
