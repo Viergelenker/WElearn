@@ -389,3 +389,24 @@ input.styled:checked ~ label.styled:before {
         margin-left: 0;
     }
 }
+
+/* Quiz checkbox hack */
+.quiz {
+    display: none;
+}
+
+input[value="0"]:checked ~ div[id="0"] {
+    display: block;
+}
+
+input[value="1"]:checked ~ div[id="1"] {
+    display: block;
+}
+
+input[value="2"]:checked ~ div[id="2"] {
+    display: block;
+}
+
+input[value="3"]:checked ~ div[id="3"] {
+    display: block;
+}
