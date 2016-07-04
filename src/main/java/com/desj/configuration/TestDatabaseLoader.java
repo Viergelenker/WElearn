@@ -57,17 +57,16 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupRepository.save(group2);
 
         LearningGroup group3 = new LearningGroup();
-        group3.setName("Programmentwicklung");
-        group3.setSubject("PE");
-        group3.setDescription("Lerngruppe für Programmierung und Programmentwicklung");
+        group3.setName("Programmierung und Softwareentwicklung");
+        group3.setSubject("PSE");
+        group3.setDescription("Lerngruppe für Programmierung und Softwareentwicklung");
         learningGroupRepository.save(group3);
 
         LearningGroup group4 = new LearningGroup();
-        group4.setName("Winfo");
-        group4.setSubject("WI");
+        group4.setName("Wirtschaftsinformatik");
+        group4.setSubject("WINFO");
         group4.setDescription("Hier könnt ihr alle prüfungsrelevanten Themen wiederholen und falls ihr Fragen habt werden sie sicher beantwortet.");
         learningGroupRepository.save(group4);
-
 
         LearningGroup group5 = new LearningGroup();
         group5.setName("BWL und REWE");
@@ -82,9 +81,9 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupRepository.save(group6);
 
         LearningGroup group7 = new LearningGroup();
-        group7.setName("Logik und Diskrete Strukturen");
-        group7.setSubject("Logik");
-        group7.setDescription("Wir sitzen alle im gleichen Boot und versuchen Logik gemeinsam zu meistern :)");
+        group7.setName("Datenstrukturen und Algorithmen");
+        group7.setSubject("DSA");
+        group7.setDescription("Wir sitzen alle im gleichen Boot und versuchen DSA gemeinsam zu meistern :)");
         learningGroupRepository.save(group7);
 
 
@@ -286,115 +285,320 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
 
         // MC Questions
+        // Group 1 - Mathe
         MCQuestion mcQuestion1 = new MCQuestion();
-        mcQuestion1.setQuestion("Wie findest du diese Anwendung?");
-        mcQuestion1.setAnswerA("Doof");
-        mcQuestion1.setAnswerB("Ganz okay");
-        mcQuestion1.setAnswerC("Toll");
-        mcQuestion1.setAnswerD("Einfach der Hammer!");
+        mcQuestion1.setQuestion("Aus a < b und b < c folgt ..?");
+        mcQuestion1.setAnswerA(" a < c");
+        mcQuestion1.setAnswerB(" a <= c");
+        mcQuestion1.setAnswerC(" a = c");
+        mcQuestion1.setAnswerD(" a > c");
         mcQuestion1.setCorrespondingLearningGroup(group1);
         mcQuestion1.setCreator(pedro);
-        mcQuestion1.setCorrectAnswers("D");
+        mcQuestion1.setCorrectAnswers("A");
         mcQuestionRepository.save(mcQuestion1);
 
         MCQuestion mcQuestion2 = new MCQuestion();
-        mcQuestion2.setQuestion("Wie viele Antworten hat diese Frage?");
-        mcQuestion2.setAnswerA("3");
-        mcQuestion2.setAnswerB("10");
-        mcQuestion2.setAnswerC("4");
-        mcQuestion2.setAnswerD("1");
+        mcQuestion2.setQuestion("(a + b)² = ..");
+        mcQuestion2.setAnswerA("a² + b² + ab");
+        mcQuestion2.setAnswerB("a² + 2ab + b²");
+        mcQuestion2.setAnswerC("ab²");
+        mcQuestion2.setAnswerD("(a+b) * (a+b)");
         mcQuestion2.setCorrespondingLearningGroup(group1);
         mcQuestion2.setCreator(pedro);
-        mcQuestion2.setCorrectAnswers("C");
+        mcQuestion2.setCorrectAnswers("B,D");
         mcQuestionRepository.save(mcQuestion2);
 
         MCQuestion mcQuestion3 = new MCQuestion();
-        mcQuestion3.setQuestion("Wer hat diese Anwendung Entwickelt?");
-        mcQuestion3.setAnswerA("Sabrina");
-        mcQuestion3.setAnswerB("Desi");
-        mcQuestion3.setAnswerC("Erhan");
-        mcQuestion3.setAnswerD("Julien");
+        mcQuestion3.setQuestion("tan(α) setzt sich zusammen aus .. ? ");
+        mcQuestion3.setAnswerA("sin(α) / cos(α)");
+        mcQuestion3.setAnswerB("Hypotenuse / Ankathete");
+        mcQuestion3.setAnswerC("Gegenkathete / Ankathete ");
+        mcQuestion3.setAnswerD(" sin²(α) + cos²(α)");
         mcQuestion3.setCorrespondingLearningGroup(group1);
         mcQuestion3.setCreator(pedro);
-        mcQuestion3.setCorrectAnswers("A,B,C,D");
+        mcQuestion3.setCorrectAnswers("A,C");
         mcQuestionRepository.save(mcQuestion3);
 
         MCQuestion mcQuestion4 = new MCQuestion();
-        mcQuestion4.setQuestion("Frage 4");
-        mcQuestion4.setAnswerA("Antwort A");
-        mcQuestion4.setAnswerB("Antwort B");
-        mcQuestion4.setAnswerC("Antwort C");
-        mcQuestion4.setAnswerD("Antwort D");
+        mcQuestion4.setQuestion("Zu den natürlichen Zahlen ℕ gehören ..");
+        mcQuestion4.setAnswerA("Die Rationalen Zahlen");
+        mcQuestion4.setAnswerB("1, 2, 3, 4");
+        mcQuestion4.setAnswerC("Die ganzen Zahlen");
+        mcQuestion4.setAnswerD("-1, -2, -3, -4");
         mcQuestion4.setCorrespondingLearningGroup(group1);
         mcQuestion4.setCreator(pedro);
-        mcQuestion4.setCorrectAnswers("A,D");
+        mcQuestion4.setCorrectAnswers("B");
         mcQuestionRepository.save(mcQuestion4);
 
+        // Group 2 - Statistik 1
         MCQuestion mcQuestion5 = new MCQuestion();
-        mcQuestion5.setQuestion("Frage 5");
-        mcQuestion5.setAnswerA("Antwort A");
-        mcQuestion5.setAnswerB("Antwort B");
-        mcQuestion5.setAnswerC("Antwort C");
-        mcQuestion5.setAnswerD("Antwort D");
-        mcQuestion5.setCorrespondingLearningGroup(group1);
-        mcQuestion5.setCreator(pedro);
-        mcQuestion5.setCorrectAnswers("A,D");
+        mcQuestion5.setQuestion("Welches Merkmal ist von der Merkmalsart qualitativ?");
+        mcQuestion5.setAnswerA("Lebensalter");
+        mcQuestion5.setAnswerB("Familienstand");
+        mcQuestion5.setAnswerC("Geschlecht");
+        mcQuestion5.setAnswerD("Einkommen");
+        mcQuestion5.setCorrespondingLearningGroup(group2);
+        mcQuestion5.setCreator(maria);
+        mcQuestion5.setCorrectAnswers("B,C");
         mcQuestionRepository.save(mcQuestion5);
 
         MCQuestion mcQuestion6 = new MCQuestion();
-        mcQuestion6.setQuestion("Frage 6");
-        mcQuestion6.setAnswerA("Antwort A");
-        mcQuestion6.setAnswerB("Antwort B");
-        mcQuestion6.setAnswerC("Antwort C");
-        mcQuestion6.setAnswerD("Antwort D");
-        mcQuestion6.setCorrespondingLearningGroup(group1);
-        mcQuestion6.setCreator(pedro);
+        mcQuestion6.setQuestion("Für welches Merkmal eignet sich eine Intervallskala?");
+        mcQuestion6.setAnswerA("Geburtsjahr");
+        mcQuestion6.setAnswerB("Beruf");
+        mcQuestion6.setAnswerC("Einkommen");
+        mcQuestion6.setAnswerD("Temperatur in C°");
+        mcQuestion6.setCorrespondingLearningGroup(group2);
+        mcQuestion6.setCreator(maria);
         mcQuestion6.setCorrectAnswers("A,D");
         mcQuestionRepository.save(mcQuestion6);
 
         MCQuestion mcQuestion7 = new MCQuestion();
-        mcQuestion7.setQuestion("Frage 7");
-        mcQuestion7.setAnswerA("Antwort A");
-        mcQuestion7.setAnswerB("Antwort B");
-        mcQuestion7.setAnswerC("Antwort C");
-        mcQuestion7.setAnswerD("Antwort D");
-        mcQuestion7.setCorrespondingLearningGroup(group1);
-        mcQuestion7.setCreator(pedro);
-        mcQuestion7.setCorrectAnswers("A,D");
+        mcQuestion7.setQuestion("Welches Merkmal ist komparativ ?");
+        mcQuestion7.setAnswerA("Lebensalter");
+        mcQuestion7.setAnswerB("Beruf");
+        mcQuestion7.setAnswerC("Schulnote");
+        mcQuestion7.setAnswerD("Einkommen");
+        mcQuestion7.setCorrespondingLearningGroup(group2);
+        mcQuestion7.setCreator(maria);
+        mcQuestion7.setCorrectAnswers("A,C,D");
         mcQuestionRepository.save(mcQuestion7);
 
         MCQuestion mcQuestion8 = new MCQuestion();
-        mcQuestion8.setQuestion("Frage 8");
-        mcQuestion8.setAnswerA("Antwort A");
-        mcQuestion8.setAnswerB("Antwort B");
-        mcQuestion8.setAnswerC("Antwort C");
-        mcQuestion8.setAnswerD("Antwort D");
+        mcQuestion8.setQuestion("Bei welchem Merkmal eignet sich eine Ordinalskala ? ");
+        mcQuestion8.setAnswerA("Handelsgüteklasse");
+        mcQuestion8.setAnswerB("Schulnote");
+        mcQuestion8.setAnswerC("Postleitzahl");
+        mcQuestion8.setAnswerD("Preis eines Gutes");
         mcQuestion8.setCorrespondingLearningGroup(group1);
-        mcQuestion8.setCreator(pedro);
-        mcQuestion8.setCorrectAnswers("A,D");
+        mcQuestion8.setCreator(maria);
+        mcQuestion8.setCorrectAnswers("A,B");
         mcQuestionRepository.save(mcQuestion8);
 
+        // Group 3 - Programmierung und Softwareentwicklung
         MCQuestion mcQuestion9 = new MCQuestion();
-        mcQuestion9.setQuestion("Frage 9");
-        mcQuestion9.setAnswerA("Antwort A");
-        mcQuestion9.setAnswerB("Antwort B");
-        mcQuestion9.setAnswerC("Antwort C");
-        mcQuestion9.setAnswerD("Antwort D");
-        mcQuestion9.setCorrespondingLearningGroup(group1);
-        mcQuestion9.setCreator(pedro);
-        mcQuestion9.setCorrectAnswers("A,D");
+        mcQuestion9.setQuestion("Welcher Sichtbarkeitsmodifikator hat keine Einschränkung ?");
+        mcQuestion9.setAnswerA("public");
+        mcQuestion9.setAnswerB("private");
+        mcQuestion9.setAnswerC("default");
+        mcQuestion9.setAnswerD("protected");
+        mcQuestion9.setCorrespondingLearningGroup(group3);
+        mcQuestion9.setCreator(omar);
+        mcQuestion9.setCorrectAnswers("A");
         mcQuestionRepository.save(mcQuestion9);
 
         MCQuestion mcQuestion10 = new MCQuestion();
-        mcQuestion10.setQuestion("Frage 10");
-        mcQuestion10.setAnswerA("Antwort A");
-        mcQuestion10.setAnswerB("Antwort B");
-        mcQuestion10.setAnswerC("Antwort C");
-        mcQuestion10.setAnswerD("Antwort D");
-        mcQuestion10.setCorrespondingLearningGroup(group1);
-        mcQuestion10.setCreator(pedro);
-        mcQuestion10.setCorrectAnswers("A,D");
+        mcQuestion10.setQuestion("Welcher Datentyp repräsentiert Ganzzahlen ?");
+        mcQuestion10.setAnswerA("float");
+        mcQuestion10.setAnswerB("double");
+        mcQuestion10.setAnswerC("char");
+        mcQuestion10.setAnswerD("byte");
+        mcQuestion10.setCorrespondingLearningGroup(group3);
+        mcQuestion10.setCreator(omar);
+        mcQuestion10.setCorrectAnswers("D");
         mcQuestionRepository.save(mcQuestion10);
+
+        MCQuestion mcQuestion11 = new MCQuestion();
+        mcQuestion11.setQuestion("Welches UML - Diagramm modelliert einen Ablauf ?");
+        mcQuestion11.setAnswerA("Use - Case Diagramm");
+        mcQuestion11.setAnswerB("Sequenzdiagramm");
+        mcQuestion11.setAnswerC("Kommunikationsdiagramm");
+        mcQuestion11.setAnswerD("Interaktionsdiagramm");
+        mcQuestion11.setCorrespondingLearningGroup(group3);
+        mcQuestion11.setCreator(omar);
+        mcQuestion11.setCorrectAnswers("B,C");
+        mcQuestionRepository.save(mcQuestion11);
+
+        MCQuestion mcQuestion12 = new MCQuestion();
+        mcQuestion12.setQuestion("Welche Funktionseinheit der von-Neumann Rechnerarchitektur repräsentiert die CPU ?");
+        mcQuestion12.setAnswerA("Rechenwerk");
+        mcQuestion12.setAnswerB("Steuerwerk");
+        mcQuestion12.setAnswerC("Speicherwerk");
+        mcQuestion12.setAnswerD("Eingabewerk");
+        mcQuestion12.setCorrespondingLearningGroup(group3);
+        mcQuestion12.setCreator(omar);
+        mcQuestion12.setCorrectAnswers("A,B");
+        mcQuestionRepository.save(mcQuestion12);
+
+        // Group 4 - Wirtschaftsinformatik
+        MCQuestion mcQuestion13 = new MCQuestion();
+        mcQuestion13.setQuestion("Die Lehre von Zeichen wird Semiotik genannnt, diese umfasst als Teillehren ..");
+        mcQuestion13.setAnswerA("Die Syntaktik");
+        mcQuestion13.setAnswerB("Die Semantik");
+        mcQuestion13.setAnswerC("Die Pragmatik");
+        mcQuestion13.setAnswerD("Die Didaktik");
+        mcQuestion13.setCorrespondingLearningGroup(group4);
+        mcQuestion13.setCreator(nina);
+        mcQuestion13.setCorrectAnswers("A,B,C");
+        mcQuestionRepository.save(mcQuestion13);
+
+        MCQuestion mcQuestion14 = new MCQuestion();
+        mcQuestion14.setQuestion("Um Entitäten zu verbinden benötigt man ?");
+        mcQuestion14.setAnswerA("Ein Attribut !");
+        mcQuestion14.setAnswerB("Eine Relation !");
+        mcQuestion14.setAnswerC("Ein Schlüssel !");
+        mcQuestion14.setAnswerD("Eine Kardinalität !");
+        mcQuestion14.setCorrespondingLearningGroup(group4);
+        mcQuestion14.setCreator(nina);
+        mcQuestion14.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion14);
+
+        MCQuestion mcQuestion15 = new MCQuestion();
+        mcQuestion15.setQuestion("Ein Glasfaserkabel ist ..!");
+        mcQuestion15.setAnswerA("ein metallischer Leiter");
+        mcQuestion15.setAnswerB("leitungsungebunden");
+        mcQuestion15.setAnswerC("leitungsgebunden");
+        mcQuestion15.setAnswerD("ein nichtmetallischer Leiter");
+        mcQuestion15.setCorrespondingLearningGroup(group4);
+        mcQuestion15.setCreator(nina);
+        mcQuestion15.setCorrectAnswers("C,D");
+        mcQuestionRepository.save(mcQuestion15);
+
+        MCQuestion mcQuestion16 = new MCQuestion();
+        mcQuestion16.setQuestion("Bei welcher LAN - Topologie haben wir eine hohe Flexibilität ?");
+        mcQuestion16.setAnswerA("Bei einer Ring - Topologie.");
+        mcQuestion16.setAnswerB("Bei einer Stern - Topolgie.");
+        mcQuestion16.setAnswerC("Bei einer Bus - Topolgie.");
+        mcQuestion16.setAnswerD("Bei einer Baum - Topolgie.");
+        mcQuestion16.setCorrespondingLearningGroup(group4);
+        mcQuestion16.setCreator(nina);
+        mcQuestion16.setCorrectAnswers("C,D");
+        mcQuestionRepository.save(mcQuestion16);
+
+        //Group 5 - BWL and REWE
+        MCQuestion mcQuestion17 = new MCQuestion();
+        mcQuestion17.setQuestion("Realgüter zählen zu den ... !");
+        mcQuestion17.setAnswerA("Freien Gütern");
+        mcQuestion17.setAnswerB("Nominalgütern");
+        mcQuestion17.setAnswerC("Wirtschaftsgütern");
+        mcQuestion17.setAnswerD("Leistungsbündel");
+        mcQuestion17.setCorrespondingLearningGroup(group5);
+        mcQuestion17.setCreator(hans);
+        mcQuestion17.setCorrectAnswers("C");
+        mcQuestionRepository.save(mcQuestion17);
+
+        MCQuestion mcQuestion18 = new MCQuestion();
+        mcQuestion18.setQuestion("Welche Renten werden durch Knappheit erzielt ?");
+        mcQuestion18.setAnswerA("Ricardo - Renten");
+        mcQuestion18.setAnswerB("Schumpetere - Renten");
+        mcQuestion18.setAnswerC("Quasi - Renten");
+        mcQuestion18.setAnswerD("Monopol - Renten");
+        mcQuestion18.setCorrespondingLearningGroup(group5);
+        mcQuestion18.setCreator(hans);
+        mcQuestion18.setCorrectAnswers("A,D");
+        mcQuestionRepository.save(mcQuestion18);
+
+        MCQuestion mcQuestion19 = new MCQuestion();
+        mcQuestion19.setQuestion("Zu den Elementarfaktoren der Produktion gehören ?");
+        mcQuestion19.setAnswerA("Werkstoffe");
+        mcQuestion19.setAnswerB("Betriebsmittel");
+        mcQuestion19.setAnswerC("Planung");
+        mcQuestion19.setAnswerD("Organisation");
+        mcQuestion19.setCorrespondingLearningGroup(group5);
+        mcQuestion19.setCreator(hans);
+        mcQuestion19.setCorrectAnswers("A,B");
+        mcQuestionRepository.save(mcQuestion19);
+
+        MCQuestion mcQuestion20 = new MCQuestion();
+        mcQuestion20.setQuestion("Die Universität Hohenheim zählt zu welcher Art von Wirtschafssubjekt ?");
+        mcQuestion20.setAnswerA("Öffentlicher Betrieb");
+        mcQuestion20.setAnswerB("Unternehmen");
+        mcQuestion20.setAnswerC("Privater Haushalt");
+        mcQuestion20.setAnswerD("Gemischt wirtschaftlicher Betrieb");
+        mcQuestion20.setCorrespondingLearningGroup(group5);
+        mcQuestion20.setCreator(hans);
+        mcQuestion20.setCorrectAnswers("A");
+        mcQuestionRepository.save(mcQuestion20);
+
+        //Group 6 - Zivilrecht
+        MCQuestion mcQuestion21 = new MCQuestion();
+        mcQuestion21.setQuestion("Zum Gutachtenstil gehören ?");
+        mcQuestion21.setAnswerA("Obersatz");
+        mcQuestion21.setAnswerB("Vorraussetzung");
+        mcQuestion21.setAnswerC("Subsumtion");
+        mcQuestion21.setAnswerD("Ergebnis");
+        mcQuestion21.setCorrespondingLearningGroup(group6);
+        mcQuestion21.setCreator(max);
+        mcQuestion21.setCorrectAnswers("A,B,C,D");
+        mcQuestionRepository.save(mcQuestion21);
+
+        MCQuestion mcQuestion22 = new MCQuestion();
+        mcQuestion22.setQuestion("Welche Kriterien gehören zum wirskamwerden eines Vertrages ?");
+        mcQuestion22.setAnswerA("Zwei übereinstimmende Willenserklärungen");
+        mcQuestion22.setAnswerB("Angebot");
+        mcQuestion22.setAnswerC("Annahme");
+        mcQuestion22.setAnswerD("Konsens");
+        mcQuestion22.setCorrespondingLearningGroup(group6);
+        mcQuestion22.setCreator(max);
+        mcQuestion22.setCorrectAnswers("A,B,C,D");
+        mcQuestionRepository.save(mcQuestion22);
+
+        MCQuestion mcQuestion23 = new MCQuestion();
+        mcQuestion23.setQuestion("Welche Beendigungsgründe von Verträgen gibt es ?");
+        mcQuestion23.setAnswerA("Wiederruf");
+        mcQuestion23.setAnswerB("Konfusion");
+        mcQuestion23.setAnswerC("Aufhebung");
+        mcQuestion23.setAnswerD("Schuldersetzung");
+        mcQuestion23.setCorrespondingLearningGroup(group6);
+        mcQuestion23.setCreator(max);
+        mcQuestion23.setCorrectAnswers("A,B,C,D");
+        mcQuestionRepository.save(mcQuestion23);
+
+        MCQuestion mcQuestion24 = new MCQuestion();
+        mcQuestion24.setQuestion("Ab wann ist laut BGB §1 der Beginn der Rechtsfähigkeit ?");
+        mcQuestion24.setAnswerA("Ab der Vollendung der Geburt");
+        mcQuestion24.setAnswerB("Ab dem 18. Lebensjahr");
+        mcQuestion24.setAnswerC("Ab dem 16. Lebensjahr");
+        mcQuestion24.setAnswerD("Ab Kidnesalter");
+        mcQuestion24.setCorrespondingLearningGroup(group6);
+        mcQuestion24.setCreator(max);
+        mcQuestion24.setCorrectAnswers("A");
+        mcQuestionRepository.save(mcQuestion24);
+
+        // Group 7 - DSA
+        MCQuestion mcQuestion25 = new MCQuestion();
+        mcQuestion25.setQuestion("Welche Komplexitätsklasse wächst am schnellsten ?");
+        mcQuestion25.setAnswerA("O( n³ )");
+        mcQuestion25.setAnswerB("O( n )");
+        mcQuestion25.setAnswerC("O( log n )");
+        mcQuestion25.setAnswerD("O( n! )");
+        mcQuestion25.setCorrespondingLearningGroup(group7);
+        mcQuestion25.setCreator(leon);
+        mcQuestion25.setCorrectAnswers("D");
+        mcQuestionRepository.save(mcQuestion25);
+
+        MCQuestion mcQuestion26 = new MCQuestion();
+        mcQuestion26.setQuestion("Wie wird das Sortieren durch Aufsteigen genannt ?");
+        mcQuestion26.setAnswerA("InsertionSort");
+        mcQuestion26.setAnswerB("BubbleSort");
+        mcQuestion26.setAnswerC("QuickSort");
+        mcQuestion26.setAnswerD("MergeSort");
+        mcQuestion26.setCorrespondingLearningGroup(group7);
+        mcQuestion26.setCreator(leon);
+        mcQuestion26.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion26);
+
+        MCQuestion mcQuestion27 = new MCQuestion();
+        mcQuestion27.setQuestion("Welche Traversierung entspricht der Breitensuche ?");
+        mcQuestion27.setAnswerA("Inorder");
+        mcQuestion27.setAnswerB("Preorder");
+        mcQuestion27.setAnswerC("Postorder");
+        mcQuestion27.setAnswerD("Levelorder");
+        mcQuestion27.setCorrespondingLearningGroup(group7);
+        mcQuestion27.setCreator(leon);
+        mcQuestion27.setCorrectAnswers("D");
+        mcQuestionRepository.save(mcQuestion27);
+
+        MCQuestion mcQuestion28 = new MCQuestion();
+        mcQuestion28.setQuestion("Bei welchem Baum kann der Knoten mehrere Schlüssel enthalten ?");
+        mcQuestion28.setAnswerA("B-Baum");
+        mcQuestion28.setAnswerB("2-3-4 Baum");
+        mcQuestion28.setAnswerC("Binärbaum");
+        mcQuestion28.setAnswerD("Patricia-Baum");
+        mcQuestion28.setCorrespondingLearningGroup(group7);
+        mcQuestion28.setCreator(leon);
+        mcQuestion28.setCorrectAnswers("A,B");
+        mcQuestionRepository.save(mcQuestion28);
 
 
         // Group posts
@@ -412,7 +616,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         com.desj.model.GroupPost groupPost3 = new com.desj.model.GroupPost();
         groupPost3.setAssociatedUser(erhan);
-        groupPost3.setText("Habt Ihr Fragen zu PE - Dann stellt Sie hier!");
+        groupPost3.setText("Habt Ihr Fragen zu PSE - Dann stellt Sie hier!");
         groupPost3.setAssociatedLearningGroup(group3);
         groupPostRepository.save(groupPost3);
 
