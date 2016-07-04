@@ -23,15 +23,15 @@ public class GroupPost {
     @Size(min = 4)
     private String text;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
     private User associatedUser;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "learningGroupId")
     private LearningGroup associatedLearningGroup;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="GROUPCOMMENTS",
             joinColumns=@JoinColumn(name="GROUPPOST_ID"),
