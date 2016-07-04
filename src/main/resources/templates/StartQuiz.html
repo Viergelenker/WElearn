@@ -9,7 +9,7 @@
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <br/>
 <div class="row">
-    <div class="callout warning" th:if="${questions.size() &lt; 4}">
+    <div class="callout" th:if="${questions.size() &lt; 4}">
         <h3>Sorry there are not enough questions for a Quiz!</h3>
         <a class="button" th:href="@{/showLearningGroup(id=${learningGroupId})}"><span
                 class="fa fa-chevron-left"></span> Go back</a>
