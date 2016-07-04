@@ -29,6 +29,8 @@ ul.simple-pagination {
 }
 span.ellipse.clickable {
 	cursor: pointer;
+	background-color: #1583cc;
+	color: #fefefe;
 }
 
 .ellipse input {
@@ -40,45 +42,37 @@ span.ellipse.clickable {
 \*------------------------------------*/
 
 .light-theme a, .light-theme span {
-	float: left;
-	color: #666;
-	font-size:14px;
-	line-height:24px;
-	font-weight: normal;
+	border-radius: 2px;
+	display: inline-block;
 	text-align: center;
-	border: 1px solid #BBB;
-	min-width: 14px;
-	padding: 0 7px;
-	margin: 0 5px 0 0;
-	border-radius: 3px;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-	background: #efefef; /* Old browsers */
-	background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%); /* IE10+ */
-	background: linear-gradient(top, #ffffff 0%,#efefef 100%); /* W3C */
+	line-height: 1;
+	cursor: pointer;
+	-webkit-appearance: none;
+	transition: background-color 0.25s ease-out, color 0.25s ease-out;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	padding: 0.85em 1em;
+	margin: 0 0 1rem 0;
+	font-size: 0.9rem;
+	background-color: #2199e8;
+	color: #fefefe;
 }
 
-.light-theme a:hover {
-	text-decoration: none;
-	background: #FCFCFC;
+[data-whatinput='mouse'] .light-theme a, .light-theme span {
+	outline: 0;
+}
+
+.light-theme a:hover a:focus{
+	background-color: #1583cc;
+	color: #fefefe;
+}
+
+.light-theme span:hover {
+	background-color: #1583cc;
+	color: #fefefe;
 }
 
 .light-theme .current {
-	background: #666;
-	color: #FFF;
-	border-color: #444;
-	box-shadow: 0 1px 0 rgba(255,255,255,1), 0 0 2px rgba(0, 0, 0, 0.3) inset;
-	cursor: default;
-}
-
-.light-theme .ellipse {
-	background: none;
-	border: none;
-	border-radius: 0;
-	box-shadow: none;
-	font-weight: bold;
-	cursor: default;
+	opacity: 0.25;
+	cursor: not-allowed;
 }

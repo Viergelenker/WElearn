@@ -96,6 +96,14 @@ label {
     border-color: rgba(255, 255, 255, 0.1);
 }
 
+.quizBackground {
+    margin: 0 auto;
+    background-color: rgba(30, 30, 30, 0.4);
+    border: solid thin;
+    border-radius: 3px;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
 #divBackground {
     margin: 0 auto;
     background-color: rgba(30, 30, 30, 0.1);
@@ -326,16 +334,16 @@ ul {
 }
 
 ul li {
-    padding: 0.2em
+    padding: 0.3em
 }
 
 label.styled {
-    background-color: #343838;
+    background-color: white;
     display: block;
     width: 300px;
     text-align: center;
     padding: 0.6em 2em;
-    color: white;
+    color: black;
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
@@ -349,13 +357,12 @@ label.styled:before {
     color: #fff;
     width: 40px;
     height: 100%;
-    background-color: limegreen;
+    background-color: rgba(43, 155, 229, 1);
     position: absolute;
     top: 0;
     left: 100%;
     transition: all 0.1s ease;
     opacity: 0;
-    border-right: 2px solid #fff;
 }
 
 label.styled:hover:before {
@@ -369,7 +376,8 @@ input.styled {
 
 /* :: CHECKED :: */
 input.styled:checked ~ label.styled {
-    background-color: #343838;
+    background-color: rgba(43, 155, 229, 0.8);
+    color: white;
     animation: 0.1s linear;
 }
 
@@ -388,25 +396,4 @@ input.styled:checked ~ label.styled:before {
     100% {
         margin-left: 0;
     }
-}
-
-/* Quiz checkbox hack */
-.quiz {
-    display: none;
-}
-
-input[value="0"]:checked ~ div[id="0"] {
-    display: block;
-}
-
-input[value="1"]:checked ~ div[id="1"] {
-    display: block;
-}
-
-input[value="2"]:checked ~ div[id="2"] {
-    display: block;
-}
-
-input[value="3"]:checked ~ div[id="3"] {
-    display: block;
 }
