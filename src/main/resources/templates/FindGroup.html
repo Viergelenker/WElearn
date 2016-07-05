@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
@@ -10,7 +11,7 @@
 <div class="row">
     <div class="small-12 columns">
         <h3><p>These are all groups you aren't a member of:</p></h3>
-<br/>
+        <br/>
         <div th:if="${wrongPassword}">
             <div class="callout alert">
                 <h5>That is not a correct password for the group!</h5>
@@ -41,7 +42,8 @@
                 <form th:action="@{/becomeMemberOfPrivateGroup(learningGroupId=${learningGroup.id})}"
                       th:object="${learningGroup}" th:method="post">
 
-                    <label style="padding-bottom: 6px" class="blackFontColor">This is a private group, please insert the password:</label>
+                    <label style="padding-bottom: 6px" class="blackFontColor">This is a private group, please insert the
+                        password:</label>
                     <input type="password" placeholder="Password" name="password"/>
 
                     <button type="submit" class="cardLink"><span class="fa fa-check"></span> Become a member</button>

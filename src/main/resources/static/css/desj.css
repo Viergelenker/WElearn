@@ -134,6 +134,7 @@ label {
 }
 
 .quizBackground {
+    width: 50%;
     margin: 0 auto;
     background-color: rgba(30, 30, 30, 0.4);
     border: solid thin;
@@ -377,7 +378,7 @@ ul li {
 label.styled {
     background-color: white;
     display: block;
-    width: 300px;
+    width: 79%;
     text-align: center;
     padding: 0.6em 2em;
     color: black;

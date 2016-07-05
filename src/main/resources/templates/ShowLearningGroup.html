@@ -50,8 +50,11 @@
 
             </div>
             <div class="action">
-                <a class="cardLink" th:href="@{/startQuiz(learningGroupId=${learningGroup.id})}"><span
-                        class="fa fa-check"> Start quiz</span></a>
+                <span data-tooltip="" aria-haspopup="true" class="right" data-disable-hover="false" tabindex="2"
+                      title="Creates a new Quiz with 4 random MC Questions!">
+                    <a class="cardLink" th:href="@{/startQuiz(learningGroupId=${learningGroup.id})}"><span
+                            class="fa fa-check"> Start quiz</span></a>
+                </span>
             </div>
             <div class="action">
                 <a class="cardLink" th:href="@{/showStatistics(learningGroupId=${learningGroup.id})}"><span

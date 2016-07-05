@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
     <title>About us</title>
     <link type="text/css" rel="stylesheet" href="css/simplePagination.css"/>
 </head>
-<body style="background-image: url('images/schloss_hohenheim.jpg'); background-repeat: no-repeat; background-size: 100%;">
+<body style="background-color: transparent">
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <br/>
 <div class="row">
@@ -22,11 +23,11 @@
         <form id="myForm" th:object="${newQuiz}" th:action="@{/submitQuiz(learningGroupId=${learningGroupId})}"
               method="post">
 
-            <div th:each="question,iterStat : ${questions}" class="small-5 medium-centered large-centered columns">
+            <div th:each="question,iterStat : ${questions}" class="quizBackground small-5 medium-centered large-centered columns">
 
                 <input type="hidden" name="questionIds" th:value="${question.id}"/>
 
-                <div style="padding-left: 63px" class="quizBackground paginate">
+                <div style="padding-left: 63px" class="paginate">
 
                     <br/>
 
@@ -64,14 +65,17 @@
                         </ul>
 
                     </div>
-                    <button th:if="${iterStat.index == 3}" class="button float-center" type="submit">Submit quiz
-                    </button>
+                    <div style="padding-left: 33%">
+                        <button th:if="${iterStat.index == 3}" class="button" type="submit">Submit quiz</button>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
-    <div class="row">
-        <div style="padding-top: 20px;" class="small-3 medium-centered large-centered columns" id="page-nav"></div>
+    <div class="row" style="padding-top: 12px">
+        <div style="padding-left: 45%">
+            <div id="page-nav"></div>
+        </div>
     </div>
 </div>
 
