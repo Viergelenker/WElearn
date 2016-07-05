@@ -95,6 +95,18 @@ label {
     color: white
 }
 
+.answerField {
+    color: white;
+    background-color: #343838;
+    padding: 0.6em 2em;
+}
+
+.answeredField {
+    color: white;
+    background-color: #343838;
+    padding: 0.6em;
+}
+
 #wrapper {
     width: 40%;
     margin: 0 auto;
@@ -117,10 +129,8 @@ label {
 .wrapper70 {
     width: 70%;
     margin: 0 auto;
-    background-color: rgba(30, 30, 30, 0.4);
-    border: solid thin;
+    background-color: rgba(52, 56, 56, 0.8);
     border-radius: 3px;
-    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .quizBackground {

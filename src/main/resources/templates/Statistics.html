@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
     <title>About us</title>
@@ -8,11 +8,99 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="js/statisticsChart.js"></script>
 </head>
-<body>
+<body style="background-color: transparent">
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <br/>
 
 <div id="statChart" style="min-width: 310px; height: 80%; margin: 0 auto"></div>
+
+<!--<div class="card" style="background-color: white">
+    <div class="content">
+        <a class="title"
+           style="color: #343838;">
+        </a>
+
+    </div>
+    <div class="action">
+        <a class="cardLink">Show group <span class="fa fa-chevron-right"></span></a>
+    </div>
+</div>-->
+<br/>
+
+<div class="row" data-equalizer="" data-equalize-on="medium">
+    <div th:each="quiz, iterStat : ${quizzesOfCurrentUser}">
+
+        <h4 style="color: white" th:text="${'Quiz ' + (iterStat.index+1) + ' answered Questions:'}"></h4>
+
+        <div class="row">
+            <div class="small-12 columns end">
+
+                <span class="answeredField">
+                <span class="title" style="line-height: 3rem; font-size: 1.5rem; font-weight: 300;"
+                      th:text="${'Frage 1: '}"></span>
+                <span style="line-height: 3rem; font-size: 1.5rem; color: rgba(43, 155, 229, 1)"
+                      th:if="${quiz.givenAnswers_0 == null}">No Answer selected</span>
+                <span style="line-height: 3rem; font-size: 1.5rem; color: rgba(43, 155, 229, 1)"
+                      th:unless="${quiz.givenAnswers_0 == null}" th:text="${quiz.givenAnswers_0}"></span>
+                </span>
+
+                <span class="answeredField">
+                <span class="title" style="line-height: 3rem; font-size: 1.5rem; font-weight: 300;"
+                      th:text="${'Frage 2: '}"></span>
+                <span style="line-height: 3rem; font-size: 1.5rem; color: rgba(43, 155, 229, 1)"
+                      th:if="${quiz.givenAnswers_1 == null}">No Answer selected</span>
+                <span style="line-height: 3rem; font-size: 1.5rem; color: rgba(43, 155, 229, 1)"
+                      th:unless="${quiz.givenAnswers_1 == null}" th:text="${quiz.givenAnswers_1}"></span>
+                </span>
+
+                <span class="answeredField">
+                <span class="title" style="line-height: 3rem; font-size: 1.5rem; font-weight: 300;"
+                      th:text="${'Frage 3: '}"></span>
+                <span style="line-height: 3rem; font-size: 1.5rem; color: rgba(43, 155, 229, 1)"
+                      th:if="${quiz.givenAnswers_2 == null}">No Answer selected</span>
+                <span style="line-height: 3rem; font-size: 1.5rem; color: rgba(43, 155, 229, 1)"
+                      th:unless="${quiz.givenAnswers_2 == null}" th:text="${quiz.givenAnswers_2}"></span>
+                </span>
+
+                <span class="answeredField">
+                <span class="title" style="line-height: 3rem; font-size: 1.5rem; font-weight: 300;"
+                      th:text="${'Frage 4: '}"></span>
+                <span style="line-height: 3rem; font-size: 1.5rem; color: rgba(43, 155, 229, 1)"
+                      th:if="${quiz.givenAnswers_3 == null}">No Answer selected</span>
+                <span style="line-height: 3rem; font-size: 1.5rem; color: rgba(43, 155, 229, 1)"
+                      th:unless="${quiz.givenAnswers_3 == null}" th:text="${quiz.givenAnswers_3}"></span>
+                </span>
+                <br/>
+            </div>
+        </div>
+        <br/>
+
+        <div class="small-12 medium-4 large-3 columns end" th:each="mcQuestion, iterStat : ${quiz.mcQuestions}">
+            <div class="card" style="background-color: white;" data-equalizer-watch="">
+                <div class="content">
+                    <span class="title" th:text="${'Frage ' + (iterStat.index+1)}"></span>
+                    <p th:text="${mcQuestion.question}"></p>
+                    <br/>
+                    <p class="answerField" th:text="${'A: &nbsp; &nbsp; ' + mcQuestion.answerA}"></p>
+                    <br/>
+                    <p class="answerField" th:text="${'B: &nbsp; &nbsp; ' + mcQuestion.answerB}"></p>
+                    <br/>
+                    <p class="answerField" th:text="${'C: &nbsp; &nbsp; ' + mcQuestion.answerC}"></p>
+                    <br/>
+                    <p class="answerField" th:text="${'D: &nbsp; &nbsp; ' + mcQuestion.answerD}"></p>
+                    <br/>
+                    <div>Correct answers:</div>
+                    <b>
+                        <div style="color: #3adb76; font-size: 1.5rem" th:text="${mcQuestion.correctAnswers}"></div>
+                    </b>
+                    <br/>
+                </div>
+            </div>
+            <br/>
+        </div>
+
+    </div>
+</div>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
