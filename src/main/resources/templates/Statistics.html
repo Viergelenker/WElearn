@@ -14,6 +14,36 @@
 
 <div id="statChart" style="min-width: 310px; height: 80%; margin: 0 auto"></div>
 
+<div th:each="quiz, iterStat : ${quizzesOfCurrentUser}">
+
+    <div th:text="${'Quiz ' + (iterStat.index+1) + ' answered Questions:'}"></div>
+
+    <div th:text="${'Frage 1' }"></div>
+    <div th:text="${quiz.givenAnswers_0}"></div>
+    <div th:text="${'Frage 2'}"></div>
+    <div th:text="${quiz.givenAnswers_1}"></div>
+    <div th:text="${'Frage 3'}"></div>
+    <div th:text="${quiz.givenAnswers_2}"></div>
+    <div th:text="${'Frage 4'}"></div>
+    <div th:text="${quiz.givenAnswers_3}"></div>
+
+    <br/>
+    <div>Questions:</div>
+
+    <div th:each="mcQuestion, iterStat : ${quiz.mcQuestions}">
+
+        <div th:text="${'Frage ' + (iterStat.index+1)}"></div>
+        <div th:text="${mcQuestion.question}"></div>
+        <div th:text="${mcQuestion.answerA}"></div>
+        <div th:text="${mcQuestion.answerB}"></div>
+        <div th:text="${mcQuestion.answerC}"></div>
+        <div th:text="${mcQuestion.answerD}"></div>
+        <div>Correct answers:</div>
+        <div th:text="${mcQuestion.correctAnswers}"></div>
+        <br/>
+    </div>
+</div>
+
 <script th:inline="javascript">
     /*<![CDATA[*/
 
