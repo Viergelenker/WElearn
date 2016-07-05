@@ -9,7 +9,6 @@
 
 <br/>
 <br/>
-<br/>
 
 <div class="row" id="wrapper">
 
@@ -33,14 +32,20 @@
                         Error
                     </div>
                 </div>
-                <div style="padding-top: 15px" class="small-12 columns">
+                <div style="padding-top: 13px" class="small-12 columns">
                     <input style="border-radius: 2px" type="email" th:field="*{email}" th:placeholder=" Email"/>
+                    <div class="callout alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
+                        Error
+                    </div>
                 </div>
-                <div style="padding-top: 15px" class="small-12 columns">
+                <div style="padding-top: 13px" class="small-12 columns">
+                    <input style="border-radius: 2px" type="text" th:field="*{major}" th:placeholder=" Major"/>
+                </div>
+                <div style="padding-top: 13px" class="small-12 columns">
                     <input style="border-radius: 2px" type="password" th:field="*{password}" th:placeholder=" Password"/>
                 </div>
 
-                <div style="padding-top: 15px" class="small-12 columns">
+                <div style="padding-top: 13px" class="small-12 columns">
                     <button type="submit" class="button"><i class="fa fa-check"></i> Submit</button>
 
                 </div>

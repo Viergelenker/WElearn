@@ -18,6 +18,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Size(min=6, max=30)
     private String email;
     @Size(min=3, max=20)
     private String username;
