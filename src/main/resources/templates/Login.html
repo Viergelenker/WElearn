@@ -16,10 +16,9 @@
     <div class="row">
         <br/>
         <div class="small-12 small-centered columns">
-            <h2 style="text-align: center; color: white">WElearn project</h2>
-            <p>
-
-            <h3 style="text-align: center; color: white">Please Sign Up:</h3></p>
+            <h2 style="text-align: center; color: white"><span class="fa fa-users"></span></h2>
+            <h2 style="text-align: center; color: white"><b>WElearn</b></h2>
+            <h4 style="text-align: center; color: white; padding-top: 8px">Please Sign Up:</h4>
         </div>
     </div>
 
@@ -27,7 +26,7 @@
         <div class="small-9 small-centered columns">
 
             <form th:object="${user}" th:action="@{/newUser}" th:method="post">
-                <div style="padding-top: 15px" class="small-12 columns">
+                <div class="small-12 columns">
                     <br/>
                     <input style="border-radius: 2px" type="text" th:field="*{username}" th:placeholder=" Username"/>
                     <div class="callout alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name

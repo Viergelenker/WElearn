@@ -36,7 +36,7 @@ $(function () {
             }
         },
         legend: {
-            enabled: false
+            enabled: true
         },
         credits: {
             enabled: false
