@@ -1,7 +1,6 @@
 package com.desj.controller;
 
 import com.desj.model.LearningGroupRepository;
-import com.desj.model.MCQuestionRepository;
 import com.desj.model.Quiz;
 import com.desj.model.QuizRepository;
 import com.desj.service.QuizService;
@@ -31,12 +30,10 @@ public class StartQuizController {
     @Autowired
     private QuizService quizService;
 
-    @Autowired
-    private MCQuestionRepository mcQuestionRepository;
-
     @RequestMapping(value = "/startQuiz", method = RequestMethod.GET)
     public String startQuiz(@RequestParam(value = "learningGroupId") Integer learningGroupId,
                             Model model) {
+
 
         model.addAttribute("newQuiz", new Quiz());
         model.addAttribute("learningGroupId", learningGroupId);
