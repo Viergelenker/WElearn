@@ -4,11 +4,9 @@ $(function () {
             type: 'bar'
         },
         title: {
-            text: 'Historic World Population by Region'
+            text: 'Rating'
         },
-        subtitle: {
-            text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
-        },
+        
         xAxis: {
             categories: usernames,
             title: {
