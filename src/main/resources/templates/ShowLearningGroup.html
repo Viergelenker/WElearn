@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
@@ -15,11 +16,10 @@
     <!-- Learning group overview -->
     <div class="small-3 columns" data-sticky-container="">
         <div class="card" style="background-color: white" data-sticky="" data-anchor="topAnchor">
-            <div class="image">
-                <img src="http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg"/>
-                <span class="title" th:text="${learningGroup.name}"></span>
-            </div>
+
             <div class="content">
+                <span class="title" style="color: black" th:text="${learningGroup.name}"></span>
+
                 <p><a class="cardLink" data-open="memberModal">
                     <span th:text="${learningGroup.members.size()}"></span> Member
                 </a>
@@ -54,16 +54,17 @@
                         class="fa fa-check"> Start quiz</span></a>
             </div>
             <div class="action">
-                <a class="cardLink" th:href="@{/showStatistics(learningGroupId=${learningGroup.id})}"><span class="fa fa-bar-chart"></span> Statistics</a>
+                <a class="cardLink" th:href="@{/showStatistics(learningGroupId=${learningGroup.id})}"><span
+                        class="fa fa-bar-chart"></span> Statistics</a>
             </div>
             <div class="action">
                 <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
             </div>
             <!-- Not working atm -->
-           <!-- <div class="action">
-                <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-question"></span> Create new
-                    question</a>
-            </div>-->
+            <!-- <div class="action">
+                 <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-question"></span> Create new
+                     question</a>
+             </div>-->
             <div class="action">
                 <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span>
                     Create new MC-question </a>
