@@ -24,7 +24,7 @@ public class Comment {
     @Size(min = 1)
     private String text;
 
-    @ManyToOne (cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "GROUPPOST_ID")
     private GroupPost associatedGroupPost;
 

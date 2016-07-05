@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body style="background-image: url('images/schloss_hohenheim.jpg'); background-repeat: no-repeat; background-size: 100%;">
+<body style="background-color: transparent">
 <div th:replace="fragments/navbar :: loggedIn"></div>
 
 <br/>
@@ -12,6 +12,7 @@
         <h3 th:if="${numberOfGroups &gt; 0}"><span th:text="${username}"></span>, these are your learning groups:</h3>
     </div>
 </div>
+<br/>
 
 <div class="row" data-equalizer="" data-equalize-on="medium">
 

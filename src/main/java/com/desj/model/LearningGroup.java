@@ -28,11 +28,11 @@ public class LearningGroup {
     @Size(max = 200)
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "USER_ID")
     private User creatorOfGroup;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "GROUPMEMBER",
             joinColumns = @JoinColumn(name = "GROUP_ID"),

@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body>
+<body style="background-color: transparent">
 <div th:replace="fragments/navbar :: loggedIn"></div>
-
+<br/>
 <div class="row">
     <div class="small-12 columns">
         <div th:if="${newlyCreatedLearningGroupId != null}">
@@ -18,28 +18,29 @@
                 </a>
             </div>
         </div>
-        <h4>Fill in the form below to create a new learning group:</h4>
+        <h3>Fill in the form below to create a new learning group:</h3>
     </div>
 </div>
-<div class="row">
+<br/>
+<div class="row wrapper60">
     <div class="small-12">
         <form th:action="@{/createNewGroup}" th:object="${learningGroup}" th:method="post">
             <div class="small-12 columns">
-                <label class="blackFontColor">Group name</label>
-                <input type="text" th:field="*{name}" th:placeholder="Name"/>
+                <label>Group name</label>
+                <input style="border-radius: 2px" type="text" th:field="*{name}" th:placeholder="Name"/>
                 <div class="small-12 columns callout alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
             </div>
             <div class="small-12 columns">
-                <label class="blackFontColor">Subject</label>
-                <input type="text" th:field="*{subject}" th:placeholder="Subject"/>
+                <label>Subject</label>
+                <input style="border-radius: 2px" type="text" th:field="*{subject}" th:placeholder="Subject"/>
             </div>
             <div class="small-12 columns">
-                <label class="blackFontColor">Description</label>
-                <input type="text" th:field="*{description}" th:placeholder="Description"/>
+                <label>Description</label>
+                <input style="border-radius: 2px" type="text" th:field="*{description}" th:placeholder="Description"/>
             </div>
             <div class="small-12 columns">
-                <label class="blackFontColor">Set password for private group, leave empty for public one:</label>
-                <input type="password" th:field="*{password}" th:placeholder="Password"/>
+                <label>Set password for private group, leave empty for public one:</label>
+                <input style="border-radius: 2px" type="password" th:field="*{password}" th:placeholder="Password"/>
             </div>
 
             <div class="small-12 columns">

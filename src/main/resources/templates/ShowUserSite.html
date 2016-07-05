@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
-<body>
+<body style="background-color: transparent">
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <br/>
 <div class="row">
     <div class="small-8 columns end">
-        <div class="card">
+        <div class="card" style="background-color: white">
             <div class="content">
                 <span class="title">Your created learning groups</span>
                 <input style="border-radius: 19px" type="text" id="search" placeholder=" Type to search"/>
@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="small-4 columns">
-        <div class="card">
+        <div class="card" style="background-color: white">
             <div class="image">
                 <img src="images/default-profile.jpg" width="370px"/>
                 <span class="title" style="color: #343838" th:text="${user.username}"></span>

@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
 
 </head>
-<body>
+<body style="background-color: transparent">
 
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <br/>
@@ -14,7 +14,7 @@
 
     <!-- Learning group overview -->
     <div class="small-3 columns" data-sticky-container="">
-        <div class="card" data-sticky="" data-anchor="topAnchor">
+        <div class="card" style="background-color: white" data-sticky="" data-anchor="topAnchor">
             <div class="image">
                 <img src="http://static.pexels.com/wp-content/uploads/2014/07/alone-clouds-hills-1909-527x350.jpg"/>
                 <span class="title" th:text="${learningGroup.name}"></span>
@@ -125,7 +125,7 @@
 
 
     <!-- Displays for each group post in all group posts the title and text... -->
-    <div class="small-8 columns">
+    <div class="small-12 columns wrapperTransparent">
 
         <div th:each="groupPost,iterStat : ${groupPosts}">
 
@@ -172,7 +172,7 @@
             </ul>
 
             <div class="small-12 columns" style="padding-bottom: 40px">
-                <form class="small-11 small-offset-1 columns end" th:object="${comment}"
+                <form th:object="${comment}"
                       th:action="@{/newComment(groupPostId=${groupPost.id})}"
                       method="post">
                     <textarea placeholder="Write a new comment" maxlength="300"
@@ -227,12 +227,6 @@
             selector: '#mytextareaforpost',
             statusbar: false,
             plugins: 'link image code',
-            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
-        });
-
-        tinymce.init({
-            selector: '.mytextarea',
-            statusbar: false,
             toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
         });
 
