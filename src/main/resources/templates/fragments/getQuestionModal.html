@@ -14,8 +14,8 @@
                         <h5>There aren't any questions you haven't answered yet!</h5></div>
                     <div th:if="${error}==false">
                         <div>
-                            <h4>Question:</h4>
-                            <div th:text="${getQuestion.text}">Question</div>
+                            <p>Question:</p>
+                            <div th:text="${getQuestion.question}">Question</div>
                         </div>
                         <button>
                             <div style="padding-top: 20px">
@@ -23,7 +23,7 @@
                             </div>
                         </button>
                         <div>
-                            <h4>Answer:</h4>
+                            <p>Answer:</p>
                             <div id="answer"></div>
                         </div>
 
@@ -41,11 +41,15 @@
     </form>
     <script>
         function myFunction() {
-            var boolean = [[${error}]];
-            if (boolean == false) {
-                var answer = [[${getQuestion.answer}]];
-                document.getElementById("answer").innerHTML = answer;
-            }
+
+//funktioniert noch nicht!!!
+            //cannot get the variable
+            /*<![CDATA[*/
+
+            var b = /*[[${getQuestion.answer}]]*/ 'answer';
+
+            document.getElementById("answer").innerText=b;
+            /*]]>*/
 
         }
 
