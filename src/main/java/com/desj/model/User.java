@@ -135,4 +135,12 @@ public class User {
     public void answerQuestion(Question question){
         this.answeredQuestions.add(question);
     }
+
+    public void setCreatedQuestions(List<Question> createdQuestions) {
+        this.createdQuestions = createdQuestions;
+    }
+
+    public void setAnsweredQuestions(List<Question> answeredQuestions) {
+        this.answeredQuestions = answeredQuestions;
+    }
 }
