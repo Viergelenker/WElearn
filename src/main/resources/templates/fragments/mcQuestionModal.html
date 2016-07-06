@@ -13,18 +13,39 @@
                     <p>Write new question!</p>
                     <div style="padding-bottom: 20px">
                         <textarea th:field="*{question}">Question</textarea>
-                        <textarea th:field="*{answerA}">Answer</textarea>
-                        <input type="checkbox" th:field="*{correctAnswers}" th:value="A"/>
-                        <textarea th:field="*{answerB}">Answer</textarea>
-                        <input type="checkbox" th:field="*{correctAnswers}" th:value="B"/>
-                        <textarea th:field="*{answerC}">Answer</textarea>
-                        <input type="checkbox" th:field="*{correctAnswers}" th:value="C"/>
-                        <textarea th:field="*{answerD}">Answer</textarea>
-                        <input type="checkbox" th:field="*{correctAnswers}" th:value="D"/>
+
+                        <div class="small-1 columns">
+                            <input type="checkbox" th:field="*{correctAnswers}" th:value="A"/>
+                        </div>
+                        <div class="small-11 columns">
+                            <textarea th:field="*{answerA}" placeholder="Answer 1"></textarea>
+                        </div>
+
+                        <div class="small-1 columns">
+                            <input type="checkbox" th:field="*{correctAnswers}" th:value="B"/>
+                        </div>
+                        <div class="small-11 columns">
+                            <textarea id="textarea1" th:field="*{answerB}" placeholder="Answer 2"></textarea>
+                        </div>
+
+                        <div class="small-1 columns">
+                            <input type="checkbox" th:field="*{correctAnswers}" th:value="C"/>
+                        </div>
+                        <div class="small-11 columns">
+                            <textarea th:field="*{answerC}" placeholder="Answer 3"></textarea>
+                        </div>
+
+                        <div class="small-1 columns">
+                            <input type="checkbox" th:field="*{correctAnswers}" th:value="D"/>
+                        </div>
+                        <div class="small-11 columns">
+                            <textarea th:field="*{answerD}" placeholder="Answer 4"></textarea>
+                        </div>
+
                         <div style="padding-top: 20px">
                             <button type="submit" class="button">Save Mc-question</button>
                         </div>
-                        <button class="close-button" data-close="writeNewQuestionModal" aria-label="Close modal"
+                        <button class="close-button" data-close="writeNewMCQuestionModal" aria-label="Close modal"
                                 type="button">
                             <span aria-hidden="true">&times;</span>
                         </button>
