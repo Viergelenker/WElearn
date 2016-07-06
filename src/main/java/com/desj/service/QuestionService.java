@@ -15,6 +15,28 @@ public class QuestionService {
     @Autowired
     private QuestionReposiory questionReposiory;
 
+    public void save(Question question, LearningGroup learningGroup, User user) {
+
+        question.setCorrespondingLearningGroup(learningGroup);
+        question.setCreator(user);
+        questionReposiory.save(question);
+
+    }
+    public Question getQuestion(LearningGroup learningGroup, User user) {
+        Integer iterator = 1;
+        List<Question> questionList = questionReposiory.findAll();
+        while (iterator <= questionList.size() || questionList.size() != 0) {
+            Question question = questionList.get(iterator);
+            if (question.getCorrespondingLearningGroup().equals(learningGroup) && !user.getAnsweredQuestions().equals(question)) {
+                List<Question> answeredQuestions = user.getAnsweredQuestions();
+                answeredQuestions.add(question);
+                user.setAnsweredQuestions(answeredQuestions);
+                return question;
+            } else {
+                iterator++;
+            }}
+        return null;
+    }
     public List<Question> getAllQuestionsOfLearningGroup(LearningGroup learningGroup) {
         List<Question> questionList = new ArrayList<>();
         for (Question question : questionReposiory.findAll()) {
@@ -45,11 +67,5 @@ public class QuestionService {
         }
     }
 
-    public void save(Question question, LearningGroup learningGroup, User user) {
 
-        question.setCorrespondingLearningGroup(learningGroup);
-        question.setCreator(user);
-        questionReposiory.save(question);
-
-    }
 }

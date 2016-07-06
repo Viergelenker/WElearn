@@ -79,6 +79,14 @@ public class ShowLearningGroupController {
             model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(
                     learningGroupRepository.findOne(learningGroupId)));
             model.addAttribute("fileNames", learningGroupRepository.findOne(learningGroupId).getUploadedFilesList());
+            Question question = questionService.getQuestion(learningGroupRepository.findOne(learningGroupId),userService.getCurrentDesjUser());
+            model.addAttribute("error",false);
+            if(question!=null){
+                model.addAttribute("getQuestion",question);
+            }else{
+
+                model.addAttribute("error",true);
+            }
 
             if (!userService.getAllQuizOfUser(userService.getCurrentDesjUser()).isEmpty()) {
                 model.addAttribute("quizPoints", userService.getTotalOfQuizPointsForUserForLearningGroup(userService
