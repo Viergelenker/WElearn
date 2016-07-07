@@ -164,6 +164,7 @@ public class ShowLearningGroupController {
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
 
+
     @RequestMapping(value = "/newQuestionComment", method = RequestMethod.POST)
     public String writeNewQuestionComment(@RequestParam(value = "questionId") Integer questionId,
                                           @ModelAttribute("questionComment") QuestionComment questionComment) {

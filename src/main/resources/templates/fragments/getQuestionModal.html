@@ -22,10 +22,10 @@
                             <div th:text="${getQuestion.answer}">Answer</div>
                         </div>
                     </div>
-                    <button class="close-button" aria-label="Close modal" data-close="getQuestionModal"
+                    <a class="close-button" aria-label="Close modal" th:href="@{/showLearningGroup(id=${learningGroup.id})}"
                             type="button">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </a>
                 </div>
             </div>
             <script>
