@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
 <body>
 <th:block th:fragment="getQuestionModal">
     <form>
         <div class="reveal" id="getQuestionModal" data-reveal="true">
             <div class="row">
                 <div class="small-12 columns">
-
-
                     <div th:if="${error}==true">
                         <h5>There aren't any questions you haven't answered yet!</h5></div>
                     <div th:if="${error}==false">
@@ -17,46 +14,27 @@
                             <p>Question:</p>
                             <div th:text="${getQuestion.question}">Question</div>
                         </div>
-                        <button>
-                            <div style="padding-top: 20px">
-                                <button class="button" onclick="myFunction()">See answer</button>
-                            </div>
-                        </button>
-                        <div>
-                            <p>Answer:</p>
-                            <div id="answer"></div>
+                        <div style="padding-top: 20px">
+                            <button class="button" onclick="myFunction()">See answer</button>
                         </div>
-
+                        <div id="answer" style="display: none">
+                            <p>Answer:</p>
+                            <div th:text="${getQuestion.answer}">Answer</div>
+                        </div>
                     </div>
                     <button class="close-button" aria-label="Close modal" data-close="getQuestionModal"
                             type="button">
                         <span aria-hidden="true">&times;</span>
                     </button>
-
                 </div>
             </div>
-
-
+            <script>
+                function myFunction() {
+                    document.getElementById("answer").style.display = 'inline';
+                }
+            </script>
         </div>
     </form>
-    <script>
-        function myFunction() {
-
-//funktioniert noch nicht!!!
-            //cannot get the variable
-            /*<![CDATA[*/
-
-            var b = /*[[${getQuestion.answer}]]*/ 'answer';
-
-            document.getElementById("answer").innerText=b;
-            /*]]>*/
-
-        }
-
-    </script>
-
 </th:block>
-
-
 </body>
 </html>
