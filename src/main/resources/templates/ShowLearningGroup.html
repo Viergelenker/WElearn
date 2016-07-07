@@ -14,8 +14,8 @@
 <div class="row" id="topAnchor">
 
     <!-- Learning group overview -->
-    <div class="small-3 columns" data-sticky-container="" style="padding-right: 50px">
-        <div class="card" style="background-color: white" data-sticky="" data-anchor="topAnchor">
+    <div class="small-3 columns" data-sticky-container="" style="width: 23%">
+        <div class="card" style="background-color: white;" data-sticky="" data-anchor="topAnchor">
 
             <div class="content">
                 <span class="title" style="color: black" th:text="${learningGroup.name}"></span>
@@ -132,7 +132,9 @@
 
 
     <!-- Displays for each group post in all group posts the title and text... -->
-    <div class="small-12 columns wrapper70">
+    <div class="small-9 columns float-right" style="margin: 0 auto;
+    background-color: rgba(52, 56, 56, 0.8);
+    border-radius: 3px;">
 
         <div th:each="groupPost,iterStat : ${groupPosts}">
 
