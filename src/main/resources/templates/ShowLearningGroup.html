@@ -150,7 +150,10 @@
                 <div class="callout-card-content">
                     <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
                     <p th:utext="${groupPost.text}">Message Text</p>
-                    <i><div style="color: #adb2bd" th:text="${groupPost.getTsCreatedFormatted()}"></div></i>
+                    <i><span style="color: #adb2bd; font-size: 15px" th:text="${groupPost.getTsCreatedFormatted()}"></span></i>
+                    <a th:if="${groupPost.associatedUser == user}" class="float-right" style="color: red; padding-bottom: 10px" th:href="@{/deleteGroupPost(groupPostId=${groupPost.id}, learningGroupId=${learningGroup.id})}">
+                        Delete <span class="fa fa-close"></span>
+                    </a>
                 </div>
             </div>
 
@@ -172,7 +175,11 @@
                                     </span>
                                 </div>
                                 <div class="callout-card-content">
-                                    <p th:utext="${comment.text}">Message Text</p>
+                                    <p style="padding-top: 6px" th:utext="${comment.text}">Message Text</p>
+                                    <i><span style="color: #adb2bd; font-size: 15px" th:text="${comment.getTsCreatedFormatted()}"></span></i>
+                                    <a th:if="${comment.creator == user}"  class="float-right" style="color: red; padding-bottom: 10px" th:href="@{/deleteComment(commentId=${comment.id}, learningGroupId=${learningGroup.id})}">
+                                        Delete <span class="fa fa-close"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Sabrina on 14.06.2016.
@@ -23,6 +25,8 @@ public class Comment {
     @Lob
     @Size(min = 1)
     private String text;
+
+    private Date tsCreated;
 
     @ManyToOne
     @JoinColumn(name = "GROUPPOST_ID")
@@ -50,6 +54,7 @@ public class Comment {
 
     public void setText(String text) {
         this.text = text;
+        this.tsCreated = new Date();
     }
 
     public GroupPost getAssociatedGroupPost() {
@@ -58,5 +63,9 @@ public class Comment {
 
     public void setAssociatedGroupPost(GroupPost associatedGroupPost) {
         this.associatedGroupPost = associatedGroupPost;
+    }
+
+    public String getTsCreatedFormatted(){
+        return new SimpleDateFormat("dd.MM.yyyy HH:mm").format(tsCreated);
     }
 }

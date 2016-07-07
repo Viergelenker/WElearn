@@ -63,6 +63,7 @@ public class ShowLearningGroupController {
 
         // Make sure the current user is a member of the actual group
         if (learningGroupRepository.findOne(learningGroupId).getMembers().contains(userService.getCurrentDesjUser())) {
+            model.addAttribute("user", userService.getCurrentDesjUser());
             model.addAttribute("username", userService.getCurrentDesjUser().getUsername());
             model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
             model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
@@ -173,6 +174,28 @@ public class ShowLearningGroupController {
                 questionReposiory.findOne(questionId));
         questionService.addQuestionComment(questionReposiory.findOne(questionId), questionComment);
         return "redirect:/showLearningGroup?id=" + redirectString;
+    }
+
+    @RequestMapping(value = "/deleteGroupPost")
+    public String deleteGroupPost(@RequestParam(value = "groupPostId") Integer groupPostId,
+                                  @RequestParam(value = "learningGroupId") Integer learningGroupId) {
+
+        for (Comment comment : commentRepository.findAll()) {
+            if (comment.getAssociatedGroupPost().getId() == groupPostId) {
+                commentRepository.delete(comment);
+            }
+        }
+
+        groupPostRepository.delete(groupPostRepository.findOne(groupPostId));
+        return "redirect:/showLearningGroup?id=" + learningGroupId;
+    }
+
+    @RequestMapping(value = "/deleteComment")
+    public String deleteComment(@RequestParam(value = "commentId") Integer commentId,
+                                  @RequestParam(value = "learningGroupId") Integer learningGroupId) {
+
+        commentRepository.delete(commentId);
+        return "redirect:/showLearningGroup?id=" + learningGroupId;
     }
 
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)

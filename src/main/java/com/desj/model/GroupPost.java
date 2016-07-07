@@ -16,8 +16,6 @@ import java.util.Date;
 @Component
 public class GroupPost {
 
-    private Date tsCreated;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -26,6 +24,8 @@ public class GroupPost {
     @Lob
     @Size(min = 4)
     private String text;
+
+    private Date tsCreated;
 
     @OneToOne
     @JoinColumn(name = "userId")
@@ -52,7 +52,6 @@ public class GroupPost {
 
     public void setTitle(String title) {
         this.title = title;
-        this.tsCreated = new Date();
     }
 
     public String getText() {
@@ -70,7 +69,6 @@ public class GroupPost {
 
     public void setAssociatedUser(User associatedUser) {
         this.associatedUser = associatedUser;
-        this.tsCreated = new Date();
     }
 
     public LearningGroup getAssociatedLearningGroup() {
@@ -88,7 +86,6 @@ public class GroupPost {
 
     public void setComments(List<com.desj.model.Comment> comments) {
         this.comments = comments;
-        this.tsCreated = new Date();
     }
 
     public String getTsCreatedFormatted(){
