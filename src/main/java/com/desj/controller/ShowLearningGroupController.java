@@ -73,20 +73,10 @@ public class ShowLearningGroupController {
             model.addAttribute("comments", commentRepository.findAll());
             model.addAttribute("createQuestion", new Question());
             model.addAttribute("mcQuestion", new MCQuestion());
-            model.addAttribute("questionComment", new QuestionComment());
-            model.addAttribute("questionsOfLearningGroup", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository
-                    .findOne(learningGroupId)));
+            model.addAttribute("createQuestionComment", new QuestionComment());
             model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(
                     learningGroupRepository.findOne(learningGroupId)));
             model.addAttribute("fileNames", learningGroupRepository.findOne(learningGroupId).getUploadedFilesList());
-            Question question = questionService.getQuestion(learningGroupRepository.findOne(learningGroupId),userService.getCurrentDesjUser());
-            model.addAttribute("error",false);
-            if(question!=null){
-                model.addAttribute("getQuestion",question);
-            }else{
-
-                model.addAttribute("error",true);
-            }
 
             if (!userService.getAllQuizOfUser(userService.getCurrentDesjUser()).isEmpty()) {
                 model.addAttribute("quizPoints", userService.getTotalOfQuizPointsForUserForLearningGroup(userService

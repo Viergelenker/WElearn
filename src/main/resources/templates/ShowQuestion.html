@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+    <title>About us</title>
+    <link type="text/css" rel="stylesheet" href="css/simplePagination.css"/>
+</head>
+<body style="background-color: transparent">
+<div th:replace="fragments/navbar :: loggedIn"></div>
+<br/>
+<div class="row">
+    <div class="callout" th:if="${error}">
+        <h3>Sorry there aren't any questions you haven't answered yet...</h3>
+        <a class="button" th:href="@{/showLearningGroup(id=${learningGroupId})}"><span
+                class="fa fa-chevron-left"></span> Go back</a>
+    </div>
+</div>
+
+<div th:unless="${error}" class="row">
+    <div class="small-8 medium-centered columns">
+        <h2 th:text="${question.question}"></h2>
+        <div style="padding-top: 20px">
+            <button class="button" data-toggle="answer">See answer</button>
+        </div>
+        <div id="answer" data-toggler="" data-animate="fade-in fade-out" style="display: none">
+            <p>Answer:</p>
+            <div th:text="${question.answer}">Answer</div>
+        </div>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

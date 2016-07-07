@@ -49,17 +49,24 @@ public class QuestionService {
     }*/
 
     public Question getQuestion(LearningGroup learningGroup, User user){
+
         Integer iterator =0;
+
         List<Question> questionsOfLearningGroup = this.getAllQuestionsOfLearningGroup(learningGroup);
+
         Question toBeAnswered;
-        while(iterator<questionsOfLearningGroup.size()&&questionsOfLearningGroup.size()!=0&&iterator!=-1){
+
+        while(iterator < questionsOfLearningGroup.size()){
+
             toBeAnswered=questionsOfLearningGroup.get(iterator);
+
             if(!user.getAnsweredQuestions().contains(toBeAnswered)){
+
                 List<Question> answeredQuestions = new ArrayList<>();
                 answeredQuestions.addAll(user.getAnsweredQuestions());
                 answeredQuestions.add(toBeAnswered);
                 user.setAnsweredQuestions(answeredQuestions);
-                iterator=-1;
+
                 return toBeAnswered;
             }else{
                 iterator++;

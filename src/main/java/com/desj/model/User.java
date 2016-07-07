@@ -26,7 +26,7 @@ public class User {
     //Studiengang
     private String major;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany
     @JoinTable(
             name = "CREATEDMCQUESTION",
            joinColumns = @JoinColumn(name = "USER_ID"),
@@ -34,7 +34,7 @@ public class User {
     )
     List <MCQuestion> createdMCQuestions = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(
             name = "ANSWEREDMCQUESTIONS",
             joinColumns = @JoinColumn(name = "USER_ID"),
@@ -42,7 +42,7 @@ public class User {
     )
     List<MCQuestion> answeredMCQuestions = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany
     @JoinTable(
             name = "CREATEDQUESTION",
             joinColumns = @JoinColumn(name = "USER_ID"),
@@ -50,7 +50,7 @@ public class User {
     )
     List <Question> createdQuestions = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(
             name = "ANSWEREDQUESTIONS",
             joinColumns = @JoinColumn(name = "USER_ID"),
@@ -112,14 +112,6 @@ public class User {
         return createdQuestions;
     }
 
-
-
-    public List<Question> getAnsweredQuestions() {
-        return answeredQuestions;
-    }
-
-
-
     public void createMCQuestion(MCQuestion mcQuestion){
         this.createdMCQuestions.add(mcQuestion);
     }
@@ -138,6 +130,10 @@ public class User {
 
     public void setCreatedQuestions(List<Question> createdQuestions) {
         this.createdQuestions = createdQuestions;
+    }
+
+    public List<Question> getAnsweredQuestions() {
+        return answeredQuestions;
     }
 
     public void setAnsweredQuestions(List<Question> answeredQuestions) {
