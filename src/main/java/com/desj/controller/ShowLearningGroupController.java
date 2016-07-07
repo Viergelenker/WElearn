@@ -71,7 +71,7 @@ public class ShowLearningGroupController {
             model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
                     .findOne(learningGroupId)));
             model.addAttribute("comments", commentRepository.findAll());
-            model.addAttribute("question", new Question());
+            model.addAttribute("createQuestion", new Question());
             model.addAttribute("mcQuestion", new MCQuestion());
             model.addAttribute("questionComment", new QuestionComment());
             model.addAttribute("questions", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository
@@ -156,7 +156,7 @@ public class ShowLearningGroupController {
 
     @RequestMapping(value = "/newQuestion", method = RequestMethod.POST)
     public String whriteNewQuestion(@RequestParam(value = "learningGroupId") Integer learningGroupId,
-                                    @ModelAttribute("question") Question question) {
+                                    @ModelAttribute("createQuestion") Question question) {
         User user = userService.getCurrentDesjUser();
         questionService.save(question, learningGroupRepository.findOne(learningGroupId), user);
         user.createQuestion(question);

@@ -8,12 +8,12 @@
     <div class="reveal" id="writeNewQuestionModal" data-reveal="true">
         <div class="row">
             <div class="small-12 columns">
-                <form th:object="${question}" th:action="@{/newQuestion(learningGroupId=${learningGroup.id})}"
+                <form th:object="${createQuestion}" th:action="@{/newQuestion(learningGroupId=${learningGroup.id})}"
                       method="post">
                     <p>Write new question!</p>
                     <div style="padding-bottom: 20px">
-                        <textarea id="mytextareaforquestion" th:field="*{question}">Question</textarea>
-                        <textarea id="mytextareaforanswer" th:field="*{answer}">Answer</textarea>
+                        <textarea  th:field="*{question}">Question</textarea>
+                        <textarea  th:field="*{answer}">Answer</textarea>
                         <div style="padding-top: 20px">
                             <button type="submit" class="button">Save question</button>
                         </div>
