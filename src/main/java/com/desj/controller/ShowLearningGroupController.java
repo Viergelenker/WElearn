@@ -180,13 +180,7 @@ public class ShowLearningGroupController {
     public String deleteGroupPost(@RequestParam(value = "groupPostId") Integer groupPostId,
                                   @RequestParam(value = "learningGroupId") Integer learningGroupId) {
 
-        for (Comment comment : commentRepository.findAll()) {
-            if (comment.getAssociatedGroupPost().getId() == groupPostId) {
-                commentRepository.delete(comment);
-            }
-        }
-
-        groupPostRepository.delete(groupPostRepository.findOne(groupPostId));
+        groupPostService.delete(groupPostId);
         return "redirect:/showLearningGroup?id=" + learningGroupId;
     }
 

@@ -74,18 +74,16 @@ public class QuizService {
     public List<MCQuestion> getQuestions(User user, Integer learningGroupId) {
 
         List<MCQuestion> mcQuestions = new ArrayList<>();
-        Integer iterator = 1;
-        MCQuestion mcQuestion;
 
-        while (iterator <= mcQuestionRepository.findAll().size() && mcQuestions.size() < 4) {
-
-            mcQuestion = mcQuestionRepository.findOne(iterator);
+        for (MCQuestion mcQuestion : mcQuestionRepository.findAll()) {
 
             if (mcQuestion.getCorrespondingLearningGroup().getId().equals(learningGroupId)
                     && !user.getAnsweredMCQuestions().contains(mcQuestion)) {
                 mcQuestions.add(mcQuestion);
             }
-            iterator++;
+            if (mcQuestions.size() == 4) {
+                return mcQuestions;
+            }
         }
 
         return mcQuestions;

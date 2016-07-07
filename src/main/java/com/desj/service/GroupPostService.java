@@ -17,6 +17,19 @@ public class GroupPostService {
     @Autowired
     private GroupPostRepository groupPostRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
+    public void delete(Integer groupPostId) {
+        for (Comment comment : commentRepository.findAll()) {
+            if (comment.getAssociatedGroupPost().getId() == groupPostId) {
+                commentRepository.delete(comment);
+            }
+        }
+
+        groupPostRepository.delete(groupPostRepository.findOne(groupPostId));
+    }
+
     public void save(GroupPost groupPost, User user, LearningGroup learningGroup) {
 
         groupPost.setAssociatedUser(user);

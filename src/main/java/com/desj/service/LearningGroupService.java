@@ -1,8 +1,6 @@
 package com.desj.service;
 
-import com.desj.model.LearningGroup;
-import com.desj.model.LearningGroupRepository;
-import com.desj.model.User;
+import com.desj.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,8 +22,39 @@ public class LearningGroupService {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+    @Autowired
+    private MCQuestionRepository mcQuestionRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private GroupPostRepository groupPostRepository;
+
     public List<User> getAllMemberOfLearningGroup(Integer learningGroupId) {
         return learningGroupRepository.findOne(learningGroupId).getMembers();
+    }
+
+    public void delete(Integer learningGroupId) {
+
+        for (MCQuestion mcQuestion : mcQuestionRepository.findAll()) {
+            if (mcQuestion.getCorrespondingLearningGroup().getId() == learningGroupId) {
+                mcQuestionRepository.delete(mcQuestion);
+            }
+        }
+
+        for (Comment comment : commentRepository.findAll()) {
+            if (comment.getAssociatedGroupPost().getAssociatedLearningGroup().getId() == learningGroupId) {
+                commentRepository.delete(comment);
+            }
+        }
+
+        for (GroupPost groupPost : groupPostRepository.findAll()) {
+            if (groupPost.getAssociatedLearningGroup().getId() == learningGroupId) {
+                groupPostRepository.delete(groupPost);
+            }
+        }
+        learningGroupRepository.delete(learningGroupRepository.findOne(learningGroupId));
     }
 
     public void addMemberToLearningGroup(int learningGroupId, User user) {

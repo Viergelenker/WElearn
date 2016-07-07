@@ -20,11 +20,11 @@ public class Quiz {
     @JoinColumn(name="USER_ID")
     private User quizParticipant;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "learningGroupId")
     private LearningGroup learningGroup;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(
             name = "QUIZQUESTION",
             joinColumns = @JoinColumn(name = "QUIZ_ID"),
