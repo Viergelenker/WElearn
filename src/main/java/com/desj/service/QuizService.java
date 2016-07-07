@@ -37,10 +37,8 @@ public class QuizService {
 
         List<Integer> questionIds = new ArrayList<>();
 
-        for (int j = 0; j < quiz.getQuestionIds().length(); j++) {
-            if (quiz.getQuestionIds().charAt(j) != ',') {
-                questionIds.add(Character.getNumericValue(quiz.getQuestionIds().charAt(j)));
-            }
+        for (String field : quiz.getQuestionIds().split(",")) {
+            questionIds.add(Integer.parseInt(field));
         }
 
         for (int i = 0; i < 4; i++) {

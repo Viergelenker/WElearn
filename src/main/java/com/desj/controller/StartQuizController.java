@@ -1,6 +1,7 @@
 package com.desj.controller;
 
 import com.desj.model.LearningGroupRepository;
+import com.desj.model.MCQuestion;
 import com.desj.model.Quiz;
 import com.desj.model.QuizRepository;
 import com.desj.service.QuizService;
@@ -11,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Desi on 6/15/2016.
@@ -37,7 +41,11 @@ public class StartQuizController {
 
         model.addAttribute("newQuiz", new Quiz());
         model.addAttribute("learningGroupId", learningGroupId);
-        model.addAttribute("questions", quizService.getQuestions(userService.getCurrentDesjUser(), learningGroupId));
+
+        List<MCQuestion> questions = new ArrayList<>();
+        questions.addAll(quizService.getQuestions(userService.getCurrentDesjUser(), learningGroupId));
+
+        model.addAttribute("questions", questions);
 
         return "StartQuiz";
     }
