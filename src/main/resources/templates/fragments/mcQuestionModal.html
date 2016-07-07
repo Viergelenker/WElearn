@@ -10,9 +10,10 @@
             <div class="small-12 columns">
                 <form th:object="${mcQuestion}" th:action="@{/newMCQuestion(learningGroupId=${learningGroup.id})}"
                       method="post">
-                    <p>Write new question!</p>
+                    <h4>Please write a new question, provide 4 answers and select which ones are correct!</h4>
+                    <br/>
                     <div style="padding-bottom: 20px">
-                        <textarea th:field="*{question}">Question</textarea>
+                        <textarea th:field="*{question}" placeholder="Question">Question</textarea>
 
                         <div class="small-1 columns">
                             <input type="checkbox" th:field="*{correctAnswers}" th:value="A"/>

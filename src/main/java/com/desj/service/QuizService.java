@@ -20,9 +20,6 @@ public class QuizService {
     @Autowired
     private MCQuestionRepository mcQuestionRepository;
 
-    @Autowired
-    private LearningGroupRepository learningGroupRepository;
-
     public void save(Quiz quiz, LearningGroup learningGroup, User user) {
 
         List<String> givenAnswersList = new ArrayList<>();
