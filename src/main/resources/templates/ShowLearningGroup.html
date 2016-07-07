@@ -150,6 +150,7 @@
                 <div class="callout-card-content">
                     <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
                     <p th:utext="${groupPost.text}">Message Text</p>
+                    <i><div style="color: #adb2bd" th:text="${groupPost.getTsCreatedFormatted()}"></div></i>
                 </div>
             </div>
 
@@ -158,6 +159,7 @@
                     <a href="#" style="outline: none">Comments &nbsp;<span class="fa fa-comments"></span></a>
                     <ul th:class="${iterStat.first}? 'is-active'">
                         <div th:each="comment : ${comments}"
+
                              th:if="${comment.associatedGroupPost.id == groupPost.id}">
                             <div class="callout-card secondary">
                                 <div class="card-label">
