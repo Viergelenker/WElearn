@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by Desi on 6/16/2016.
@@ -62,10 +60,12 @@ public class QuestionService {
                 answeredQuestions.add(toBeAnswered);
                 user.setAnsweredQuestions(answeredQuestions);
                 iterator=-1;
+                return toBeAnswered;
             }else{
                 iterator++;
             }
         }
+        return null;
     }
 
     private List<Question> getAllQuestionsOfLearningGroup(LearningGroup learningGroup) {
