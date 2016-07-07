@@ -693,26 +693,49 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestionRepository.save(mcQuestion28);
 
         //Group 8 - SOPRA
+
+        MCQuestion mcQuestion41 = new MCQuestion();
+        mcQuestion41.setQuestion("Welcher Link wird korrekt ausgeführt ? ");
+        mcQuestion41.setAnswerA("th:href=\"${welcome(id=${id)}\" ");
+        mcQuestion41.setAnswerB("th:href=\"@{welcome(id=${id)}\" ");
+        mcQuestion41.setAnswerC("th:href=\"${welcome(id=*{id)}\" ");
+        mcQuestion41.setAnswerD("th:href=\"@{welcome(id=#{id)}\" ");
+        mcQuestion41.setCorrespondingLearningGroup(group8);
+        mcQuestion41.setCreator(erhan);
+        mcQuestion41.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion41);
+
+        MCQuestion mcQuestion40 = new MCQuestion();
+        mcQuestion40.setQuestion("Wie kennzeichnet man Kommentare in der Style-Sheet Datei (CSS) ? ");
+        mcQuestion40.setAnswerA("<!-- hier steht ein Kommentar -->");
+        mcQuestion40.setAnswerB("-// hier steht ein Kommentar //-");
+        mcQuestion40.setAnswerC("/* hier steht ein Kommentar */");
+        mcQuestion40.setAnswerD("*** hier steht ein Kommentar ***");
+        mcQuestion40.setCorrespondingLearningGroup(group8);
+        mcQuestion40.setCreator(erhan);
+        mcQuestion40.setCorrectAnswers("C");
+        mcQuestionRepository.save(mcQuestion40);
+
         MCQuestion mcQuestion32 = new MCQuestion();
-        mcQuestion32.setQuestion("Bei welchem Vorgehensmodell kann eine Phase mehrmals durchlaufen werden um ein besseres Ergebniss zu erzielen ?");
-        mcQuestion32.setAnswerA("Wasserfallmodell");
-        mcQuestion32.setAnswerB("Erweitertem Wasserfallmodell");
-        mcQuestion32.setAnswerC("Spiralmodell");
-        mcQuestion32.setAnswerD("Extreme Programming");
+        mcQuestion32.setQuestion("Mit welchem Befehl aktualisiert man das lokale Repository in Git ?");
+        mcQuestion32.setAnswerA("git pull");
+        mcQuestion32.setAnswerB("git add");
+        mcQuestion32.setAnswerC("git diff");
+        mcQuestion32.setAnswerD("git merge");
         mcQuestion32.setCorrespondingLearningGroup(group8);
         mcQuestion32.setCreator(erhan);
-        mcQuestion32.setCorrectAnswers("C");
+        mcQuestion32.setCorrectAnswers("A");
         mcQuestionRepository.save(mcQuestion32);
 
         MCQuestion mcQuestion33 = new MCQuestion();
-        mcQuestion33.setQuestion("Welche Prinzipien liegen dem Software-Engineering zugrunde ?");
-        mcQuestion33.setAnswerA("Prinzip der Hierarchisierung");
-        mcQuestion33.setAnswerB("Prinzip der Strukturierung");
-        mcQuestion33.setAnswerC("Prinzip der Modularisierung");
-        mcQuestion33.setAnswerD("Prinzip der Technisierung");
+        mcQuestion33.setQuestion("Welche Phasen gibt es im Software-Engineering ?");
+        mcQuestion33.setAnswerA("Planung");
+        mcQuestion33.setAnswerB("Wartung");
+        mcQuestion33.setAnswerC("Abbruch");
+        mcQuestion33.setAnswerD("Insatallation");
         mcQuestion33.setCorrespondingLearningGroup(group8);
         mcQuestion33.setCreator(erhan);
-        mcQuestion33.setCorrectAnswers("A,B,C");
+        mcQuestion33.setCorrectAnswers("A,B,D");
         mcQuestionRepository.save(mcQuestion33);
 
         MCQuestion mcQuestion34 = new MCQuestion();
@@ -736,6 +759,22 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion35.setCreator(erhan);
         mcQuestion35.setCorrectAnswers("C");
         mcQuestionRepository.save(mcQuestion35);
+
+        MCQuestion mcQuestion39 = new MCQuestion();
+        mcQuestion39.setQuestion("Mit welchem Befehl bestätigt man seine Änderungen in Git ? ");
+        mcQuestion39.setAnswerA("git add *");
+        mcQuestion39.setAnswerB("git commit -m");
+        mcQuestion39.setAnswerC("git push");
+        mcQuestion39.setAnswerD("git commit -b");
+        mcQuestion39.setCorrespondingLearningGroup(group8);
+        mcQuestion39.setCreator(erhan);
+        mcQuestion39.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion39);
+
+
+
+
+
 
 
         // Group posts
