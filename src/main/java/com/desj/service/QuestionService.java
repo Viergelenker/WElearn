@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by Desi on 6/16/2016.
@@ -23,7 +25,7 @@ public class QuestionService {
 
     }
 
-    public Question getQuestion(LearningGroup learningGroup, User user) {
+    /*public Question getQuestion(LearningGroup learningGroup, User user) {
         Integer iterator = 0;
         List<Question> questionList = questionReposiory.findAll();
         while (iterator < questionList.size() && questionList.size() != 0) {
@@ -46,9 +48,27 @@ public class QuestionService {
             }
         }
         return null;
+    }*/
+
+    public Question getQuestion(LearningGroup learningGroup, User user){
+        Integer iterator =0;
+        List<Question> questionsOfLearningGroup = this.getAllQuestionsOfLearningGroup(learningGroup);
+        Question toBeAnswered;
+        while(iterator<questionsOfLearningGroup.size()&&questionsOfLearningGroup.size()!=0&&iterator!=-1){
+            toBeAnswered=questionsOfLearningGroup.get(iterator);
+            if(!user.getAnsweredQuestions().contains(toBeAnswered)){
+                List<Question> answeredQuestions = new ArrayList<>();
+                answeredQuestions.addAll(user.getAnsweredQuestions());
+                answeredQuestions.add(toBeAnswered);
+                user.setAnsweredQuestions(answeredQuestions);
+                iterator=-1;
+            }else{
+                iterator++;
+            }
+        }
     }
 
-    public List<Question> getAllQuestionsOfLearningGroup(LearningGroup learningGroup) {
+    private List<Question> getAllQuestionsOfLearningGroup(LearningGroup learningGroup) {
         List<Question> questionList = new ArrayList<>();
         for (Question question : questionReposiory.findAll()) {
             if (question.getCorrespondingLearningGroup().equals(learningGroup)) {

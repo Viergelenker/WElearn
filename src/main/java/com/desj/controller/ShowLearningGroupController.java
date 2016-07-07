@@ -74,7 +74,7 @@ public class ShowLearningGroupController {
             model.addAttribute("createQuestion", new Question());
             model.addAttribute("mcQuestion", new MCQuestion());
             model.addAttribute("questionComment", new QuestionComment());
-            model.addAttribute("questions", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository
+            model.addAttribute("questionsOfLearningGroup", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository
                     .findOne(learningGroupId)));
             model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(
                     learningGroupRepository.findOne(learningGroupId)));
