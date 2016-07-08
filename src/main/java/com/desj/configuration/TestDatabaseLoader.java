@@ -40,6 +40,9 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private QuestionReposiory questionReposiory;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
@@ -887,5 +890,13 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         comment8.setCreator(hans);
         comment8.setText("Ich kann es dir gerne bei einem Kaffee erklären ;)");
         commentRepository.save(comment8);
+
+        Question question1 = new Question();
+        question1.setQuestion("Was ist die Definition von Entwurf");
+        question1.setAnswer("Entwurf ist eine Aktivitaet, bei der die technishe Loesungsstruktur fuer ein System entwickelt wird.");
+        question1.setCreator(desi);
+        question1.setCorrespondingLearningGroup(group7);
+        questionReposiory.save(question1);
+
     }
 }

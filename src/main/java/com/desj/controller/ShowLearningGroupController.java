@@ -72,22 +72,12 @@ public class ShowLearningGroupController {
             model.addAttribute("groupPosts", groupPostService.getAllGroupPostsOfLearningGroup(learningGroupRepository
                     .findOne(learningGroupId)));
             model.addAttribute("comments", commentRepository.findAll());
-            model.addAttribute("question", new Question());
+            model.addAttribute("createQuestion", new Question());
             model.addAttribute("mcQuestion", new MCQuestion());
-            model.addAttribute("questionComment", new QuestionComment());
-            model.addAttribute("questions", questionService.getAllQuestionsOfLearningGroup(learningGroupRepository
-                    .findOne(learningGroupId)));
+            model.addAttribute("createQuestionComment", new QuestionComment());
             model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(
                     learningGroupRepository.findOne(learningGroupId)));
             model.addAttribute("fileNames", learningGroupRepository.findOne(learningGroupId).getUploadedFilesList());
-            Question question = questionService.getQuestion(learningGroupRepository.findOne(learningGroupId),userService.getCurrentDesjUser());
-            model.addAttribute("error",false);
-            if(question!=null){
-                model.addAttribute("getQuestion",question);
-            }else{
-
-                model.addAttribute("error",true);
-            }
 
             if (!userService.getAllQuizOfUser(userService.getCurrentDesjUser()).isEmpty()) {
                 model.addAttribute("quizPoints", userService.getTotalOfQuizPointsForUserForLearningGroup(userService
@@ -157,13 +147,14 @@ public class ShowLearningGroupController {
 
     @RequestMapping(value = "/newQuestion", method = RequestMethod.POST)
     public String whriteNewQuestion(@RequestParam(value = "learningGroupId") Integer learningGroupId,
-                                    @ModelAttribute("question") Question question) {
+                                    @ModelAttribute("createQuestion") Question question) {
         User user = userService.getCurrentDesjUser();
         questionService.save(question, learningGroupRepository.findOne(learningGroupId), user);
         user.createQuestion(question);
 
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
+
 
     @RequestMapping(value = "/newQuestionComment", method = RequestMethod.POST)
     public String writeNewQuestionComment(@RequestParam(value = "questionId") Integer questionId,

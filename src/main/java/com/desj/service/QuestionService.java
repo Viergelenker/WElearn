@@ -22,22 +22,59 @@ public class QuestionService {
         questionReposiory.save(question);
 
     }
-    public Question getQuestion(LearningGroup learningGroup, User user) {
-        Integer iterator = 1;
+
+    /*public Question getQuestion(LearningGroup learningGroup, User user) {
+        Integer iterator = 0;
         List<Question> questionList = questionReposiory.findAll();
-        while (iterator <= questionList.size() || questionList.size() != 0) {
+        while (iterator < questionList.size() && questionList.size() != 0) {
             Question question = questionList.get(iterator);
-            if (question.getCorrespondingLearningGroup().equals(learningGroup) && !user.getAnsweredQuestions().equals(question)) {
-                List<Question> answeredQuestions = user.getAnsweredQuestions();
-                answeredQuestions.add(question);
-                user.setAnsweredQuestions(answeredQuestions);
+            if (question.getCorrespondingLearningGroup().equals(learningGroup) && !user.getAnsweredQuestions().contains(question)) {
+
+                List<Question> answeredQuestions = new ArrayList<>();
+                if (user.getAnsweredQuestions() != null) {
+
+                    answeredQuestions.addAll(user.getAnsweredQuestions());
+                    answeredQuestions.add(question);
+                    user.setAnsweredQuestions(answeredQuestions);
+                } else {
+                    answeredQuestions.add(question);
+                    user.setAnsweredQuestions(answeredQuestions);
+                }
                 return question;
             } else {
                 iterator++;
-            }}
+            }
+        }
+        return null;
+    }*/
+
+    public Question getQuestion(LearningGroup learningGroup, User user){
+
+        Integer iterator =0;
+
+        List<Question> questionsOfLearningGroup = this.getAllQuestionsOfLearningGroup(learningGroup);
+
+        Question toBeAnswered;
+
+        while(iterator < questionsOfLearningGroup.size()){
+
+            toBeAnswered=questionsOfLearningGroup.get(iterator);
+
+            if(!user.getAnsweredQuestions().contains(toBeAnswered)){
+
+                List<Question> answeredQuestions = new ArrayList<>();
+                answeredQuestions.addAll(user.getAnsweredQuestions());
+                answeredQuestions.add(toBeAnswered);
+                user.setAnsweredQuestions(answeredQuestions);
+                return toBeAnswered;
+            }else{
+                iterator++;
+            }
+        }
         return null;
     }
-    public List<Question> getAllQuestionsOfLearningGroup(LearningGroup learningGroup) {
+
+    private List<Question> getAllQuestionsOfLearningGroup(LearningGroup learningGroup) {
         List<Question> questionList = new ArrayList<>();
         for (Question question : questionReposiory.findAll()) {
             if (question.getCorrespondingLearningGroup().equals(learningGroup)) {
@@ -47,20 +84,13 @@ public class QuestionService {
         return questionList;
     }
 
-    public List<Question> getAllQuestionsOfUser(User user) {
-        List<Question> questionList = new ArrayList<>();
-        for (Question question : questionReposiory.findAll()) {
-            if (question.getCreator().equals(user)) {
-                questionList.add(question);
-            }
-        }
-        return questionList;
-    }
+
 
     public void addQuestionComment(Question question, QuestionComment questionComment) {
         List<QuestionComment> commentList = new ArrayList<>();
         if (question.getComments() != null) {
             commentList.addAll(question.getComments());
+
         } else {
             commentList.add(questionComment);
             question.setComments(commentList);

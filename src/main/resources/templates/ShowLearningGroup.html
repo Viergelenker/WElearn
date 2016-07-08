@@ -63,14 +63,14 @@
             <div class="action">
                 <a class="cardLink" data-open="writeNewPostModal"><span class="fa fa-pencil"></span> Write new post</a>
             </div>
+
             <div class="action">
-                <a class="cardLink" data-open="getQuestionModal"><span class="fa fa-question"></span> Get Question</a>
+                <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-comment-o"></span> Create new
+                    question</a>
             </div>
-            <!-- Not working atm -->
-            <!-- <div class="action">
-                 <a class="cardLink" data-open="writeNewQuestionModal"><span class="fa fa-question"></span> Create new
-                     question</a>
-             </div>-->
+            <div class="action">
+                <a class="cardLink" th:href="@{/showQuestion(learningGroupId=${learningGroup.id})}"><span class="fa fa-question"></span> Show Question</a>
+            </div>
             <div class="action">
                 <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span>
                     Create new MC-question </a>
@@ -218,9 +218,6 @@
 
     <!-- Group post modal  -->
     <div th:replace="fragments/groupPostModal"></div>
-
-    <!-- GetQuestion modal modal  -->
-    <div th:replace="fragments/getQuestionModal"></div>
 
 </div>
 
