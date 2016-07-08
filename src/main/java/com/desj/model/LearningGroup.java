@@ -39,7 +39,7 @@ public class LearningGroup {
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private List<User> members = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinTable(
             name = "MCQUESTIONPOOL",
             joinColumns = @JoinColumn(name = "GROUP_ID"),
@@ -47,7 +47,7 @@ public class LearningGroup {
     )
     private List<MCQuestion> mcQuestions = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinTable(
             name = "QUESTIONPOOL",
             joinColumns = @JoinColumn(name = "GROUP_ID"),

@@ -89,6 +89,12 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         group7.setDescription("Wir sitzen alle im gleichen Boot und versuchen DSA gemeinsam zu meistern :)");
         learningGroupRepository.save(group7);
 
+        LearningGroup group8 = new LearningGroup();
+        group8.setName("Softwarepraktikum");
+        group8.setSubject("SOPRA");
+        group8.setDescription("Ihr seid im 4. Semester und sucht die Sopra-Lerngruppe? Dann seid ihr hier genau richtig, tretet bei!");
+        learningGroupRepository.save(group8);
+
 
         // Creates new Desj user.
         // Julien
@@ -102,6 +108,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         group6.setCreatorOfGroup(julien);
         learningGroupService.addMemberToLearningGroup(group7.getId(), julien);
         learningGroupService.addMemberToLearningGroup(group1.getId(), julien);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), julien);
+
 
         // Desi
         com.desj.model.User desi = new com.desj.model.User();
@@ -117,6 +125,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         group2.setCreatorOfGroup(desi);
         learningGroupService.addMemberToLearningGroup(group4.getId(), desi);
         learningGroupService.addMemberToLearningGroup(group7.getId(), desi);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), desi);
+
 
         // Sabrina
         com.desj.model.User sabrina = new com.desj.model.User();
@@ -128,6 +138,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group4.getId(), sabrina);
         learningGroupService.addMemberToLearningGroup(group1.getId(), sabrina);
         learningGroupService.addMemberToLearningGroup(group2.getId(), sabrina);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), sabrina);
         group4.setCreatorOfGroup(sabrina);
 
         // Erhan
@@ -140,9 +151,12 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Add the user to the learning group class
         learningGroupService.addMemberToLearningGroup(group3.getId(), erhan);
         group3.setCreatorOfGroup(erhan);
+        group8.setCreatorOfGroup(erhan);
         learningGroupService.addMemberToLearningGroup(group1.getId(), erhan);
         learningGroupService.addMemberToLearningGroup(group6.getId(), erhan);
         learningGroupService.addMemberToLearningGroup(group7.getId(), erhan);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), erhan);
+
 
         // Robert
         com.desj.model.User robert = new com.desj.model.User();
@@ -151,6 +165,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group1.getId(), robert);
         learningGroupService.addMemberToLearningGroup(group2.getId(), robert);
         learningGroupService.addMemberToLearningGroup(group6.getId(), robert);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), robert);
+
 
         // Friedrich
         com.desj.model.User friedrich = new com.desj.model.User();
@@ -178,6 +194,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group5.getId(), sarah);
         group5.setCreatorOfGroup(sarah);
         learningGroupService.addMemberToLearningGroup(group2.getId(), sarah);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), sarah);
+
 
         // Anna
         com.desj.model.User anna = new com.desj.model.User();
@@ -186,6 +204,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group5.getId(), anna);
         learningGroupService.addMemberToLearningGroup(group1.getId(), anna);
         learningGroupService.addMemberToLearningGroup(group3.getId(), anna);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), anna);
+
 
         // Franzi
         com.desj.model.User franzi = new com.desj.model.User();
@@ -221,6 +241,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group1.getId(), hans);
         learningGroupService.addMemberToLearningGroup(group3.getId(), hans);
         learningGroupService.addMemberToLearningGroup(group7.getId(), hans);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), hans);
+
 
         // Nina
         com.desj.model.User nina = new com.desj.model.User();
@@ -240,6 +262,8 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group4.getId(), max);
         learningGroupService.addMemberToLearningGroup(group6.getId(), max);
         learningGroupService.addMemberToLearningGroup(group7.getId(), max);
+        learningGroupService.addMemberToLearningGroup(group8.getId(), max);
+
 
         // Paula
         com.desj.model.User paula = new com.desj.model.User();
@@ -249,6 +273,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group4.getId(), paula);
         learningGroupService.addMemberToLearningGroup(group6.getId(), paula);
         learningGroupService.addMemberToLearningGroup(group1.getId(), paula);
+
 
         // Omar
         com.desj.model.User omar = new com.desj.model.User();
@@ -423,6 +448,39 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion12.setCorrectAnswers("A,B");
         mcQuestionRepository.save(mcQuestion12);
 
+        MCQuestion mcQuestion29 = new MCQuestion();
+        mcQuestion29.setQuestion("Welcher Datentyp repräsentiert einen Buchstaben ?");
+        mcQuestion29.setAnswerA("boolean");
+        mcQuestion29.setAnswerB("int");
+        mcQuestion29.setAnswerC("long");
+        mcQuestion29.setAnswerD("float");
+        mcQuestion29.setCorrespondingLearningGroup(group3);
+        mcQuestion29.setCreator(omar);
+        mcQuestion29.setCorrectAnswers("");
+        mcQuestionRepository.save(mcQuestion29);
+
+        MCQuestion mcQuestion30 = new MCQuestion();
+        mcQuestion30.setQuestion("Die Typ-2 Grammatik ist eine .. Grammtik !");
+        mcQuestion30.setAnswerA("kontextfreie");
+        mcQuestion30.setAnswerB("kontextsensitive");
+        mcQuestion30.setAnswerC("reguläre");
+        mcQuestion30.setAnswerD("allgemeine");
+        mcQuestion30.setCorrespondingLearningGroup(group3);
+        mcQuestion30.setCreator(omar);
+        mcQuestion30.setCorrectAnswers("A");
+        mcQuestionRepository.save(mcQuestion30);
+
+        MCQuestion mcQuestion31 = new MCQuestion();
+        mcQuestion31.setQuestion("Ein Byte entspricht wieviel Bits");
+        mcQuestion31.setAnswerA("1 Bit");
+        mcQuestion31.setAnswerB("2 Bits");
+        mcQuestion31.setAnswerC("6 Bits");
+        mcQuestion31.setAnswerD("8 Bits");
+        mcQuestion31.setCorrespondingLearningGroup(group3);
+        mcQuestion31.setCreator(omar);
+        mcQuestion31.setCorrectAnswers("D");
+        mcQuestionRepository.save(mcQuestion31);
+
         // Group 4 - Wirtschaftsinformatik
         MCQuestion mcQuestion13 = new MCQuestion();
         mcQuestion13.setQuestion("Die Lehre von Zeichen wird Semiotik genannnt, diese umfasst als Teillehren ..");
@@ -512,6 +570,40 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion20.setCreator(hans);
         mcQuestion20.setCorrectAnswers("A");
         mcQuestionRepository.save(mcQuestion20);
+
+        MCQuestion mcQuestion36 = new MCQuestion();
+        mcQuestion36.setQuestion("Das Recht ein Gut zu gebrauchen, nennt man .. ");
+        mcQuestion36.setAnswerA("Usus");
+        mcQuestion36.setAnswerB("Usus Fructus");
+        mcQuestion36.setAnswerC("Abusus");
+        mcQuestion36.setAnswerD("Veräußerungsrecht");
+        mcQuestion36.setCorrespondingLearningGroup(group5);
+        mcQuestion36.setCreator(hans);
+        mcQuestion36.setCorrectAnswers("A");
+        mcQuestionRepository.save(mcQuestion36);
+
+        MCQuestion mcQuestion37 = new MCQuestion();
+        mcQuestion37.setQuestion("Das Recht sich die Erträge aus der Nutzung eines Gutes anzueignen nennt man .. ");
+        mcQuestion37.setAnswerA("Usus");
+        mcQuestion37.setAnswerB("Usus Fructus");
+        mcQuestion37.setAnswerC("Abusus");
+        mcQuestion37.setAnswerD("Veräußerungsrecht");
+        mcQuestion37.setCorrespondingLearningGroup(group5);
+        mcQuestion37.setCreator(hans);
+        mcQuestion37.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion37);
+
+        MCQuestion mcQuestion38 = new MCQuestion();
+        mcQuestion38.setQuestion("Auf welchem Ansatz basiert der Market-based View ?");
+        mcQuestion38.setAnswerA("5-Forces-Ansatz von Porter");
+        mcQuestion38.setAnswerB("Media-Richness-Ansatz von Daft und Lengel");
+        mcQuestion38.setAnswerC("Actors-Resources-Activities-Ansatz von Hakansson");
+        mcQuestion38.setAnswerD("Structure-follows-Strategy-Ansatz von Chandler");
+        mcQuestion38.setCorrespondingLearningGroup(group5);
+        mcQuestion38.setCreator(hans);
+        mcQuestion38.setCorrectAnswers("A");
+        mcQuestionRepository.save(mcQuestion38);
+
 
         //Group 6 - Zivilrecht
         MCQuestion mcQuestion21 = new MCQuestion();
@@ -603,6 +695,90 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion28.setCorrectAnswers("A,B");
         mcQuestionRepository.save(mcQuestion28);
 
+        //Group 8 - SOPRA
+
+        MCQuestion mcQuestion41 = new MCQuestion();
+        mcQuestion41.setQuestion("Welcher Link wird korrekt ausgeführt ? ");
+        mcQuestion41.setAnswerA("th:href=\"${welcome(id=${id)}\" ");
+        mcQuestion41.setAnswerB("th:href=\"@{welcome(id=${id)}\" ");
+        mcQuestion41.setAnswerC("th:href=\"${welcome(id=*{id)}\" ");
+        mcQuestion41.setAnswerD("th:href=\"@{welcome(id=#{id)}\" ");
+        mcQuestion41.setCorrespondingLearningGroup(group8);
+        mcQuestion41.setCreator(erhan);
+        mcQuestion41.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion41);
+
+        MCQuestion mcQuestion40 = new MCQuestion();
+        mcQuestion40.setQuestion("Wie kennzeichnet man Kommentare in der Style-Sheet Datei (CSS) ? ");
+        mcQuestion40.setAnswerA("<!-- hier steht ein Kommentar -->");
+        mcQuestion40.setAnswerB("-// hier steht ein Kommentar //-");
+        mcQuestion40.setAnswerC("/* hier steht ein Kommentar */");
+        mcQuestion40.setAnswerD("*** hier steht ein Kommentar ***");
+        mcQuestion40.setCorrespondingLearningGroup(group8);
+        mcQuestion40.setCreator(erhan);
+        mcQuestion40.setCorrectAnswers("C");
+        mcQuestionRepository.save(mcQuestion40);
+
+        MCQuestion mcQuestion32 = new MCQuestion();
+        mcQuestion32.setQuestion("Mit welchem Befehl aktualisiert man das lokale Repository in Git ?");
+        mcQuestion32.setAnswerA("git pull");
+        mcQuestion32.setAnswerB("git add");
+        mcQuestion32.setAnswerC("git diff");
+        mcQuestion32.setAnswerD("git merge");
+        mcQuestion32.setCorrespondingLearningGroup(group8);
+        mcQuestion32.setCreator(erhan);
+        mcQuestion32.setCorrectAnswers("A");
+        mcQuestionRepository.save(mcQuestion32);
+
+        MCQuestion mcQuestion33 = new MCQuestion();
+        mcQuestion33.setQuestion("Welche Phasen gibt es im Software-Engineering ?");
+        mcQuestion33.setAnswerA("Planung");
+        mcQuestion33.setAnswerB("Wartung");
+        mcQuestion33.setAnswerC("Abbruch");
+        mcQuestion33.setAnswerD("Insatallation");
+        mcQuestion33.setCorrespondingLearningGroup(group8);
+        mcQuestion33.setCreator(erhan);
+        mcQuestion33.setCorrectAnswers("A,B,D");
+        mcQuestionRepository.save(mcQuestion33);
+
+        MCQuestion mcQuestion34 = new MCQuestion();
+        mcQuestion34.setQuestion("Was veranschaulicht ein Use-Case Diagramm ?");
+        mcQuestion34.setAnswerA("Einen zeitlichen Ablauf");
+        mcQuestion34.setAnswerB("Einen Anwendungsfall");
+        mcQuestion34.setAnswerC("Einen Zustand");
+        mcQuestion34.setAnswerD("Eine Interaktion");
+        mcQuestion34.setCorrespondingLearningGroup(group8);
+        mcQuestion34.setCreator(erhan);
+        mcQuestion34.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion34);
+
+        MCQuestion mcQuestion35 = new MCQuestion();
+        mcQuestion35.setQuestion("Eine Beziehung zwischen zwei oder mehreren Klassen bezeichnet man als.. ");
+        mcQuestion35.setAnswerA("Generalisierung");
+        mcQuestion35.setAnswerB("Spezialisierung");
+        mcQuestion35.setAnswerC("Assoziation");
+        mcQuestion35.setAnswerD("Komposition");
+        mcQuestion35.setCorrespondingLearningGroup(group8);
+        mcQuestion35.setCreator(erhan);
+        mcQuestion35.setCorrectAnswers("C");
+        mcQuestionRepository.save(mcQuestion35);
+
+        MCQuestion mcQuestion39 = new MCQuestion();
+        mcQuestion39.setQuestion("Mit welchem Befehl bestätigt man seine Änderungen in Git ? ");
+        mcQuestion39.setAnswerA("git add *");
+        mcQuestion39.setAnswerB("git commit -m");
+        mcQuestion39.setAnswerC("git push");
+        mcQuestion39.setAnswerD("git commit -b");
+        mcQuestion39.setCorrespondingLearningGroup(group8);
+        mcQuestion39.setCreator(erhan);
+        mcQuestion39.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion39);
+
+
+
+
+
+
 
         // Group posts
         com.desj.model.GroupPost groupPost1 = new com.desj.model.GroupPost();
@@ -664,6 +840,12 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         groupPost10.setText("Gibt es eine leichte, unkomplizierte Erklärung zu partieller Ableitung?");
         groupPost10.setAssociatedLearningGroup(group1);
         groupPostRepository.save(groupPost10);
+
+        com.desj.model.GroupPost groupPost11 = new com.desj.model.GroupPost();
+        groupPost11.setAssociatedUser(julien);
+        groupPost11.setText("Hallo zusammen, für Fragen bezüglich Sopra oder dem Quiz nutzt bitte dieses Forum.");
+        groupPost11.setAssociatedLearningGroup(group8);
+        groupPostRepository.save(groupPost11);
 
 
         // Create and add Comments

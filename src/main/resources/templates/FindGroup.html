@@ -8,7 +8,7 @@
 <div th:replace="fragments/navbar :: loggedIn"></div>
 
 <br/>
-<div class="row">
+<div class="row" data-equalizer="" data-equalize-on="medium">
     <div class="small-12 columns">
         <h3><p>These are all groups you aren't a member of:</p></h3>
         <br/>
@@ -17,10 +17,9 @@
                 <h5>That is not a correct password for the group!</h5>
             </div>
         </div>
-
     </div>
 
-    <div class="small-4 columns end" th:each="learningGroup : ${newLearningGroups}">
+    <div data-equalizer-watch="" class="small-4 columns end" th:each="learningGroup : ${newLearningGroups}">
         <div class="card" style="background-color: white">
             <div class="content">
                 <div class="title" style="color: #343838;">

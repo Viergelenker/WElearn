@@ -22,15 +22,15 @@ public class Question {
     @Lob
     private String answer;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "GROUP_ID")
     private LearningGroup correspondingLearningGroup;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "CREATOR_ID")
     private User creator;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany
     @JoinTable(
             name = "COMMENTS",
             joinColumns = @JoinColumn(name = "QUESTION_ID"),

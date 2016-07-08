@@ -20,9 +20,6 @@ public class QuizService {
     @Autowired
     private MCQuestionRepository mcQuestionRepository;
 
-    @Autowired
-    private LearningGroupRepository learningGroupRepository;
-
     public void save(Quiz quiz, LearningGroup learningGroup, User user) {
 
         List<String> givenAnswersList = new ArrayList<>();
@@ -37,10 +34,8 @@ public class QuizService {
 
         List<Integer> questionIds = new ArrayList<>();
 
-        for (int j = 0; j < quiz.getQuestionIds().length(); j++) {
-            if (quiz.getQuestionIds().charAt(j) != ',') {
-                questionIds.add(Character.getNumericValue(quiz.getQuestionIds().charAt(j)));
-            }
+        for (String field : quiz.getQuestionIds().split(",")) {
+            questionIds.add(Integer.parseInt(field));
         }
 
         for (int i = 0; i < 4; i++) {
@@ -76,18 +71,16 @@ public class QuizService {
     public List<MCQuestion> getQuestions(User user, Integer learningGroupId) {
 
         List<MCQuestion> mcQuestions = new ArrayList<>();
-        Integer iterator = 1;
-        MCQuestion mcQuestion;
 
-        while (iterator <= mcQuestionRepository.findAll().size() && mcQuestions.size() < 4) {
-
-            mcQuestion = mcQuestionRepository.findOne(iterator);
+        for (MCQuestion mcQuestion : mcQuestionRepository.findAll()) {
 
             if (mcQuestion.getCorrespondingLearningGroup().getId().equals(learningGroupId)
                     && !user.getAnsweredMCQuestions().contains(mcQuestion)) {
                 mcQuestions.add(mcQuestion);
             }
-            iterator++;
+            if (mcQuestions.size() == 4) {
+                return mcQuestions;
+            }
         }
 
         return mcQuestions;

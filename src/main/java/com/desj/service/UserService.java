@@ -33,6 +33,76 @@ public class UserService {
     @Autowired
     private QuizRepository quizRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private GroupPostRepository groupPostRepository;
+
+    @Autowired
+    private MCQuestionRepository mcQuestionRepository;
+
+    @Autowired
+    private QuestionReposiory questionReposiory;
+
+    @Autowired
+    private LearningGroupRepository learningGroupRepository;
+
+    @Autowired
+    private LearningGroupService learningGroupService;
+
+    public void delete(User user) {
+
+        for (Comment comment : commentRepository.findAll()) {
+            if (comment.getCreator().equals(user)) {
+                commentRepository.delete(comment);
+            }
+        }
+
+        for (GroupPost groupPost : groupPostRepository.findAll()) {
+            if (groupPost.getAssociatedUser().equals(user)) {
+                groupPostRepository.delete(groupPost);
+            }
+        }
+
+        for (MCQuestion mcQuestion : mcQuestionRepository.findAll()) {
+            if (mcQuestion.getCreator().equals(user)) {
+                mcQuestionRepository.delete(mcQuestion);
+            }
+        }
+
+        for (Question question : questionReposiory.findAll()) {
+            if (question.getCreator().equals(user)) {
+                questionReposiory.delete(question);
+            }
+        }
+
+        for (Quiz quiz : quizRepository.findAll()) {
+            if (quiz.getQuizParticipant().equals(user)) {
+                quizRepository.delete(quiz);
+            }
+        }
+
+        for (LearningGroup learningGroup : learningGroupRepository.findAll()) {
+            if (learningGroup.getCreatorOfGroup().equals(user)) {
+                learningGroupService.delete(learningGroup.getId());
+            }
+        }
+
+        for (LearningGroup learningGroup : learningGroupRepository.findAll()) {
+            if (learningGroup.getMembers().contains(user)) {
+                List<User> userList = new ArrayList<>();
+                userList.addAll(learningGroup.getMembers());
+                userList.remove(user);
+                learningGroup.setMembers(userList);
+            }
+        }
+
+        String userEmail = user.getEmail();
+        userRepository.delete(user);
+        userDetailsManager.deleteUser(userEmail);
+    }
+
     public void save(User user) {
 
         Collection<GrantedAuthority> userAuthorities = new ArrayList<>();

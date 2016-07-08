@@ -27,13 +27,4 @@ public class MCQuestionService {
         mcQuestionRepository.save(MCQuestion);
 
     }
-
-    public MCQuestion getOneRandomMCQuestion(User user, Integer learningGroupId) {
-
-        Integer numberOfMCQuestions = mcQuestionRepository.findAll().size();
-
-        MCQuestion mcQuestion = mcQuestionRepository.findAll().get(random.nextInt(numberOfMCQuestions));
-
-        return mcQuestion;
-    }
 }

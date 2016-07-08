@@ -14,8 +14,8 @@
 <div class="row" id="topAnchor">
 
     <!-- Learning group overview -->
-    <div class="small-3 columns" data-sticky-container="">
-        <div class="card" style="background-color: white" data-sticky="" data-anchor="topAnchor">
+    <div class="small-3 columns" data-sticky-container="" style="width: 23%">
+        <div class="card" style="background-color: white;" data-sticky="" data-anchor="topAnchor">
 
             <div class="content">
                 <span class="title" style="color: black" th:text="${learningGroup.name}"></span>
@@ -53,7 +53,7 @@
                 <span data-tooltip="" aria-haspopup="true" class="right" data-disable-hover="false" tabindex="2"
                       title="Creates a new Quiz with 4 random MC Questions!">
                     <a class="cardLink" th:href="@{/startQuiz(learningGroupId=${learningGroup.id})}"><span
-                            class="fa fa-check"> Start quiz</span></a>
+                            class="fa fa-check"></span> Start quiz</a>
                 </span>
             </div>
             <div class="action">
@@ -132,7 +132,9 @@
 
 
     <!-- Displays for each group post in all group posts the title and text... -->
-    <div class="small-12 columns wrapper70">
+    <div class="small-9 columns float-right" style="margin: 0 auto;
+    background-color: rgba(52, 56, 56, 0.8);
+    border-radius: 3px;">
 
         <div th:each="groupPost,iterStat : ${groupPosts}">
 
@@ -150,6 +152,10 @@
                 <div class="callout-card-content">
                     <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
                     <p th:utext="${groupPost.text}">Message Text</p>
+                    <i><span style="color: #adb2bd; font-size: 15px" th:text="${groupPost.getTsCreatedFormatted()}"></span></i>
+                    <a th:if="${groupPost.associatedUser == user}" class="float-right" style="color: red; padding-bottom: 10px" th:href="@{/deleteGroupPost(groupPostId=${groupPost.id}, learningGroupId=${learningGroup.id})}">
+                        Delete <span class="fa fa-close"></span>
+                    </a>
                 </div>
             </div>
 
@@ -158,6 +164,7 @@
                     <a href="#" style="outline: none">Comments &nbsp;<span class="fa fa-comments"></span></a>
                     <ul th:class="${iterStat.first}? 'is-active'">
                         <div th:each="comment : ${comments}"
+
                              th:if="${comment.associatedGroupPost.id == groupPost.id}">
                             <div class="callout-card secondary">
                                 <div class="card-label">
@@ -170,7 +177,11 @@
                                     </span>
                                 </div>
                                 <div class="callout-card-content">
-                                    <p th:utext="${comment.text}">Message Text</p>
+                                    <p style="padding-top: 6px" th:utext="${comment.text}">Message Text</p>
+                                    <i><span style="color: #adb2bd; font-size: 15px" th:text="${comment.getTsCreatedFormatted()}"></span></i>
+                                    <a th:if="${comment.creator == user}"  class="float-right" style="color: red; padding-bottom: 10px" th:href="@{/deleteComment(commentId=${comment.id}, learningGroupId=${learningGroup.id})}">
+                                        Delete <span class="fa fa-close"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -201,9 +212,6 @@
 
     <!-- Question modal -->
     <div th:replace="fragments/questionModal"></div>
-
-    <!-- Quiz modal -->
-    <div th:replace="fragments/createQuizModal"></div>
 
     <!-- MC Question modal -->
     <div th:replace="fragments/mcQuestionModal"></div>

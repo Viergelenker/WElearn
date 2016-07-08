@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Julien on 09.06.16.
@@ -22,6 +24,8 @@ public class GroupPost {
     @Lob
     @Size(min = 4)
     private String text;
+
+    private Date tsCreated;
 
     @OneToOne
     @JoinColumn(name = "userId")
@@ -56,6 +60,7 @@ public class GroupPost {
 
     public void setText(String text) {
         this.text = text;
+        this.tsCreated = new Date();
     }
 
     public User getAssociatedUser() {
@@ -81,5 +86,9 @@ public class GroupPost {
 
     public void setComments(List<com.desj.model.Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getTsCreatedFormatted(){
+        return new SimpleDateFormat("dd.MM.yyyy HH:mm").format(tsCreated);
     }
 }
