@@ -66,7 +66,6 @@ public class QuestionService {
                 answeredQuestions.addAll(user.getAnsweredQuestions());
                 answeredQuestions.add(toBeAnswered);
                 user.setAnsweredQuestions(answeredQuestions);
-
                 return toBeAnswered;
             }else{
                 iterator++;

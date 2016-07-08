@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Julien on 07.07.16.
  */
@@ -30,10 +33,16 @@ public class ShowQuestionController {
     public String showQuestion(@RequestParam("learningGroupId") Integer learningGroupId, Model model) {
 
         User currentUser = userService.getCurrentDesjUser();
+        model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
         Question question = questionService.getQuestion(learningGroupRepository.findOne(learningGroupId), currentUser);
         if (question != null) {
+            List<Question> answeredQuestions = new ArrayList<>();
+            answeredQuestions.addAll(userService.getCurrentDesjUser().getAnsweredQuestions());
+            answeredQuestions.add(question);
+            userService.getCurrentDesjUser().setAnsweredQuestions(answeredQuestions);
             model.addAttribute("question", question);
             model.addAttribute("error", false);
+
         }
         else {
             model.addAttribute("error", true);
@@ -41,4 +50,6 @@ public class ShowQuestionController {
 
         return "ShowQuestion";
     }
+
+
 }
