@@ -11,7 +11,8 @@
 <br/>
 <div class="row">
     <div class="small-8 medium-centered columns wrapper70" th:if="${error}">
-        <h3 style="color: #f8f8f8">Sorry there aren't any questions you haven't answered yet...</h3>
+        <h3 style="color: white">Sorry there aren't any questions you haven't answered yet...</h3>
+        <br/>
         <a class="button" th:href="@{/showLearningGroup(id=${learningGroup.id})}"><span
                 class="fa fa-chevron-left"></span> Go back</a>
     </div>

@@ -34,8 +34,8 @@
     </div>
 </div>
 
-<div th:unless="${numberOfGroups &gt; 0}">
-    <div class="small-6 small-offset-2 columns" style="padding-top: 40px">
+<div class="row">
+    <div class="small-8 medium-centered columns wrapper70" style="color: white" th:unless="${numberOfGroups &gt; 0}">
         <h4><p>Looks like you aren't a member of any group!</p>
             <p>You can find new learning groups here:</p></h4>
         <a href="/findGroup" class="button large">Find learning groups</a>

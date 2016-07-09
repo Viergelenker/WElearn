@@ -153,20 +153,18 @@ label {
 /* Top bar styling */
 .top-bar {
     background: #343838;
-    height: 86px;
-    padding-top: 18px;
+
 }
 
 .top-bar-left ul {
     background: #343838;
     color: white;
-    line-height: 86px;
-    padding-top: 7px;
+
 }
 
 .top-bar-right ul {
     background: #343838;
-    padding-top: 7px
+
 }
 
 /* Group post styling */

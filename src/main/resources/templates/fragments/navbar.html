@@ -8,32 +8,36 @@
 
     <div id="loginNavBar" class="top-bar">
 
-        <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu="true">
-                <li class="menu-text"><span class="fa fa-users"></span> WElearn</li>
-                <li><a class="active" href="/">Home</a></li>
-                <li><a href="/aboutNotLog">About us</a></li>
-            </ul>
+        <div class="top-bar-title">
+            <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+                <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+                <b style="color: white"> <span class="fa fa-users"></span> WElearn</b>
+            </span>
         </div>
+        <div id="responsive-menu">
 
-        <div class="top-bar-right">
-            <ul class="menu">
+            <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu="true">
+                    <li class="show-for-medium" style="color: white"><b><span class="fa fa-users"></span> WElearn</b>
+                    </li>
+                    <li><a class="active" href="/">Home</a></li>
+                    <li><a href="/aboutNotLog">About us</a></li>
+                </ul>
+            </div>
 
+
+            <div class="top-bar-right">
                 <form th:action="@{/login}" th:method="post">
-                    <div class="row">
-                        <div class="small-4 small-offset-1 columns">
-                            <input style="border-radius: 2px" type="text" placeholder="Email" name="username"/>
-                        </div>
-                        <div class="small-4 columns">
-                            <input style="border-radius: 2px" type="password" placeholder="Password" name="password"/>
-                        </div>
-                        <div class="small-3 columns">
+                    <ul class="menu">
+                        <li><input style="border-radius: 2px" type="text" placeholder="Email" name="username"/></li>
+                        <li><input style="border-radius: 2px" type="password" placeholder="Password" name="password"/>
+                        </li>
+                        <li>
                             <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign in</button>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </form>
-
-            </ul>
+            </div>
         </div>
     </div>
 
@@ -42,28 +46,40 @@
 <!-- Navigation bar for logged in user -->
 <th:block th:fragment="loggedIn">
 
-    <div class="top-bar">
+    <div id="loginNavBar" class="top-bar">
 
-        <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu="true">
-                <li class="menu-text"><span class="fa fa-users"></span> WElearn</li>
-                <li><a class="active" href="/">Home</a></li>
-                <li><a href="/aboutLog">About us</a></li>
-                <li><a href="/findGroup">Find groups</a></li>
-                <li><a th:href="@{/createGroup}">Create groups</a></li>
-            </ul>
+        <div class="top-bar-title">
+            <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+                <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+                <b style="color: white"> <span class="fa fa-users"></span> WElearn</b>
+            </span>
         </div>
+        <div id="responsive-menu">
 
-        <div class="top-bar-right">
-            <div class="row">
-                <div class="small-6 columns">
-                    <a th:href="@{/showUserSite}" class="button fa fa-user"></a>
-                </div>
-                <div class="small-6 columns">
-                    <form th:action="@{/logout}" th:method="post">
-                        <button type="submit" class="alert button fa fa-sign-out"></button>
-                    </form>
-                </div>
+            <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu="true">
+                    <li class="show-for-medium" style="color: white"><b><span class="fa fa-users"></span> WElearn</b>
+                    </li>
+                    <li><a class="active" href="/">Home</a></li>
+                    <li><a href="/aboutLog">About us</a></li>
+                    <li><a href="/findGroup">Find groups</a></li>
+                    <li><a th:href="@{/createGroup}">Create groups</a></li>
+                </ul>
+            </div>
+
+
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li style="padding-right: 16%"><a th:href="@{/showUserSite}" class="button"><span
+                            style="padding-bottom: 3px; padding-top: 3px; padding-left: 2px; padding-right: 2px"
+                            class="fa fa-user"></span></a></li>
+                    <li>
+                        <form th:action="@{/logout}" th:method="post">
+                            <button type="submit" class="alert button fa fa-sign-out"></button>
+                        </form>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
