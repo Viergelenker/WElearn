@@ -76,6 +76,7 @@ public class QuestionService {
 
     private List<Question> getAllQuestionsOfLearningGroup(LearningGroup learningGroup) {
         List<Question> questionList = new ArrayList<>();
+
         for (Question question : questionReposiory.findAll()) {
             if (question.getCorrespondingLearningGroup().equals(learningGroup)) {
                 questionList.add(question);

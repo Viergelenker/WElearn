@@ -10,7 +10,7 @@
             <div class="small-12 columns">
                 <form th:object="${mcQuestion}" th:action="@{/newMCQuestion(learningGroupId=${learningGroup.id})}"
                       method="post">
-                    <h4>Please write a new question, provide 4 answers and select which ones are correct!</h4>
+                    <h4>Please write a new question, provide 4 answers and select the correct ones!</h4>
                     <br/>
                     <div style="padding-bottom: 20px">
                         <textarea th:field="*{question}" placeholder="Question">Question</textarea>
