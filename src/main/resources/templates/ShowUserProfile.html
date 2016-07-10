@@ -39,8 +39,9 @@
     <div class="small-4 columns">
         <div class="card" style="background-color: white">
             <div class="image">
-                <img src="images/default-profile.jpg" width="370px"/>
-                <span class="title" style="color: #343838" th:text="${user.username}"></span>
+                <img th:if="${hasPic}" th:src="@{'public/'+ ${file}}" width="370px"/>
+                <img th:unless="${hasPic}" src="images/default-profile.jpg" width="370px"/>
+                <span class="title" style="background-color: white; border-top-right-radius: 3px; color: #343838; font-size: 20px" th:text="${user.username}"></span>
             </div>
             <div class="content">
                 <p><span th:text="${user.username}"></span>s email address is: <span class="label" th:text="${user.email}"></span></p>

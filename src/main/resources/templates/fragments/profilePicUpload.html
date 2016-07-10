@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="profilePicUpload">
+
+    <div class="reveal" id="profilePicUpload" data-reveal="true">
+        <form method="POST" enctype="multipart/form-data" th:action="@{/profilePicUpload(fileExtension)}">
+
+            <h3>Please choose an image from your computer: </h3>
+            <label for="fileUpload" class="expanded button"><span class="fa fa-search"></span> Browse files</label>
+            <input id="fileUpload" type="file" name="file" class="show-for-sr"/>
+
+            <input type="hidden" th:value="${user.id}" name="name"/>
+
+            <input type="hidden" th:value=".jpg" name="fileExtension"/>
+
+            <input type="submit" class="button" value="Upload"/>
+
+            <input type="hidden" th:value="${user.id}" name="userId"/>
+
+        </form>
+        <button class="close-button" data-close="profilePicUpload" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+</th:block>
+
+</body>
+</html>

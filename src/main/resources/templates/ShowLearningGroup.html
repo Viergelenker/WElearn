@@ -69,7 +69,8 @@
                     question</a>
             </div>
             <div class="action">
-                <a class="cardLink" th:href="@{/showQuestion(learningGroupId=${learningGroup.id})}"><span class="fa fa-question"></span> Show Question</a>
+                <a class="cardLink" th:href="@{/showQuestion(learningGroupId=${learningGroup.id})}"><span
+                        class="fa fa-question"></span> Show Question</a>
             </div>
             <div class="action">
                 <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span>
@@ -83,36 +84,6 @@
                     files</a>
             </div>
         </div>
-    </div>
-
-    <!-- File upload modal -->
-    <div class="reveal" id="fileUploadModal" data-reveal="true">
-        <form method="POST" enctype="multipart/form-data" th:action="@{/fileUpload(fileExtension)}">
-
-            <h3>Please choose a file from your computer: </h3>
-            <label for="fileUpload" class="expanded button"><span class="fa fa-search"></span> Browse files</label>
-            <input id="fileUpload" type="file" name="file" class="show-for-sr"/>
-
-            <h3>Give it a name:</h3>
-            <input type="text" name="name"/>
-
-            <h3>And select the file type:</h3>
-            <select name="fileExtension">
-                <option th:value=".pdf">.pdf</option>
-                <option th:value=".jpg">.jpg</option>
-                <option th:value=".png">.png</option>
-                <option th:value=".mp3">.mp3</option>
-                <option th:value=".docx">.docx</option>
-            </select>
-
-            <input type="submit" class="button" value="Upload"/>
-
-            <input type="hidden" th:value="${learningGroup.id}" name="learningGroupId"/>
-
-        </form>
-        <button class="close-button" data-close="fileUploadModal" aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
 
     <!-- File download modal -->
@@ -152,8 +123,11 @@
                 <div class="callout-card-content">
                     <h3 class="lead" th:text="${groupPost.title}"> Title</h3>
                     <p th:utext="${groupPost.text}">Message Text</p>
-                    <i><span style="color: #adb2bd; font-size: 15px" th:text="${groupPost.getTsCreatedFormatted()}"></span></i>
-                    <a th:if="${groupPost.associatedUser == user}" class="float-right" style="color: red; padding-bottom: 10px" th:href="@{/deleteGroupPost(groupPostId=${groupPost.id}, learningGroupId=${learningGroup.id})}">
+                    <i><span style="color: #adb2bd; font-size: 15px"
+                             th:text="${groupPost.getTsCreatedFormatted()}"></span></i>
+                    <a th:if="${groupPost.associatedUser == user}" class="float-right"
+                       style="color: red; padding-bottom: 10px"
+                       th:href="@{/deleteGroupPost(groupPostId=${groupPost.id}, learningGroupId=${learningGroup.id})}">
                         Delete <span class="fa fa-close"></span>
                     </a>
                 </div>
@@ -178,8 +152,11 @@
                                 </div>
                                 <div class="callout-card-content">
                                     <p style="padding-top: 6px" th:utext="${comment.text}">Message Text</p>
-                                    <i><span style="color: #adb2bd; font-size: 15px" th:text="${comment.getTsCreatedFormatted()}"></span></i>
-                                    <a th:if="${comment.creator == user}"  class="float-right" style="color: red; padding-bottom: 10px" th:href="@{/deleteComment(commentId=${comment.id}, learningGroupId=${learningGroup.id})}">
+                                    <i><span style="color: #adb2bd; font-size: 15px"
+                                             th:text="${comment.getTsCreatedFormatted()}"></span></i>
+                                    <a th:if="${comment.creator == user}" class="float-right"
+                                       style="color: red; padding-bottom: 10px"
+                                       th:href="@{/deleteComment(commentId=${comment.id}, learningGroupId=${learningGroup.id})}">
                                         Delete <span class="fa fa-close"></span>
                                     </a>
                                 </div>
@@ -209,6 +186,9 @@
 
         </div>
     </div>
+
+    <!-- File upload modal -->
+    <div th:replace="fragments/fileUploadModal"></div>
 
     <!-- Question modal -->
     <div th:replace="fragments/questionModal"></div>

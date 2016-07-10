@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
 </head>
@@ -44,15 +45,18 @@
     <div class="small-4 columns">
         <div class="card" style="background-color: white">
             <div class="image">
-                <img src="images/default-profile.jpg" width="370px"/>
-                <span class="title" style="color: #343838" th:text="${user.username}"></span>
+                <img th:if="${hasPic}" th:src="@{'public/'+ ${file}}" width="370px"/>
+                <img th:unless="${hasPic}" src="images/default-profile.jpg" width="370px"/>
+                <a class="title fa fa-file-image-o" data-open="profilePicUpload"
+                   style="background-color: white; border-top-right-radius: 3px; color: #343838; font-size: 20px"> &nbsp;<span th:text="${user.username}"></span></a>
             </div>
             <div class="content">
                 <p>Your email address for logins is: <span class="label" th:text="${user.email}"></span></p>
                 <p>Your are currently studying: <span class="label" th:text="${user.major}"></span></p>
             </div>
             <div class="action">
-                <a style="color: red;" data-open="deleteUserModal">Delete your profile</a>
+                <a style="color: red;" data-open="deleteUserModal">Delete your profile &nbsp;<span
+                        class="fa fa-close"></span></a>
             </div>
         </div>
     </div>
@@ -69,6 +73,9 @@
 </div>
 
 <br/>
+
+<!-- File upload modal -->
+<div th:replace="fragments/profilePicUpload"></div>
 
 <script src="js/app.js"></script>
 

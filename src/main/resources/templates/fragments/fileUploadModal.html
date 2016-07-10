@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="fileUploadModal">
+
+    <div class="reveal" id="fileUploadModal" data-reveal="true">
+        <form method="POST" enctype="multipart/form-data" th:action="@{/fileUpload(fileExtension)}">
+
+            <h3>Please choose a file from your computer: </h3>
+            <label for="fileUpload" class="expanded button"><span class="fa fa-search"></span> Browse files</label>
+            <input id="fileUpload" type="file" name="file" class="show-for-sr"/>
+
+            <h3>Give it a name:</h3>
+            <input type="text" name="name"/>
+
+            <h3>And select the file type:</h3>
+            <select name="fileExtension">
+                <option th:value=".pdf">.pdf</option>
+                <option th:value=".jpg">.jpg</option>
+                <option th:value=".png">.png</option>
+                <option th:value=".mp3">.mp3</option>
+                <option th:value=".docx">.docx</option>
+            </select>
+
+            <input type="submit" class="button" value="Upload"/>
+
+            <input type="hidden" th:value="${learningGroup.id}" name="learningGroupId"/>
+
+        </form>
+        <button class="close-button" data-close="fileUploadModal" aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+</th:block>
+
+</body>
+</html>
