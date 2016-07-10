@@ -43,6 +43,9 @@ public class UserService {
     private MCQuestionRepository mcQuestionRepository;
 
     @Autowired
+    private QuestionCommentRepository questionCommentRepository;
+
+    @Autowired
     private QuestionReposiory questionReposiory;
 
     @Autowired
@@ -68,6 +71,12 @@ public class UserService {
         for (MCQuestion mcQuestion : mcQuestionRepository.findAll()) {
             if (mcQuestion.getCreator().equals(user)) {
                 mcQuestionRepository.delete(mcQuestion);
+            }
+        }
+
+        for (QuestionComment questionComment : questionCommentRepository.findAll()) {
+            if (questionComment.getCreator().equals(user)) {
+                questionCommentRepository.delete(questionComment);
             }
         }
 

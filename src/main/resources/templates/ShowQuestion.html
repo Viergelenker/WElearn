@@ -41,38 +41,42 @@
                 <p/>
                 <h4 style="color: #1893e4 ">Answer: </h4>
                 <h5 th:text="${question.answer}">Answer</h5>
-                <div style="padding-top: 20px">
-                    <button class="button" data-toggle="comments"><span class="fa fa-comment"></span> See comments</button>
+
+                <div style="padding-top: 20px;">
+                    <button th:if="${allQuestionComments.size()}!=0" class="button" data-toggle="comments"> Comments
+                        &nbsp;
+                        <span class="fa fa-comments"></span>
+                    </button>
                 </div>
+
+                <p th:if="${allQuestionComments.size()}==0" style="color: #f8f8f8">There aren't any comments yet. Be
+                    the first, share your opinion!!!</p>
+
+                <a th:if="${allQuestionComments.size()}==0" class="button" data-open="writeNewQuestionCommentModal">Write new comment
+                    &nbsp;<span class="fa fa-pencil"></span>
+                </a>
+
                 <div id="comments" data-toggler="" data-animate="fade-in fade-out" style="display: none">
-                    <div th:if="${allQuestionComments.size()}==0">
-                        <p style="color: #f8f8f8">There aren't any comments yet. Be the first, share your opinion!!!</p>
-                        <div>
-                            <a class="button" data-open="writeNewQuestionCommentModal"><span class="fa fa-comment-o"></span>
-                                Comment!</a>
-                        </div>
-                    </div>
+
                     <div th:each="comment:${allQuestionComments}">
-                        <div>
-                            <a class="button" data-open="writeNewQuestionCommentModal"><span class="fa fa-comment-o"></span>
-                                Comment!</a>
-                        </div>
                         <div class="callout-card">
                             <div class="card-label">
                                 <!-- First three chars of the username are displayed -->
-                    <span data-tooltip="" aria-haspopup="true" class="top"
-                          data-disable-hover="false" tabindex="2"
-                          th:title="${comment.creator.username}">
-                        <div class="label-text">
-                            <span th:text="${comment.creator.username.substring(0, 3)}"></span>
-                        </div>
-                    </span>
+                                <span data-tooltip="" aria-haspopup="true" class="top" data-disable-hover="false"
+                                      tabindex="2" th:title="${comment.creator.username}">
+                                    <div class="label-text">
+                                        <span th:text="${comment.creator.username.substring(0, 3)}"></span>
+                                    </div>
+                                </span>
                             </div>
                             <div class="callout-card-content">
                                 <p style="color: #0a0a0a" th:utext="${comment.comment}">Comment Text</p>
                             </div>
                         </div>
                     </div>
+                    <a class="button" data-open="writeNewQuestionCommentModal">Write new
+                        &nbsp;<span class="fa fa-pencil"></span>
+                    </a>
                 </div>
             </div>
             <br/>
