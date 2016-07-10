@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Desi on 6/16/2016.
@@ -37,7 +38,8 @@ public class QuestionService {
 
         List<Question> questionsOfLearningGroup = this.getAllQuestionsOfLearningGroup(learningGroup);
 
-        Integer iterator =(int)Math.random()*questionsOfLearningGroup.size();
+        Random rand = new Random();
+        int iterator =rand.nextInt((questionsOfLearningGroup.size() - 0) + 1) + 0;
         Question toBeAnswered;
 
         while(iterator < questionsOfLearningGroup.size()){
