@@ -52,6 +52,6 @@ public class StartQuizController {
 
         quizService.save(newQuiz, learningGroupRepository.findOne(learningGroupId), userService.getCurrentDesjUser());
 
-        return "redirect:/showLearningGroup?id=" + learningGroupId;
+        return "redirect:/showStatistics?learningGroupId=" + learningGroupId.toString();
     }
 }

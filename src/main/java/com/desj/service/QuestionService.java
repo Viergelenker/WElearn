@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Desi on 6/16/2016.
@@ -20,56 +21,26 @@ public class QuestionService {
         question.setCorrespondingLearningGroup(learningGroup);
         question.setCreator(user);
         questionReposiory.save(question);
+        List<Question> createdQuestions = new ArrayList<Question>();
+        createdQuestions.addAll(user.getCreatedQuestions());
 
+        createdQuestions.add(question);
+
+        user.setCreatedQuestions(createdQuestions);
     }
 
-    /*public Question getQuestion(LearningGroup learningGroup, User user) {
-        Integer iterator = 0;
-        List<Question> questionList = questionReposiory.findAll();
-        while (iterator < questionList.size() && questionList.size() != 0) {
-            Question question = questionList.get(iterator);
-            if (question.getCorrespondingLearningGroup().equals(learningGroup) && !user.getAnsweredQuestions().contains(question)) {
-
-                List<Question> answeredQuestions = new ArrayList<>();
-                if (user.getAnsweredQuestions() != null) {
-
-                    answeredQuestions.addAll(user.getAnsweredQuestions());
-                    answeredQuestions.add(question);
-                    user.setAnsweredQuestions(answeredQuestions);
-                } else {
-                    answeredQuestions.add(question);
-                    user.setAnsweredQuestions(answeredQuestions);
-                }
-                return question;
-            } else {
-                iterator++;
-            }
-        }
-        return null;
-    }*/
-
-    public Question getQuestion(LearningGroup learningGroup, User user){
-
-        Integer iterator =0;
+    public Question getQuestion(LearningGroup learningGroup) {
 
         List<Question> questionsOfLearningGroup = this.getAllQuestionsOfLearningGroup(learningGroup);
 
         Question toBeAnswered;
 
-        while(iterator < questionsOfLearningGroup.size()){
+        if (questionsOfLearningGroup.size() != 0) {
+            Random rand = new Random();
+            Integer iterator = rand.nextInt(questionsOfLearningGroup.size());
+            toBeAnswered = questionsOfLearningGroup.get(iterator);
+            return toBeAnswered;
 
-            toBeAnswered=questionsOfLearningGroup.get(iterator);
-
-            if(!user.getAnsweredQuestions().contains(toBeAnswered)){
-
-                List<Question> answeredQuestions = new ArrayList<>();
-                answeredQuestions.addAll(user.getAnsweredQuestions());
-                answeredQuestions.add(toBeAnswered);
-                user.setAnsweredQuestions(answeredQuestions);
-                return toBeAnswered;
-            }else{
-                iterator++;
-            }
         }
         return null;
     }
@@ -85,8 +56,6 @@ public class QuestionService {
         return questionList;
     }
 
-
-
     public void addQuestionComment(Question question, QuestionComment questionComment) {
         List<QuestionComment> commentList = new ArrayList<>();
         if (question.getComments() != null) {
@@ -97,6 +66,4 @@ public class QuestionService {
             question.setComments(commentList);
         }
     }
-
-
 }

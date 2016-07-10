@@ -50,16 +50,6 @@ public class User {
     )
     List <Question> createdQuestions = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "ANSWEREDQUESTIONS",
-            joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "QUESTION_ID")
-    )
-    List<Question> answeredQuestions = new ArrayList<>();
-
-
-
     public Integer getId() { return id; }
 
     public String getEmail() { return email; }
@@ -124,19 +114,7 @@ public class User {
         this.answeredMCQuestions.add(mcQuestion);
     }
 
-    public void answerQuestion(Question question){
-        this.answeredQuestions.add(question);
-    }
-
     public void setCreatedQuestions(List<Question> createdQuestions) {
         this.createdQuestions = createdQuestions;
-    }
-
-    public List<Question> getAnsweredQuestions() {
-        return answeredQuestions;
-    }
-
-    public void setAnsweredQuestions(List<Question> answeredQuestions) {
-        this.answeredQuestions = answeredQuestions;
     }
 }

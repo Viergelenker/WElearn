@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Julien on 23.04.16.
  * This class creates demo content for the test database.
@@ -896,6 +899,9 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         question1.setAnswer("Entwurf ist eine Aktivitaet, bei der die technishe Loesungsstruktur fuer ein System entwickelt wird.");
         question1.setCreator(desi);
         question1.setCorrespondingLearningGroup(group7);
+        List<Question> create = new ArrayList<>();
+        create.add(question1);
+        desi.setCreatedQuestions(create);
         questionReposiory.save(question1);
 
     }
