@@ -27,10 +27,10 @@
 
 
             <div class="top-bar-right">
-                <form th:action="@{/login}" th:method="post">
+                <form data-abide="" novalidate="novalidate" th:action="@{/login}" th:method="post">
                     <ul class="menu">
-                        <li><input style="border-radius: 2px" type="text" placeholder="Email" name="username"/></li>
-                        <li><input style="border-radius: 2px" type="password" placeholder="Password" name="password"/>
+                        <li><input required="required" style="border-radius: 2px" type="text" placeholder="Email" name="username"/></li>
+                        <li><input required="required" style="border-radius: 2px" type="password" placeholder="Password" name="password"/>
                         </li>
                         <li>
                             <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign in</button>

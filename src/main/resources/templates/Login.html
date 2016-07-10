@@ -24,19 +24,16 @@
     <div class="row">
         <div class="small-9 small-centered columns">
 
-            <form th:object="${user}" th:action="@{/newUser}" th:method="post">
+            <form data-abide="" novalidate="novalidate" th:object="${user}" th:action="@{/newUser}" th:method="post">
                 <div class="small-12 columns">
                     <br/>
-                    <input style="border-radius: 2px" type="text" th:field="*{username}" th:placeholder=" Username"/>
-                    <div class="callout alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name
-                        Error
-                    </div>
+                    <input required="required" style="border-radius: 2px" type="text" th:field="*{username}" th:placeholder=" Username"/>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
-                    <input style="border-radius: 2px" type="email" th:field="*{email}" th:placeholder=" Email"/>
-                    <div class="callout alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
-                        Error
-                    </div>
+                    <input required="required" style="border-radius: 2px" type="email" th:field="*{email}" th:placeholder=" Email"/>
+                    <span class="form-error">
+                        Please provide a correct email adress
+                    </span>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
                     <input style="border-radius: 2px" type="text" th:field="*{major}" th:placeholder=" Major"/>

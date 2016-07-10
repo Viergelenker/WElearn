@@ -21,7 +21,6 @@ public class User {
     private Integer id;
     @Size(min=6, max=30)
     private String email;
-    @Size(min=3, max=20)
     private String username;
     @NotNull
     private String password;

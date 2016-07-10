@@ -6,17 +6,19 @@
 <th:block th:fragment="fileUploadModal">
 
     <div class="reveal" id="fileUploadModal" data-reveal="true">
-        <form method="POST" enctype="multipart/form-data" th:action="@{/fileUpload(fileExtension)}">
+        <form data-abide="" novalidate="novalidate" method="POST" enctype="multipart/form-data"
+              th:action="@{/fileUpload(fileExtension)}">
 
             <h3>Please choose a file from your computer: </h3>
             <label for="fileUpload" class="expanded button"><span class="fa fa-search"></span> Browse files</label>
             <input id="fileUpload" type="file" name="file" class="show-for-sr"/>
 
             <h3>Give it a name:</h3>
-            <input type="text" name="name"/>
+            <input required="required" type="text" name="name"/>
 
             <h3>And select the file type:</h3>
-            <select name="fileExtension">
+            <select required="required" name="fileExtension">
+                <option value=""></option>
                 <option th:value=".pdf">.pdf</option>
                 <option th:value=".jpg">.jpg</option>
                 <option th:value=".png">.png</option>

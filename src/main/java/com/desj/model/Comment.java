@@ -3,7 +3,6 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,7 +22,6 @@ public class Comment {
     private User creator;
 
     @Lob
-    @Size(min = 1)
     private String text;
 
     private Date tsCreated;

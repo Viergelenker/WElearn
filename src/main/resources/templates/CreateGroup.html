@@ -24,10 +24,13 @@
 <br/>
 <div class="row wrapper60">
     <div class="small-12">
-        <form th:action="@{/createNewGroup}" th:object="${learningGroup}" th:method="post">
+        <form data-abide="" novalidate="novalidate" th:action="@{/createNewGroup}" th:object="${learningGroup}" th:method="post">
             <div class="small-12 columns">
                 <label>Group name</label>
-                <input style="border-radius: 2px" type="text" th:field="*{name}" th:placeholder="Name"/>
+                <input required="required" style="border-radius: 2px" type="text" th:field="*{name}" th:placeholder="Name"/>
+                <span class="form-error">
+                        This field is required
+                    </span>
                 <div class="small-12 columns callout alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
             </div>
             <div class="small-12 columns">
