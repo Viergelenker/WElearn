@@ -1,6 +1,9 @@
 package com.desj.service;
 
-import com.desj.model.*;
+import com.desj.model.Question;
+import com.desj.model.QuestionComment;
+import com.desj.model.QuestionCommentRepository;
+import com.desj.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +25,11 @@ public class QuestionCommentService {
                 commentList.add(questionComment);
             }
         }
+        System.out.println(commentList.size());
         return commentList;
     }
-    public List<QuestionComment> getAllQuestionCommentsOfLearningGroup(LearningGroup learningGroup){
-        List<QuestionComment> commentList = new ArrayList<>();
-        for (QuestionComment questionComment: questionCommentRepository.findAll()){
-            if(questionComment.getCorrespondingLearningGroup().equals(learningGroup)){
-                commentList.add(questionComment);
-            }
-        }
-        return commentList;
-    }
+
+
 
     public void save(QuestionComment questionComment, User user, Question question){
         questionComment.setCreator(user);

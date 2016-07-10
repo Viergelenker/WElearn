@@ -74,9 +74,6 @@ public class ShowLearningGroupController {
             model.addAttribute("comments", commentRepository.findAll());
             model.addAttribute("createQuestion", new Question());
             model.addAttribute("mcQuestion", new MCQuestion());
-            model.addAttribute("createQuestionComment", new QuestionComment());
-            model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(
-                    learningGroupRepository.findOne(learningGroupId)));
             model.addAttribute("fileNames", learningGroupRepository.findOne(learningGroupId).getUploadedFilesList());
 
             if (!userService.getAllQuizOfUser(userService.getCurrentDesjUser()).isEmpty()) {
@@ -159,12 +156,11 @@ public class ShowLearningGroupController {
     @RequestMapping(value = "/newQuestionComment", method = RequestMethod.POST)
     public String writeNewQuestionComment(@RequestParam(value = "questionId") Integer questionId,
                                           @ModelAttribute("questionComment") QuestionComment questionComment) {
-        String redirectString = questionReposiory.getOne(questionId).getCorrespondingLearningGroup().getId().toString();
 
         questionCommentService.save(questionComment, userService.getCurrentDesjUser(),
                 questionReposiory.findOne(questionId));
         questionService.addQuestionComment(questionReposiory.findOne(questionId), questionComment);
-        return "redirect:/showLearningGroup?id=" + redirectString;
+        return "redirect:/showQuestion?questionId=" + questionId + "&learningGroupId=" + questionReposiory.findOne(questionId).getCorrespondingLearningGroup().getId().toString();
     }
 
     @RequestMapping(value = "/deleteGroupPost")
