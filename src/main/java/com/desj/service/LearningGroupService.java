@@ -40,20 +40,23 @@ public class LearningGroupService {
     @Autowired
     private GroupPostRepository groupPostRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public List<User> getAllMemberOfLearningGroup(Integer learningGroupId) {
         return learningGroupRepository.findOne(learningGroupId).getMembers();
     }
 
     public void delete(Integer learningGroupId) {
 
-        User user = learningGroupRepository.findOne(learningGroupId).getCreatorOfGroup();
-
-        List<MCQuestion> answeredMCQuestionList = new ArrayList<>();
-        answeredMCQuestionList.addAll(user.getAnsweredMCQuestions());
-        for (MCQuestion mcQuestion : user.getAnsweredMCQuestions()) {
-            answeredMCQuestionList.remove(mcQuestion);
+        for (User user : userRepository.findAll()) {
+            List<MCQuestion> answeredMCQuestionList = new ArrayList<>();
+            answeredMCQuestionList.addAll(user.getAnsweredMCQuestions());
+            for (MCQuestion mcQuestion : user.getAnsweredMCQuestions()) {
+                answeredMCQuestionList.remove(mcQuestion);
+            }
+            user.setAnsweredMCQuestions(answeredMCQuestionList);
         }
-        user.setAnsweredMCQuestions(answeredMCQuestionList);
 
         for (MCQuestion mcQuestion : mcQuestionRepository.findAll()) {
             if (mcQuestion.getCorrespondingLearningGroup().getId() == learningGroupId) {

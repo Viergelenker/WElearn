@@ -71,7 +71,6 @@ public class User {
         this.major = major;
     }
 
-
     public List<MCQuestion> getAnsweredMCQuestions() {
         return answeredMCQuestions;
     }

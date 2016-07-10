@@ -29,8 +29,10 @@
             <div class="top-bar-right">
                 <form data-abide="" novalidate="novalidate" th:action="@{/login}" th:method="post">
                     <ul class="menu">
-                        <li><input required="required" style="border-radius: 2px" type="text" placeholder="Email" name="username"/></li>
-                        <li><input required="required" style="border-radius: 2px" type="password" placeholder="Password" name="password"/>
+                        <li><input required="required" style="border-radius: 2px" type="text" placeholder="Email"
+                                   name="username"/></li>
+                        <li><input required="required" style="border-radius: 2px" type="password" placeholder="Password"
+                                   name="password"/>
                         </li>
                         <li>
                             <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign in</button>
@@ -70,9 +72,12 @@
 
             <div class="top-bar-right">
                 <ul class="menu">
-                    <li style="padding-right: 16%"><a th:href="@{/showUserSite}" class="button"><span
-                            style="padding-bottom: 3px; padding-top: 3px; padding-left: 2px; padding-right: 3px"
-                            class="fa fa-user"></span></a></li>
+                    <li>
+                        <a th:href="@{/showUserSite}" class="button">
+                            <span style="padding-bottom: 3px; padding-top: 3px;"
+                                  class="fa fa-user"></span>
+                        </a>
+                    </li>
                     <li>
                         <form th:action="@{/logout}" th:method="post">
                             <button type="submit" class="alert button fa fa-sign-out"></button>

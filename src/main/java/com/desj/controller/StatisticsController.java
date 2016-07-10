@@ -40,7 +40,6 @@ public class StatisticsController {
         model.addAttribute("pointsOfCurrentUser", userService.getTotalOfQuizPointsForUserForLearningGroup(currentUser, currentLearningGroup));
         model.addAttribute("quizzesOfCurrentUser", userService.getAllQuizzesOfUserInLearningGroup(currentUser,
                 currentLearningGroup));
-        model.addAttribute("answeredMCQuestions", currentUser.getAnsweredMCQuestions());
         model.addAttribute("quizzesOfAllMember", quizService.getAllQuizesOfLearningGroup(currentLearningGroup));
         model.addAttribute("totalPointsForChart", statisticsService.getTotalPointsOfAllMembersChartReady(currentLearningGroup));
         model.addAttribute("usernamesForChart", statisticsService.getAllUsernamesOfMembersChartReady(currentLearningGroup));
