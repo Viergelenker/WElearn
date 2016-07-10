@@ -35,6 +35,7 @@ public class StatisticsController {
         User currentUser = userService.getCurrentDesjUser();
         LearningGroup currentLearningGroup = learningGroupRepository.findOne(learningGroupId);
 
+        model.addAttribute("learningGroup", currentLearningGroup);
         model.addAttribute("learningGroupMembers", learningGroupService.getAllMemberOfLearningGroup(learningGroupId));
         model.addAttribute("pointsOfCurrentUser", userService.getTotalOfQuizPointsForUserForLearningGroup(currentUser, currentLearningGroup));
         model.addAttribute("quizzesOfCurrentUser", userService.getAllQuizzesOfUserInLearningGroup(currentUser,

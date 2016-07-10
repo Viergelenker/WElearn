@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
     <title>About us</title>
@@ -12,19 +13,19 @@
 <div th:replace="fragments/navbar :: loggedIn"></div>
 <br/>
 
-<div id="statChart" style="min-width: 310px; height: 80%; margin: 0 auto"></div>
+<div class="row">
 
-<!--<div class="card" style="background-color: white">
-    <div class="content">
-        <a class="title"
-           style="color: #343838;">
-        </a>
+    <div class="small-5 columns">
+        <a class="button" th:href="@{/showLearningGroup(id=${learningGroup.id})}">
+            <span class="fa fa-chevron-left"></span> Go back</a>
+    </div>
+    <div class="small-4 float-right columns end">
+        <h4 class="small-centered" th:text="${'You have ' + pointsOfCurrentUser} + ' quizpoints so far'"></h4>
+    </div>
+</div>
 
-    </div>
-    <div class="action">
-        <a class="cardLink">Show group <span class="fa fa-chevron-right"></span></a>
-    </div>
-</div>-->
+<div id="statChart" style="padding: 10px; height: 70%; margin: 0 auto"></div>
+
 <br/>
 
 <div class="row" data-equalizer="" data-equalize-on="medium">
