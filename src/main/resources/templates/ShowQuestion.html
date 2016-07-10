@@ -11,7 +11,8 @@
 <br/>
 <div class="row">
     <div class="small-8 medium-centered columns wrapper70" th:if="${error}">
-        <h3 style="color: white">Sorry there aren't any questions you haven't answered yet...</h3>
+        <h3 style="color: white">Sorry this group contains no questions :(</h3>
+        <h3 style="color: white">Challenge yourself and write the first one!!</h3>
         <br/>
         <a class="button" th:href="@{/showLearningGroup(id=${learningGroup.id})}"><span
                 class="fa fa-chevron-left"></span> Go back</a>
@@ -19,6 +20,24 @@
 </div>
 
 <div th:unless="${error}" class="row">
+    <div class="row">
+        <div th:if="${creator.id}==${user}">
+            <div class="small-10 large-offset-3 columns">
+                <p style="color:gainsboro">Created by you</p>
+            </div>
+        </div>
+        <div th:if="${creator.id}!=${user}">
+            <div class="small-10 large-offset-3 columns">
+                <div class="small-1 columns">
+                    <p style="color:gainsboro">Created by</p>
+                </div>
+                <div class="small-9 columns end">
+                    <p style="color:gainsboro" th:text="${creator.username}">Creator</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="small-10 medium-centered columns wrapper70">
         <h4 style="color: #f8f8f8">Question:</h4>
         <h5 style="color: #f8f8f8" th:text="${question.question}"></h5>
@@ -27,14 +46,14 @@
         </div>
         <div id="answer" data-toggler="" data-animate="fade-in fade-out" style="display: none">
             <h4 style="color: #f8f8f8">Answer:</h4>
-            <div style="color: #f8f8f8" >
+            <div style="color: #f8f8f8">
                 <h5 th:text="${question.answer}">Answer</h5>
             </div>
 
         </div>
         <div>
             <a class="button" th:href="@{/showLearningGroup(id=${question.correspondingLearningGroup.id})}">
-            <span class="fa fa-chevron-left"></span> Go back</a>
+                <span class="fa fa-chevron-left"></span> Go back</a>
         </div>
 
     </div>

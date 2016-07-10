@@ -20,56 +20,36 @@ public class QuestionService {
         question.setCorrespondingLearningGroup(learningGroup);
         question.setCreator(user);
         questionReposiory.save(question);
+        List<Question> createdQuestions = new ArrayList<Question>();
+        createdQuestions.addAll(user.getCreatedQuestions());
+        System.out.println(user.getCreatedQuestions().size());
+        createdQuestions.add(question);
+        System.out.println(createdQuestions.size());
+        user.setCreatedQuestions(createdQuestions);
+        System.out.println(user.getCreatedQuestions().size());
 
     }
 
-    /*public Question getQuestion(LearningGroup learningGroup, User user) {
-        Integer iterator = 0;
-        List<Question> questionList = questionReposiory.findAll();
-        while (iterator < questionList.size() && questionList.size() != 0) {
-            Question question = questionList.get(iterator);
-            if (question.getCorrespondingLearningGroup().equals(learningGroup) && !user.getAnsweredQuestions().contains(question)) {
-
-                List<Question> answeredQuestions = new ArrayList<>();
-                if (user.getAnsweredQuestions() != null) {
-
-                    answeredQuestions.addAll(user.getAnsweredQuestions());
-                    answeredQuestions.add(question);
-                    user.setAnsweredQuestions(answeredQuestions);
-                } else {
-                    answeredQuestions.add(question);
-                    user.setAnsweredQuestions(answeredQuestions);
-                }
-                return question;
-            } else {
-                iterator++;
-            }
-        }
-        return null;
-    }*/
 
     public Question getQuestion(LearningGroup learningGroup, User user){
 
-        Integer iterator =0;
+
 
         List<Question> questionsOfLearningGroup = this.getAllQuestionsOfLearningGroup(learningGroup);
 
+        Integer iterator =(int)Math.random()*questionsOfLearningGroup.size();
         Question toBeAnswered;
 
         while(iterator < questionsOfLearningGroup.size()){
 
+
             toBeAnswered=questionsOfLearningGroup.get(iterator);
+            List<Question> answeredQuestions = new ArrayList<>();
+            answeredQuestions.addAll(user.getAnsweredQuestions());
+            answeredQuestions.add(toBeAnswered);
+            user.setAnsweredQuestions(answeredQuestions);
+            return toBeAnswered;
 
-            if(!user.getAnsweredQuestions().contains(toBeAnswered)){
-
-                List<Question> answeredQuestions = new ArrayList<>();
-                answeredQuestions.addAll(user.getAnsweredQuestions());
-                answeredQuestions.add(toBeAnswered);
-                user.setAnsweredQuestions(answeredQuestions);
-                return toBeAnswered;
-            }else{
-                iterator++;
-            }
         }
         return null;
     }
