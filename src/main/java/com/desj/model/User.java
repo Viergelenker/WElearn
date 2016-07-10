@@ -3,6 +3,7 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,8 @@ public class User {
     private Integer id;
     @Size(min=6, max=30)
     private String email;
-    @Size(min=3, max=20)
     private String username;
+    @NotNull
     private String password;
     //Studiengang
     private String major;

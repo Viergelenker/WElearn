@@ -3,11 +3,10 @@ package com.desj.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Julien on 09.06.16.
@@ -22,7 +21,6 @@ public class GroupPost {
     private String title;
 
     @Lob
-    @Size(min = 4)
     private String text;
 
     private Date tsCreated;

@@ -96,6 +96,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         group8.setName("Softwarepraktikum");
         group8.setSubject("SOPRA");
         group8.setDescription("Ihr seid im 4. Semester und sucht die Sopra-Lerngruppe? Dann seid ihr hier genau richtig, tretet bei!");
+        group8.setPassword("1234");
         learningGroupRepository.save(group8);
 
 
@@ -108,7 +109,10 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         julien.setMajor("Winfo");
         userService.save(julien);
         learningGroupService.addMemberToLearningGroup(group6.getId(), julien);
+        group2.setCreatorOfGroup(julien);
+        group5.setCreatorOfGroup(julien);
         group6.setCreatorOfGroup(julien);
+        group8.setCreatorOfGroup(julien);
         learningGroupService.addMemberToLearningGroup(group7.getId(), julien);
         learningGroupService.addMemberToLearningGroup(group1.getId(), julien);
         learningGroupService.addMemberToLearningGroup(group8.getId(), julien);
@@ -125,7 +129,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group1.getId(), desi);
         group1.setCreatorOfGroup(desi);
         learningGroupService.addMemberToLearningGroup(group2.getId(), desi);
-        group2.setCreatorOfGroup(desi);
         learningGroupService.addMemberToLearningGroup(group4.getId(), desi);
         learningGroupService.addMemberToLearningGroup(group7.getId(), desi);
         learningGroupService.addMemberToLearningGroup(group8.getId(), desi);
@@ -154,7 +157,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Add the user to the learning group class
         learningGroupService.addMemberToLearningGroup(group3.getId(), erhan);
         group3.setCreatorOfGroup(erhan);
-        group8.setCreatorOfGroup(erhan);
         learningGroupService.addMemberToLearningGroup(group1.getId(), erhan);
         learningGroupService.addMemberToLearningGroup(group6.getId(), erhan);
         learningGroupService.addMemberToLearningGroup(group7.getId(), erhan);
@@ -164,16 +166,17 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Robert
         com.desj.model.User robert = new com.desj.model.User();
         robert.setUsername("Robert Rundhals");
+        robert.setPassword("1234");
         userRepository.save(robert);
         learningGroupService.addMemberToLearningGroup(group1.getId(), robert);
         learningGroupService.addMemberToLearningGroup(group2.getId(), robert);
         learningGroupService.addMemberToLearningGroup(group6.getId(), robert);
-        learningGroupService.addMemberToLearningGroup(group8.getId(), robert);
 
 
         // Friedrich
         com.desj.model.User friedrich = new com.desj.model.User();
         friedrich.setUsername("Friedrich Fröhlich");
+        friedrich.setPassword("1234");
         userRepository.save(friedrich);
         learningGroupService.addMemberToLearningGroup(group7.getId(), friedrich);
         group7.setCreatorOfGroup(friedrich);
@@ -184,6 +187,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Leon
         com.desj.model.User leon = new com.desj.model.User();
         leon.setUsername("Leon Lässig");
+        leon.setPassword("1234");
         userRepository.save(leon);
         learningGroupService.addMemberToLearningGroup(group4.getId(), leon);
         learningGroupService.addMemberToLearningGroup(group7.getId(), leon);
@@ -193,26 +197,26 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Sarah
         com.desj.model.User sarah = new com.desj.model.User();
         sarah.setUsername("Sarah Müller");
+        sarah.setPassword("1234");
         userRepository.save(sarah);
         learningGroupService.addMemberToLearningGroup(group5.getId(), sarah);
-        group5.setCreatorOfGroup(sarah);
         learningGroupService.addMemberToLearningGroup(group2.getId(), sarah);
-        learningGroupService.addMemberToLearningGroup(group8.getId(), sarah);
 
 
         // Anna
         com.desj.model.User anna = new com.desj.model.User();
         anna.setUsername("Anna Sommer");
+        anna.setPassword("1234");
         userRepository.save(anna);
         learningGroupService.addMemberToLearningGroup(group5.getId(), anna);
         learningGroupService.addMemberToLearningGroup(group1.getId(), anna);
         learningGroupService.addMemberToLearningGroup(group3.getId(), anna);
-        learningGroupService.addMemberToLearningGroup(group8.getId(), anna);
 
 
         // Franzi
         com.desj.model.User franzi = new com.desj.model.User();
         franzi.setUsername("Franzi Winter");
+        franzi.setPassword("1234");
         userRepository.save(franzi);
         learningGroupService.addMemberToLearningGroup(group5.getId(), franzi);
         learningGroupService.addMemberToLearningGroup(group1.getId(), franzi);
@@ -221,6 +225,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Tim
         com.desj.model.User tim = new com.desj.model.User();
         tim.setUsername("Tim Fritz");
+        tim.setPassword("1234");
         userRepository.save(tim);
         learningGroupService.addMemberToLearningGroup(group5.getId(), tim);
         learningGroupService.addMemberToLearningGroup(group1.getId(), tim);
@@ -230,6 +235,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Karl
         com.desj.model.User karl = new com.desj.model.User();
         karl.setUsername("Karl Friedrich");
+        karl.setPassword("1234");
         userRepository.save(karl);
         learningGroupService.addMemberToLearningGroup(group5.getId(), karl);
         learningGroupService.addMemberToLearningGroup(group1.getId(), karl);
@@ -239,17 +245,18 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Hans
         com.desj.model.User hans = new com.desj.model.User();
         hans.setUsername("Hans Friedrich");
+        hans.setPassword("1234");
         userRepository.save(hans);
         learningGroupService.addMemberToLearningGroup(group5.getId(), hans);
         learningGroupService.addMemberToLearningGroup(group1.getId(), hans);
         learningGroupService.addMemberToLearningGroup(group3.getId(), hans);
         learningGroupService.addMemberToLearningGroup(group7.getId(), hans);
-        learningGroupService.addMemberToLearningGroup(group8.getId(), hans);
 
 
         // Nina
         com.desj.model.User nina = new com.desj.model.User();
         nina.setUsername("Nina Schwarz");
+        nina.setPassword("1234");
         userRepository.save(nina);
         learningGroupService.addMemberToLearningGroup(group1.getId(), nina);
         learningGroupService.addMemberToLearningGroup(group2.getId(), nina);
@@ -260,17 +267,18 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Max
         com.desj.model.User max = new com.desj.model.User();
         max.setUsername("Max Meier");
+        max.setPassword("1234");
         userRepository.save(max);
         learningGroupService.addMemberToLearningGroup(group2.getId(), max);
         learningGroupService.addMemberToLearningGroup(group4.getId(), max);
         learningGroupService.addMemberToLearningGroup(group6.getId(), max);
         learningGroupService.addMemberToLearningGroup(group7.getId(), max);
-        learningGroupService.addMemberToLearningGroup(group8.getId(), max);
 
 
         // Paula
         com.desj.model.User paula = new com.desj.model.User();
         paula.setUsername("Paula Schulze");
+        paula.setPassword("1234");
         userRepository.save(paula);
         learningGroupService.addMemberToLearningGroup(group3.getId(), paula);
         learningGroupService.addMemberToLearningGroup(group4.getId(), paula);
@@ -281,6 +289,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Omar
         com.desj.model.User omar = new com.desj.model.User();
         omar.setUsername("Omar Karim");
+        omar.setPassword("1234");
         userRepository.save(omar);
         learningGroupService.addMemberToLearningGroup(group2.getId(), omar);
         learningGroupService.addMemberToLearningGroup(group5.getId(), omar);
@@ -290,6 +299,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Ali
         com.desj.model.User ali = new com.desj.model.User();
         ali.setUsername("Ali Muhammed");
+        ali.setPassword("1234");
         userRepository.save(ali);
         learningGroupService.addMemberToLearningGroup(group3.getId(), ali);
         learningGroupService.addMemberToLearningGroup(group4.getId(), ali);
@@ -299,6 +309,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Maria
         com.desj.model.User maria = new com.desj.model.User();
         maria.setUsername("Maria Iliadis");
+        maria.setPassword("1234");
         userRepository.save(maria);
         learningGroupService.addMemberToLearningGroup(group3.getId(), maria);
         learningGroupService.addMemberToLearningGroup(group5.getId(), maria);
@@ -308,6 +319,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         // Pedro
         com.desj.model.User pedro = new com.desj.model.User();
         pedro.setUsername("Pedro Rodriguez");
+        pedro.setPassword("1234");
         userRepository.save(pedro);
         learningGroupService.addMemberToLearningGroup(group3.getId(), pedro);
         learningGroupService.addMemberToLearningGroup(group5.getId(), pedro);
@@ -401,7 +413,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         mcQuestion8.setAnswerB("Schulnote");
         mcQuestion8.setAnswerC("Postleitzahl");
         mcQuestion8.setAnswerD("Preis eines Gutes");
-        mcQuestion8.setCorrespondingLearningGroup(group1);
+        mcQuestion8.setCorrespondingLearningGroup(group2);
         mcQuestion8.setCreator(maria);
         mcQuestion8.setCorrectAnswers("A,B");
         mcQuestionRepository.save(mcQuestion8);
@@ -700,87 +712,94 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
 
         //Group 8 - SOPRA
 
-        MCQuestion mcQuestion41 = new MCQuestion();
-        mcQuestion41.setQuestion("Welcher Link wird korrekt ausgeführt ? ");
-        mcQuestion41.setAnswerA("th:href=\"${welcome(id=${id)}\" ");
-        mcQuestion41.setAnswerB("th:href=\"@{welcome(id=${id)}\" ");
-        mcQuestion41.setAnswerC("th:href=\"${welcome(id=*{id)}\" ");
-        mcQuestion41.setAnswerD("th:href=\"@{welcome(id=#{id)}\" ");
-        mcQuestion41.setCorrespondingLearningGroup(group8);
-        mcQuestion41.setCreator(erhan);
-        mcQuestion41.setCorrectAnswers("B");
-        mcQuestionRepository.save(mcQuestion41);
-
-        MCQuestion mcQuestion40 = new MCQuestion();
-        mcQuestion40.setQuestion("Wie kennzeichnet man Kommentare in der Style-Sheet Datei (CSS) ? ");
-        mcQuestion40.setAnswerA("<!-- hier steht ein Kommentar -->");
-        mcQuestion40.setAnswerB("-// hier steht ein Kommentar //-");
-        mcQuestion40.setAnswerC("/* hier steht ein Kommentar */");
-        mcQuestion40.setAnswerD("*** hier steht ein Kommentar ***");
-        mcQuestion40.setCorrespondingLearningGroup(group8);
-        mcQuestion40.setCreator(erhan);
-        mcQuestion40.setCorrectAnswers("C");
-        mcQuestionRepository.save(mcQuestion40);
-
         MCQuestion mcQuestion32 = new MCQuestion();
-        mcQuestion32.setQuestion("Mit welchem Befehl aktualisiert man das lokale Repository in Git ?");
-        mcQuestion32.setAnswerA("git pull");
-        mcQuestion32.setAnswerB("git add");
-        mcQuestion32.setAnswerC("git diff");
-        mcQuestion32.setAnswerD("git merge");
+        mcQuestion32.setQuestion("Welcher Link wird korrekt ausgeführt ? ");
+        mcQuestion32.setAnswerA("th:href=\"${welcome(id=${id)}\" ");
+        mcQuestion32.setAnswerB("th:href=\"@{welcome(id=${id)}\" ");
+        mcQuestion32.setAnswerC("th:href=\"${welcome(id=*{id)}\" ");
+        mcQuestion32.setAnswerD("th:href=\"@{welcome(id=#{id)}\" ");
         mcQuestion32.setCorrespondingLearningGroup(group8);
         mcQuestion32.setCreator(erhan);
-        mcQuestion32.setCorrectAnswers("A");
+        mcQuestion32.setCorrectAnswers("B");
         mcQuestionRepository.save(mcQuestion32);
 
         MCQuestion mcQuestion33 = new MCQuestion();
-        mcQuestion33.setQuestion("Welche Phasen gibt es im Software-Engineering ?");
-        mcQuestion33.setAnswerA("Planung");
-        mcQuestion33.setAnswerB("Wartung");
-        mcQuestion33.setAnswerC("Abbruch");
-        mcQuestion33.setAnswerD("Insatallation");
+        mcQuestion33.setQuestion("Wie kennzeichnet man Kommentare in der Style-Sheet Datei (CSS) ? ");
+        mcQuestion33.setAnswerA("<!-- hier steht ein Kommentar -->");
+        mcQuestion33.setAnswerB("-// hier steht ein Kommentar //-");
+        mcQuestion33.setAnswerC("/* hier steht ein Kommentar */");
+        mcQuestion33.setAnswerD("*** hier steht ein Kommentar ***");
         mcQuestion33.setCorrespondingLearningGroup(group8);
         mcQuestion33.setCreator(erhan);
-        mcQuestion33.setCorrectAnswers("A,B,D");
+        mcQuestion33.setCorrectAnswers("C");
         mcQuestionRepository.save(mcQuestion33);
 
         MCQuestion mcQuestion34 = new MCQuestion();
-        mcQuestion34.setQuestion("Was veranschaulicht ein Use-Case Diagramm ?");
-        mcQuestion34.setAnswerA("Einen zeitlichen Ablauf");
-        mcQuestion34.setAnswerB("Einen Anwendungsfall");
-        mcQuestion34.setAnswerC("Einen Zustand");
-        mcQuestion34.setAnswerD("Eine Interaktion");
+        mcQuestion34.setQuestion("Mit welchem Befehl aktualisiert man das lokale Repository in Git ?");
+        mcQuestion34.setAnswerA("git pull");
+        mcQuestion34.setAnswerB("git add");
+        mcQuestion34.setAnswerC("git diff");
+        mcQuestion34.setAnswerD("git merge");
         mcQuestion34.setCorrespondingLearningGroup(group8);
         mcQuestion34.setCreator(erhan);
-        mcQuestion34.setCorrectAnswers("B");
+        mcQuestion34.setCorrectAnswers("A");
         mcQuestionRepository.save(mcQuestion34);
 
         MCQuestion mcQuestion35 = new MCQuestion();
-        mcQuestion35.setQuestion("Eine Beziehung zwischen zwei oder mehreren Klassen bezeichnet man als.. ");
-        mcQuestion35.setAnswerA("Generalisierung");
-        mcQuestion35.setAnswerB("Spezialisierung");
-        mcQuestion35.setAnswerC("Assoziation");
-        mcQuestion35.setAnswerD("Komposition");
+        mcQuestion35.setQuestion("Welche Phasen gibt es im Software-Engineering ?");
+        mcQuestion35.setAnswerA("Planung");
+        mcQuestion35.setAnswerB("Wartung");
+        mcQuestion35.setAnswerC("Abbruch");
+        mcQuestion35.setAnswerD("Entwurf");
         mcQuestion35.setCorrespondingLearningGroup(group8);
         mcQuestion35.setCreator(erhan);
-        mcQuestion35.setCorrectAnswers("C");
+        mcQuestion35.setCorrectAnswers("A,B,D");
         mcQuestionRepository.save(mcQuestion35);
 
         MCQuestion mcQuestion39 = new MCQuestion();
-        mcQuestion39.setQuestion("Mit welchem Befehl bestätigt man seine Änderungen in Git ? ");
-        mcQuestion39.setAnswerA("git add *");
-        mcQuestion39.setAnswerB("git commit -m");
-        mcQuestion39.setAnswerC("git push");
-        mcQuestion39.setAnswerD("git commit -b");
+        mcQuestion39.setQuestion("Eine Beziehung zwischen zwei oder mehreren Klassen bezeichnet man als.. ");
+        mcQuestion39.setAnswerA("Generalisierung");
+        mcQuestion39.setAnswerB("Spezialisierung");
+        mcQuestion39.setAnswerC("Assoziation");
+        mcQuestion39.setAnswerD("Komposition");
         mcQuestion39.setCorrespondingLearningGroup(group8);
         mcQuestion39.setCreator(erhan);
-        mcQuestion39.setCorrectAnswers("B");
+        mcQuestion39.setCorrectAnswers("C");
         mcQuestionRepository.save(mcQuestion39);
 
+        MCQuestion mcQuestion40 = new MCQuestion();
+        mcQuestion40.setQuestion("Wie viele Zeilen Java-Code hat diese Anwendung? :)");
+        mcQuestion40.setAnswerA("< 1000");
+        mcQuestion40.setAnswerB("1000 - 1999");
+        mcQuestion40.setAnswerC("2000 - 2999");
+        mcQuestion40.setAnswerD("> 3000");
+        mcQuestion40.setCorrespondingLearningGroup(group8);
+        mcQuestion40.setCreator(erhan);
+        mcQuestion40.setCorrectAnswers("D");
+        mcQuestionRepository.save(mcQuestion40);
 
 
+        MCQuestion mcQuestion42 = new MCQuestion();
+        mcQuestion42.setQuestion("Was veranschaulicht ein Use-Case Diagramm ?");
+        mcQuestion42.setAnswerA("Einen zeitlichen Ablauf");
+        mcQuestion42.setAnswerB("Einen Anwendungsfall");
+        mcQuestion42.setAnswerC("Einen Zustand");
+        mcQuestion42.setAnswerD("Einen Terminplan");
+        mcQuestion42.setCorrespondingLearningGroup(group8);
+        mcQuestion42.setCreator(erhan);
+        mcQuestion42.setCorrectAnswers("B");
+        mcQuestionRepository.save(mcQuestion42);
 
-
+        MCQuestion mcQuestion43 = new MCQuestion();
+        mcQuestion43.setQuestion("Welcher git Befehl erzeugt einen neuen Branch?");
+        mcQuestion43.setAnswerA("git new branch");
+        mcQuestion43.setAnswerB("git branch <branchName>");
+        mcQuestion43.setAnswerC("git push");
+        mcQuestion43.setAnswerD("git checkout -b <branchName>");
+        mcQuestion43.setCorrespondingLearningGroup(group8);
+        mcQuestion43.setCreator(erhan);
+        mcQuestion43.setCorrectAnswers("B,D");
+        mcQuestionRepository.save(mcQuestion43);
 
 
         // Group posts
@@ -894,15 +913,26 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         comment8.setText("Ich kann es dir gerne bei einem Kaffee erklären ;)");
         commentRepository.save(comment8);
 
+        // Questions
         Question question1 = new Question();
         question1.setQuestion("Was ist die Definition von Entwurf");
         question1.setAnswer("Entwurf ist eine Aktivitaet, bei der die technishe Loesungsstruktur fuer ein System entwickelt wird.");
         question1.setCreator(desi);
         question1.setCorrespondingLearningGroup(group7);
-        List<Question> create = new ArrayList<>();
-        create.add(question1);
-        desi.setCreatedQuestions(create);
+        List<Question> desisQuestions = new ArrayList<>();
+        desisQuestions.add(question1);
+        desi.setCreatedQuestions(desisQuestions);
         questionReposiory.save(question1);
+
+        Question question2 = new Question();
+        question2.setQuestion("Wie ist ein Angebot beim Kaufvertrag definiert?");
+        question2.setAnswer("Ein Angebot ist eine empfangsbedürftige Willenserklärung, die auf den Abschluss eines Vertrages gerichtet ist und inhaltlich so bestimmt (oder bestimmbar) ist, dass der Adressat das Angebot durch ein bloßes „Ja“ annehmen kann");
+        question2.setCreator(julien);
+        question2.setCorrespondingLearningGroup(group6);
+        List<Question> juliensQuestions = new ArrayList<>();
+        juliensQuestions.add(question2);
+        desi.setCreatedQuestions(juliensQuestions);
+        questionReposiory.save(question2);
 
     }
 }

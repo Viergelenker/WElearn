@@ -69,7 +69,8 @@
                     question</a>
             </div>
             <div class="action">
-                <a class="cardLink" th:href="@{/showQuestion(learningGroupId=${learningGroup.id})}"><span class="fa fa-sticky-note-o"></span> Show Question</a>
+                <a class="cardLink" th:href="@{/showQuestion(learningGroupId=${learningGroup.id})}"><span
+                        class="fa fa-sticky-note-o"></span> Show Question</a>
             </div>
             <div class="action">
                 <a class="cardLink" data-open="writeNewMCQuestionModal"><span class="fa fa-check-square-o"></span>
@@ -166,15 +167,12 @@
             </ul>
 
             <div class="small-12 columns" style="padding-bottom: 40px">
-                <form th:object="${comment}"
+                <form data-abide="" novalidate="novalidate" th:object="${comment}"
                       th:action="@{/newComment(groupPostId=${groupPost.id})}"
                       method="post">
-                    <textarea placeholder="Write a new comment" maxlength="300"
+                    <textarea required="required" placeholder="Write a new comment" maxlength="300"
                               class="area small-8 small-offset-1 columns"
                               th:field="*{text}">New Comment</textarea>
-                    <div class="callout alert" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">
-                        Text Error
-                    </div>
                     <div class="small-3 columns">
                         <button type="submit" class="button">Save Comment
                             &nbsp;<span class="fa fa-commenting"></span>
@@ -182,7 +180,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 
@@ -206,7 +203,6 @@
     $(document).ready(function () {
 
         $(".buttonPost").attr("disabled", "true");
-        $(".buttonComment").attr("disabled", "true");
 
         tinymce.init({
             setup: function (editor) {
@@ -223,15 +219,6 @@
             plugins: 'link image code',
             toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | "
         });
-
-        $('.area').on("keyup", action);
-        function action() {
-            if ($('.area').val().length > 0) {
-                $('.buttonComment').removeAttr("disabled");
-            } else {
-                $('.buttonComment').attr("disabled", "true");
-            }
-        }
     });
 </script>
 </body>

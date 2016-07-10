@@ -24,29 +24,27 @@
     <div class="row">
         <div class="small-9 small-centered columns">
 
-            <form th:object="${user}" th:action="@{/newUser}" th:method="post">
+            <form data-abide="" novalidate="novalidate" th:object="${user}" th:action="@{/newUser}" th:method="post">
                 <div class="small-12 columns">
                     <br/>
-                    <input style="border-radius: 2px" type="text" th:field="*{username}" th:placeholder=" Username"/>
-                    <div class="callout alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name
-                        Error
-                    </div>
+                    <input required="required" style="border-radius: 2px" type="text" th:field="*{username}" th:placeholder=" Username"/>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
-                    <input style="border-radius: 2px" type="email" th:field="*{email}" th:placeholder=" Email"/>
-                    <div class="callout alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
-                        Error
-                    </div>
+                    <input required="required" style="border-radius: 2px" type="email" th:field="*{email}" th:placeholder=" Email"/>
+                    <span class="form-error">
+                        Please provide a correct email adress
+                    </span>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
                     <input style="border-radius: 2px" type="text" th:field="*{major}" th:placeholder=" Major"/>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
-                    <input style="border-radius: 2px" type="password" th:field="*{password}" th:placeholder=" Password"/>
+                    <input aria-describedby="passwordHelpText" style="border-radius: 2px" class="password" type="password" th:field="*{password}" th:placeholder=" Password"/>
+                    <p class="help-text" style="color: lightgray" id="passwordHelpText">Your password must have at least 4 characters</p>
                 </div>
 
                 <div style="padding-top: 13px" class="small-12 columns">
-                    <button type="submit" class="button"><i class="fa fa-check"></i> Submit</button>
+                    <button type="submit" class="buttonComment"><i class="fa fa-check"></i> Submit</button>
 
                 </div>
             </form>
@@ -57,6 +55,22 @@
 </div>
 
 <script src="js/app.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $(".buttonComment").attr("disabled", "true");
+
+        $('.password').on("keyup", action);
+        function action() {
+            if ($('.password').val().length > 3) {
+                $('.buttonComment').removeAttr("disabled");
+            } else {
+                $('.buttonComment').attr("disabled", "true");
+            }
+        }
+    });
+</script>
+
 
 </body>
 </html>
