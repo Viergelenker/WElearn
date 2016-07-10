@@ -29,6 +29,8 @@ public class QuestionCommentService {
         return commentList;
     }
 
+
+
     public void save(QuestionComment questionComment, User user, Question question){
         questionComment.setCreator(user);
         questionComment.setCorrespondingQuestion(question);

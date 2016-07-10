@@ -74,9 +74,6 @@ public class ShowLearningGroupController {
             model.addAttribute("comments", commentRepository.findAll());
             model.addAttribute("createQuestion", new Question());
             model.addAttribute("mcQuestion", new MCQuestion());
-            model.addAttribute("createQuestionComment", new QuestionComment());
-            model.addAttribute("questionComments", questionCommentService.getAllQuestionCommentsOfLearningGroup(
-                    learningGroupRepository.findOne(learningGroupId)));
             model.addAttribute("fileNames", learningGroupRepository.findOne(learningGroupId).getUploadedFilesList());
 
             if (!userService.getAllQuizOfUser(userService.getCurrentDesjUser()).isEmpty()) {
