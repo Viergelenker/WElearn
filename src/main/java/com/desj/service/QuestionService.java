@@ -23,11 +23,11 @@ public class QuestionService {
         questionReposiory.save(question);
         List<Question> createdQuestions = new ArrayList<Question>();
         createdQuestions.addAll(user.getCreatedQuestions());
-        System.out.println(user.getCreatedQuestions().size());
+
         createdQuestions.add(question);
-        System.out.println(createdQuestions.size());
+
         user.setCreatedQuestions(createdQuestions);
-        System.out.println(user.getCreatedQuestions().size());
+
 
     }
 
@@ -38,13 +38,12 @@ public class QuestionService {
 
         List<Question> questionsOfLearningGroup = this.getAllQuestionsOfLearningGroup(learningGroup);
 
-        Random rand = new Random();
-        int iterator =rand.nextInt((questionsOfLearningGroup.size() - 0) + 1) + 0;
         Question toBeAnswered;
 
-        while(iterator < questionsOfLearningGroup.size()){
-
-
+        if (questionsOfLearningGroup.size()!=0){
+            Random rand = new Random();
+            Integer iterator =rand.nextInt(questionsOfLearningGroup.size());
+            System.out.println(iterator);
             toBeAnswered=questionsOfLearningGroup.get(iterator);
             List<Question> answeredQuestions = new ArrayList<>();
             answeredQuestions.addAll(user.getAnsweredQuestions());
@@ -79,6 +78,12 @@ public class QuestionService {
             question.setComments(commentList);
         }
     }
+     public boolean questionSeen(Question question, User user){
+         if(user.getAnsweredQuestions().contains(question)){
+             return true;
+         }
+         return false;
+     }
 
 
 }

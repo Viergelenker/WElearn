@@ -40,6 +40,7 @@ public class ShowQuestionController {
         model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
         Question question = questionService.getQuestion(learningGroupRepository.findOne(learningGroupId), currentUser);
         if (question != null) {
+            model.addAttribute("seen", questionService.questionSeen(question, currentUser));
             model.addAttribute("user",currentUser.getId());
             List<Question> answeredQuestions = new ArrayList<>();
             answeredQuestions.addAll(userService.getCurrentDesjUser().getAnsweredQuestions());
@@ -48,6 +49,7 @@ public class ShowQuestionController {
             model.addAttribute("question", question);
             model.addAttribute("error", false);
             model.addAttribute("creator", userRepository.getOne(question.getCreator().getId()));
+
 
         }
         else {

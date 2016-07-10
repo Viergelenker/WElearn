@@ -23,7 +23,13 @@
     <div class="row">
         <div th:if="${creator.id}==${user}">
             <div class="small-10 large-offset-3 columns">
-                <p style="color:gainsboro">Created by you</p>
+
+                <div class="small-5 columns end">
+                    <p style="color:gainsboro">Created by you</p>
+                </div>
+                <div class="small-5 columns" th:if="${seen}">
+                    <p style="color:gainsboro">Question already seen!</p>
+                </div>
             </div>
         </div>
         <div th:if="${creator.id}!=${user}">
@@ -31,8 +37,11 @@
                 <div class="small-1 columns">
                     <p style="color:gainsboro">Created by</p>
                 </div>
-                <div class="small-9 columns end">
+                <div class="small-4 columns end">
                     <p style="color:gainsboro" th:text="${creator.username}">Creator</p>
+                </div>
+                <div class="small-4 columns" th:if="${seen}==true">
+                    <p style="color:gainsboro">Question already seen!</p>
                 </div>
             </div>
         </div>
