@@ -12,9 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Julien on 07.07.16.
  */
@@ -38,19 +35,12 @@ public class ShowQuestionController {
 
         User currentUser = userService.getCurrentDesjUser();
         model.addAttribute("learningGroup", learningGroupRepository.findOne(learningGroupId));
-        Question question = questionService.getQuestion(learningGroupRepository.findOne(learningGroupId), currentUser);
+        Question question = questionService.getQuestion(learningGroupRepository.findOne(learningGroupId));
         if (question != null) {
-            model.addAttribute("seen", questionService.questionSeen(question, currentUser));
             model.addAttribute("user",currentUser.getId());
-            List<Question> answeredQuestions = new ArrayList<>();
-            answeredQuestions.addAll(userService.getCurrentDesjUser().getAnsweredQuestions());
-            answeredQuestions.add(question);
-            userService.getCurrentDesjUser().setAnsweredQuestions(answeredQuestions);
             model.addAttribute("question", question);
             model.addAttribute("error", false);
             model.addAttribute("creator", userRepository.getOne(question.getCreator().getId()));
-
-
         }
         else {
             model.addAttribute("error", true);

@@ -27,28 +27,18 @@ public class QuestionService {
         createdQuestions.add(question);
 
         user.setCreatedQuestions(createdQuestions);
-
-
     }
 
-
-    public Question getQuestion(LearningGroup learningGroup, User user){
-
-
+    public Question getQuestion(LearningGroup learningGroup) {
 
         List<Question> questionsOfLearningGroup = this.getAllQuestionsOfLearningGroup(learningGroup);
 
         Question toBeAnswered;
 
-        if (questionsOfLearningGroup.size()!=0){
+        if (questionsOfLearningGroup.size() != 0) {
             Random rand = new Random();
-            Integer iterator =rand.nextInt(questionsOfLearningGroup.size());
-            System.out.println(iterator);
-            toBeAnswered=questionsOfLearningGroup.get(iterator);
-            List<Question> answeredQuestions = new ArrayList<>();
-            answeredQuestions.addAll(user.getAnsweredQuestions());
-            answeredQuestions.add(toBeAnswered);
-            user.setAnsweredQuestions(answeredQuestions);
+            Integer iterator = rand.nextInt(questionsOfLearningGroup.size());
+            toBeAnswered = questionsOfLearningGroup.get(iterator);
             return toBeAnswered;
 
         }
@@ -66,8 +56,6 @@ public class QuestionService {
         return questionList;
     }
 
-
-
     public void addQuestionComment(Question question, QuestionComment questionComment) {
         List<QuestionComment> commentList = new ArrayList<>();
         if (question.getComments() != null) {
@@ -78,12 +66,4 @@ public class QuestionService {
             question.setComments(commentList);
         }
     }
-     public boolean questionSeen(Question question, User user){
-         if(user.getAnsweredQuestions().contains(question)){
-             return true;
-         }
-         return false;
-     }
-
-
 }
