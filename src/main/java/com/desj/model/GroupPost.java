@@ -4,9 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Julien on 09.06.16.
@@ -32,13 +30,6 @@ public class GroupPost {
     @OneToOne
     @JoinColumn(name = "learningGroupId")
     private LearningGroup associatedLearningGroup;
-
-    @OneToMany
-    @JoinTable(
-            name="GROUPCOMMENTS",
-            joinColumns=@JoinColumn(name="GROUPPOST_ID"),
-            inverseJoinColumns=@JoinColumn(name="COMMENT_ID"))
-    private List<com.desj.model.Comment> comments = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -76,14 +67,6 @@ public class GroupPost {
     public void setAssociatedLearningGroup(LearningGroup associatedLearningGroup) {
         this.associatedLearningGroup = associatedLearningGroup;
 
-    }
-
-    public List<com.desj.model.Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<com.desj.model.Comment> comments) {
-        this.comments = comments;
     }
 
     public String getTsCreatedFormatted(){

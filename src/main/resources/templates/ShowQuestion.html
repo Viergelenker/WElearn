@@ -43,18 +43,19 @@
                 <h5 th:text="${question.answer}">Answer</h5>
 
                 <div style="padding-top: 20px;">
+                    <hr/>
                     <button th:if="${allQuestionComments.size()}!=0" class="button" data-toggle="comments"> Comments
                         &nbsp;
                         <span class="fa fa-comments"></span>
                     </button>
                 </div>
 
-                <p th:if="${allQuestionComments.size()}==0" style="color: #f8f8f8">There aren't any comments yet. Be
-                    the first, share your opinion!!!</p>
-
                 <a th:if="${allQuestionComments.size()}==0" class="button" data-open="writeNewQuestionCommentModal">Write new comment
                     &nbsp;<span class="fa fa-pencil"></span>
                 </a>
+
+                <p th:if="${allQuestionComments.size()}==0" style="color: #f8f8f8">There aren't any comments yet. Be
+                    the first, share your opinion!!!</p>
 
                 <div id="comments" data-toggler="" data-animate="fade-in fade-out" style="display: none">
 

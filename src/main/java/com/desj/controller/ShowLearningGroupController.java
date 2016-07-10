@@ -126,8 +126,6 @@ public class ShowLearningGroupController {
         } else {
 
             commentService.save(comment, userService.getCurrentDesjUser(), groupPostRepository.findOne(groupPostId));
-            groupPostService.addGroupPostComment(groupPostRepository.findOne(groupPostId), comment);
-
             return "redirect:/showLearningGroup?id=" + redirectString;
         }
     }
@@ -137,7 +135,6 @@ public class ShowLearningGroupController {
                                       @ModelAttribute("mcQuestion") MCQuestion mcQuestion) {
         User user = userService.getCurrentDesjUser();
         mcQuestionService.save(mcQuestion, learningGroupRepository.findOne(learningGroupId), user);
-        user.createMCQuestion(mcQuestion);
 
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
@@ -147,7 +144,6 @@ public class ShowLearningGroupController {
                                     @ModelAttribute("createQuestion") Question question) {
         User user = userService.getCurrentDesjUser();
         questionService.save(question, learningGroupRepository.findOne(learningGroupId), user);
-        user.createQuestion(question);
 
         return "redirect:/showLearningGroup?id=" + learningGroupId.toString();
     }
@@ -159,7 +155,6 @@ public class ShowLearningGroupController {
 
         questionCommentService.save(questionComment, userService.getCurrentDesjUser(),
                 questionReposiory.findOne(questionId));
-        questionService.addQuestionComment(questionReposiory.findOne(questionId), questionComment);
         return "redirect:/showQuestion?questionId=" + questionId + "&learningGroupId=" + questionReposiory.findOne(questionId).getCorrespondingLearningGroup().getId().toString();
     }
 

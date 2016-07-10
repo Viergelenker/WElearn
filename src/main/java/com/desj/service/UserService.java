@@ -68,6 +68,13 @@ public class UserService {
             }
         }
 
+        List<MCQuestion> answeredMCQuestionList = new ArrayList<>();
+        answeredMCQuestionList.addAll(user.getAnsweredMCQuestions());
+        for (MCQuestion mcQuestion : user.getAnsweredMCQuestions()) {
+            answeredMCQuestionList.remove(mcQuestion);
+        }
+        user.setAnsweredMCQuestions(answeredMCQuestionList);
+
         for (MCQuestion mcQuestion : mcQuestionRepository.findAll()) {
             if (mcQuestion.getCreator().equals(user)) {
                 mcQuestionRepository.delete(mcQuestion);

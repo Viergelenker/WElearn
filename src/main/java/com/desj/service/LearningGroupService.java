@@ -26,6 +26,15 @@ public class LearningGroupService {
     private MCQuestionRepository mcQuestionRepository;
 
     @Autowired
+    private QuestionCommentRepository questionCommentRepository;
+
+    @Autowired
+    private QuestionReposiory questionReposiory;
+
+    @Autowired
+    private QuizRepository quizRepository;
+
+    @Autowired
     private CommentRepository commentRepository;
 
     @Autowired
@@ -37,9 +46,36 @@ public class LearningGroupService {
 
     public void delete(Integer learningGroupId) {
 
+        User user = learningGroupRepository.findOne(learningGroupId).getCreatorOfGroup();
+
+        List<MCQuestion> answeredMCQuestionList = new ArrayList<>();
+        answeredMCQuestionList.addAll(user.getAnsweredMCQuestions());
+        for (MCQuestion mcQuestion : user.getAnsweredMCQuestions()) {
+            answeredMCQuestionList.remove(mcQuestion);
+        }
+        user.setAnsweredMCQuestions(answeredMCQuestionList);
+
         for (MCQuestion mcQuestion : mcQuestionRepository.findAll()) {
             if (mcQuestion.getCorrespondingLearningGroup().getId() == learningGroupId) {
                 mcQuestionRepository.delete(mcQuestion);
+            }
+        }
+
+        for (QuestionComment questionComment : questionCommentRepository.findAll()) {
+            if (questionComment.getCorrespondingQuestion().getCorrespondingLearningGroup().getId() == learningGroupId) {
+                questionCommentRepository.delete(questionComment);
+            }
+        }
+
+        for (Question question : questionReposiory.findAll()) {
+            if (question.getCorrespondingLearningGroup().getId().equals(learningGroupId)) {
+                questionReposiory.delete(question);
+            }
+        }
+
+        for (Quiz quiz : quizRepository.findAll()) {
+            if (quiz.getLearningGroup().getId().equals(learningGroupId)) {
+                quizRepository.delete(quiz);
             }
         }
 

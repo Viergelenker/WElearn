@@ -10,9 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Julien on 23.04.16.
  * This class creates demo content for the test database.
@@ -919,9 +916,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         question1.setAnswer("Entwurf ist eine Aktivitaet, bei der die technishe Loesungsstruktur fuer ein System entwickelt wird.");
         question1.setCreator(desi);
         question1.setCorrespondingLearningGroup(group7);
-        List<Question> desisQuestions = new ArrayList<>();
-        desisQuestions.add(question1);
-        desi.setCreatedQuestions(desisQuestions);
         questionReposiory.save(question1);
 
         Question question2 = new Question();
@@ -929,9 +923,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         question2.setAnswer("Ein Angebot ist eine empfangsbedürftige Willenserklärung, die auf den Abschluss eines Vertrages gerichtet ist und inhaltlich so bestimmt (oder bestimmbar) ist, dass der Adressat das Angebot durch ein bloßes „Ja“ annehmen kann");
         question2.setCreator(julien);
         question2.setCorrespondingLearningGroup(group6);
-        List<Question> juliensQuestions = new ArrayList<>();
-        juliensQuestions.add(question2);
-        desi.setCreatedQuestions(juliensQuestions);
         questionReposiory.save(question2);
 
     }

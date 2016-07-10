@@ -21,12 +21,6 @@ public class QuestionService {
         question.setCorrespondingLearningGroup(learningGroup);
         question.setCreator(user);
         questionReposiory.save(question);
-        List<Question> createdQuestions = new ArrayList<Question>();
-        createdQuestions.addAll(user.getCreatedQuestions());
-
-        createdQuestions.add(question);
-
-        user.setCreatedQuestions(createdQuestions);
     }
 
     public Question getQuestion(LearningGroup learningGroup) {
@@ -54,16 +48,5 @@ public class QuestionService {
             }
         }
         return questionList;
-    }
-
-    public void addQuestionComment(Question question, QuestionComment questionComment) {
-        List<QuestionComment> commentList = new ArrayList<>();
-        if (question.getComments() != null) {
-            commentList.addAll(question.getComments());
-
-        } else {
-            commentList.add(questionComment);
-            question.setComments(commentList);
-        }
     }
 }

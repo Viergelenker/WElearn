@@ -47,15 +47,4 @@ public class GroupPostService {
         Collections.reverse(groupPosts);
         return groupPosts;
     }
-
-    public void addGroupPostComment(GroupPost groupPost, Comment comment) {
-        List<Comment> commentList = new ArrayList<>();
-        if (groupPost.getComments() != null) {
-            commentList.addAll(groupPost.getComments());
-        }
-        else commentList.add(comment);
-        groupPost.setComments(commentList);
-    }
-
-
 }

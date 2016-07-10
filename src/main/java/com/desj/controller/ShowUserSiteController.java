@@ -71,7 +71,7 @@ public class ShowUserSiteController {
         return "ShowUserSite";
     }
 
-    @RequestMapping(value = "/deleteLearningGroup{learningGroupId}")
+    @RequestMapping(value = "/deleteLearningGroup")
     @Transactional
     public String deleteLearningGroup(@RequestParam(value = "learningGroupId") Integer learningGroupId) {
 

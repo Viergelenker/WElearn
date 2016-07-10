@@ -25,7 +25,6 @@ public class QuestionCommentService {
                 commentList.add(questionComment);
             }
         }
-        System.out.println(commentList.size());
         return commentList;
     }
 

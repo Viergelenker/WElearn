@@ -38,22 +38,6 @@ public class LearningGroup {
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private List<User> members = new ArrayList<>();
 
-    @OneToMany
-    @JoinTable(
-            name = "MCQUESTIONPOOL",
-            joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "MCQUESTION_ID")
-    )
-    private List<MCQuestion> mcQuestions = new ArrayList<>();
-
-    @OneToMany
-    @JoinTable(
-            name = "QUESTIONPOOL",
-            joinColumns = @JoinColumn(name = "GROUP_ID"),
-            inverseJoinColumns = @JoinColumn(name = "QUESTION_ID")
-    )
-    private List<Question> questions = new ArrayList<>();
-
     @ElementCollection
     private List<String> uploadedFilesList = new ArrayList<>();
 
@@ -115,22 +99,6 @@ public class LearningGroup {
 
     public void setMembers(List<User> members) {
         this.members = members;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    public List<MCQuestion> getMcQuestions() {
-        return mcQuestions;
-    }
-
-    public void setMcQuestions(List<MCQuestion> mcQuestions) {
-        this.mcQuestions = mcQuestions;
     }
 
     public List<String> getUploadedFilesList() {

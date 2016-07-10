@@ -17,17 +17,13 @@ public class QuestionComment {
     @Lob
     private String comment;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "QUESTION_ID")
     private Question correspondingQuestion;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "CREATOR_ID")
     private User creator;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "GROUP_ID")
-    private LearningGroup correspondingLearningGroup;
 
     public String getComment() {
         return comment;
@@ -55,13 +51,5 @@ public class QuestionComment {
 
     public Integer getId() {
         return id;
-    }
-
-    public LearningGroup getCorrespondingLearningGroup() {
-        return correspondingLearningGroup;
-    }
-
-    public void setCorrespondingLearningGroup(LearningGroup correspondingLearningGroup) {
-        this.correspondingLearningGroup = correspondingLearningGroup;
     }
 }
