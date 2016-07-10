@@ -42,11 +42,12 @@
                     <input style="border-radius: 2px" type="text" th:field="*{major}" th:placeholder=" Major"/>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
-                    <input style="border-radius: 2px" type="password" th:field="*{password}" th:placeholder=" Password"/>
+                    <input aria-describedby="passwordHelpText" style="border-radius: 2px" class="password" type="password" th:field="*{password}" th:placeholder=" Password"/>
+                    <p class="help-text" style="color: lightgray" id="passwordHelpText">Your password must have at least 4 characters</p>
                 </div>
 
                 <div style="padding-top: 13px" class="small-12 columns">
-                    <button type="submit" class="button"><i class="fa fa-check"></i> Submit</button>
+                    <button type="submit" class="buttonComment"><i class="fa fa-check"></i> Submit</button>
 
                 </div>
             </form>
@@ -57,6 +58,22 @@
 </div>
 
 <script src="js/app.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $(".buttonComment").attr("disabled", "true");
+
+        $('.password').on("keyup", action);
+        function action() {
+            if ($('.password').val().length > 3) {
+                $('.buttonComment').removeAttr("disabled");
+            } else {
+                $('.buttonComment').attr("disabled", "true");
+            }
+        }
+    });
+</script>
+
 
 </body>
 </html>
