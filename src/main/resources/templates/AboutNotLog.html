@@ -1,41 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"/>
     <title>About us</title>
 </head>
-<body>
+<body style="background-color: transparent">
 <div th:replace="fragments/navbar :: notLoggedIn"></div>
-
 <div class="row">
-    <div class="small-8 columns">
-        <h2><big><strong>Our goals:</strong></big></h2>
-        <p ><i><big>We are developing a social learning platform as a students project at the University of Hohenheim.
+    <div class="small-8 columns wrapper60">
+        <h3 style="color:#cacaca"><big><strong>Our goals:</strong></big></h3>
+        <p style="color:#cacaca"><i><big>We are developing a social learning platform as a students project at the University of Hohenheim.
             Our aim is to make learning easier and more interesting for university students.</big></i></p>
-
         <div>
-            <h3>
+            <h3 style="color:#cacaca">
                 <big><strong>Who are we: </strong></big>
             </h3>
             <ul>
-                <li><i><big>Desislava Ivanova</big></i></li>
+                <li style="color:#cacaca"><i><big>Desislava Ivanova</big></i></li>
 
-                <li><i><big>Julien Vollweiter</big></i></li>
-                <li><i><big>Sabrina Semmelmann</big></i></li>
-                <li><i><big>Erhan Geyik</big></i></li>
+                <li style="color:#cacaca"><i><big>Julien Vollweiter</big></i></li>
+                <li style="color:#cacaca"><i><big>Sabrina Semmelmann</big></i></li>
+                <li style="color:#cacaca"><i><big>Erhan Geyik</big></i></li>
             </ul>
         </div>
     </div>
-
-
-
-
-
     <div class="small-4  columns " >
         <a href="https://www.uni-hohenheim.de" target="_blank">
             <img class="thumbnail " src="images/hlogo.jpg" width="350" height="350"/>
         </a>
     </div>
 </div>
+<script src="js/app.js"></script>
 </body>
 </html>
