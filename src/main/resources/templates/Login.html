@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover" xmlns:th="http://www.thymeleaf.org">
+<html style="background: url('images/schloss_hohenheim.jpg') no-repeat center center fixed; background-size: cover"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"></div>
 </head>
@@ -27,19 +28,22 @@
             <form data-abide="" novalidate="novalidate" th:object="${user}" th:action="@{/newUser}" th:method="post">
                 <div class="small-12 columns">
                     <br/>
-                    <input required="required" style="border-radius: 2px" type="text" th:field="*{username}" th:placeholder=" Username"/>
+                    <input required="required" style="border-radius: 2px" id="username" type="text"
+                           th:field="*{username}" th:placeholder=" Username"/>
+                    <span class="form-error1" id="usernameError">Username already taken</span>
+                    <span class="form-success" id="usernameAvailable">Username available</span>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
-                    <input required="required" style="border-radius: 2px" type="email" th:field="*{email}" th:placeholder=" Email"/>
-                    <span class="form-error">
-                        Please provide a correct email adress
-                    </span>
+                    <input required="required" id="email" style="border-radius: 2px" type="email" th:field="*{email}"
+                           th:placeholder=" Email"/>
+                    <span class="form-error1" id="emailError">Email already registered</span>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
                     <input style="border-radius: 2px" type="text" th:field="*{major}" th:placeholder=" Major"/>
                 </div>
                 <div style="padding-top: 13px" class="small-12 columns">
-                    <input style="border-radius: 2px" class="password" type="password" th:field="*{password}" placeholder=" Password (min 4 characters)"/>
+                    <input required="required" style="border-radius: 2px" class="password" type="password" th:field="*{password}"
+                           placeholder=" Password (min 4 characters)"/>
                 </div>
 
                 <div style="padding-top: 13px" class="small-12 columns">
@@ -53,11 +57,20 @@
     <br/>
 </div>
 
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var usernameList = /*[[${usernames}]]*/;
+    var emails = /*[[${emails}]]*/;
+
+    /*]]>*/
+</script>
 <script src="js/app.js"></script>
 <script>
+
     $(document).ready(function () {
 
-        $(".buttonComment").attr("disabled", "true");
+        $('.buttonComment').attr("disabled", "true");
 
         $('.password').on("keyup", action);
         function action() {
@@ -67,7 +80,69 @@
                 $('.buttonComment').attr("disabled", "true");
             }
         }
-    });
+
+        $('#username').on("keyup", action2);
+        function action2() {
+
+            var el = document.getElementById("usernameAvailable");
+            var el2 = document.getElementById("usernameError")
+            el.style.display = 'none';
+            el2.style.display = 'none';
+
+            var userInput = document.getElementById("username").value;
+
+            if ($.inArray(userInput.trim(), usernameList) >= 0) {
+                if (el2.style.display == 'none') {
+                    el2.style.display = 'block';
+                    $('.buttonComment').attr("disabled", "true");
+                }
+                else {
+                    el2.style.display = 'none';
+                    $('.buttonComment').removeAttr("disabled");
+                }
+            }
+            else if (userInput.trim().length > 0) {
+
+                if (el.style.display == 'none') {
+                    el.style.display = 'block';
+                    $('.buttonComment').removeAttr("disabled");
+                }
+                else {
+                    el.style.display = 'none';
+                    $('.buttonComment').attr("disabled", "true");
+                }
+            }
+            else $('.buttonComment').attr("disabled", "true");
+        }
+
+        $('#email').on("keyup", action3);
+        function action3() {
+
+            var emailSpan = document.getElementById("emailError")
+            emailSpan.style.display = 'none';
+
+            var emailInput = document.getElementById("email").value;
+
+            if ($.inArray(emailInput.trim(), emails) >= 0) {
+                if (emailSpan.style.display == 'none') {
+                    emailSpan.style.display = 'block';
+                    $('.buttonComment').attr("disabled", "true");
+                }
+                else {
+                    emailSpan.style.display = 'none';
+                    $('.buttonComment').removeAttr("disabled");
+                }
+            }
+            else if (emailInput.trim().length > 0) {
+
+                $('.buttonComment').removeAttr("disabled");
+            }
+            else {
+                $('.buttonComment').attr("disabled", "true");
+            }
+        }
+    })
+    ;
 </script>
 
 

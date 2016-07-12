@@ -108,7 +108,6 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group6.getId(), julien);
         group2.setCreatorOfGroup(julien);
         group5.setCreatorOfGroup(julien);
-        group6.setCreatorOfGroup(julien);
         group8.setCreatorOfGroup(julien);
         learningGroupService.addMemberToLearningGroup(group7.getId(), julien);
         learningGroupService.addMemberToLearningGroup(group1.getId(), julien);
@@ -143,6 +142,7 @@ public class TestDatabaseLoader implements ApplicationListener<ContextRefreshedE
         learningGroupService.addMemberToLearningGroup(group2.getId(), sabrina);
         learningGroupService.addMemberToLearningGroup(group8.getId(), sabrina);
         group4.setCreatorOfGroup(sabrina);
+        group6.setCreatorOfGroup(sabrina);
 
         // Erhan
         com.desj.model.User erhan = new com.desj.model.User();

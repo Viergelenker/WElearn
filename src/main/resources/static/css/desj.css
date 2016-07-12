@@ -12,6 +12,24 @@ html#findGroup {
     color: black;
 }
 
+.form-success {
+    display: none;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: springgreen; }
+
+.form-error1 {
+    display: none;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #ec5840; }
+.form-error.is-visible {
+    display: block; }
+
 .button {
     border-radius: 2px;
 }
